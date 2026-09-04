@@ -71,3 +71,8 @@ local_settings.py
 pip-log.txt
 # redis dumps
 *.rdb
+
+data/random-battles/gen9ffa/extra-doubles-sets.json
+
+data/random-battles/gen9ffa/extra-doubles-sets.json
+data/random-battles/gen9/extra-singles-sets.json

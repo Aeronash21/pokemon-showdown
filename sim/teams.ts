@@ -639,6 +639,10 @@ export const Teams = new class Teams {
 			TeamGenerator = require(`../data/random-battles/gen9baby/teams`).default;
 		} else if (formatID.includes('gen9randombattle') && format.ruleTable?.has('+tag:cap')) {
 			TeamGenerator = require(`../data/random-battles/gen9cap/teams`).default;
+		} else if (formatID === 'gen9randombattlespb12p6singles') {
+			TeamGenerator = require(`../data/random-battles/gen9/mega-singles-teams`).default;
+		} else if (formatID === 'gen9freeforallrandombattlespb12p6') {
+			TeamGenerator = require(`../data/random-battles/gen9ffa/mega-teams`).default;
 		} else if (formatID.includes('gen9freeforallrandombattle')) {
 			TeamGenerator = require(`../data/random-battles/gen9ffa/teams`).default;
 		} else {
