@@ -1,5 +1,7 @@
 import type { PRNG, PRNGSeed } from "../../../sim/prng";
 import RandomGen9Teams from "./teams";
+import {fixSetForMega} from "../mega-set-fixer";
+import { toID } from '../../../sim/dex';
 
 const fs = require('fs');
 const path = require('path');
@@ -215,70 +217,286 @@ export class MegaNationalDexRandomFFATeams extends RandomGen9Teams {
 	}
 
 	private getHistoricalMovePool(species: Species): string[] {
+		/*
+		 * IMPORTANT:
+		 * Never merge the movepools from several historical roles.
+		 *
+		 * Gen 9 Random Battles expects one curated role-specific
+		 * movepool. Combining several roles can create combinations
+		 * its move-culling code was never designed to process.
+		 */
 		for (const table of HISTORICAL_RANDOM_SETS) {
 			const entry = table[species.id];
 
 			if (!entry?.sets?.length) continue;
 
-			const result: string[] = [];
+			const usablePools: string[][] = [];
 
 			for (const set of entry.sets) {
-				for (const moveName of set.movepool || []) {
+				if (!Array.isArray(set.movepool)) continue;
+
+				const pool: string[] = [];
+
+				for (const moveName of set.movepool) {
 					const move = this.dex.moves.get(moveName);
 
 					if (!move.exists) continue;
 					if (move.isZ || move.isMax) continue;
 
-					if (!result.includes(move.name)) {
-						result.push(move.name);
+					if (
+						move.isNonstandard &&
+						move.isNonstandard !== 'Past'
+					) {
+						continue;
 					}
+
+					if (!pool.includes(move.id)) {
+						pool.push(move.id);
+					}
+				}
+
+				if (pool.length) {
+					usablePools.push(pool);
 				}
 			}
 
-			if (result.length >= 4) return result;
+			if (usablePools.length) {
+				// Pick ONE historical role, never union them.
+				return [...this.sample(usablePools)];
+			}
 		}
 
 		return [];
 	}
 
 	private getGenericMovePool(species: Species): string[] {
-		let result = this.getHistoricalMovePool(species);
+		/*
+		 * Smogon imported sets don't use this function.
+		 *
+		 * This is only the emergency fallback for a Pokemon for
+		 * which we have no imported competitive set.
+		 *
+		 * The important rule is that we return at most four moves.
+		 * That means Showdown never tries to run its complex
+		 * RandBat move-culling algorithm on a giant raw learnset.
+		 */
+		let candidates = this.getHistoricalMovePool(species);
 
-		if (result.length >= 4) return result;
-
-		result = [];
-
-		for (
-			const moveID of this.dex.species.getMovePool(species.id)
-		) {
-			const move = this.dex.moves.get(moveID);
-
-			if (!move.exists) continue;
-			if (move.isZ || move.isMax) continue;
-
-			/*
-			 * National Dex permits Past moves, but don't pull in
-			 * Future/unreleased/nonstandard nonsense.
-			 */
-			if (
-				move.isNonstandard &&
-				move.isNonstandard !== 'Past'
-			) {
-				continue;
-			}
-
-			if (!result.includes(move.name)) {
-				result.push(move.name);
-			}
+		if (!candidates.length) {
+			candidates = [
+				...this.dex.species.getMovePool(
+					species.id,
+					true
+				),
+			]
+				.map(moveID => this.dex.moves.get(moveID))
+				.filter(move =>
+					move.exists &&
+					!move.isZ &&
+					!move.isMax &&
+					(
+						!move.isNonstandard ||
+						move.isNonstandard === 'Past'
+					)
+				)
+				.map(move => move.id);
 		}
 
-		return result;
+		candidates = [...new Set(candidates)];
+
+		/*
+		 * Some battle-only/form-changing Pokemon REQUIRE a move.
+		 * randomMoveset() assumes this move exists in its movepool,
+		 * so explicitly add it before reducing the pool.
+		 */
+		const requiredMove = species.requiredMove ?
+			this.dex.moves.get(species.requiredMove).id :
+			'';
+
+		if (
+			requiredMove &&
+			!candidates.includes(requiredMove)
+		) {
+			candidates.unshift(requiredMove);
+		}
+
+		if (candidates.length <= this.maxMoveCount) {
+			return candidates;
+		}
+
+		const chosen: string[] = [];
+
+		const add = (moveID: string | undefined) => {
+			if (!moveID) return;
+			if (!candidates.includes(moveID)) return;
+			if (chosen.includes(moveID)) return;
+			if (chosen.length >= this.maxMoveCount) return;
+
+			chosen.push(moveID);
+		};
+
+		// A required transformation/form move always comes first.
+		add(requiredMove);
+
+		const damagingMoves = candidates
+			.map(moveID => this.dex.moves.get(moveID))
+			.filter(move =>
+				move.exists &&
+				move.category !== 'Status' &&
+				!!(move.basePower || move.basePowerCallback)
+			);
+
+		/*
+		 * Prefer the attacking side matching the Pokemon's stats.
+		 * This also makes the emergency fallback noticeably less
+		 * likely to produce nonsense physical/special combinations.
+		 */
+		const preferredCategory =
+			species.baseStats.atk >= species.baseStats.spa ?
+				'Physical' :
+				'Special';
+
+		const moveScore = (move: Move) => {
+			let score = move.basePower || 60;
+
+			if (move.category === preferredCategory) {
+				score += 35;
+			}
+
+			if (species.types.includes(move.type)) {
+				score += 45;
+			}
+
+			if (move.priority > 0) {
+				score += 10;
+			}
+
+			if (move.accuracy === true) {
+				score += 5;
+			} else if (
+				typeof move.accuracy === 'number'
+			) {
+				score += Math.floor(move.accuracy / 20);
+			}
+
+			return score;
+		};
+
+		/*
+		 * First try to provide one attacking move for each STAB type.
+		 */
+		for (const type of species.types) {
+			const stab = damagingMoves
+				.filter(move => move.type === type)
+				.sort((a, b) =>
+					moveScore(b) - moveScore(a)
+				)[0];
+
+			add(stab?.id);
+		}
+
+		/*
+		 * Useful status/setup/recovery moves are preferable to
+		 * grabbing four random attacks from a full learnset.
+		 */
+		const usefulUtility = [
+			'recover',
+			'roost',
+			'slackoff',
+			'softboiled',
+			'morningsun',
+			'moonlight',
+			'synthesis',
+			'strengthsap',
+			'shoreup',
+			'wish',
+
+			'quiverdance',
+			'shellsmash',
+			'dragondance',
+			'swordsdance',
+			'nastyplot',
+			'calmmind',
+			'bulkup',
+			'coil',
+			'agility',
+
+			'spore',
+			'willowisp',
+			'thunderwave',
+			'toxic',
+
+			'stealthrock',
+			'stickyweb',
+			'spikes',
+			'toxicspikes',
+
+			'rapidspin',
+			'defog',
+
+			'tailwind',
+			'trickroom',
+
+			'protect',
+			'substitute',
+			'taunt',
+			'encore',
+		];
+
+		for (const moveID of usefulUtility) {
+			if (chosen.length >= this.maxMoveCount) break;
+			add(moveID);
+		}
+
+		/*
+		 * Add the best remaining coverage/damaging attacks.
+		 */
+		for (
+			const move of damagingMoves.sort(
+				(a, b) => moveScore(b) - moveScore(a)
+			)
+		) {
+			if (chosen.length >= this.maxMoveCount) break;
+			add(move.id);
+		}
+
+		/*
+		 * Last-resort fill. This should almost never be needed,
+		 * but guarantees a usable pool.
+		 */
+		for (const moveID of candidates) {
+			if (chosen.length >= this.maxMoveCount) break;
+			add(moveID);
+		}
+
+		return chosen.slice(0, this.maxMoveCount);
 	}
+
 
 	private ensurePoolEntry(species: Species) {
 		if (this.randomSets[species.id]) return;
 
 		const movepool = this.getGenericMovePool(species);
+
+		/*
+		 * Some legal formes require a particular move.
+		 *
+		 * Showdown's randomMoveset() forcibly adds species.requiredMove.
+		 * addMove() assumes that required move is already present in
+		 * movePool, so synthetic National Dex fallback sets MUST include it.
+		 */
+		if (species.requiredMove) {
+			const requiredMove = this.dex.moves.get(species.requiredMove);
+
+			if (
+				requiredMove.exists &&
+				!movepool.some(
+					move => this.dex.moves.get(move).id === requiredMove.id
+				)
+			) {
+				movepool.push(requiredMove.name);
+			}
+		}
 
 		if (!movepool.length) return;
 
@@ -536,33 +754,78 @@ export class MegaNationalDexRandomFFATeams extends RandomGen9Teams {
 		const species = this.dex.species.get(s);
 
 		/*
-		 * Imported Past / competitive-NFE Pokemon use an actual
-		 * Smogon singles set.
+		 * First generate the base Pokemon's normal set.
 		 */
-		if (this.importedSpecies.has(species.id)) {
-			const imported =
-				this.importedRandomSet(species);
+		let set: RandomTeamsTypes.RandomSet;
 
-			if (imported) {
-				return this.applySpecialItem(
+		if (this.importedSpecies.has(species.id)) {
+			set =
+				this.importedRandomSet(species) ??
+				super.randomSet(
 					species,
-					imported
+					teamDetails,
+					isLead,
+					isDoubles
 				);
-			}
+		} else {
+			set = super.randomSet(
+				species,
+				teamDetails,
+				isLead,
+				isDoubles
+			);
 		}
 
 		/*
-		 * Native Gen 9 FFA Pokemon and the rare no-Smogon-set
-		 * fallback still use Showdown's normal FFA set generator.
+		 * Competitive NFE exception.
 		 */
-		const set = super.randomSet(
-			species,
-			teamDetails,
-			isLead,
-			isDoubles
-		);
+		if (species.id === 'pikachu') {
+			set.item = 'Light Ball';
+		}
 
-		return this.applySpecialItem(species, set);
+		const stones =
+			this.megaStonesBySpecies[species.id];
+
+		if (!stones?.length) return set;
+
+		/*
+		 * IMPORTANT:
+		 *
+		 * We choose the Mega Stone BEFORE finalising the
+		 * moveset. This prevents situations such as:
+		 *
+		 * special Charizard + Charizardite X.
+		 */
+		const stone = this.sample(stones);
+		const item = this.dex.items.get(stone);
+
+		const megaName =
+			item.megaStone?.[species.baseSpecies] ??
+			item.megaStone?.[species.name];
+
+		if (!megaName) {
+			set.item = stone;
+			return set;
+		}
+
+		const mega = this.dex.species.get(megaName);
+
+		if (!mega.exists) {
+			set.item = stone;
+			return set;
+		}
+
+		return fixSetForMega({
+			dex: this.dex,
+			base: species,
+			mega,
+			stone,
+			set,
+			sourceSets: EXTRA_SINGLES_SETS,
+			sample: <T>(values: T[]) =>
+				this.sample(values),
+			isDoublesStyle: false,
+		});
 	}
 }
 

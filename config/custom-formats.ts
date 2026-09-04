@@ -37,37 +37,80 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			const sharedPower = new Set<string>();
 
 			for (const ally of pokemon.side.pokemon) {
+				/*
+				 * Once a Pokemon has switched in, remember the ability
+				 * it permanently contributed to Shared Power.
+				 *
+				 * m.sharedPowerAbility survives switching and fainting.
+				 */
+				if (
+					ally.previouslySwitchedIn <= 0 &&
+					!ally.m.sharedPowerAbility
+				) {
+					continue;
+				}
+
+				const ability = (
+					ally.m.sharedPowerAbility ||
+					ally.baseAbility
+				) as string;
+
+				if (!ability) continue;
+
 				if (
 					pokemon.battle.ruleTable.isRestricted(
-						`ability:${ally.baseAbility}`
+						`ability:${ability}`
 					)
-				) continue;
-
-				if (ally.previouslySwitchedIn > 0) {
-					if (
-						pokemon.battle.dex.currentMod !== 'sharedpower' &&
-						['trace', 'mirrorarmor'].includes(ally.baseAbility)
-					) {
-						sharedPower.add('noability');
-						continue;
-					}
-
-					sharedPower.add(ally.baseAbility);
+				) {
+					continue;
 				}
+
+				if (
+					pokemon.battle.dex.currentMod !== 'sharedpower' &&
+					['trace', 'mirrorarmor'].includes(ability)
+				) {
+					sharedPower.add('noability');
+					continue;
+				}
+
+				sharedPower.add(ability);
 			}
 
-			sharedPower.delete(pokemon.baseAbility);
+			/*
+			 * A Pokemon doesn't receive a second copy of its own
+			 * permanent ability.
+			 */
+			const ownAbility = (
+				pokemon.m.sharedPowerAbility ||
+				pokemon.baseAbility
+			) as string;
+
+			sharedPower.delete(ownAbility);
+
 			return sharedPower;
 		},
 
 		onBeforeSwitchIn(pokemon) {
+			/*
+			 * The first time a Pokemon reaches the field, permanently
+			 * record the ability it contributes to Shared Power.
+			 */
+			if (!pokemon.m.sharedPowerAbility) {
+				pokemon.m.sharedPowerAbility = pokemon.baseAbility;
+			}
+
 			for (const ability of this.format.getSharedPower!(pokemon)) {
 				const effect = 'ability:' + this.toID(ability);
 
 				pokemon.volatiles[effect] =
-					this.initEffectState({id: effect, target: pokemon});
+					this.initEffectState({
+						id: effect,
+						target: pokemon,
+					});
 
-				if (!pokemon.m.abils) pokemon.m.abils = [];
+				if (!pokemon.m.abils) {
+					pokemon.m.abils = [];
+				}
 
 				if (!pokemon.m.abils.includes(effect)) {
 					pokemon.m.abils.push(effect);
@@ -96,6 +139,53 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		 * duplicate if a teammate happens to share the same Ability.
 		 */
 		onAfterMega(pokemon) {
+			/*
+			 * Get the official ability of the Mega form.
+			 */
+			const megaAbility = pokemon.species.abilities['0'];
+
+			if (megaAbility) {
+				const megaAbilityID = this.toID(megaAbility);
+
+				/*
+				 * Make the Mega ability the Pokemon's permanent
+				 * in-battle ability.
+				 */
+				if (pokemon.ability !== megaAbilityID) {
+					pokemon.setAbility(
+						megaAbility,
+						null,
+						null,
+						true
+					);
+				}
+
+				pokemon.baseAbility = megaAbilityID;
+
+				/*
+				 * CRITICAL:
+				 *
+				 * Save the Mega ability separately from the Pokemon's
+				 * forme/volatile state. This value remains even after
+				 * the Mega faints.
+				 */
+				pokemon.m.sharedPowerAbility = megaAbilityID;
+			}
+
+			/*
+			 * Tell the client which Mega ability is active.
+			 */
+			this.add(
+				'-ability',
+				pokemon,
+				pokemon.getAbility().name,
+				'[from] Mega Evolution'
+			);
+
+			/*
+			 * Rebuild this Pokemon's currently inherited Shared Power
+			 * abilities after Mega Evolution.
+			 */
 			if (pokemon.m.abils) {
 				for (const effect of pokemon.m.abils) {
 					if (pokemon.volatiles[effect]) {
@@ -107,10 +197,14 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			pokemon.m.abils = [];
 
 			for (const ability of this.format.getSharedPower!(pokemon)) {
-				const effect = 'ability:' + this.toID(ability);
+				const effect =
+					'ability:' + this.toID(ability);
 
 				pokemon.volatiles[effect] =
-					this.initEffectState({id: effect, target: pokemon});
+					this.initEffectState({
+						id: effect,
+						target: pokemon,
+					});
 
 				pokemon.m.abils.push(effect);
 			}
@@ -147,37 +241,80 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			const sharedPower = new Set<string>();
 
 			for (const ally of pokemon.side.pokemon) {
+				/*
+				 * Once a Pokemon has switched in, remember the ability
+				 * it permanently contributed to Shared Power.
+				 *
+				 * m.sharedPowerAbility survives switching and fainting.
+				 */
+				if (
+					ally.previouslySwitchedIn <= 0 &&
+					!ally.m.sharedPowerAbility
+				) {
+					continue;
+				}
+
+				const ability = (
+					ally.m.sharedPowerAbility ||
+					ally.baseAbility
+				) as string;
+
+				if (!ability) continue;
+
 				if (
 					pokemon.battle.ruleTable.isRestricted(
-						`ability:${ally.baseAbility}`
+						`ability:${ability}`
 					)
-				) continue;
-
-				if (ally.previouslySwitchedIn > 0) {
-					if (
-						pokemon.battle.dex.currentMod !== 'sharedpower' &&
-						['trace', 'mirrorarmor'].includes(ally.baseAbility)
-					) {
-						sharedPower.add('noability');
-						continue;
-					}
-
-					sharedPower.add(ally.baseAbility);
+				) {
+					continue;
 				}
+
+				if (
+					pokemon.battle.dex.currentMod !== 'sharedpower' &&
+					['trace', 'mirrorarmor'].includes(ability)
+				) {
+					sharedPower.add('noability');
+					continue;
+				}
+
+				sharedPower.add(ability);
 			}
 
-			sharedPower.delete(pokemon.baseAbility);
+			/*
+			 * A Pokemon doesn't receive a second copy of its own
+			 * permanent ability.
+			 */
+			const ownAbility = (
+				pokemon.m.sharedPowerAbility ||
+				pokemon.baseAbility
+			) as string;
+
+			sharedPower.delete(ownAbility);
+
 			return sharedPower;
 		},
 
 		onBeforeSwitchIn(pokemon) {
+			/*
+			 * The first time a Pokemon reaches the field, permanently
+			 * record the ability it contributes to Shared Power.
+			 */
+			if (!pokemon.m.sharedPowerAbility) {
+				pokemon.m.sharedPowerAbility = pokemon.baseAbility;
+			}
+
 			for (const ability of this.format.getSharedPower!(pokemon)) {
 				const effect = 'ability:' + this.toID(ability);
 
 				pokemon.volatiles[effect] =
-					this.initEffectState({id: effect, target: pokemon});
+					this.initEffectState({
+						id: effect,
+						target: pokemon,
+					});
 
-				if (!pokemon.m.abils) pokemon.m.abils = [];
+				if (!pokemon.m.abils) {
+					pokemon.m.abils = [];
+				}
 
 				if (!pokemon.m.abils.includes(effect)) {
 					pokemon.m.abils.push(effect);
@@ -199,24 +336,41 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		onAfterMega(pokemon) {
 			/*
-			 * Make absolutely sure the Mega form uses its official
-			 * ability — important for forms such as Lucario-Mega-Z.
+			 * Get the official ability of the Mega form.
 			 */
 			const megaAbility = pokemon.species.abilities['0'];
 
-			if (
-				megaAbility &&
-				pokemon.ability !== this.toID(megaAbility)
-			) {
-				pokemon.setAbility(
-					megaAbility,
-					null,
-					null,
-					true
-				);
+			if (megaAbility) {
+				const megaAbilityID = this.toID(megaAbility);
+
+				/*
+				 * Make the Mega ability the Pokemon's permanent
+				 * in-battle ability.
+				 */
+				if (pokemon.ability !== megaAbilityID) {
+					pokemon.setAbility(
+						megaAbility,
+						null,
+						null,
+						true
+					);
+				}
+
+				pokemon.baseAbility = megaAbilityID;
+
+				/*
+				 * CRITICAL:
+				 *
+				 * Save the Mega ability separately from the Pokemon's
+				 * forme/volatile state. This value remains even after
+				 * the Mega faints.
+				 */
+				pokemon.m.sharedPowerAbility = megaAbilityID;
 			}
 
-			// Explicitly update the client's displayed ability.
+			/*
+			 * Tell the client which Mega ability is active.
+			 */
 			this.add(
 				'-ability',
 				pokemon,
@@ -224,7 +378,10 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 				'[from] Mega Evolution'
 			);
 
-			// Refresh the Shared Power effects after changing forme.
+			/*
+			 * Rebuild this Pokemon's currently inherited Shared Power
+			 * abilities after Mega Evolution.
+			 */
 			if (pokemon.m.abils) {
 				for (const effect of pokemon.m.abils) {
 					if (pokemon.volatiles[effect]) {
