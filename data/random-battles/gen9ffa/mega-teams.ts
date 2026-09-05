@@ -94,6 +94,18 @@ export class MegaNationalDexRandomFFATeams extends RandomFFATeams {
 	) {
 		super(format, prng);
 
+		// Focus Punch is disabled in this custom metagame.
+		for (const speciesData of Object.values(this.randomSets)) {
+			for (const setData of speciesData.sets) {
+				setData.movepool = setData.movepool.filter(
+					moveName => this.dex.moves.get(moveName).id !== 'focuspunch'
+				);
+			}
+		}
+
+		// CUSTOM: hard-remove Shedinja from the inherited pool.
+		delete this.randomSets.shedinja;
+
 		/*
 		 * Add:
 		 *
@@ -160,6 +172,9 @@ export class MegaNationalDexRandomFFATeams extends RandomFFATeams {
 
 	private shouldAddSpecies(species: Species): boolean {
 		if (!species.exists) return false;
+
+		// CUSTOM: Shedinja excluded from this metagame.
+		if (species.id === 'shedinja') return false;
 
 		// Official Pokemon only.
 		if (species.num <= 0) return false;
@@ -547,7 +562,7 @@ export class MegaNationalDexRandomFFATeams extends RandomFFATeams {
 
 				const move = this.dex.moves.get(option);
 
-				if (!move.exists) continue;
+				if (!move.exists || move.id === 'focuspunch') continue;
 				if (move.isZ || move.isMax) continue;
 				if (selected.includes(move.id)) continue;
 
@@ -600,6 +615,144 @@ export class MegaNationalDexRandomFFATeams extends RandomFFATeams {
 		};
 	}
 
+
+	private isForbiddenDrawbackMove(move: any): boolean {
+		if (!move?.exists) return true;
+
+		/*
+		 * Giga Impact / Hyper Beam / Blast Burn / Frenzy Plant /
+		 * Hydro Cannon / Rock Wrecker / Roar of Time /
+		 * Prismatic Laser / Meteor Assault / Eternabeam / etc.
+		 */
+		if (move.flags?.recharge) return true;
+
+		/*
+		 * Steel Beam and Mind Blown:
+		 * lose half of the user's maximum HP.
+		 */
+		if (move.mindBlownRecoil) return true;
+
+		/*
+		 * Chloroblast:
+		 * also has the huge 1/2-max-HP drawback.
+		 */
+		if (move.chloroblastRecoil) return true;
+
+		/*
+		 * Remove damaging moves which sacrifice the user:
+		 * Explosion, Self-Destruct, Misty Explosion,
+		 * Final Gambit, etc.
+		 *
+		 * Status moves such as Healing Wish, Lunar Dance
+		 * and Memento are deliberately retained.
+		 */
+		if (
+			move.selfdestruct &&
+			move.category !== 'Status'
+		) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private sanitizeSetMoves(
+		species: Species,
+		set: RandomTeamsTypes.RandomSet
+	): RandomTeamsTypes.RandomSet {
+		const moves: string[] = [];
+		const used = new Set<string>();
+
+		/*
+		 * First remove forbidden moves from the generated set.
+		 */
+		for (const moveName of set.moves) {
+			const move = this.dex.moves.get(moveName);
+
+			if (this.isForbiddenDrawbackMove(move)) continue;
+			if (used.has(move.id)) continue;
+
+			moves.push(move.id);
+			used.add(move.id);
+		}
+
+		/*
+		 * Prefer replacements from the Pokemon's curated
+		 * Random Battle movepools.
+		 */
+		const curated: string[] = [];
+
+		const addCurated = (moveName: string) => {
+			const move = this.dex.moves.get(moveName);
+
+			if (!move.exists) return;
+			if (move.isZ || move.isMax) return;
+			if (this.isForbiddenDrawbackMove(move)) return;
+			if (used.has(move.id)) return;
+			if (curated.includes(move.id)) return;
+
+			curated.push(move.id);
+		};
+
+		const randomEntry = this.randomSets[species.id];
+
+		for (const roleSet of randomEntry?.sets || []) {
+			for (const moveName of roleSet.movepool || []) {
+				addCurated(moveName);
+			}
+		}
+
+		this.prng.shuffle(curated);
+
+		while (moves.length < 4 && curated.length) {
+			const moveID = curated.pop()!;
+
+			if (used.has(moveID)) continue;
+
+			moves.push(moveID);
+			used.add(moveID);
+		}
+
+		/*
+		 * Very rare fallback:
+		 * if the curated pools cannot supply four legal moves,
+		 * choose another legal move from the Pokemon's learnset.
+		 */
+		if (moves.length < 4) {
+			const fallback: string[] = [];
+
+			for (
+				const moveID of
+				this.dex.species.getMovePool(species.id)
+			) {
+				const move = this.dex.moves.get(moveID);
+
+				if (!move.exists) continue;
+				if (move.isZ || move.isMax) continue;
+				if (this.isForbiddenDrawbackMove(move)) continue;
+				if (used.has(move.id)) continue;
+				if (fallback.includes(move.id)) continue;
+
+				fallback.push(move.id);
+			}
+
+			this.prng.shuffle(fallback);
+
+			while (moves.length < 4 && fallback.length) {
+				const moveID = fallback.pop()!;
+
+				if (used.has(moveID)) continue;
+
+				moves.push(moveID);
+				used.add(moveID);
+			}
+		}
+
+		set.moves = moves.slice(0, 4);
+
+		return set;
+	}
+
 	private applySpecialItem(
 		species: Species,
 		set: RandomTeamsTypes.RandomSet
@@ -623,7 +776,160 @@ export class MegaNationalDexRandomFFATeams extends RandomFFATeams {
 			set.item = this.sample(stones);
 		}
 
-		return set;
+
+		/*
+		 * ============================================================
+		 * CUSTOM SET SAFETY RULES
+		 * ============================================================
+		 *
+		 * 1. Hyper Beam is completely banned.
+		 * 2. A Pokemon may never finish with four moves of one type.
+		 *
+		 * This happens AFTER normal / imported set generation, so it
+		 * applies to native RandBats, Smogon imports and fallback sets.
+		 */
+
+		let finalMoves = [
+			...new Set(
+				set.moves
+					.map(moveName => this.dex.moves.get(moveName).id)
+					.filter(Boolean)
+			),
+		].filter(moveid => moveid !== 'hyperbeam');
+
+		/*
+		 * Build a replacement pool.
+		 *
+		 * Prefer the Pokemon's curated Random Battle movepool, then
+		 * expand to its legal move pool if necessary.
+		 */
+		const replacementPool = new Set<string>();
+
+		const addReplacement = (moveName: string) => {
+			const move = this.dex.moves.get(moveName);
+
+			if (!move.exists) return;
+			if (move.id === 'hyperbeam') return;
+			if (move.isZ || move.isMax) return;
+
+			// Past moves are permitted because this is a NatDex format.
+			if (
+				move.isNonstandard &&
+				move.isNonstandard !== 'Past'
+			) {
+				return;
+			}
+
+			if (!finalMoves.includes(move.id)) {
+				replacementPool.add(move.id);
+			}
+		};
+
+		const randomData = this.randomSets[species.id];
+
+		if (randomData?.sets) {
+			for (const roleSet of randomData.sets) {
+				for (const moveName of roleSet.movepool || []) {
+					addReplacement(moveName);
+				}
+			}
+		}
+
+		/*
+		 * Your custom generator already provides getGenericMovePool(),
+		 * which gives us a wider fallback if the curated pool does not
+		 * contain a suitable replacement.
+		 */
+		for (const moveName of this.getGenericMovePool(species)) {
+			addReplacement(moveName);
+		}
+
+		const countMoveTypes = (moves: string[]) => {
+			const counts = new Map<string, number>();
+
+			for (const moveid of moves) {
+				const move = this.dex.moves.get(moveid);
+
+				if (!move.exists) continue;
+
+				counts.set(
+					move.type,
+					(counts.get(move.type) || 0) + 1
+				);
+			}
+
+			return counts;
+		};
+
+		/*
+		 * Hyper Beam may have just been deleted, leaving only three
+		 * moves. Fill any empty slot while preferring a move type that
+		 * will not create four-of-a-kind.
+		 */
+		while (
+			finalMoves.length < this.maxMoveCount &&
+			replacementPool.size
+		) {
+			const counts = countMoveTypes(finalMoves);
+
+			const available = [...replacementPool];
+
+			const preferred = available.filter(moveid => {
+				const move = this.dex.moves.get(moveid);
+
+				return (counts.get(move.type) || 0) < 3;
+			});
+
+			const choices =
+				preferred.length ?
+					preferred :
+					available;
+
+			const chosen = this.sample(choices);
+
+			finalMoves.push(chosen);
+			replacementPool.delete(chosen);
+		}
+
+		/*
+		 * Hard guarantee:
+		 *
+		 * If all four generated moves share a type, replace one with a
+		 * move of another type.
+		 */
+		if (finalMoves.length >= this.maxMoveCount) {
+			finalMoves = finalMoves.slice(0, this.maxMoveCount);
+
+			const counts = countMoveTypes(finalMoves);
+
+			const fourOfAKind = [...counts.entries()].find(
+				([, count]) => count >= this.maxMoveCount
+			);
+
+			if (fourOfAKind) {
+				const [badType] = fourOfAKind;
+
+				const alternatives = [...replacementPool].filter(
+					moveid =>
+						this.dex.moves.get(moveid).type !== badType
+				);
+
+				if (alternatives.length) {
+					const replacement =
+						this.sample(alternatives);
+
+					/*
+					 * Replace the last move rather than adding a fifth.
+					 */
+					finalMoves[finalMoves.length - 1] =
+						replacement;
+				}
+			}
+		}
+
+		set.moves = finalMoves;
+
+		return this.sanitizeSetMoves(species, set);
 	}
 
 	private importedRandomSet(
