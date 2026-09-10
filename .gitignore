@@ -71,8 +71,16 @@ local_settings.py
 pip-log.txt
 # redis dumps
 *.rdb
+<<<<<<< HEAD
 
 data/random-battles/gen9ffa/extra-doubles-sets.json
 
 data/random-battles/gen9ffa/extra-doubles-sets.json
 data/random-battles/gen9/extra-singles-sets.json
+=======
+*.before-dynamax-tera-lock
+*.before-status-orb-fix
+*.status-orb-backup
+*.backup.json
+*.backup.cjs
+>>>>>>> 317cc1018 (Finalize ND Shared Power random battle updates)

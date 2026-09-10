@@ -2721,6 +2721,7 @@ export class Battle {
 			break;
 		case 'runDynamax':
 			action.pokemon.addVolatile('dynamax');
+			action.pokemon.canTerastallize = null; // Dynamax/G-Max permanently blocks Tera for this Pokemon
 			action.pokemon.side.dynamaxUsed = true;
 			if (action.pokemon.side.allySide) action.pokemon.side.allySide.dynamaxUsed = true;
 			break;
