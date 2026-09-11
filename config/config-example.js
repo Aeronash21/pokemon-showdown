@@ -773,3 +773,8 @@ exports.grouplist = [
 		punishgroup: 'MUTE',
 	},
 ];
+
+// NDSP RENDER LOW-MEMORY MODE
+// Render Free has only 512 MB RAM.
+// Pokémon Showdown explicitly supports 0 to disable subprocesses.
+exports.subprocesses = 0;
