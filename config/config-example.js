@@ -86,47 +86,9 @@ exports.proxyip = false;
 
 // subprocesses - the number of child processes to use for various tasks.
 //   Can be set to `0` instead of `{...}` to stop using subprocesses, if you're running out of RAM.
-exports.subprocesses = {
-	/**
-	 * network - the number of networking child processes to spawn
-	 *   This should be no greater than the number of threads available on your
-	 *   server's CPU. If you're not sure how many you have, you can check from a
-	 *   terminal by running:
-	 *
-	 *   $ node -e "console.log(require('os').cpus().length)"
-	 *
-	 *   Using more workers than there are available threads will cause performance
-	 *   issues. Keeping a couple threads available for use for OS-related work and
-	 *   other PS processes will likely give you the best performance, if your
-	 *   server's CPU is capable of multithreading. If you don't know what any of
-	 *   this means or you are unfamiliar with PS' networking code, leave this set
-	 *   to 1.
-	 */
-	network: 1,
-	/**
-	 * for simulating battles
-	 *   You should leave this at 1 unless your server has a very large
-	 *   amount of traffic (i.e. hundreds of concurrent battles).
-	 */
-	simulator: 1,
-
-	// beyond this point, it'd be very weird if you needed more than one of each of these
-
-	/** for validating teams */
-	validator: 1,
-	/** for user authentication */
-	verifier: 1,
-	localartemis: 1,
-	remoteartemis: 1,
-	friends: 1,
-	chatdb: 1,
-	modlog: 1,
-	pm: 1,
-	/** for the battlesearch chat plugin */
-	battlesearch: 1,
-	/** datasearch - for the datasearch chat plugin */
-	datasearch: 1,
-};
+// Render free tier has limited RAM.
+ // Run all PS jobs in the main process instead of spawning workers.
+exports.subprocesses = 0;
 
 /**
  * Various debug options
