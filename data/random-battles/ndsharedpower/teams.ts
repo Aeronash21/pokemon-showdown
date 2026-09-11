@@ -22,68 +22,6 @@ const Z_CRYSTALS: { [type: string]: string } = {
 };
 
 export class NDSharedPowerTeams extends RandomTeams {
-	/*
-	 * STATUS ORB SAFETY OVERRIDE
-	 *
-	 * Upstream RandBats can hand out Flame/Toxic Orb simply
-	 * because the moveset contains Facade.
-	 *
-	 * For ND Shared Power, only abilities which directly
-	 * benefit from self-status are allowed to keep a status Orb.
-	 */
-	override getPriorityItem(
-		...args: Parameters<RandomTeams['getPriorityItem']>
-	) {
-		const ability = args[0];
-
-		const statusOrbAbilities = new Set([
-			'Guts',
-			'Poison Heal',
-			'Quick Feet',
-			'Toxic Boost',
-			'Flare Boost',
-		]);
-
-		/*
-		 * Explicit support for abilities which upstream does not
-		 * always directly assign an Orb to.
-		 */
-		if (ability === 'Toxic Boost') {
-			return 'Toxic Orb';
-		}
-
-		if (ability === 'Flare Boost') {
-			return 'Flame Orb';
-		}
-
-		const item = super.getPriorityItem(...args);
-
-		/*
-		 * Any non-status item is untouched.
-		 */
-		if (item !== 'Flame Orb' && item !== 'Toxic Orb') {
-			return item;
-		}
-
-		/*
-		 * Guts / Poison Heal / Quick Feet / Toxic Boost /
-		 * Flare Boost may use their status Orb.
-		 */
-		if (statusOrbAbilities.has(ability)) {
-			return item;
-		}
-
-		/*
-		 * IMPORTANT:
-		 * Returning undefined tells RandBats to continue into
-		 * getItem() / getDoublesItem() and choose a normal item.
-		 *
-		 * Therefore Scrappy Stoutland + Facade can NEVER get
-		 * Flame Orb merely because it has Facade.
-		 */
-		return undefined;
-	}
-
 	override getForme(species: Species): string {
 		/*
 		 * Mega Zygarde can originate from multiple base formes.
@@ -111,6 +49,23 @@ export class NDSharedPowerTeams extends RandomTeams {
 		role: RandomTeamsTypes.Role,
 		isDoubles: boolean,
 	): string | undefined {
+		/*
+		 * STATUS ORB SAFETY
+		 *
+		 * Only abilities that directly benefit from self-status
+		 * may receive Flame Orb or Toxic Orb.
+		 */
+		const statusOrbAbilities = new Set([
+			'Guts',
+			'Poison Heal',
+			'Quick Feet',
+			'Toxic Boost',
+			'Flare Boost',
+		]);
+
+		if (ability === 'Toxic Boost') return 'Toxic Orb';
+		if (ability === 'Flare Boost') return 'Flame Orb';
+
 		/*
 		 * Mega / Primal / Ultra formes are represented in the random
 		 * dataset so their own stats and curated movepools drive set
@@ -174,7 +129,7 @@ export class NDSharedPowerTeams extends RandomTeams {
 			}
 		}
 
-		return super.getPriorityItem(
+		const fallbackItem = super.getPriorityItem(
 			ability,
 			types,
 			moves,
@@ -186,6 +141,15 @@ export class NDSharedPowerTeams extends RandomTeams {
 			role,
 			isDoubles
 		);
+
+		if (
+			(fallbackItem === 'Flame Orb' || fallbackItem === 'Toxic Orb') &&
+			!statusOrbAbilities.has(ability)
+		) {
+			return undefined;
+		}
+
+		return fallbackItem;
 	}
 
 	override randomSet(
