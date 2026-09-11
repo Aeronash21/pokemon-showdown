@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: nd-shared-power
+    runtime: node
+
+    buildCommand: >-
+      npm install &&
+      npm run build &&
+      node tools/build-nd-shared-sets.cjs &&
+      npm run build
+
+    startCommand: >-
+      sh -c 'test -f config/config.js ||
+      cp config/config-example.js config/config.js;
+      ./pokemon-showdown start ${PORT:-8000}'
+
+    envVars:
+      - key: NODE_VERSION
+        value: 24

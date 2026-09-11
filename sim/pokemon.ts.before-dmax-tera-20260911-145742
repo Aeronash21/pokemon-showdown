@@ -1051,19 +1051,6 @@ export class Pokemon {
 	getDynamaxRequest(skipChecks?: boolean) {
 		// {gigantamax?: string, maxMoves: {[k: string]: string} | null}[]
 		if (!skipChecks) {
-			/*
-			 * NDSP: Tera blocks Dynamax
-			 *
-			 * In ND Shared Power, a Pokémon may use either
-			 * Terastallization OR Dynamax, never both.
-			 */
-			if (
-				this.battle.format.mod === 'ndsharedpower' &&
-				this.terastallized
-			) {
-				return;
-			}
-
 			if (!this.side.canDynamaxNow()) return;
 			if (
 				this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" ||

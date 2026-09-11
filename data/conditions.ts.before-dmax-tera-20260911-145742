@@ -755,21 +755,6 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 		noCopy: true,
 		onStart(pokemon) {
 			this.effectState.turns = 0;
-
-			/*
-			 * NDSP: Dynamax blocks Tera
-			 *
-			 * null means the Pokémon permanently loses its
-			 * ability to Terastallize for this battle.
-			 *
-			 * This intentionally does NOT restore after
-			 * Dynamax expires or the Pokémon switches out.
-			 */
-			if (
-				this.format.mod === 'ndsharedpower'
-			) {
-				pokemon.canTerastallize = null;
-			}
 			pokemon.removeVolatile('minimize');
 			pokemon.removeVolatile('substitute');
 			if (pokemon.volatiles['torment']) {
