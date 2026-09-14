@@ -22,6 +22,84 @@ const Z_CRYSTALS: {[type: string]: string} = {
 };
 
 export class NDSharedPowerTeams extends RandomTeams {
+
+	/*
+	 * =========================================================
+	 * NDSP 2v2 MEGA GUARANTEE
+	 * =========================================================
+	 *
+	 * A Multi battle has four independent players/sides.
+	 * Each call to getTeam() builds one player's three-Pokemon
+	 * team.
+	 *
+	 * For [Gen 9] ND Shared Power 2v2, regenerate that player's
+	 * full team until at least one generated set is holding a
+	 * genuine Mega Stone.
+	 *
+	 * This guarantees EACH player independently receives at
+	 * least one Pokemon that can Mega Evolve.
+	 *
+	 * It does NOT force the Mega into the lead slot.
+	 * It does NOT restrict the team to exactly one Mega-capable
+	 * Pokemon; a player may randomly receive more than one.
+	 */
+	override getTeam(
+		options: PlayerOptions | null = null
+	): PokemonSet[] {
+		if (
+			this.format.id !==
+			'gen9ndsharedpower2v2'
+		) {
+			return super.getTeam(options);
+		}
+
+		const MAX_ATTEMPTS = 1000;
+
+		for (
+			let attempt = 1;
+			attempt <= MAX_ATTEMPTS;
+			attempt++
+		) {
+			const team =
+				super.getTeam(options);
+
+			const hasMega =
+				team.some(set => {
+					const item =
+						this.dex.items.get(
+							set.item
+						);
+
+					/*
+					 * Actual Mega Stone check.
+					 *
+					 * This excludes:
+					 * - Z-Crystals
+					 * - Red/Blue Orb
+					 * - Ultra Necrozma
+					 * - Dynamax/Gmax
+					 */
+					return !!item.megaStone;
+				});
+
+			if (hasMega) {
+				return team;
+			}
+		}
+
+		/*
+		 * If this ever occurs, something is wrong with the
+		 * generated Mega pool rather than silently giving the
+		 * player a team that breaks the guarantee.
+		 */
+		throw new Error(
+			'ND Shared Power 2v2 could not generate ' +
+			'a Mega-capable team after ' +
+			MAX_ATTEMPTS +
+			' attempts.'
+		);
+	}
+
 	randomSets:
 		{[species: string]: RandomTeamsTypes.RandomSpeciesData} =
 		require('./sets.json');
