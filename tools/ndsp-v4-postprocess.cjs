@@ -25,6 +25,7 @@ const normalize = text =>
 		.replace(/[^a-z0-9]+/g, '');
 
 const bannedSpecies = new Set([
+	'gengarmega',
 	'shedinja',
 	'eternatuseternamax',
 	'groudonprimal',
@@ -37,6 +38,33 @@ const bannedAbilities = new Set([
 	'simple',
 	'moody',
 ]);
+
+function removeGengariteSets(table, label) {
+	let removed = 0;
+
+	for (const [id, entry] of Object.entries(table)) {
+		if (!Array.isArray(entry.sets)) continue;
+
+		entry.sets = entry.sets.filter(set => {
+			if (normalize(set.item) === 'gengarite') {
+				removed++;
+				return false;
+			}
+
+			return true;
+		});
+
+		if (!entry.sets.length) {
+			delete table[id];
+		}
+	}
+
+	console.log(
+		`${label}: removed ${removed} Gengarite templates`
+	);
+}
+
+// NDSP GENGARITE FILTER
 
 function cleanTable(table, label) {
 	for (const id of bannedSpecies) {
@@ -125,6 +153,9 @@ for (const id of spotlightSpecies) {
 		spotlightTemplates++;
 	}
 }
+
+removeGengariteSets(singles, 'Singles');
+removeGengariteSets(ffa, 'FFA');
 
 cleanTable(singles, 'Singles');
 cleanTable(ffa, 'FFA');

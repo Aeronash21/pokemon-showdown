@@ -4,6 +4,8 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		name: 'NDSP Standard Bans',
 
 		banlist: [
+			'Gengarite',
+			'Gengar-Mega',
 			'Shadow Tag',
 			'Arena Trap',
 			'Simple',

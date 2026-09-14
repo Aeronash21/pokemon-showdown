@@ -22333,46 +22333,6 @@
       }
     ]
   },
-  "gengarmega": {
-    "level": 77,
-    "sets": [
-      {
-        "role": "Fast Support",
-        "movepool": [
-          "Disable",
-          "Perish Song",
-          "Protect",
-          "Shadow Ball",
-          "Substitute"
-        ],
-        "abilities": [
-          "Cursed Body"
-        ],
-        "teraTypes": [
-          "Ghost",
-          "Poison"
-        ]
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Destiny Bond",
-          "Disable",
-          "Focus Blast",
-          "Shadow Ball",
-          "Sludge Wave",
-          "Taunt"
-        ],
-        "abilities": [
-          "Cursed Body"
-        ],
-        "teraTypes": [
-          "Ghost",
-          "Poison"
-        ]
-      }
-    ]
-  },
   "kangaskhanmega": {
     "level": 74,
     "sets": [
