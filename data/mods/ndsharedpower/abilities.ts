@@ -29,6 +29,71 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 
+
+	/*
+	 * =========================================================
+	 * NDSP TERAPAGOS STELLAR FIX
+	 * =========================================================
+	 *
+	 * Persistent Shared Power means Tera Shift can remain in the
+	 * side's shared ability pool even after Terapagos becomes
+	 * Terapagos-Stellar.
+	 *
+	 * Upstream Tera Shift normally changes any Terapagos that is
+	 * not currently Terastal into Terapagos-Terastal on switch-in.
+	 *
+	 * Without this guard, a switched-out Terapagos-Stellar can
+	 * come back in, receive the shared Tera Shift volatile, and
+	 * incorrectly regress to Terapagos-Terastal/base progression.
+	 *
+	 * Once Terapagos has Terastallized, Tera Shift must never
+	 * change its forme again.
+	 */
+	terashift: {
+		inherit: true,
+
+		onSwitchInPriority: 2,
+
+		onSwitchIn(pokemon) {
+			if (
+				pokemon.baseSpecies.baseSpecies !==
+				'Terapagos'
+			) {
+				return;
+			}
+
+			/*
+			 * Stellar Terapagos is permanently Terastallized.
+			 * Do not let a shared/persistent Tera Shift effect
+			 * regress it.
+			 */
+			if (
+				pokemon.terastallized ||
+				pokemon.species.name ===
+					'Terapagos-Stellar'
+			) {
+				return;
+			}
+
+			if (
+				pokemon.species.forme !==
+				'Terastal'
+			) {
+				this.add(
+					'-activate',
+					pokemon,
+					'ability: Tera Shift'
+				);
+
+				pokemon.formeChange(
+					'Terapagos-Terastal',
+					this.effect,
+					true
+				);
+			}
+		},
+	},
+
 	auraguard: {
 		name: "Aura Guard",
 		shortDesc: "This Pokemon takes 1/2 damage from contact moves.",

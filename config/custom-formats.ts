@@ -463,4 +463,76 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		...ndspHooks,
 	},
+
+
+	// ========================================================
+	// 2v2 MULTI - BRING 12 PICK 6
+	//
+	// Each of the four human players:
+	//   receives 12 random Pokemon
+	//   chooses 6 at Team Preview
+	//   controls one active Pokemon at a time
+	//
+	// p1 + p3 vs p2 + p4
+	// ========================================================
+
+	{
+		name: '[Gen 9] ND Shared Power 2v2 B12P6',
+
+		desc:
+			'Four-player 2v2 Shared Power Multi Battle. Each player receives 12 random Pokemon and picks 6.',
+
+		mod: 'ndsharedpower',
+		team: 'random',
+		gameType: 'multi',
+
+		rated: false,
+		searchShow: false,
+		tournamentShow: false,
+
+		ruleset: [
+			'Standard NatDex',
+			'NDSP Standard Bans',
+			'Max Team Size = 12',
+			'Picked Team Size = 6',
+		],
+
+		...ndspHooks,
+	},
+
+	// ========================================================
+	// 2v2 MULTI - BRING 6 PICK 3
+	//
+	// Each of the four human players:
+	//   receives 6 random Pokemon
+	//   chooses 3 at Team Preview
+	//   controls one active Pokemon at a time
+	//
+	// p1 + p3 vs p2 + p4
+	// ========================================================
+
+	{
+		name: '[Gen 9] ND Shared Power 2v2 B6P3',
+
+		desc:
+			'Four-player 2v2 Shared Power Multi Battle. Each player receives 6 random Pokemon and picks 3.',
+
+		mod: 'ndsharedpower',
+		team: 'random',
+		gameType: 'multi',
+
+		rated: false,
+		searchShow: false,
+		tournamentShow: false,
+
+		ruleset: [
+			'Standard NatDex',
+			'NDSP Standard Bans',
+			'Max Team Size = 6',
+			'Picked Team Size = 3',
+		],
+
+		...ndspHooks,
+	},
+
 ];

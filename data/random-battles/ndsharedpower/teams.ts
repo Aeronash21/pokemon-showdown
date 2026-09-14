@@ -46,9 +46,16 @@ export class NDSharedPowerTeams extends RandomTeams {
 	override getTeam(
 		options: PlayerOptions | null = null
 	): PokemonSet[] {
+		const megaGuaranteed2v2Formats = new Set([
+			'gen9ndsharedpower2v2',
+			'gen9ndsharedpower2v2b12p6',
+			'gen9ndsharedpower2v2b6p3',
+		]);
+
 		if (
-			this.format.id !==
-			'gen9ndsharedpower2v2'
+			!megaGuaranteed2v2Formats.has(
+				this.format.id
+			)
 		) {
 			return super.getTeam(options);
 		}
