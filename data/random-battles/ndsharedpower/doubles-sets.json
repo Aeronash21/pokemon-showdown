@@ -315,7 +315,8 @@
           "Heal Pulse",
           "Helping Hand",
           "Life Dew",
-          "Moonblast"
+          "Moonblast",
+          "Spotlight"
         ],
         "abilities": [
           "Friend Guard"
@@ -339,7 +340,8 @@
           "Icy Wind",
           "Moonblast",
           "Protect",
-          "Thunder Wave"
+          "Thunder Wave",
+          "Spotlight"
         ],
         "abilities": [
           "Magic Guard"
@@ -357,7 +359,8 @@
           "Knock Off",
           "Life Dew",
           "Moonblast",
-          "Moonlight"
+          "Moonlight",
+          "Spotlight"
         ],
         "abilities": [
           "Unaware"
@@ -522,43 +525,6 @@
           "Bug",
           "Steel",
           "Water"
-        ]
-      }
-    ]
-  },
-  "dugtrio": {
-    "level": 90,
-    "sets": [
-      {
-        "role": "Offensive Protect",
-        "movepool": [
-          "Protect",
-          "Rock Slide",
-          "Stomping Tantrum",
-          "Sucker Punch"
-        ],
-        "abilities": [
-          "Arena Trap"
-        ],
-        "teraTypes": [
-          "Ghost",
-          "Ground"
-        ]
-      },
-      {
-        "role": "Doubles Fast Attacker",
-        "movepool": [
-          "Endeavor",
-          "Protect",
-          "Rock Slide",
-          "Stomping Tantrum"
-        ],
-        "abilities": [
-          "Arena Trap"
-        ],
-        "teraTypes": [
-          "Ghost",
-          "Ground"
         ]
       }
     ]
@@ -2363,7 +2329,8 @@
           "Electroweb",
           "Protect",
           "Scald",
-          "Thunderbolt"
+          "Thunderbolt",
+          "Spotlight"
         ],
         "abilities": [
           "Volt Absorb"
@@ -2378,7 +2345,8 @@
           "Electroweb",
           "Ice Beam",
           "Scald",
-          "Volt Switch"
+          "Volt Switch",
+          "Spotlight"
         ],
         "abilities": [
           "Volt Absorb"
@@ -16396,7 +16364,8 @@
           "Ice Beam",
           "Psyshock",
           "Recover",
-          "Thunderbolt"
+          "Thunderbolt",
+          "Spotlight"
         ],
         "abilities": [
           "Analytic"
@@ -16412,7 +16381,8 @@
           "Psyshock",
           "Rapid Spin",
           "Recover",
-          "Scald"
+          "Scald",
+          "Spotlight"
         ],
         "abilities": [
           "Natural Cure"
@@ -16428,7 +16398,8 @@
           "Rapid Spin",
           "Recover",
           "Scald",
-          "Toxic"
+          "Toxic",
+          "Spotlight"
         ],
         "abilities": [
           "Natural Cure"
@@ -18050,28 +18021,6 @@
       }
     ]
   },
-  "swoobat": {
-    "level": 89,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Air Slash",
-          "Calm Mind",
-          "Heat Wave",
-          "Roost",
-          "Stored Power"
-        ],
-        "abilities": [
-          "Simple"
-        ],
-        "teraTypes": [
-          "Psychic",
-          "Flying"
-        ]
-      }
-    ]
-  },
   "audino": {
     "level": 92,
     "sets": [
@@ -19565,7 +19514,8 @@
           "Giga Drain",
           "Moonblast",
           "Spore",
-          "Strength Sap"
+          "Strength Sap",
+          "Spotlight"
         ],
         "abilities": [
           "Effect Spore"
@@ -23215,7 +23165,8 @@
           "Sleep Talk",
           "Sucker Punch",
           "Superpower",
-          "Thief"
+          "Thief",
+          "Spotlight"
         ],
         "abilities": [
           "Contrary"
@@ -23536,79 +23487,6 @@
       }
     ]
   },
-  "kyogreprimal": {
-    "level": 72,
-    "sets": [
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Calm Mind",
-          "Rest",
-          "Scald",
-          "Sleep Talk"
-        ],
-        "abilities": [
-          "Drizzle"
-        ],
-        "teraTypes": [
-          "Water"
-        ]
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Calm Mind",
-          "Ice Beam",
-          "Origin Pulse",
-          "Thunder"
-        ],
-        "abilities": [
-          "Drizzle"
-        ],
-        "teraTypes": [
-          "Water"
-        ]
-      }
-    ]
-  },
-  "groudonprimal": {
-    "level": 65,
-    "sets": [
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Dragon Tail",
-          "Lava Plume",
-          "Precipice Blades",
-          "Stealth Rock",
-          "Thunder Wave"
-        ],
-        "abilities": [
-          "Drought"
-        ],
-        "teraTypes": [
-          "Ground",
-          "Fire"
-        ]
-      },
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Fire Punch",
-          "Precipice Blades",
-          "Rock Polish",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Drought"
-        ],
-        "teraTypes": [
-          "Ground",
-          "Fire"
-        ]
-      }
-    ]
-  },
   "rayquazamega": {
     "level": 71,
     "sets": [
@@ -23627,28 +23505,6 @@
         "teraTypes": [
           "Dragon",
           "Flying"
-        ]
-      }
-    ]
-  },
-  "bibarel": {
-    "level": 90,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Aqua Jet",
-          "Liquidation",
-          "Quick Attack",
-          "Return",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Simple"
-        ],
-        "teraTypes": [
-          "Normal",
-          "Water"
         ]
       }
     ]

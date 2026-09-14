@@ -589,46 +589,6 @@
       }
     ]
   },
-  "dugtrio": {
-    "level": 84,
-    "sets": [
-      {
-        "role": "Fast Support",
-        "movepool": [
-          "Earthquake",
-          "Stone Edge",
-          "Sucker Punch",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Arena Trap"
-        ],
-        "teraTypes": [
-          "Dark",
-          "Fairy",
-          "Flying",
-          "Ghost",
-          "Ground"
-        ]
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Earthquake",
-          "Stone Edge",
-          "Sucker Punch",
-          "Throat Chop"
-        ],
-        "abilities": [
-          "Arena Trap"
-        ],
-        "teraTypes": [
-          "Dark",
-          "Ground"
-        ]
-      }
-    ]
-  },
   "dugtrioalola": {
     "level": 84,
     "sets": [
@@ -20664,28 +20624,6 @@
       }
     ]
   },
-  "swoobat": {
-    "level": 89,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Air Slash",
-          "Calm Mind",
-          "Heat Wave",
-          "Roost",
-          "Stored Power"
-        ],
-        "abilities": [
-          "Simple"
-        ],
-        "teraTypes": [
-          "Psychic",
-          "Flying"
-        ]
-      }
-    ]
-  },
   "audino": {
     "level": 92,
     "sets": [
@@ -26150,79 +26088,6 @@
       }
     ]
   },
-  "kyogreprimal": {
-    "level": 72,
-    "sets": [
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Calm Mind",
-          "Rest",
-          "Scald",
-          "Sleep Talk"
-        ],
-        "abilities": [
-          "Drizzle"
-        ],
-        "teraTypes": [
-          "Water"
-        ]
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Calm Mind",
-          "Ice Beam",
-          "Origin Pulse",
-          "Thunder"
-        ],
-        "abilities": [
-          "Drizzle"
-        ],
-        "teraTypes": [
-          "Water"
-        ]
-      }
-    ]
-  },
-  "groudonprimal": {
-    "level": 65,
-    "sets": [
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Dragon Tail",
-          "Lava Plume",
-          "Precipice Blades",
-          "Stealth Rock",
-          "Thunder Wave"
-        ],
-        "abilities": [
-          "Drought"
-        ],
-        "teraTypes": [
-          "Ground",
-          "Fire"
-        ]
-      },
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Fire Punch",
-          "Precipice Blades",
-          "Rock Polish",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Drought"
-        ],
-        "teraTypes": [
-          "Ground",
-          "Fire"
-        ]
-      }
-    ]
-  },
   "rayquazamega": {
     "level": 71,
     "sets": [
@@ -26241,28 +26106,6 @@
         "teraTypes": [
           "Dragon",
           "Flying"
-        ]
-      }
-    ]
-  },
-  "bibarel": {
-    "level": 90,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Aqua Jet",
-          "Liquidation",
-          "Quick Attack",
-          "Return",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Simple"
-        ],
-        "teraTypes": [
-          "Normal",
-          "Water"
         ]
       }
     ]

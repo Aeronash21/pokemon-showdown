@@ -1336,3 +1336,6 @@ console.log(
 console.log(
 	'National Dex Shared Power datasets created.'
 );
+
+// NDSP V4 final legality / FFA pass
+require('./ndsp-v4-postprocess.cjs');
