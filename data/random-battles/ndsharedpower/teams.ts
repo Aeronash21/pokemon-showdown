@@ -21,7 +21,153 @@ const Z_CRYSTALS: {[type: string]: string} = {
 	Fairy: 'Fairium Z',
 };
 
+const NDSP_FFA_REMOVED_MOVES = new Set([
+	'wideguard',
+	'ragepowder',
+	'followme',
+]);
+
 export class NDSharedPowerTeams extends RandomTeams {
+
+	/*
+	 * =========================================================
+	 * NDSP FFA MOVE FILTER AND MOVE COUNT SAFETY
+	 * =========================================================
+	 *
+	 * - Free-For-All:
+	 *     Wide Guard / Rage Powder / Follow Me are excluded.
+	 *
+	 * - Multi / 2v2:
+	 *     These moves remain completely available.
+	 *
+	 * - Every generated set:
+	 *     hard maximum of maxMoveCount moves (normally 4).
+	 */
+	override randomMoveset(
+		types: Set<string>,
+		abilities: string[],
+		teamDetails: RandomTeamsTypes.TeamDetails,
+		species: Species,
+		isLead: boolean,
+		movePool: string[],
+		teraType: string,
+		role: RandomTeamsTypes.Role,
+		isDoubles: boolean,
+	): Set<string> {
+		let effectiveMovePool = [...movePool];
+
+		if (this.format.gameType === 'freeforall') {
+			effectiveMovePool =
+				effectiveMovePool.filter(
+					move =>
+						!NDSP_FFA_REMOVED_MOVES.has(move)
+				);
+
+			/*
+			 * If removing an FFA-only support move leaves this
+			 * particular role with fewer than four options,
+			 * supplement it using other curated NDSP movepools
+			 * for the same species.
+			 *
+			 * This avoids creating accidental three-move sets
+			 * while still ensuring the banned FFA support moves
+			 * never return.
+			 */
+			if (
+				effectiveMovePool.length <
+					this.maxMoveCount
+			) {
+				const speciesIDs = new Set([
+					species.id,
+					this.dex.species.get(
+						species.baseSpecies
+					).id,
+				]);
+
+				const candidateMoves: string[] = [];
+
+				for (const id of speciesIDs) {
+					for (const table of [
+						this.randomDoublesSets,
+						this.randomSets,
+					]) {
+						const data = table[id];
+
+						if (!data?.sets) continue;
+
+						for (const template of data.sets) {
+							for (
+								const move of
+								template.movepool || []
+							) {
+								if (
+									NDSP_FFA_REMOVED_MOVES
+										.has(move)
+								) {
+									continue;
+								}
+
+								if (
+									effectiveMovePool
+										.includes(move)
+								) {
+									continue;
+								}
+
+								if (
+									candidateMoves
+										.includes(move)
+								) {
+									continue;
+								}
+
+								candidateMoves.push(move);
+							}
+						}
+					}
+				}
+
+				/*
+				 * Give the normal RandBats selector enough
+				 * alternatives to construct a proper set.
+				 */
+				effectiveMovePool.push(
+					...candidateMoves
+				);
+			}
+		}
+
+		const moves = super.randomMoveset(
+			types,
+			abilities,
+			teamDetails,
+			species,
+			isLead,
+			effectiveMovePool,
+			teraType,
+			role,
+			isDoubles,
+		);
+
+		/*
+		 * Upstream has several separate enforced-move passes.
+		 * In unusual imported / legacy movepools those passes
+		 * can collectively push the Set beyond four.
+		 *
+		 * Keep insertion order so required / early-enforced
+		 * moves take priority over later additions.
+		 */
+		while (moves.size > this.maxMoveCount) {
+			const array = [...moves];
+
+			moves.delete(
+				array[array.length - 1]
+			);
+		}
+
+		return moves;
+	}
+
 
 	/*
 	 * =========================================================
@@ -46,18 +192,233 @@ export class NDSharedPowerTeams extends RandomTeams {
 	override getTeam(
 		options: PlayerOptions | null = null
 	): PokemonSet[] {
-		const megaGuaranteed2v2Formats = new Set([
-			'gen9ndsharedpower2v2',
-			'gen9ndsharedpower2v2b12p6',
-			'gen9ndsharedpower2v2b6p3',
+		const forbiddenFFAMoves = new Set([
+			'wideguard',
+			'ragepowder',
+			'followme',
 		]);
+
+		/*
+		 * FINAL NDSP SET SANITIZER
+		 *
+		 * This runs AFTER upstream Random Battle generation.
+		 *
+		 * That is important because Doubles Support generation
+		 * can explicitly enforce redirect/support moves.
+		 */
+		const finalizeTeam = (
+			team: PokemonSet[]
+		): PokemonSet[] => {
+			for (const set of team) {
+				const species =
+					this.dex.species.get(
+						set.species
+					);
+
+				/*
+				 * Normalize + deduplicate final moves.
+				 */
+				let moves = [
+					...new Set(
+						set.moves.map(
+							move =>
+								this.dex.moves.get(
+									move
+								).id
+						)
+					),
+				];
+
+				/*
+				 * =================================================
+				 * FFA ONLY
+				 * =================================================
+				 *
+				 * Wide Guard / Rage Powder / Follow Me must
+				 * disappear from FFA, but remain untouched in
+				 * Multi/2v2.
+				 */
+				if (
+					this.format.gameType ===
+						'freeforall'
+				) {
+					moves = moves.filter(
+						move =>
+							!forbiddenFFAMoves
+								.has(move)
+					);
+
+					/*
+					 * Refill any removed slots using OTHER
+					 * curated moves already present in this
+					 * species' NDSP Singles/Doubles data.
+					 *
+					 * This prevents things like:
+					 *
+					 * Amoonguss:
+					 *   4 moves -> remove Rage Powder -> 3 moves
+					 *
+					 * Instead it receives another curated move.
+					 */
+					if (
+						moves.length <
+							this.maxMoveCount
+					) {
+						const candidates:
+							string[] = [];
+
+						const speciesIDs =
+							new Set<string>([
+								species.id,
+								this.dex.species.get(
+									species.baseSpecies
+								).id,
+							]);
+
+						for (const table of [
+							this.randomDoublesSets,
+							this.randomSets,
+						]) {
+							for (
+								const speciesID
+								of speciesIDs
+							) {
+								const data =
+									table[
+										speciesID
+									];
+
+								if (
+									!data?.sets
+								) {
+									continue;
+								}
+
+								for (
+									const template
+									of data.sets
+								) {
+									for (
+										const rawMove
+										of
+										template
+											.movepool ||
+										[]
+									) {
+										const move =
+											this.dex.moves
+												.get(
+													rawMove
+												).id;
+
+										if (!move) {
+											continue;
+										}
+
+										if (
+											forbiddenFFAMoves
+												.has(move)
+										) {
+											continue;
+										}
+
+										if (
+											moves.includes(
+												move
+											)
+										) {
+											continue;
+										}
+
+										if (
+											candidates
+												.includes(
+													move
+												)
+										) {
+											continue;
+										}
+
+										candidates
+											.push(move);
+									}
+								}
+							}
+						}
+
+						while (
+							moves.length <
+								this.maxMoveCount &&
+							candidates.length
+						) {
+							const index =
+								this.random(
+									candidates.length
+								);
+
+							const [move] =
+								candidates.splice(
+									index,
+									1
+								);
+
+							moves.push(move);
+						}
+					}
+				}
+
+				/*
+				 * =================================================
+				 * HARD FOUR-MOVE LIMIT
+				 * =================================================
+				 *
+				 * Final protection against imported/legacy set
+				 * logic ever creating five moves.
+				 */
+				set.moves =
+					moves.slice(
+						0,
+						this.maxMoveCount
+					);
+
+				/*
+				 * =================================================
+				 * MAROWAK
+				 * =================================================
+				 *
+				 * All generated Marowak formes always use
+				 * Thick Club.
+				 */
+				if (
+					species.baseSpecies ===
+						'Marowak'
+				) {
+					set.item = 'Thick Club';
+				}
+			}
+
+			return team;
+		};
+
+		/*
+		 * Every individual player in all NDSP 2v2 variants
+		 * must receive at least one genuine Mega Stone option.
+		 */
+		const megaGuaranteed2v2Formats =
+			new Set([
+				'gen9ndsharedpower2v2',
+				'gen9ndsharedpower2v2b6p3',
+				'gen9ndsharedpower2v2b12p6',
+			]);
 
 		if (
 			!megaGuaranteed2v2Formats.has(
 				this.format.id
 			)
 		) {
-			return super.getTeam(options);
+			return finalizeTeam(
+				super.getTeam(options)
+			);
 		}
 
 		const MAX_ATTEMPTS = 1000;
@@ -68,7 +429,9 @@ export class NDSharedPowerTeams extends RandomTeams {
 			attempt++
 		) {
 			const team =
-				super.getTeam(options);
+				finalizeTeam(
+					super.getTeam(options)
+				);
 
 			const hasMega =
 				team.some(set => {
@@ -77,15 +440,6 @@ export class NDSharedPowerTeams extends RandomTeams {
 							set.item
 						);
 
-					/*
-					 * Actual Mega Stone check.
-					 *
-					 * This excludes:
-					 * - Z-Crystals
-					 * - Red/Blue Orb
-					 * - Ultra Necrozma
-					 * - Dynamax/Gmax
-					 */
 					return !!item.megaStone;
 				});
 
@@ -94,14 +448,9 @@ export class NDSharedPowerTeams extends RandomTeams {
 			}
 		}
 
-		/*
-		 * If this ever occurs, something is wrong with the
-		 * generated Mega pool rather than silently giving the
-		 * player a team that breaks the guarantee.
-		 */
 		throw new Error(
 			'ND Shared Power 2v2 could not generate ' +
-			'a Mega-capable team after ' +
+			'a Mega-capable player team after ' +
 			MAX_ATTEMPTS +
 			' attempts.'
 		);
