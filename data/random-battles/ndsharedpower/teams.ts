@@ -27,7 +27,241 @@ const NDSP_FFA_REMOVED_MOVES = new Set([
 	'followme',
 ]);
 
+
+/*
+ * ===========================================================
+ * NDSP ALLY-ONLY ABILITY FILTER
+ * ===========================================================
+ *
+ * These abilities require or specifically target a separate
+ * active ally and are therefore poor/useless choices in
+ * non-Multi random formats.
+ *
+ * Multi/2v2 is intentionally exempt.
+ */
+const NDSP_ALLY_ONLY_ABILITIES =
+	new Set([
+		'battery',
+		'commander',
+		'costar',
+		'curiousmedicine',
+		'friendguard',
+		'healer',
+		'hospitality',
+		'minus',
+		'plus',
+		'powerofalchemy',
+		'powerspot',
+		'receiver',
+		'symbiosis',
+		'telepathy',
+	]);
+
+const NDSP_RANDOM_BANNED_ABILITIES =
+	new Set([
+		'shadowtag',
+		'arenatrap',
+		'simple',
+		'moody',
+	]);
+
+function ndspAbilityID(
+	ability: string
+): string {
+	return String(ability)
+		.toLowerCase()
+		.replace(
+			/[^a-z0-9]+/g,
+			''
+		);
+}
+
 export class NDSharedPowerTeams extends RandomTeams {
+
+	/*
+	 * =========================================================
+	 * NON-2v2 ABILITY SELECTION
+	 * =========================================================
+	 *
+	 * Examples:
+	 *
+	 * Sinistcha:
+	 *   Hospitality -> rejected outside Multi
+	 *   Heatproof    -> selected instead
+	 *
+	 * In 2v2/Multi, Hospitality remains fully available.
+	 */
+	override getAbility(
+		types: Set<string>,
+		moves: Set<string>,
+		abilities: string[],
+		counter: MoveCounter,
+		teamDetails:
+			RandomTeamsTypes.TeamDetails,
+		species: Species,
+		isLead: boolean,
+		isDoubles: boolean,
+		teraType: string,
+		role: RandomTeamsTypes.Role,
+	): string {
+		if (
+			this.format.gameType === 'multi'
+		) {
+			return super.getAbility(
+				types,
+				moves,
+				abilities,
+				counter,
+				teamDetails,
+				species,
+				isLead,
+				isDoubles,
+				teraType,
+				role,
+			);
+		}
+
+		let candidates =
+			[...abilities].filter(
+				ability =>
+					!NDSP_ALLY_ONLY_ABILITIES
+						.has(
+							ndspAbilityID(
+								ability
+							)
+						)
+			);
+
+		/*
+		 * If this imported random-set template only supplied
+		 * an ally-only ability, fall back to the Pokémon's
+		 * other actual legal abilities.
+		 *
+		 * For Mega/Primal dataset entries, use the ordinary
+		 * base species ability pool because the Pokémon enters
+		 * battle before transforming.
+		 */
+		if (!candidates.length) {
+			let abilitySpecies =
+				species;
+
+			if (
+				species.isMega ||
+				species.isPrimal ||
+				species.forme === 'Ultra'
+			) {
+				abilitySpecies =
+					this.dex.species.get(
+						species.baseSpecies
+					);
+			}
+
+			const legal: string[] = [];
+
+			for (
+				const [slot, ability]
+				of Object.entries(
+					abilitySpecies.abilities
+				)
+			) {
+				if (slot === 'S') {
+					continue;
+				}
+
+				if (
+					slot === 'H' &&
+					abilitySpecies
+						.unreleasedHidden
+				) {
+					continue;
+				}
+
+				const id =
+					ndspAbilityID(
+						ability
+					);
+
+				if (
+					NDSP_ALLY_ONLY_ABILITIES
+						.has(id)
+				) {
+					continue;
+				}
+
+				if (
+					NDSP_RANDOM_BANNED_ABILITIES
+						.has(id)
+				) {
+					continue;
+				}
+
+				if (
+					!legal.includes(
+						ability
+					)
+				) {
+					legal.push(
+						ability
+					);
+				}
+			}
+
+			/*
+			 * Prefer abilities Showdown itself rates as having
+			 * positive competitive value.
+			 */
+			const viable =
+				legal.filter(
+					ability =>
+						this.dex.abilities
+							.get(ability)
+							.rating > 0
+				);
+
+			candidates =
+				viable.length ?
+					viable :
+					legal;
+		}
+
+		/*
+		 * Sinistcha explicitly has Heatproof as its useful
+		 * non-ally alternative.
+		 */
+		if (
+			species.baseSpecies ===
+				'Sinistcha' &&
+			candidates.includes(
+				'Heatproof'
+			)
+		) {
+			return 'Heatproof';
+		}
+
+		/*
+		 * A malformed imported template could theoretically
+		 * provide no alternative. In that rare case, retain
+		 * upstream behavior instead of crashing generation.
+		 */
+		if (!candidates.length) {
+			candidates =
+				[...abilities];
+		}
+
+		return super.getAbility(
+			types,
+			moves,
+			candidates,
+			counter,
+			teamDetails,
+			species,
+			isLead,
+			isDoubles,
+			teraType,
+			role,
+		);
+	}
+
 
 	/*
 	 * =========================================================

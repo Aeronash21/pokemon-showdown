@@ -70,55 +70,80 @@ function ndspApplyPool(
 ) {
 	const memory = pokemon.m as any;
 
-	if (!memory.abils) {
-		memory.abils = [];
-	}
-
-	const currentAbility =
-		pokemon.baseAbility ||
-		pokemon.ability;
-
-	const desired = new Set<string>();
-
-	for (const ability of pool) {
-		if (!ndspAbilityAllowed(battle, ability)) {
-			continue;
-		}
-
-		/*
-		 * Don't create a second copy of the Pokémon's
-		 * own currently-active ability.
-		 */
-		if (ability === currentAbility) {
-			continue;
-		}
-
-		desired.add(`ability:${ability}`);
-	}
-
-	const managed =
+	const previousManaged =
 		new Set<string>(
 			memory.ndspManagedAbilities || []
 		);
 
+	const desired =
+		new Set<string>();
+
+	for (const ability of pool) {
+		if (
+			!ndspAbilityAllowed(
+				battle,
+				ability
+			)
+		) {
+			continue;
+		}
+
+		/*
+		 * Don't duplicate the Pokémon's own ability as a
+		 * Shared Power volatile.
+		 */
+		if (
+			ability === pokemon.ability ||
+			ability === pokemon.baseAbility
+		) {
+			continue;
+		}
+
+		desired.add(
+			`ability:${ability}`
+		);
+	}
+
 	/*
-	 * Pool normally only grows, but this also safely handles
-	 * an ability becoming the Pokémon's native ability after
-	 * Mega Evolution.
+	 * Remove only stale volatiles that NDSP itself managed.
+	 * Never touch unrelated volatile effects.
 	 */
-	for (const effect of managed) {
+	for (const effect of previousManaged) {
 		if (desired.has(effect)) continue;
 
-		delete pokemon.volatiles[effect];
-
-		const index =
-			memory.abils.indexOf(effect);
-
-		if (index >= 0) {
-			memory.abils.splice(index, 1);
+		if (pokemon.volatiles[effect]) {
+			delete pokemon.volatiles[effect];
 		}
 	}
 
+	/*
+	 * Preserve any m.abils entries not owned by NDSP, then
+	 * reconstruct every permanent NDSP shared ability.
+	 *
+	 * This is crucial for Neutralizing Gas restoration.
+	 */
+	const preserved =
+		Array.isArray(memory.abils) ?
+			memory.abils.filter(
+				(effect: string) =>
+					!previousManaged.has(effect)
+			) :
+			[];
+
+	memory.abils = [
+		...new Set([
+			...preserved,
+			...desired,
+		]),
+	];
+
+	/*
+	 * Recreate missing active ability volatiles.
+	 *
+	 * This intentionally mirrors Shared Power's direct
+	 * volatile-state restoration style instead of relying
+	 * on a fresh switch-in.
+	 */
 	for (const effect of desired) {
 		if (!pokemon.volatiles[effect]) {
 			pokemon.volatiles[effect] =
@@ -126,10 +151,6 @@ function ndspApplyPool(
 					id: effect as ID,
 					target: pokemon,
 				});
-		}
-
-		if (!memory.abils.includes(effect)) {
-			memory.abils.push(effect);
 		}
 	}
 
@@ -164,11 +185,56 @@ function ndspUnlock(
 		pokemon.baseAbility ||
 		pokemon.ability;
 
+	const memory =
+		pokemon.m as any;
+
+	if (
+		!Array.isArray(
+			memory.ndspUnlockedAbilities
+		)
+	) {
+		memory.ndspUnlockedAbilities = [];
+	}
+
 	if (
 		ability &&
-		ndspAbilityAllowed(battle, ability)
+		ndspAbilityAllowed(
+			battle,
+			ability
+		) &&
+		!memory.ndspUnlockedAbilities
+			.includes(ability)
 	) {
-		ndspPool(pokemon.side).add(ability);
+		memory.ndspUnlockedAbilities
+			.push(ability);
+	}
+
+	const pool =
+		ndspPool(pokemon.side);
+
+	/*
+	 * Restore this Pokémon's entire historical contribution,
+	 * not merely its current ability.
+	 *
+	 * This means:
+	 *
+	 * base ability
+	 * + later Mega ability
+	 *
+	 * can both survive switches/faints.
+	 */
+	for (
+		const unlocked of
+			memory.ndspUnlockedAbilities
+	) {
+		if (
+			ndspAbilityAllowed(
+				battle,
+				unlocked
+			)
+		) {
+			pool.add(unlocked);
+		}
 	}
 
 	ndspSyncAlliance(
@@ -273,12 +339,123 @@ function ndspAfterMega(
 	ndspUnlock(this, pokemon);
 }
 
+
+/*
+ * ===========================================================
+ * NDSP PERMANENT POOL REPAIR
+ * ===========================================================
+ *
+ * side.ndspAbilityPool is the main source of truth.
+ *
+ * pokemon.m.ndspUnlockedAbilities is the backup history.
+ *
+ * If a volatile or m.abils entry disappears due to
+ * Neutralizing Gas, transformation, switching, fainting, or
+ * another battle-state transition, rebuild it.
+ */
+function ndspRepairAll(this: any) {
+	const seenPools =
+		new Set<Set<string>>();
+
+	for (const side of this.sides) {
+		const pool =
+			ndspPool(side);
+
+		if (seenPools.has(pool)) {
+			continue;
+		}
+
+		seenPools.add(pool);
+
+		/*
+		 * Rebuild the side pool from every Pokémon that has
+		 * previously contributed an ability.
+		 */
+		for (
+			const allySide of
+				ndspAlliance(side)
+		) {
+			for (
+				const pokemon of
+					allySide.pokemon
+			) {
+				const memory =
+					pokemon.m as any;
+
+				for (
+					const ability of
+						memory
+							.ndspUnlockedAbilities ||
+						[]
+				) {
+					if (
+						ndspAbilityAllowed(
+							this,
+							ability
+						)
+					) {
+						pool.add(ability);
+					}
+				}
+
+				/*
+				 * Extra recovery path for a Pokémon that
+				 * switched in before its history field was
+				 * initialized.
+				 */
+				if (
+					pokemon.previouslySwitchedIn >
+						0
+				) {
+					const ability =
+						pokemon.baseAbility ||
+						pokemon.ability;
+
+					if (
+						ability &&
+						ndspAbilityAllowed(
+							this,
+							ability
+						)
+					) {
+						pool.add(
+							ability
+						);
+					}
+				}
+			}
+		}
+
+		ndspSyncAlliance(
+			this,
+			side
+		);
+	}
+}
+
+function ndspAfterTerastallization(
+	this: any,
+	pokemon: any
+) {
+	ndspUnlock(
+		this,
+		pokemon
+	);
+
+	ndspRepairAll.call(this);
+}
+
 const ndspHooks = {
 	side: dynamaxSide,
 	onBegin: ndspBegin,
 	onBeforeSwitchIn: ndspBeforeSwitchIn,
 	onSwitchIn: ndspSwitchIn,
 	onAfterMega: ndspAfterMega,
+
+	onBeforeTurn: ndspRepairAll,
+	onAfterMove: ndspRepairAll,
+	onAfterFaint: ndspRepairAll,
+	onAfterTerastallization: ndspAfterTerastallization,
 };
 
 export const Formats: import('../sim/dex-formats').FormatList = [
