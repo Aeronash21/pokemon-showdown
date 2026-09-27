@@ -1146,6 +1146,39 @@ export class NDSharedPowerTeams extends RandomTeams {
 		}
 
 		/*
+		 * Mega Zygarde always carries Core Enforcer, which turns
+		 * into Nihil Light when it Mega Evolves
+		 * (see config/custom-formats.ts). Its curated sets already
+		 * include it; this guards against future pool edits.
+		 */
+		if (
+			targetSpecies.id === 'zygardemega' &&
+			!set.moves.some(
+				move => this.dex.toID(move) === 'coreenforcer'
+			)
+		) {
+			const moves =
+				set.moves.map(move => this.dex.moves.get(move));
+
+			let index = moves.findIndex(
+				move =>
+					move.type === 'Dragon' &&
+					move.category !== 'Status'
+			);
+
+			if (index < 0) {
+				index = moves.map(move => move.id).lastIndexOf(
+					[...moves].reverse().find(
+						move =>
+							!['protect', 'earthpower'].includes(move.id)
+					)?.id || moves[moves.length - 1].id
+				);
+			}
+
+			set.moves[index] = 'coreenforcer';
+		}
+
+		/*
 		 * Full Dynamax level.
 		 */
 		set.dynamaxLevel = 10;

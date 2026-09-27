@@ -337,6 +337,102 @@ function ndspAfterMega(
 	 * The old ability deliberately stays in the pool.
 	 */
 	ndspUnlock(this, pokemon);
+
+	ndspMegaMoveChange(this, pokemon);
+}
+
+
+/*
+ * ===========================================================
+ * MEGA SIGNATURE MOVE CHANGES
+ * ===========================================================
+ *
+ * When Zygarde Mega Evolves, Core Enforcer becomes Nihil Light
+ * for the rest of the battle (including after switching out).
+ *
+ * The move keeps the same fraction of PP it had left.
+ */
+const NDSP_MEGA_MOVE_CHANGES: {[megaID: string]: [string, string][]} = {
+	zygardemega: [['coreenforcer', 'nihillight']],
+};
+
+function ndspMegaMoveChange(
+	battle: any,
+	pokemon: any
+) {
+	const changes =
+		NDSP_MEGA_MOVE_CHANGES[pokemon.species.id];
+
+	if (!changes) return;
+
+	for (const [fromID, toID] of changes) {
+		const newMove = battle.dex.moves.get(toID);
+
+		if (!newMove.exists) continue;
+
+		const index = pokemon.baseMoveSlots.findIndex(
+			(slot: any) => slot.id === fromID
+		);
+
+		if (index < 0) continue;
+
+		const oldSlot = pokemon.baseMoveSlots[index];
+
+		const maxpp = newMove.noPPBoosts ?
+			newMove.pp :
+			Math.floor(newMove.pp * 8 / 5);
+
+		const ratio = oldSlot.maxpp ?
+			oldSlot.pp / oldSlot.maxpp :
+			1;
+
+		/*
+		 * One shared slot object, exactly like Pokemon's own
+		 * setup, so PP used now is still spent after the
+		 * Pokemon switches out and moveSlots is rebuilt from
+		 * baseMoveSlots.
+		 */
+		const newSlot = {
+			move: newMove.name,
+			id: newMove.id,
+			pp: Math.round(maxpp * ratio),
+			maxpp,
+			target: newMove.target,
+			disabled: false,
+			used: oldSlot.used,
+		};
+
+		pokemon.baseMoveSlots[index] = newSlot;
+
+		const activeIndex = pokemon.moveSlots.findIndex(
+			(slot: any) => slot === oldSlot || slot.id === fromID
+		);
+
+		if (activeIndex >= 0) {
+			pokemon.moveSlots[activeIndex] = newSlot;
+		}
+
+		/*
+		 * Mega Evolution happens before moves, so a Core Enforcer
+		 * chosen this turn is already queued. Point it at Nihil
+		 * Light, or the move would silently fail.
+		 */
+		for (const action of battle.queue.list) {
+			if (
+				action.choice === 'move' &&
+				action.pokemon === pokemon &&
+				action.move?.id === fromID
+			) {
+				action.moveid = newMove.id;
+				action.move = battle.dex.getActiveMove(newMove.id);
+			}
+		}
+
+		battle.add(
+			'message',
+			`${pokemon.name}'s ${battle.dex.moves.get(fromID).name} became ${newMove.name}!`
+		);
+	}
 }
 
 
