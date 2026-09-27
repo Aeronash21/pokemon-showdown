@@ -49,10 +49,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Earthquake",
           "Flamethrower",
           "Focus Blast",
           "Hurricane",
+          "Scorching Sands",
           "Will-O-Wisp"
         ],
         "abilities": [
@@ -102,10 +102,10 @@
         "role": "Z-Move user",
         "movepool": [
           "Air Slash",
-          "Earthquake",
           "Fire Blast",
           "Hold Hands",
-          "Roost"
+          "Roost",
+          "Scorching Sands"
         ],
         "abilities": [
           "Blaze",
@@ -1610,10 +1610,10 @@
           "Dragon Tail",
           "Flamethrower",
           "Knock Off",
+          "Leaf Storm",
           "Moonlight",
           "Sleep Powder",
-          "Stun Spore",
-          "Wood Hammer"
+          "Stun Spore"
         ],
         "abilities": [
           "Harvest"
@@ -2398,8 +2398,8 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Brave Bird",
           "Fire Blast",
+          "Hurricane",
           "Roost",
           "Scorching Sands",
           "U-turn",
@@ -3145,7 +3145,7 @@
         "role": "Bulky Support",
         "movepool": [
           "Earthquake",
-          "Ice Beam",
+          "Ice Punch",
           "Recover",
           "Spikes",
           "Toxic"
@@ -3924,8 +3924,7 @@
           "Dark Pulse",
           "Fire Blast",
           "Nasty Plot",
-          "Sludge Bomb",
-          "Sucker Punch"
+          "Sludge Bomb"
         ],
         "abilities": [
           "Flash Fire"
@@ -4380,7 +4379,7 @@
         "movepool": [
           "Dragon Tail",
           "Earthquake",
-          "Ice Beam",
+          "Ice Punch",
           "Knock Off",
           "Stealth Rock",
           "Stone Edge",
@@ -4459,11 +4458,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Earthquake",
+          "Earth Power",
           "Focus Blast",
           "Giga Drain",
           "Leaf Storm",
-          "Rock Slide",
           "Shed Tail"
         ],
         "abilities": [
@@ -4538,7 +4536,7 @@
         "movepool": [
           "Earthquake",
           "Flip Turn",
-          "Ice Beam",
+          "Ice Punch",
           "Knock Off",
           "Roar",
           "Stealth Rock",
@@ -6899,8 +6897,8 @@
         "role": "Fast Attacker",
         "movepool": [
           "Brave Bird",
-          "Heat Wave",
           "Sucker Punch",
+          "Superpower",
           "U-turn"
         ],
         "abilities": [
@@ -6915,7 +6913,6 @@
         "role": "Wallbreaker",
         "movepool": [
           "Brave Bird",
-          "Heat Wave",
           "Lash Out",
           "Sucker Punch",
           "Thunder Wave"
@@ -6936,7 +6933,6 @@
       {
         "role": "Fast Support",
         "movepool": [
-          "Fire Blast",
           "Gunk Shot",
           "Knock Off",
           "Sucker Punch",
@@ -7418,7 +7414,7 @@
         "role": "Fast Attacker",
         "movepool": [
           "Earthquake",
-          "Flamethrower",
+          "Fire Punch",
           "Ice Punch",
           "Knock Off",
           "Supercell Slam",
@@ -7476,10 +7472,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Earthquake",
           "Fire Blast",
           "Focus Blast",
           "Knock Off",
+          "Scorching Sands",
           "Thunderbolt",
           "Will-O-Wisp"
         ],
@@ -8218,7 +8214,7 @@
         "movepool": [
           "Draco Meteor",
           "Fire Blast",
-          "Heavy Slam",
+          "Flash Cannon",
           "Stealth Rock",
           "Thunder Wave"
         ],
@@ -8237,7 +8233,7 @@
           "Draco Meteor",
           "Dragon Tail",
           "Fire Blast",
-          "Heavy Slam"
+          "Flash Cannon"
         ],
         "abilities": [
           "Pressure"
@@ -8259,7 +8255,6 @@
           "Draco Meteor",
           "Fire Blast",
           "Flash Cannon",
-          "Heavy Slam",
           "Stealth Rock",
           "Thunder Wave"
         ],
@@ -8279,7 +8274,6 @@
           "Dragon Tail",
           "Fire Blast",
           "Flash Cannon",
-          "Heavy Slam",
           "Stealth Rock"
         ],
         "abilities": [
@@ -8363,7 +8357,7 @@
         "role": "Bulky Support",
         "movepool": [
           "Earth Power",
-          "Heavy Slam",
+          "Flash Cannon",
           "Lava Plume",
           "Magma Storm",
           "Stealth Rock"
@@ -9571,8 +9565,8 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Double-Edge",
           "High Horsepower",
-          "Overheat",
           "Supercell Slam",
           "Volt Switch"
         ],
@@ -9861,7 +9855,7 @@
         "movepool": [
           "Aqua Jet",
           "Flip Turn",
-          "Shadow Ball",
+          "Last Respects",
           "Wave Crash"
         ],
         "abilities": [
@@ -10045,9 +10039,9 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Bitter Malice",
           "Focus Blast",
           "Hyper Voice",
-          "Poltergeist",
           "Will-O-Wisp"
         ],
         "abilities": [
@@ -12482,8 +12476,8 @@
         "movepool": [
           "Close Combat",
           "Fake Out",
+          "Flare Blitz",
           "Knock Off",
-          "Overheat",
           "U-turn"
         ],
         "abilities": [
@@ -12606,7 +12600,6 @@
         "role": "Bulky Support",
         "movepool": [
           "Beak Blast",
-          "Boomburst",
           "Bullet Seed",
           "Knock Off",
           "Roost",
@@ -13020,7 +13013,6 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Hydro Pump",
           "Leech Life",
           "Liquidation",
           "Mirror Coat",
@@ -13045,7 +13037,7 @@
         "movepool": [
           "Defog",
           "Knock Off",
-          "Leaf Storm",
+          "Leaf Blade",
           "Superpower",
           "Synthesis"
         ],
@@ -13060,7 +13052,7 @@
         "role": "AV Pivot",
         "movepool": [
           "Knock Off",
-          "Leaf Storm",
+          "Leaf Blade",
           "Leech Life",
           "Superpower"
         ],
@@ -13481,7 +13473,7 @@
           "Earthquake",
           "Flame Charge",
           "Knock Off",
-          "Psychic",
+          "Psychic Fangs",
           "Sunsteel Strike"
         ],
         "abilities": [
@@ -13721,8 +13713,8 @@
         "movepool": [
           "Brick Break",
           "Dragon Dance",
-          "Moongeist Beam",
-          "Photon Geyser"
+          "Photon Geyser",
+          "Shadow Claw"
         ],
         "abilities": [
           "Prism Armor"
@@ -13794,8 +13786,8 @@
       {
         "role": "Tera Blast user",
         "movepool": [
+          "Flash Cannon",
           "Fleur Cannon",
-          "Iron Head",
           "Shift Gear",
           "Tera Blast"
         ],
@@ -14231,9 +14223,9 @@
         "role": "Setup Sweeper",
         "movepool": [
           "Boomburst",
-          "Gunk Shot",
           "Overdrive",
-          "Shift Gear"
+          "Shift Gear",
+          "Sludge Wave"
         ],
         "abilities": [
           "Punk Rock"
@@ -14741,7 +14733,7 @@
         "movepool": [
           "Dragon Dance",
           "Dragon Darts",
-          "Fire Blast",
+          "Phantom Force",
           "Tera Blast"
         ],
         "abilities": [
@@ -14773,7 +14765,6 @@
         "movepool": [
           "Dragon Dance",
           "Dragon Darts",
-          "Fire Blast",
           "Phantom Force",
           "Substitute",
           "Will-O-Wisp"
@@ -15431,10 +15422,10 @@
         "role": "Bulky Attacker",
         "movepool": [
           "Earth Power",
+          "Focus Blast",
           "Moonblast",
           "Mystical Fire",
-          "Psychic",
-          "Superpower"
+          "Psychic"
         ],
         "abilities": [
           "Overcoat"
@@ -15449,9 +15440,9 @@
         "movepool": [
           "Agility",
           "Earth Power",
+          "Focus Blast",
           "Moonblast",
-          "Mystical Fire",
-          "Superpower"
+          "Mystical Fire"
         ],
         "abilities": [
           "Overcoat"
@@ -16837,7 +16828,7 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Body Slam",
+          "Hyper Voice",
           "Protect",
           "Psychic Noise",
           "Wish"
@@ -16892,8 +16883,8 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Boomburst",
           "Earthquake",
+          "Hyper Drill",
           "Roost",
           "Toxic"
         ],
@@ -17874,8 +17865,7 @@
           "Dragon Pulse",
           "Dragon Tail",
           "Giga Drain",
-          "Recover",
-          "Sucker Punch"
+          "Recover"
         ],
         "abilities": [
           "Sticky Hold"
@@ -17987,7 +17977,7 @@
         "movepool": [
           "Beat Up",
           "Gunk Shot",
-          "Moonblast",
+          "Play Rough",
           "Roost",
           "U-turn"
         ],
@@ -18597,8 +18587,7 @@
           "Fire Blast",
           "Ice Beam",
           "Sludge Wave",
-          "Substitute",
-          "Throat Chop"
+          "Substitute"
         ],
         "abilities": [
           "Sheer Force"
@@ -19869,7 +19858,7 @@
         "movepool": [
           "Close Combat",
           "Crunch",
-          "Hydro Pump",
+          "Liquidation",
           "Protect"
         ],
         "abilities": [
@@ -22978,8 +22967,8 @@
       {
         "role": "Fast Support",
         "movepool": [
-          "Dazzling Gleam",
           "Defog",
+          "Iron Head",
           "Roost",
           "U-turn",
           "Wild Charge"
@@ -24491,7 +24480,7 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Earthquake",
+          "Earth Power",
           "Giga Drain",
           "Knock Off",
           "Sleep Powder",
@@ -25309,7 +25298,7 @@
         "role": "Fast Attacker",
         "movepool": [
           "Dragon Pulse",
-          "Earthquake",
+          "Earth Power",
           "Focus Blast",
           "Giga Drain",
           "Leaf Storm",
@@ -26298,9 +26287,9 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Draco Meteor",
           "Earthquake",
-          "Fire Blast",
+          "Fire Fang",
+          "Outrage",
           "Stealth Rock",
           "Stone Edge"
         ],
@@ -26982,7 +26971,8 @@
           "Multiscale"
         ],
         "teraTypes": [
-          "Steel"
+          "Steel",
+          "Flying"
         ]
       },
       {
@@ -26992,21 +26982,6 @@
           "Earthquake",
           "Outrage",
           "Tera Blast"
-        ],
-        "abilities": [
-          "Multiscale"
-        ],
-        "teraTypes": [
-          "Flying"
-        ]
-      },
-      {
-        "role": "Z-Move user",
-        "movepool": [
-          "Dragon Dance",
-          "Earthquake",
-          "Fly",
-          "Outrage"
         ],
         "abilities": [
           "Multiscale"
@@ -27313,10 +27288,10 @@
         "role": "Fast Support",
         "movepool": [
           "Destiny Bond",
-          "Poltergeist",
+          "Ice Beam",
+          "Shadow Ball",
           "Spikes",
           "Taunt",
-          "Triple Axel",
           "Will-O-Wisp"
         ],
         "abilities": [
@@ -27336,7 +27311,7 @@
         "role": "Bulky Support",
         "movepool": [
           "Earth Power",
-          "Heavy Slam",
+          "Flash Cannon",
           "Lava Plume",
           "Magma Storm",
           "Stealth Rock"
@@ -27372,7 +27347,7 @@
         ]
       },
       {
-        "role": "Z-Move user",
+        "role": "Setup Sweeper",
         "movepool": [
           "Dark Pulse",
           "Focus Blast",
@@ -27897,10 +27872,10 @@
         ]
       },
       {
-        "role": "Z-Move user",
+        "role": "Fast Attacker",
         "movepool": [
-          "Happy Hour",
           "Knock Off",
+          "Liquidation",
           "Psycho Cut",
           "Superpower"
         ],
@@ -27908,7 +27883,8 @@
           "Contrary"
         ],
         "teraTypes": [
-          "Normal"
+          "Dark",
+          "Psychic"
         ]
       }
     ]
@@ -28198,8 +28174,8 @@
       {
         "role": "Tera Blast user",
         "movepool": [
+          "Flash Cannon",
           "Fleur Cannon",
-          "Iron Head",
           "Shift Gear",
           "Tera Blast"
         ],
@@ -28211,7 +28187,7 @@
         ]
       },
       {
-        "role": "Z-Move user",
+        "role": "Setup Sweeper",
         "movepool": [
           "Calm Mind",
           "Flash Cannon",
@@ -28270,8 +28246,8 @@
       {
         "role": "Tera Blast user",
         "movepool": [
+          "Flash Cannon",
           "Fleur Cannon",
-          "Iron Head",
           "Shift Gear",
           "Tera Blast"
         ],
@@ -28283,7 +28259,7 @@
         ]
       },
       {
-        "role": "Z-Move user",
+        "role": "Setup Sweeper",
         "movepool": [
           "Calm Mind",
           "Flash Cannon",

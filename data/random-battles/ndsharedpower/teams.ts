@@ -76,6 +76,107 @@ function ndspAbilityID(
 		);
 }
 
+
+/*
+ * ===========================================================
+ * NDSP ATTACK CATEGORY HELPERS
+ * ===========================================================
+ *
+ * Used when the FFA filter has to refill a removed support
+ * move with a move from another curated set. Without this a
+ * physical set could be topped up with a special attack (or
+ * vice versa) and become mixed again.
+ *
+ * Utility attacks (pivots, fixed damage, Knock Off, Scald,
+ * Tera Blast...) fit either kind of set.
+ */
+const NDSP_UTILITY_ATTACKS = new Set([
+	'terablast',
+	'photongeyser',
+	'shellsidearm',
+	'knockoff',
+	'rapidspin',
+	'mortalspin',
+	'fakeout',
+	'firstimpression',
+	'scald',
+	'pollenpuff',
+	'bodypress',
+	'foulplay',
+	'relicsong',
+	'icywind',
+	'electroweb',
+	'snarl',
+	'rocktomb',
+	'bulldoze',
+	'mudshot',
+	'breakingswipe',
+	'strugglebug',
+	'nuzzle',
+	'flamecharge',
+	'trailblaze',
+]);
+
+function ndspAttackCategory(
+	move: Move
+): 'Physical' | 'Special' | null {
+	if (
+		!move.exists ||
+		move.category === 'Status' ||
+		NDSP_UTILITY_ATTACKS.has(move.id) ||
+		move.damage ||
+		move.damageCallback ||
+		move.ohko ||
+		move.selfSwitch ||
+		move.forceSwitch ||
+		move.overrideOffensiveStat ||
+		move.overrideOffensivePokemon
+	) {
+		return null;
+	}
+
+	return move.category;
+}
+
+/*
+ * The single attacking category a move list commits to, or
+ * null if it has none or is deliberately mixed.
+ */
+function ndspCommittedCategory(
+	dex: ModdedDex,
+	moves: Iterable<string>
+): 'Physical' | 'Special' | null {
+	const found = new Set<string>();
+
+	for (const name of moves) {
+		const category =
+			ndspAttackCategory(
+				dex.moves.get(name)
+			);
+
+		if (category) found.add(category);
+	}
+
+	if (found.size !== 1) return null;
+
+	return [...found][0] as 'Physical' | 'Special';
+}
+
+function ndspFitsCategory(
+	dex: ModdedDex,
+	move: string,
+	committed: 'Physical' | 'Special' | null
+): boolean {
+	if (!committed) return true;
+
+	const category =
+		ndspAttackCategory(
+			dex.moves.get(move)
+		);
+
+	return !category || category === committed;
+}
+
 export class NDSharedPowerTeams extends RandomTeams {
 
 	/*
@@ -318,7 +419,18 @@ export class NDSharedPowerTeams extends RandomTeams {
 					).id,
 				]);
 
-				const candidateMoves: string[] = [];
+				/*
+				 * Don't let a physical set pick up a special
+				 * attack (or vice versa) from another template.
+				 */
+				const committed =
+					ndspCommittedCategory(
+						this.dex,
+						effectiveMovePool
+					);
+
+				const sameRole: string[] = [];
+				const otherRoles: string[] = [];
 
 				for (const id of speciesIDs) {
 					for (const table of [
@@ -330,10 +442,26 @@ export class NDSharedPowerTeams extends RandomTeams {
 						if (!data?.sets) continue;
 
 						for (const template of data.sets) {
+							const bucket =
+								template.role === role ?
+									sameRole :
+									otherRoles;
+
 							for (
-								const move of
+								const rawMove of
 								template.movepool || []
 							) {
+								/*
+								 * The pool passed in holds move IDs,
+								 * while templates hold move names.
+								 */
+								const move =
+									this.dex.moves.get(
+										rawMove
+									).id;
+
+								if (!move) continue;
+
 								if (
 									NDSP_FFA_REMOVED_MOVES
 										.has(move)
@@ -349,13 +477,23 @@ export class NDSharedPowerTeams extends RandomTeams {
 								}
 
 								if (
-									candidateMoves
-										.includes(move)
+									sameRole.includes(move) ||
+									otherRoles.includes(move)
 								) {
 									continue;
 								}
 
-								candidateMoves.push(move);
+								if (
+									!ndspFitsCategory(
+										this.dex,
+										move,
+										committed
+									)
+								) {
+									continue;
+								}
+
+								bucket.push(move);
 							}
 						}
 					}
@@ -363,11 +501,23 @@ export class NDSharedPowerTeams extends RandomTeams {
 
 				/*
 				 * Give the normal RandBats selector enough
-				 * alternatives to construct a proper set.
+				 * alternatives to construct a proper set,
+				 * preferring moves from templates with the same
+				 * role.
 				 */
-				effectiveMovePool.push(
-					...candidateMoves
-				);
+				for (const move of [
+					...sameRole,
+					...otherRoles,
+				]) {
+					if (
+						effectiveMovePool.length >=
+							this.maxMoveCount
+					) {
+						break;
+					}
+
+					effectiveMovePool.push(move);
+				}
 			}
 		}
 
@@ -498,8 +648,24 @@ export class NDSharedPowerTeams extends RandomTeams {
 						moves.length <
 							this.maxMoveCount
 					) {
-						const candidates:
-							string[] = [];
+						/*
+						 * Keep the set's attacking category: a
+						 * physical set only gets physical attacks
+						 * (or status / utility moves) back.
+						 * Moves from templates with the same role
+						 * are used first.
+						 */
+						const committed =
+							ndspCommittedCategory(
+								this.dex,
+								moves
+							);
+
+						const role =
+							(set as AnyObject).role;
+
+						const sameRole: string[] = [];
+						const otherRoles: string[] = [];
 
 						const speciesIDs =
 							new Set<string>([
@@ -532,6 +698,13 @@ export class NDSharedPowerTeams extends RandomTeams {
 									const template
 									of data.sets
 								) {
+									const bucket =
+										role &&
+										template.role ===
+											role ?
+											sameRole :
+											otherRoles;
+
 									for (
 										const rawMove
 										of
@@ -551,13 +724,14 @@ export class NDSharedPowerTeams extends RandomTeams {
 
 										if (
 											forbiddenFFAMoves
-												.has(move)
-										) {
-											continue;
-										}
-
-										if (
+												.has(move) ||
 											moves.includes(
+												move
+											) ||
+											sameRole.includes(
+												move
+											) ||
+											otherRoles.includes(
 												move
 											)
 										) {
@@ -565,38 +739,43 @@ export class NDSharedPowerTeams extends RandomTeams {
 										}
 
 										if (
-											candidates
-												.includes(
-													move
-												)
+											!ndspFitsCategory(
+												this.dex,
+												move,
+												committed
+											)
 										) {
 											continue;
 										}
 
-										candidates
-											.push(move);
+										bucket.push(move);
 									}
 								}
 							}
 						}
 
-						while (
-							moves.length <
-								this.maxMoveCount &&
-							candidates.length
-						) {
-							const index =
-								this.random(
-									candidates.length
-								);
+						for (const candidates of [
+							sameRole,
+							otherRoles,
+						]) {
+							while (
+								moves.length <
+									this.maxMoveCount &&
+								candidates.length
+							) {
+								const index =
+									this.random(
+										candidates.length
+									);
 
-							const [move] =
-								candidates.splice(
-									index,
-									1
-								);
+								const [move] =
+									candidates.splice(
+										index,
+										1
+									);
 
-							moves.push(move);
+								moves.push(move);
+							}
 						}
 					}
 				}
@@ -792,6 +971,39 @@ export class NDSharedPowerTeams extends RandomTeams {
 				move.exists &&
 				move.category !== 'Status'
 		);
+
+		/*
+		 * Status Z-Move sets (Z-Hold Hands Charizard, Z-Happy Hour
+		 * Jirachi, Z-Celebrate Victini, Z-Conversion Porygon-Z...).
+		 *
+		 * The Gen 7 data marks the crystal type through
+		 * preferredTypes, which the NDSP builder turned into the
+		 * set's Tera type. If the set has no damaging move of that
+		 * type but does have a status move of it, the Z-Crystal is
+		 * for that status move.
+		 */
+		if (
+			set.teraType &&
+			!damaging.some(move => move.type === set.teraType)
+		) {
+			const statusZ = moves.find(
+				move =>
+					move.exists &&
+					move.category === 'Status' &&
+					move.type === set.teraType &&
+					!!move.zMove
+			);
+
+			const crystal =
+				statusZ && Z_CRYSTALS[statusZ.type];
+
+			if (
+				crystal &&
+				this.dex.items.get(crystal).exists
+			) {
+				return crystal;
+			}
+		}
 
 		let selected =
 			damaging.find(

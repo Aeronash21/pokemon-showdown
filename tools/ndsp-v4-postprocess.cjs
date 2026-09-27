@@ -181,3 +181,7 @@ console.log(
 console.log(
 	`FFA final pool:     ${Object.keys(ffa).length}`
 );
+
+// NDSP physical / special consistency pass: stop sets from
+// mixing attacking categories on Pokémon that favour one side.
+require('./ndsp-fix-set-categories.cjs').run();

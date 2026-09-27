@@ -1240,9 +1240,9 @@
         "movepool": [
           "Draco Meteor",
           "Flamethrower",
+          "Leaf Storm",
           "Protect",
-          "Trick Room",
-          "Wood Hammer"
+          "Trick Room"
         ],
         "abilities": [
           "Harvest"
@@ -1936,9 +1936,9 @@
       {
         "role": "Doubles Support",
         "movepool": [
-          "Brave Bird",
           "Fire Blast",
           "Heat Wave",
+          "Hurricane",
           "Protect",
           "Tailwind"
         ],
@@ -1953,9 +1953,9 @@
       {
         "role": "Doubles Bulky Attacker",
         "movepool": [
-          "Brave Bird",
           "Fire Blast",
           "Heat Wave",
+          "Hurricane",
           "Scorching Sands",
           "Tailwind"
         ],
@@ -2012,9 +2012,9 @@
       {
         "role": "Tera Blast user",
         "movepool": [
-          "Draco Meteor",
           "Fire Punch",
           "Low Kick",
+          "Outrage",
           "Tailwind",
           "Tera Blast"
         ],
@@ -2028,7 +2028,7 @@
       {
         "role": "Bulky Protect",
         "movepool": [
-          "Fire Blast",
+          "Fire Punch",
           "Protect",
           "Scale Shot",
           "Tailwind"
@@ -3054,8 +3054,7 @@
           "Dark Pulse",
           "Heat Wave",
           "Nasty Plot",
-          "Protect",
-          "Sucker Punch"
+          "Protect"
         ],
         "abilities": [
           "Flash Fire",
@@ -3401,7 +3400,7 @@
       {
         "role": "Doubles Bulky Attacker",
         "movepool": [
-          "Fire Blast",
+          "Fire Punch",
           "High Horsepower",
           "Icy Wind",
           "Knock Off",
@@ -3445,7 +3444,6 @@
         "role": "Doubles Support",
         "movepool": [
           "Brave Bird",
-          "Earth Power",
           "Protect",
           "Recover",
           "Sacred Fire",
@@ -3543,7 +3541,7 @@
           "High Horsepower",
           "Icy Wind",
           "Knock Off",
-          "Muddy Water"
+          "Liquidation"
         ],
         "abilities": [
           "Torrent"
@@ -4180,7 +4178,7 @@
       {
         "role": "Doubles Bulky Attacker",
         "movepool": [
-          "Earth Power",
+          "Earthquake",
           "Protect",
           "Scale Shot",
           "Tailwind"
@@ -4509,9 +4507,8 @@
       {
         "role": "Doubles Fast Attacker",
         "movepool": [
-          "Draco Meteor",
           "Dual Wingbeat",
-          "Fire Blast",
+          "Outrage",
           "Protect",
           "Tailwind"
         ],
@@ -5404,7 +5401,6 @@
         "role": "Offensive Protect",
         "movepool": [
           "Brave Bird",
-          "Heat Wave",
           "Protect",
           "Sucker Punch",
           "Tailwind"
@@ -5426,7 +5422,6 @@
       {
         "role": "Doubles Fast Attacker",
         "movepool": [
-          "Fire Blast",
           "Gunk Shot",
           "Knock Off",
           "Poison Gas",
@@ -5841,7 +5836,7 @@
       {
         "role": "Doubles Fast Attacker",
         "movepool": [
-          "Flamethrower",
+          "Fire Punch",
           "Ice Punch",
           "Protect",
           "Wild Charge"
@@ -6518,7 +6513,7 @@
         "movepool": [
           "Draco Meteor",
           "Fire Blast",
-          "Heavy Slam",
+          "Flash Cannon",
           "Protect",
           "Thunder Wave"
         ],
@@ -7558,8 +7553,8 @@
       {
         "role": "Doubles Fast Attacker",
         "movepool": [
+          "Double-Edge",
           "High Horsepower",
-          "Overheat",
           "Protect",
           "Wild Charge"
         ],
@@ -7573,10 +7568,10 @@
       {
         "role": "Doubles Wallbreaker",
         "movepool": [
+          "Double-Edge",
           "High Horsepower",
-          "Overheat",
           "Protect",
-          "Thunderbolt"
+          "Supercell Slam"
         ],
         "abilities": [
           "Lightning Rod"
@@ -9517,8 +9512,8 @@
         "role": "Tera Blast user",
         "movepool": [
           "Hyper Voice",
+          "Moonblast",
           "Protect",
-          "Quick Attack",
           "Tera Blast"
         ],
         "abilities": [
@@ -10437,7 +10432,7 @@
       {
         "role": "Doubles Bulky Attacker",
         "movepool": [
-          "Hydro Pump",
+          "Leech Life",
           "Liquidation",
           "Protect",
           "Sticky Web",
@@ -10459,7 +10454,7 @@
         "role": "Doubles Bulky Attacker",
         "movepool": [
           "Leaf Blade",
-          "Leaf Storm",
+          "Poison Jab",
           "Pollen Puff",
           "Superpower"
         ],
@@ -10490,7 +10485,7 @@
         "role": "Tera Blast user",
         "movepool": [
           "Knock Off",
-          "Leaf Storm",
+          "Leaf Blade",
           "Superpower",
           "Tera Blast"
         ],
@@ -12003,25 +11998,10 @@
       {
         "role": "Offensive Protect",
         "movepool": [
-          "Draco Meteor",
           "Dragon Darts",
+          "Phantom Force",
           "Protect",
-          "Shadow Ball"
-        ],
-        "abilities": [
-          "Clear Body"
-        ],
-        "teraTypes": [
-          "Dragon"
-        ]
-      },
-      {
-        "role": "Offensive Protect",
-        "movepool": [
-          "Dragon Darts",
-          "Fire Blast",
-          "Protect",
-          "Shadow Ball"
+          "Psychic Fangs"
         ],
         "abilities": [
           "Clear Body"
@@ -12630,9 +12610,9 @@
       {
         "role": "Tera Blast user",
         "movepool": [
+          "Focus Blast",
           "Protect",
           "Springtide Storm",
-          "Superpower",
           "Tera Blast"
         ],
         "abilities": [
@@ -13995,7 +13975,7 @@
       {
         "role": "Bulky Protect",
         "movepool": [
-          "Earth Power",
+          "Drill Run",
           "Glare",
           "Hyper Drill",
           "Protect",
@@ -15028,7 +15008,7 @@
         "movepool": [
           "Gunk Shot",
           "Icy Wind",
-          "Moonblast",
+          "Play Rough",
           "Roost"
         ],
         "abilities": [
@@ -15045,7 +15025,7 @@
         "movepool": [
           "Gunk Shot",
           "Icy Wind",
-          "Moonblast",
+          "Play Rough",
           "U-turn"
         ],
         "abilities": [
@@ -15991,8 +15971,7 @@
           "Fire Blast",
           "Ice Beam",
           "Sludge Wave",
-          "Substitute",
-          "Throat Chop"
+          "Substitute"
         ],
         "abilities": [
           "Sheer Force"
@@ -17266,7 +17245,7 @@
         "movepool": [
           "Close Combat",
           "Crunch",
-          "Hydro Pump",
+          "Liquidation",
           "Protect"
         ],
         "abilities": [
@@ -20376,8 +20355,8 @@
       {
         "role": "Fast Support",
         "movepool": [
-          "Dazzling Gleam",
           "Defog",
+          "Iron Head",
           "Roost",
           "U-turn",
           "Wild Charge"
@@ -21889,7 +21868,7 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Earthquake",
+          "Earth Power",
           "Giga Drain",
           "Knock Off",
           "Sleep Powder",
@@ -22707,7 +22686,7 @@
         "role": "Fast Attacker",
         "movepool": [
           "Dragon Pulse",
-          "Earthquake",
+          "Earth Power",
           "Focus Blast",
           "Giga Drain",
           "Leaf Storm",
@@ -23697,9 +23676,9 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Draco Meteor",
           "Earthquake",
-          "Fire Blast",
+          "Fire Fang",
+          "Outrage",
           "Stealth Rock",
           "Stone Edge"
         ],
@@ -24342,8 +24321,8 @@
         "role": "Tera Blast user",
         "movepool": [
           "Draco Meteor",
-          "Fire Punch",
-          "Low Kick",
+          "Fire Blast",
+          "Focus Blast",
           "Tailwind",
           "Tera Blast"
         ],
@@ -24357,9 +24336,9 @@
       {
         "role": "Bulky Protect",
         "movepool": [
+          "Draco Meteor",
           "Fire Blast",
           "Protect",
-          "Scale Shot",
           "Tailwind"
         ],
         "abilities": [
@@ -24630,11 +24609,11 @@
       {
         "role": "Doubles Support",
         "movepool": [
+          "Ice Beam",
           "Icy Wind",
-          "Poltergeist",
           "Protect",
+          "Shadow Ball",
           "Taunt",
-          "Triple Axel",
           "Will-O-Wisp"
         ],
         "abilities": [
