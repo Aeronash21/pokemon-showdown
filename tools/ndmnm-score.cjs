@@ -39,7 +39,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const {dex, stones, megaOf, mix, deltas} = require('./ndmnm-mix.cjs');
+const {dex, transformationItems, kindOf, formeOf, mix, deltas} = require('./ndmnm-mix.cjs');
 const category = require('./ndsp-fix-set-categories.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -58,26 +58,29 @@ const STATS = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'];
  * ===========================================================
  */
 
-// Stones that make almost anything strong. They only go to
-// Pokémon with a base stat total at or below POWER_STONE_MAX_BST,
-// and are used sparingly.
-const POWER_STONES = new Set([
-	'mawilite', 'medichamite', 'starminite', // Huge / Pure Power
-	'kangaskhanite', // Parental Bond
-	'blazikenite', // Speed Boost
-	'beedrillite', // Adaptability, +60 Atk / +70 Spe
-	'zygardite', // +125 SpA
-	'diancite', // +60 Atk / SpA / Spe
-]);
-const POWER_STONE_MAX_BST = 480;
+// Items that make almost anything strong: they only go to
+// Pokémon whose base stat total is at or below the limit.
+const POWER_ITEMS = {
+	mawilite: 480, medichamite: 480, starminite: 480, // Huge / Pure Power
+	kangaskhanite: 480, // Parental Bond
+	blazikenite: 480, // Speed Boost
+	beedrillite: 480, // Adaptability, +60 Atk / +70 Spe
+	zygardite: 480, // +125 SpA
+	diancite: 480, // +60 Atk / SpA / Spe
+	redorb: 540, blueorb: 540, // Desolate Land / Primordial Sea
+};
+const POWER_STONES = new Set(Object.keys(POWER_ITEMS));
 const POWER_STONE_MAX_USES = 10;
 
-// Hand-picked pairings: species -> stones to use (all its sets).
+// Hand-picked pairings: species -> items to use (all its sets).
 const MANUAL_PAIRINGS = {
 };
 
-// Hand-picked exclusions: stone -> species that must not get it.
+// Hand-picked exclusions: item -> species that must not get it.
 const MANUAL_EXCLUSIONS = {
+	// These would just recreate Primal Groudon / Kyogre, which NDSP bans.
+	redorb: ['groudon'],
+	blueorb: ['kyogre'],
 };
 
 /*
@@ -613,6 +616,35 @@ function megaAbilityValue(abilityID, ctx) {
 		return bulky ? 10 : 5;
 	case 'protean':
 		return attacker ? 35 : 10;
+	case 'desolateland': {
+		// Harsh sun: Fire x1.5, Water attacks fail.
+		const fire = count(m => m.type === 'Fire');
+		const water = count(m => m.type === 'Water');
+		return fire * 22 - water * 35 + (weak('Water') ? 20 : 0) + (types.includes('Grass') ? 10 : 0) + 8;
+	}
+	case 'primordialsea': {
+		// Heavy rain: Water x1.5, Fire attacks fail, Thunder / Hurricane never miss.
+		const water = count(m => m.type === 'Water');
+		const fire = count(m => m.type === 'Fire');
+		const rainMoves = count(m => ['thunder', 'hurricane'].includes(m.id)) ||
+			(learn(m => ['thunder', 'hurricane'].includes(m.id)) ? 1 : 0);
+		return water * 22 - fire * 35 + rainMoves * 12 + (weak('Fire') ? 20 : 0) + 8;
+	}
+	case 'intrepidsword':
+		return physical ? 35 : 5;
+	case 'dauntlessshield':
+		return bulky || moves.includes('bodypress') ? 22 : 12;
+	case 'download':
+		return attacker ? 15 : 3;
+	case 'waterabsorb':
+		return (weak('Water') ? 25 : 10) + (doubles ? 5 : 0);
+	case 'sturdy':
+		return !bulky ? 12 : 8;
+	case 'pressure':
+		return 3;
+	case 'rkssystem':
+	case 'multitype':
+		return 0;
 	default:
 		return 5;
 	}
@@ -638,11 +670,40 @@ function typeScore(types) {
  * SCORING
  * ===========================================================
  */
-const STONES = stones();
-const STONE_INFO = new Map(STONES.map(stone => {
-	const d = deltas(stone.id);
-	return [stone.id, {stone, mega: megaOf(stone.id), deltas: d, ability: toID(d.ability)}];
+const ITEMS = transformationItems();
+const STONES = ITEMS;
+const ITEM_INFO = new Map(ITEMS.map(item => {
+	const d = deltas(item.id);
+	return [item.id, {stone: item, item, kind: kindOf(item), mega: formeOf(item.id), deltas: d, ability: toID(d.ability)}];
 }));
+const STONE_INFO = ITEM_INFO;
+
+// Types an item boosts by 1.2x for any holder (Mix and Mega items).
+function boostedTypes(item) {
+	if (item.onPlate) return [item.onPlate];
+	if (/mask$/.test(item.id)) return 'all';
+
+	return {
+		adamantcrystal: ['Dragon', 'Steel'],
+		lustrousglobe: ['Dragon', 'Water'],
+		griseouscore: ['Dragon', 'Ghost'],
+	}[item.id] || [];
+}
+
+// Value of an item's damage boost for a set.
+function itemBoostValue(item, set, side) {
+	const types = boostedTypes(item);
+
+	if (!types.length || side === 'Support') return 0;
+
+	const attacks = set.movepool.map(name => dex.moves.get(name)).filter(m => sideAttack(m, side));
+	const boosted = types === 'all' ? attacks.length : attacks.filter(m => types.includes(m.type)).length;
+
+	if (!attacks.length) return 0;
+
+	// A 1.2x boost to every attack is worth about 25 points.
+	return Math.round(25 * boosted / attacks.length);
+}
 
 function evaluate(species, set, stoneID, doubles) {
 	const info = STONE_INFO.get(stoneID);
@@ -674,6 +735,7 @@ function evaluate(species, set, stoneID, doubles) {
 	}
 
 	const abilityScore = megaAbilityValue(info.ability, ctx);
+	const boostScore = itemBoostValue(info.item, set, side);
 
 	// Type change: better defensive profile and new STAB options.
 	let typeChange = 0;
@@ -713,7 +775,7 @@ function evaluate(species, set, stoneID, doubles) {
 	const megaWeather = WEATHER[info.ability];
 	const weatherClash = ownWeather && megaWeather && ownWeather !== megaWeather ? -40 : 0;
 
-	const score = statScore + abilityScore + typeChange + keepBonus + weatherClash;
+	const score = statScore + abilityScore + boostScore + typeChange + keepBonus + weatherClash;
 
 	// Strength change for levels: compare with how the Pokémon
 	// normally fights (forme-change abilities are lost).
@@ -721,18 +783,26 @@ function evaluate(species, set, stoneID, doubles) {
 	let formeLoss = 0;
 	for (const stat of STATS) formeLoss += w[stat] * (species.baseStats[stat] - reference[stat]);
 
-	const strengthChange = score + formeLoss - nativeValue(set, side);
+	// A Mega keeps its own ability until it Mega Evolves; other items
+	// transform the Pokémon before its ability is ever used.
+	const nativeLoss = nativeValue(set, side) * (info.kind === 'mega' ? 0.85 : 1);
+	const strengthChange = score + formeLoss - nativeLoss;
 
-	return {stoneID, score, statScore, abilityScore, typeChange, strengthChange, mixed, side};
+	return {stoneID, itemID: stoneID, kind: info.kind, score, statScore, abilityScore, boostScore, typeChange,
+		strengthChange, mixed, side};
 }
 
 function allowed(species, stoneID) {
 	if (MANUAL_EXCLUSIONS[stoneID]?.includes(species.id)) return false;
 
-	if (POWER_STONES.has(stoneID)) {
+	if (POWER_ITEMS[stoneID]) {
 		const bst = Object.values(referenceStatsForBST(species)).reduce((a, b) => a + b, 0);
-		if (bst > POWER_STONE_MAX_BST) return false;
+		if (bst > POWER_ITEMS[stoneID]) return false;
 	}
+
+	// An item that just gives a Pokémon its own forme (Arceus with a
+	// Plate, Genesect with a Drive...) is fine; those formes are also
+	// in the pool with their items.
 
 	return true;
 }
@@ -746,7 +816,7 @@ function referenceStatsForBST(species) {
 }
 
 module.exports = {
-	raisesOwnStats, STONES, STONE_INFO, POWER_STONES, legalPool, evaluate, allowed, setSide, learnable,
+	raisesOwnStats, ITEMS, ITEM_INFO, STONES, STONE_INFO, POWER_STONES, POWER_ITEMS, legalPool, kindOf, evaluate, allowed, setSide, learnable,
 	bestLearnable, moveValue, sideAttack, ITEM_RELIANT_MOVES, toID, typeScore, effectiveness,
 	MANUAL_PAIRINGS, MANUAL_EXCLUSIONS, POWER_STONE_MAX_USES, SRC, OUT, REPORT, dex,
 };

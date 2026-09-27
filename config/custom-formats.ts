@@ -573,7 +573,7 @@ const ndmnmHooks = {
 
 		this.add(
 			'rule',
-			'Mix and Mega: Every Pokémon holds a Mega Stone and can Mega Evolve with it'
+			'Mix and Mega: Every Pokémon holds a Mega Stone or other transformation item and gains its forme\'s changes'
 		);
 	},
 
@@ -876,10 +876,11 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	// ========================================================
 	// ND MIX AND MEGA
 	//
-	// Random battles where every Pokemon holds a Mega Stone and
-	// can Mega Evolve with it, whatever the stone (Mix and Mega
-	// rules: it gains that Mega's stat changes, ability and type
-	// change). Pokemon pool = the legal NDSP Pokemon; sets and
+	// Random battles where every Pokemon holds a Mega Stone or
+	// another transformation item (Primal Orb, Rusted Sword /
+	// Shield, Origin item, Mask, Plate, Memory, Drive) and gains
+	// that forme's stat changes, ability and type change (Mix and
+	// Mega rules). Terastallization is off, as in Mix and Mega. Pokemon pool = the legal NDSP Pokemon; sets and
 	// stone pairings are curated by tools/build-ndmnm-sets.cjs.
 	// ========================================================
 
@@ -892,7 +893,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: '[Gen 9] ND Mix and Mega RandBats',
 
 		desc:
-			'National Dex Random Battle where every Pokemon holds a curated Mega Stone and can Mega Evolve with it. Bring 12, pick 6.',
+			'National Dex Random Battle where every Pokemon holds a curated Mega Stone or other transformation item (Primal Orbs, Rusted items, Plates, Masks...). Bring 12, pick 6.',
 
 		mod: 'ndmixandmega',
 		team: 'random',
@@ -901,6 +902,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		ruleset: [
 			'Standard NatDex',
+			'Terastal Clause',
 			'Max Team Size = 12',
 			'Picked Team Size = 6',
 		],
@@ -923,6 +925,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		ruleset: [
 			'Standard NatDex',
+			'Terastal Clause',
 			'Max Team Size = 12',
 			'Picked Team Size = 6',
 		],
@@ -946,6 +949,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		ruleset: [
 			'Standard NatDex',
+			'Terastal Clause',
 			'Max Team Size = 3',
 		],
 

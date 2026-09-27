@@ -16,10 +16,15 @@
  * 1. Clean the NDSP sets for Mix and Mega: every Pokémon holds a
  *    Mega Stone, so Z-Move / Dynamax / Tera Blast roles and
  *    item-reliant moves (Trick, Acrobatics, Fling...) go.
- * 2. Score every (set, stone) pair and give each Pokémon its
- *    1-2 best stones. Stone usage is capped, every stone is given
- *    out at least MIN_USES times, and power stones only go to
- *    weaker Pokémon.
+ * 2. Score every (set, item) pair and give each Pokémon its
+ *    1-2 best transformation items. Items are Mega Stones plus
+ *    Primal Orbs, Rusted Sword / Shield, Origin items, Ogerpon
+ *    Masks, Arceus Plates, Silvally Memories and Genesect Drives.
+ *    USES sets how often each kind is handed out (so about a fifth
+ *    of Pokémon hold something other than a Mega Stone), and power
+ *    items only go to weaker Pokémon. Formes that need one of these
+ *    items (Arceus / Silvally types, Ogerpon masks, Crowned Zacian /
+ *    Zamazenta, Origin formes) join the pool holding their own.
  * 3. Adapt moves to each mix: STAB for the new type, and moves
  *    that the Mega's ability wants (Normal moves for -ate
  *    abilities, pulse moves for Mega Launcher, stat-dropping
@@ -43,8 +48,22 @@ const category = require('./ndsp-fix-set-categories.cjs');
 
 const {dex, toID, STONES, STONE_INFO, POWER_STONES} = S;
 
-const MIN_USES = 5;
-const MAX_USES = 14;
+// How often each kind of item is handed out, as [minimum, maximum]
+// Pokémon per item. Mega Stones are the default; the other
+// transformation items are given out enough to keep teams varied.
+const USES = {
+	mega: [4, 13],
+	primal: [8, 10],
+	rusted: [9, 12],
+	origin: [7, 10],
+	mask: [9, 14],
+	plate: [6, 9],
+	memory: [4, 7],
+	drive: [5, 7],
+};
+const minUses = id => USES[STONE_INFO.get(id).kind][0];
+const maxUses = id => Math.min(USES[STONE_INFO.get(id).kind][1],
+	POWER_STONES.has(id) ? S.POWER_STONE_MAX_USES : Infinity);
 const SECOND_STONE_MIN_GAIN = 0.06;
 const SAME_SET_RATIO = 0.9;
 const LEVEL_POINTS = 10.5;
@@ -232,10 +251,9 @@ function pairTotal(scored, stoneIDs) {
 	return total;
 }
 
-function assignStones(entries) {
-	const usage = new Map(STONES.map(s => [s.id, 0]));
-	const cap = id => POWER_STONES.has(id) ? S.POWER_STONE_MAX_USES : MAX_USES;
-	const available = id => usage.get(id) < cap(id);
+function assignStones(entries, fixedUsage = new Map()) {
+	const usage = new Map(STONES.map(s => [s.id, fixedUsage.get(s.id) || 0]));
+	const available = id => usage.get(id) < maxUses(id);
 
 	// Pokémon with the clearest favourite pick first.
 	for (const entry of entries) {
@@ -287,10 +305,10 @@ function assignStones(entries) {
 		for (const id of entry.stones) usage.set(id, usage.get(id) + 1);
 	}
 
-	// Make sure every stone is used at least MIN_USES times: give it
-	// to the sets that lose the least by using it.
+	// Make sure every item is used at least its minimum number of
+	// times: give it to the sets that lose the least by using it.
 	for (const stone of STONES) {
-		while (usage.get(stone.id) < MIN_USES) {
+		while (usage.get(stone.id) < minUses(stone.id)) {
 			let pick = null;
 
 			for (const entry of entries) {
@@ -472,6 +490,36 @@ function adapt(species, set, stoneID, result, doubles) {
 		}
 	}
 
+	// Primal weather: the opposite weather's attacks fail outright.
+	if (attackSide && (ability === 'desolateland' || ability === 'primordialsea')) {
+		const blocked = ability === 'desolateland' ? 'Water' : 'Fire';
+		const boosted = ability === 'desolateland' ? 'Fire' : 'Water';
+
+		for (const name of [...pool]) {
+			const move = dex.moves.get(name);
+			if (move.type === blocked && move.category !== 'Status') pool.splice(pool.indexOf(name), 1);
+		}
+
+		ensure(m => m.type === boosted && m.basePower >= 70);
+
+		// Thunder and Hurricane never miss in rain.
+		if (ability === 'primordialsea' && attackSide !== 'Physical') {
+			for (const [weak, strong] of [['thunderbolt', 'Thunder'], ['airslash', 'Hurricane']]) {
+				const index = pool.findIndex(n => toID(n) === weak);
+				if (index >= 0 && learnableID(species, toID(strong)) && !ids().has(toID(strong))) {
+					pool[index] = strong;
+					required.push(strong);
+				}
+			}
+		}
+	}
+
+	// Rusted Sword / Shield turn Iron Head into Behemoth Blade / Bash.
+	if (info.kind === 'rusted' && attackSide === 'Physical' && learnableID(species, 'ironhead')) {
+		if (!ids().has('ironhead')) pool.push('Iron Head');
+		required.push('Iron Head');
+	}
+
 	if (ability === 'speedboost' && !doubles && !pool.some(n => PROTECT_MOVES.has(toID(n))) &&
 		learnableID(species, 'protect') && attackSide) {
 		pool.push('Protect');
@@ -562,7 +610,28 @@ function buildPool(file, doubles) {
 		entries.push({species, level: source[id].level, sets, scored: scoreSpecies(species, sets, doubles)});
 	}
 
-	const usage = assignStones(entries);
+	// Formes that need a transformation item (Arceus / Silvally types,
+	// Ogerpon masks, Crowned Zacian / Zamazenta, Origin formes) join
+	// the pool holding their own item.
+	const fixed = [];
+	const fixedUsage = new Map();
+
+	for (const [id, data] of Object.entries(source)) {
+		const species = dex.species.get(id);
+		const needed = [species.requiredItem, ...(species.requiredItems || [])].filter(Boolean).map(toID);
+		const own = needed.find(item => STONE_INFO.has(item) && STONE_INFO.get(item).kind !== 'mega' &&
+			STONE_INFO.get(item).kind !== 'primal');
+
+		if (!own || species.isMega || species.isPrimal) continue;
+
+		const sets = cleanSpecies(species, data.sets, doubles);
+		if (!sets.length) continue;
+
+		fixed.push({species, level: data.level, sets, item: STONE_INFO.get(own).stone.name});
+		fixedUsage.set(own, (fixedUsage.get(own) || 0) + 1);
+	}
+
+	const usage = assignStones(entries, fixedUsage);
 
 	// Build templates.
 	const templates = [];
@@ -585,7 +654,7 @@ function buildPool(file, doubles) {
 					movepool: adapted.movepool,
 					abilities: set.abilities,
 					teraTypes: result.mixed.types,
-					megaStone: STONE_INFO.get(result.stoneID).stone.name,
+					item: STONE_INFO.get(result.stoneID).stone.name,
 					...(adapted.required.length ? {required: adapted.required} : {}),
 					_strength: result.strengthChange,
 					_score: result.score,
@@ -599,7 +668,7 @@ function buildPool(file, doubles) {
 		// A coverage stone that no set picked: attach it to the set
 		// it suits best.
 		for (const id of entry.stones) {
-			if (entry.templates.some(t => toID(t.megaStone) === id)) continue;
+			if (entry.templates.some(t => toID(t.item) === id)) continue;
 
 			const {set, scores} = entry.scored
 				.slice()
@@ -611,7 +680,7 @@ function buildPool(file, doubles) {
 				movepool: adapted.movepool,
 				abilities: set.abilities,
 				teraTypes: result.mixed.types,
-				megaStone: STONE_INFO.get(id).stone.name,
+				item: STONE_INFO.get(id).stone.name,
 				...(adapted.required.length ? {required: adapted.required} : {}),
 				_strength: result.strengthChange,
 				_score: result.score,
@@ -627,8 +696,8 @@ function buildPool(file, doubles) {
 		const merged = [];
 
 		for (const template of entry.templates) {
-			const key = JSON.stringify([template.role, template.movepool, template.megaStone]);
-			const twin = merged.find(t => JSON.stringify([t.role, t.movepool, t.megaStone]) === key);
+			const key = JSON.stringify([template.role, template.movepool, template.item]);
+			const twin = merged.find(t => JSON.stringify([t.role, t.movepool, t.item]) === key);
 
 			if (twin) {
 				twin.abilities = [...new Set([...twin.abilities, ...template.abilities])];
@@ -660,7 +729,16 @@ function buildPool(file, doubles) {
 		};
 	}
 
-	return {output, entries, usage, median};
+	for (const entry of fixed) {
+		const base = typeof entry.level === 'number' ? entry.level : 84;
+
+		output[entry.species.id] = {
+			level: base,
+			sets: entry.sets.map(set => ({...set, item: entry.item, level: base})),
+		};
+	}
+
+	return {output, entries, fixed, usage, median};
 }
 
 /*
@@ -672,17 +750,23 @@ function main() {
 	fs.mkdirSync(S.OUT, {recursive: true});
 
 	for (const [file, doubles, label] of [['sets.json', false, 'Singles'], ['doubles-sets.json', true, 'Doubles/FFA/2v2']]) {
-		const {output, entries, usage, median} = buildPool(file, doubles);
+		const {output, entries, fixed, usage, median} = buildPool(file, doubles);
 
 		fs.writeFileSync(path.join(S.OUT, file), JSON.stringify(output, null, 2) + '\n');
 
-		const templates = Object.values(output).reduce((n, e) => n + e.sets.length, 0);
+		const all = Object.values(output).flatMap(e => e.sets);
 		const unused = STONES.filter(s => !usage.get(s.id));
-		const counts = [...usage.values()];
+		const byKind = {};
+		for (const t of all) {
+			const kind = STONE_INFO.get(toID(t.item)).kind;
+			byKind[kind] = (byKind[kind] || 0) + 1;
+		}
+		const nonMega = all.filter(t => STONE_INFO.get(toID(t.item)).kind !== 'mega').length;
 
-		console.log(`${label}: ${entries.length} Pokémon, ${templates} templates, ` +
-			`stones used ${STONES.length - unused.length}/${STONES.length} ` +
-			`(min ${Math.min(...counts)}, max ${Math.max(...counts)}), median strength ${median.toFixed(0)}`);
+		console.log(`${label}: ${entries.length} Pokémon + ${fixed.length} item formes, ${all.length} templates, ` +
+			`items used ${STONES.length - unused.length}/${STONES.length}, ` +
+			`${Math.round(100 * nonMega / all.length)}% not Mega Stones ${JSON.stringify(byKind)}, ` +
+			`median strength ${median.toFixed(0)}`);
 
 		if (S.REPORT) {
 			const byStone = [...usage.entries()].sort((a, b) => b[1] - a[1]);

@@ -4,13 +4,15 @@
  * ===========================================================
  *
  * Random teams for the ND Mix and Mega formats. Every Pokémon
- * holds a Mega Stone from its curated template and can Mega
- * Evolve with it (Mix and Mega rules).
+ * holds a transformation item from its curated template: usually
+ * a Mega Stone, sometimes a Primal Orb, Rusted Sword / Shield,
+ * Origin item, Ogerpon Mask, Arceus Plate, Silvally Memory or
+ * Genesect Drive (Mix and Mega rules).
  *
  * Templates come from tools/build-ndmnm-sets.cjs and add three
  * fields to the usual random set data:
  *
- *   megaStone  the stone this template is built around
+ *   item       the item this template is built around
  *   level      the level for this Pokémon + stone
  *   required   moves the mix relies on (e.g. a Normal move for
  *              Pixilate); always included in the final set
@@ -22,7 +24,7 @@
 import {NDSharedPowerTeams} from '../ndsharedpower/teams';
 
 interface NDMnMTemplate extends RandomTeamsTypes.RandomSetData {
-	megaStone: string;
+	item: string;
 	level?: number;
 	required?: string[];
 }
@@ -49,7 +51,7 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 		const team = super.getTeam(options);
 
 		// The NDSP finaliser can set items (e.g. Thick Club for
-		// Marowak); every Pokémon here holds its Mega Stone.
+		// Marowak); every Pokémon here holds its transformation item.
 		for (const set of team) {
 			const stone = (set as AnyObject).ndmnmStone;
 
@@ -63,8 +65,8 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 	}
 
 	/*
-	 * Skip a Pokémon when every stone it can hold is already on the
-	 * team (one of each Mega Stone per team, like Mix and Mega).
+	 * Skip a Pokémon when every item it can hold is already on the
+	 * team (one of each item per team, like Mix and Mega).
 	 */
 	override getPokemonCompatibility(
 		species: Species,
@@ -75,7 +77,7 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 		const templates = (table[species.id]?.sets || []) as NDMnMTemplate[];
 		const used = new Set(pokemon.map(set => this.dex.toID(set.item)));
 
-		if (templates.length && templates.every(t => used.has(this.dex.toID(t.megaStone)))) return false;
+		if (templates.length && templates.every(t => used.has(this.dex.toID(t.item)))) return false;
 
 		return super.getPokemonCompatibility(species, pokemon, isDoubles);
 	}
@@ -92,7 +94,7 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 		const all = data.sets as NDMnMTemplate[];
 
 		// Prefer a stone the team doesn't have yet.
-		const fresh = all.filter(t => !this.ndmnmUsedStones.has(this.dex.toID(t.megaStone)));
+		const fresh = all.filter(t => !this.ndmnmUsedStones.has(this.dex.toID(t.item)));
 		const options = [...(fresh.length ? fresh : all)];
 
 		let template!: NDMnMTemplate;
@@ -123,12 +125,12 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 
 		this.addRequiredMoves(set, template);
 
-		set.item = template.megaStone;
+		set.item = template.item;
 		if (typeof template.level === 'number') set.level = template.level;
 		delete (set as AnyObject).gigantamax;
 
-		(set as AnyObject).ndmnmStone = template.megaStone;
-		this.ndmnmUsedStones.add(this.dex.toID(template.megaStone));
+		(set as AnyObject).ndmnmStone = template.item;
+		this.ndmnmUsedStones.add(this.dex.toID(template.item));
 
 		return set;
 	}
