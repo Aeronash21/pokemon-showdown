@@ -240,7 +240,8 @@ function moveValue(move, context) {
 
 	let score = power * accuracy / 100;
 
-	if (move.recoil) score -= 12;
+	// Half-HP recoil (Head Smash) hurts much more than a third.
+	if (move.recoil) score -= move.recoil[0] / move.recoil[1] >= 0.5 ? 35 : 12;
 	if (move.self?.boosts && Object.values(move.self.boosts).some(v => v < 0)) {
 		score += context.contrary ? 25 : -8;
 	}
@@ -250,6 +251,9 @@ function moveValue(move, context) {
 	if (context.trusted.has(move.id)) score += 40;
 	if (CURATED_MOVES.has(move.id)) score += 20;
 	if (context.types.includes(move.type)) score += 10;
+	// Normal coverage hits nothing super effectively (unless an
+	// -ate ability changes its type).
+	else if (move.type === 'Normal' && !context.ate) score -= 20;
 
 	return score;
 }
@@ -380,10 +384,15 @@ const NATIVE_OVERRIDES = {
 	magicbounce: 25, levitate: 20, thickfat: 15, unaware: 25, sturdy: 15,
 	naturalcure: 12, moxie: 25, contrary: 30, triage: 25, galewings: 25,
 	aerilate: 35, pixilate: 35, refrigerate: 35, galvanize: 35, dragonize: 35,
+	// Drawbacks: the Pokémon's NDSP level already pays for them, and
+	// they are gone once it Mega Evolves (or transforms), so losing
+	// them makes it much stronger (Slaking / Regigigas are about as
+	// strong as Arceus without them).
+	truant: -125, slowstart: -125, defeatist: -30, stall: -10,
 };
 
 function nativeValue(set, side) {
-	let best = 0;
+	let best = -Infinity;
 	let total = 0;
 	let count = 0;
 
@@ -406,8 +415,12 @@ function nativeValue(set, side) {
 	}
 
 	// The Pokémon keeps its own ability until it Mega Evolves, and
-	// the generator picks among the listed abilities.
-	return count ? (best + total / count) / 2 : 0;
+	// the generator picks among the listed abilities. A drawback
+	// (negative value) counts in full.
+	if (!count) return 0;
+	if (best < 0) return best;
+
+	return (best + total / count) / 2;
 }
 
 function countMoves(moveIDs, test) {
@@ -718,6 +731,7 @@ function evaluate(species, set, stoneID, doubles) {
 		noGuard: info.ability === 'noguard',
 		skillLink: info.ability === 'skilllink',
 		technician: info.ability === 'technician',
+		ate: ['pixilate', 'aerilate', 'refrigerate', 'galvanize', 'dragonize'].includes(info.ability),
 	};
 	const ctx = {side, set, species, types: mixed.types, stats: mixed.baseStats, doubles, moveContext};
 
@@ -785,7 +799,10 @@ function evaluate(species, set, stoneID, doubles) {
 
 	// A Mega keeps its own ability until it Mega Evolves; other items
 	// transform the Pokémon before its ability is ever used.
-	const nativeLoss = nativeValue(set, side) * (info.kind === 'mega' ? 0.85 : 1);
+	// A drawback (Truant, Slow Start...) does nothing before the first
+	// move, so it is lost in full.
+	const native = nativeValue(set, side);
+	const nativeLoss = native * (info.kind === 'mega' && native > 0 ? 0.85 : 1);
 	const strengthChange = score + formeLoss - nativeLoss;
 
 	return {stoneID, itemID: stoneID, kind: info.kind, score, statScore, abilityScore, boostScore, typeChange,

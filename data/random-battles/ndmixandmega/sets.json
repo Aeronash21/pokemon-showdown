@@ -1,4 +1,102 @@
 {
+  "throh": {
+    "level": 86,
+    "sets": [
+      {
+        "role": "Bulky Setup",
+        "movepool": [
+          "Bulk Up",
+          "Earthquake",
+          "Knock Off",
+          "Storm Throw"
+        ],
+        "abilities": [
+          "Mold Breaker"
+        ],
+        "teraTypes": [
+          "Fighting"
+        ],
+        "item": "Medichamite",
+        "level": 77
+      },
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Earthquake",
+          "Knock Off",
+          "Storm Throw",
+          "Superpower"
+        ],
+        "abilities": [
+          "Mold Breaker"
+        ],
+        "teraTypes": [
+          "Fighting"
+        ],
+        "item": "Medichamite",
+        "level": 76
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Circle Throw",
+          "Earthquake",
+          "Knock Off",
+          "Poison Jab"
+        ],
+        "abilities": [
+          "Mold Breaker"
+        ],
+        "teraTypes": [
+          "Fighting"
+        ],
+        "item": "Medichamite",
+        "level": 77
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Circle Throw",
+          "Earthquake",
+          "Ice Punch",
+          "Knock Off",
+          "Poison Jab"
+        ],
+        "abilities": [
+          "Mold Breaker"
+        ],
+        "teraTypes": [
+          "Ice"
+        ],
+        "item": "Ice Memory",
+        "required": [
+          "Ice Punch"
+        ],
+        "level": 95
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Circle Throw",
+          "Earthquake",
+          "Knock Off",
+          "Poison Jab",
+          "Zen Headbutt"
+        ],
+        "abilities": [
+          "Mold Breaker"
+        ],
+        "teraTypes": [
+          "Psychic"
+        ],
+        "item": "Psychic Memory",
+        "required": [
+          "Zen Headbutt"
+        ],
+        "level": 95
+      }
+    ]
+  },
   "togedemaru": {
     "level": 86,
     "sets": [
@@ -238,7 +336,7 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Double-Edge",
+          "Earthquake",
           "Leaf Blade",
           "Psycho Cut",
           "Sacred Sword",
@@ -261,7 +359,7 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Double-Edge",
+          "Earthquake",
           "Knock Off",
           "Psycho Cut",
           "Sacred Sword",
@@ -474,10 +572,10 @@
         "movepool": [
           "Bullet Punch",
           "Close Combat",
-          "Facade",
           "Fake Out",
           "Headlong Rush",
-          "Knock Off"
+          "Knock Off",
+          "Poison Jab"
         ],
         "abilities": [
           "Thick Fat"
@@ -665,8 +763,8 @@
           "Ghost",
           "Grass"
         ],
-        "item": "Medichamite",
-        "level": 78
+        "item": "Mawilite",
+        "level": 82
       },
       {
         "role": "Bulky Support",
@@ -683,8 +781,8 @@
           "Ghost",
           "Grass"
         ],
-        "item": "Medichamite",
-        "level": 79
+        "item": "Mawilite",
+        "level": 80
       }
     ]
   },
@@ -1057,7 +1155,6 @@
       {
         "role": "Fast Support",
         "movepool": [
-          "Defog",
           "Knock Off",
           "Leaf Storm",
           "Sucker Punch",
@@ -1092,7 +1189,7 @@
         "level": 83
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Knock Off",
           "Leaf Blade",
@@ -1362,8 +1459,8 @@
         "movepool": [
           "Close Combat",
           "Crunch",
-          "Liquidation",
-          "Protect"
+          "Earthquake",
+          "Liquidation"
         ],
         "abilities": [
           "Speed Boost"
@@ -1380,8 +1477,8 @@
         "movepool": [
           "Close Combat",
           "Crunch",
-          "Liquidation",
-          "Protect"
+          "Earthquake",
+          "Liquidation"
         ],
         "abilities": [
           "Speed Boost"
@@ -1485,26 +1582,6 @@
         "level": 80
       },
       {
-        "role": "Bulky Support",
-        "movepool": [
-          "Earthquake",
-          "Iron Head",
-          "Knock Off",
-          "Rapid Spin",
-          "Spikes",
-          "Triple Axel"
-        ],
-        "abilities": [
-          "Slush Rush"
-        ],
-        "teraTypes": [
-          "Ice",
-          "Steel"
-        ],
-        "item": "Ice Memory",
-        "level": 97
-      },
-      {
         "role": "Setup Sweeper",
         "movepool": [
           "Earthquake",
@@ -1523,26 +1600,6 @@
         ],
         "item": "Mawilite",
         "level": 82
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Earthquake",
-          "Ice Shard",
-          "Knock Off",
-          "Rapid Spin",
-          "Swords Dance",
-          "Triple Axel"
-        ],
-        "abilities": [
-          "Slush Rush"
-        ],
-        "teraTypes": [
-          "Ice",
-          "Steel"
-        ],
-        "item": "Ice Memory",
-        "level": 97
       }
     ]
   },
@@ -1712,8 +1769,8 @@
         "teraTypes": [
           "Normal"
         ],
-        "item": "Mawilite",
-        "level": 78
+        "item": "Starminite",
+        "level": 79
       },
       {
         "role": "Bulky Attacker",
@@ -1729,8 +1786,8 @@
         "teraTypes": [
           "Normal"
         ],
-        "item": "Mawilite",
-        "level": 78
+        "item": "Starminite",
+        "level": 79
       }
     ]
   },
@@ -1964,8 +2021,8 @@
         "role": "Setup Sweeper",
         "movepool": [
           "Dark Pulse",
-          "Hyper Voice",
           "Nasty Plot",
+          "Power Gem",
           "Thunderbolt"
         ],
         "abilities": [
@@ -2044,13 +2101,34 @@
         "level": 79
       },
       {
-        "role": "Bulky Setup",
+        "role": "Bulky Attacker",
         "movepool": [
           "Knock Off",
           "Liquidation",
-          "Rest",
-          "Sleep Talk",
-          "Superpower"
+          "Rock Slide",
+          "Superpower",
+          "Zen Headbutt"
+        ],
+        "abilities": [
+          "Contrary"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Psychic"
+        ],
+        "item": "Rock Memory",
+        "required": [
+          "Rock Slide"
+        ],
+        "level": 93
+      },
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Knock Off",
+          "Liquidation",
+          "Superpower",
+          "Zen Headbutt"
         ],
         "abilities": [
           "Contrary"
@@ -2087,12 +2165,33 @@
         "level": 79
       },
       {
-        "role": "Fast Bulky Setup",
+        "role": "Fast Attacker",
         "movepool": [
           "Knock Off",
           "Liquidation",
           "Psycho Cut",
-          "Rest",
+          "Rock Slide",
+          "Superpower"
+        ],
+        "abilities": [
+          "Contrary"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Psychic"
+        ],
+        "item": "Rock Memory",
+        "required": [
+          "Rock Slide"
+        ],
+        "level": 93
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Knock Off",
+          "Liquidation",
+          "Psycho Cut",
           "Superpower"
         ],
         "abilities": [
@@ -2128,27 +2227,6 @@
           "Superpower"
         ],
         "level": 79
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Knock Off",
-          "Liquidation",
-          "Psycho Cut",
-          "Superpower"
-        ],
-        "abilities": [
-          "Contrary"
-        ],
-        "teraTypes": [
-          "Water",
-          "Psychic"
-        ],
-        "item": "Water Memory",
-        "required": [
-          "Liquidation"
-        ],
-        "level": 92
       }
     ]
   },
@@ -2158,21 +2236,24 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Earthquake",
           "Flamethrower",
           "Giga Drain",
           "Glare",
-          "Gunk Shot",
-          "Knock Off"
+          "Knock Off",
+          "Sludge Wave"
         ],
         "abilities": [
           "Infiltrator"
         ],
         "teraTypes": [
-          "Poison"
+          "Poison",
+          "Fire"
         ],
-        "item": "Starminite",
-        "level": 91
+        "item": "Red Orb",
+        "required": [
+          "Flamethrower"
+        ],
+        "level": 90
       },
       {
         "role": "Bulky Setup",
@@ -2189,8 +2270,8 @@
         "teraTypes": [
           "Poison"
         ],
-        "item": "Starminite",
-        "level": 86
+        "item": "Kangaskhanite",
+        "level": 91
       }
     ]
   },
@@ -2244,6 +2325,23 @@
       {
         "role": "Fast Support",
         "movepool": [
+          "Psyshock",
+          "Rapid Spin",
+          "Recover",
+          "Scald"
+        ],
+        "abilities": [
+          "Natural Cure"
+        ],
+        "teraTypes": [
+          "Psychic"
+        ],
+        "item": "Mind Plate",
+        "level": 92
+      },
+      {
+        "role": "Fast Support",
+        "movepool": [
           "Rapid Spin",
           "Recover",
           "Scald",
@@ -2258,81 +2356,6 @@
         ],
         "item": "Chimechite",
         "level": 83
-      }
-    ]
-  },
-  "throh": {
-    "level": 86,
-    "sets": [
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Bulk Up",
-          "Facade",
-          "Knock Off",
-          "Storm Throw"
-        ],
-        "abilities": [
-          "Mold Breaker"
-        ],
-        "teraTypes": [
-          "Fighting",
-          "Steel"
-        ],
-        "item": "Aggronite",
-        "level": 84
-      },
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Bulk Up",
-          "Facade",
-          "Knock Off",
-          "Storm Throw"
-        ],
-        "abilities": [
-          "Mold Breaker"
-        ],
-        "teraTypes": [
-          "Fighting"
-        ],
-        "item": "Beedrillite",
-        "level": 85
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Facade",
-          "Knock Off",
-          "Storm Throw",
-          "Superpower"
-        ],
-        "abilities": [
-          "Mold Breaker"
-        ],
-        "teraTypes": [
-          "Fighting"
-        ],
-        "item": "Beedrillite",
-        "level": 80
-      },
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Circle Throw",
-          "Knock Off",
-          "Rest",
-          "Sleep Talk"
-        ],
-        "abilities": [
-          "Mold Breaker"
-        ],
-        "teraTypes": [
-          "Fighting",
-          "Steel"
-        ],
-        "item": "Aggronite",
-        "level": 84
       }
     ]
   },
@@ -2974,8 +2997,8 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Alluring Voice",
           "Hidden Power Ground",
-          "Hyper Voice",
           "Ice Beam",
           "Stored Power"
         ],
@@ -3006,14 +3029,10 @@
           "Stakeout"
         ],
         "teraTypes": [
-          "Normal",
-          "Dragon"
+          "Normal"
         ],
-        "item": "Feraligite",
-        "required": [
-          "Double-Edge"
-        ],
-        "level": 95
+        "item": "Beedrillite",
+        "level": 91
       },
       {
         "role": "Fast Attacker",
@@ -3030,8 +3049,8 @@
         "teraTypes": [
           "Normal"
         ],
-        "item": "Lucarionite",
-        "level": 94
+        "item": "Beedrillite",
+        "level": 88
       }
     ]
   },
@@ -3284,7 +3303,7 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Headbutt",
+          "Double-Edge",
           "High Horsepower",
           "Horn Leech",
           "Swords Dance"
@@ -3577,13 +3596,13 @@
     "level": 88,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
-          "Belly Drum",
           "Double-Edge",
           "Ice Spinner",
           "Iron Head",
-          "Liquidation"
+          "Liquidation",
+          "Zen Headbutt"
         ],
         "abilities": [
           "Ice Face"
@@ -3601,8 +3620,8 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Belly Drum",
           "Double-Edge",
+          "Head Smash",
           "Ice Spinner",
           "Liquidation"
         ],
@@ -3767,7 +3786,7 @@
         "level": 86
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Drill Peck",
           "Drill Run",
@@ -4007,28 +4026,6 @@
         "level": 75
       },
       {
-        "role": "Bulky Support",
-        "movepool": [
-          "Dynamax Cannon",
-          "Flamethrower",
-          "Recover",
-          "Toxic",
-          "Toxic Spikes"
-        ],
-        "abilities": [
-          "Pressure"
-        ],
-        "teraTypes": [
-          "Fire",
-          "Dragon"
-        ],
-        "item": "Flame Plate",
-        "required": [
-          "Flamethrower"
-        ],
-        "level": 76
-      },
-      {
         "role": "Fast Attacker",
         "movepool": [
           "Draco Meteor",
@@ -4144,8 +4141,8 @@
         "role": "Bulky Attacker",
         "movepool": [
           "Earthquake",
-          "Head Smash",
           "Stealth Rock",
+          "Stone Edge",
           "Sucker Punch",
           "Wood Hammer"
         ],
@@ -4158,7 +4155,7 @@
         ],
         "item": "Golisopite",
         "required": [
-          "Head Smash"
+          "Wood Hammer"
         ],
         "level": 92
       }
@@ -4243,7 +4240,6 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Defog",
           "Dragon Tail",
           "Rest",
           "Shadow Ball",
@@ -4265,7 +4261,7 @@
     "level": 77,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Dazzling Gleam",
           "Energy Ball",
@@ -4412,9 +4408,9 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Bullet Seed",
           "Mach Punch",
           "Rock Tomb",
+          "Seed Bomb",
           "Spore",
           "Swords Dance"
         ],
@@ -4457,8 +4453,8 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Energy Ball",
           "Glare",
-          "Leaf Storm",
           "Leech Seed",
           "Substitute",
           "Synthesis"
@@ -5176,7 +5172,7 @@
         "level": 88
       },
       {
-        "role": "Bulky Setup",
+        "role": "Bulky Attacker",
         "movepool": [
           "Earth Power",
           "Hydro Pump",
@@ -5324,8 +5320,8 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
+          "Alluring Voice",
           "Calm Mind",
-          "Hyper Voice",
           "Substitute",
           "Thunderbolt"
         ],
@@ -5611,8 +5607,8 @@
         "role": "Setup Sweeper",
         "movepool": [
           "Close Combat",
-          "Ice Spinner",
           "Leaf Blade",
+          "Protect",
           "Sleep Powder",
           "Victory Dance"
         ],
@@ -5623,7 +5619,10 @@
           "Grass",
           "Fighting"
         ],
-        "item": "Kangaskhanite",
+        "item": "Blazikenite",
+        "required": [
+          "Protect"
+        ],
         "level": 79
       }
     ]
@@ -5634,8 +5633,8 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Bullet Seed",
           "Double-Edge",
+          "Seed Bomb",
           "Tidy Up",
           "Triple Axel",
           "U-turn"
@@ -6143,8 +6142,8 @@
         "role": "Fast Attacker",
         "movepool": [
           "Close Combat",
+          "Double-Edge",
           "Knock Off",
-          "Quick Attack",
           "Shadow Claw",
           "Swords Dance"
         ],
@@ -6348,7 +6347,8 @@
         ],
         "item": "Pidgeotite",
         "required": [
-          "Focus Blast"
+          "Focus Blast",
+          "Hydro Pump"
         ],
         "level": 79
       },
@@ -6386,6 +6386,9 @@
           "Fighting"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 78
       }
     ]
@@ -6534,7 +6537,6 @@
         "role": "Bulky Support",
         "movepool": [
           "Iron Head",
-          "Rapid Spin",
           "Stealth Rock",
           "Toxic Spikes",
           "Volt Switch"
@@ -6554,7 +6556,6 @@
         "movepool": [
           "Body Press",
           "Iron Head",
-          "Rapid Spin",
           "Spikes",
           "Stealth Rock"
         ],
@@ -6616,7 +6617,6 @@
         "role": "Bulky Support",
         "movepool": [
           "Iron Head",
-          "Rapid Spin",
           "Spikes",
           "Stealth Rock",
           "Thunder Wave"
@@ -6673,78 +6673,6 @@
         ],
         "item": "Dragalgite",
         "level": 87
-      }
-    ]
-  },
-  "gyarados": {
-    "level": 79,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Double-Edge",
-          "Dragon Dance",
-          "Earthquake",
-          "Stone Edge",
-          "Waterfall"
-        ],
-        "abilities": [
-          "Intimidate",
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Water",
-          "Dragon"
-        ],
-        "item": "Feraligite",
-        "required": [
-          "Double-Edge"
-        ],
-        "level": 78
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Double-Edge",
-          "Dragon Dance",
-          "Earthquake",
-          "Waterfall"
-        ],
-        "abilities": [
-          "Intimidate",
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Water",
-          "Dragon"
-        ],
-        "item": "Feraligite",
-        "required": [
-          "Double-Edge"
-        ],
-        "level": 78
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Double-Edge",
-          "Dragon Dance",
-          "Earthquake",
-          "Power Whip",
-          "Waterfall"
-        ],
-        "abilities": [
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Water",
-          "Dragon"
-        ],
-        "item": "Feraligite",
-        "required": [
-          "Double-Edge"
-        ],
-        "level": 78
       }
     ]
   },
@@ -7011,8 +6939,8 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
+          "Dragon Pulse",
           "Fire Blast",
-          "Hyper Voice",
           "Nasty Plot",
           "Sludge Wave"
         ],
@@ -7097,64 +7025,6 @@
       }
     ]
   },
-  "regieleki": {
-    "level": 79,
-    "sets": [
-      {
-        "role": "Fast Support",
-        "movepool": [
-          "Explosion",
-          "Rapid Spin",
-          "Thunderbolt",
-          "Volt Switch"
-        ],
-        "abilities": [
-          "Transistor"
-        ],
-        "teraTypes": [
-          "Electric",
-          "Dragon"
-        ],
-        "item": "Garchompite Z",
-        "level": 78
-      },
-      {
-        "role": "Fast Support",
-        "movepool": [
-          "Explosion",
-          "Rapid Spin",
-          "Thunderbolt",
-          "Volt Switch"
-        ],
-        "abilities": [
-          "Transistor"
-        ],
-        "teraTypes": [
-          "Electric"
-        ],
-        "item": "Zap Plate",
-        "level": 87
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Ancient Power",
-          "Rapid Spin",
-          "Thunderbolt",
-          "Volt Switch"
-        ],
-        "abilities": [
-          "Transistor"
-        ],
-        "teraTypes": [
-          "Electric",
-          "Dragon"
-        ],
-        "item": "Garchompite Z",
-        "level": 78
-      }
-    ]
-  },
   "aurorus": {
     "level": 85,
     "sets": [
@@ -7181,8 +7051,30 @@
         "role": "Fast Support",
         "movepool": [
           "Aurora Veil",
-          "Blizzard",
           "Earth Power",
+          "Ice Beam",
+          "Stealth Rock",
+          "Thunder Wave"
+        ],
+        "abilities": [
+          "Snow Warning"
+        ],
+        "teraTypes": [
+          "Ground",
+          "Ice"
+        ],
+        "item": "Ground Memory",
+        "required": [
+          "Earth Power"
+        ],
+        "level": 94
+      },
+      {
+        "role": "Fast Support",
+        "movepool": [
+          "Aurora Veil",
+          "Earth Power",
+          "Ice Beam",
           "Stealth Rock",
           "Thunder Wave"
         ],
@@ -7196,29 +7088,7 @@
         "level": 95
       },
       {
-        "role": "Fast Support",
-        "movepool": [
-          "Aurora Veil",
-          "Blizzard",
-          "Psychic",
-          "Stealth Rock",
-          "Thunder Wave"
-        ],
-        "abilities": [
-          "Snow Warning"
-        ],
-        "teraTypes": [
-          "Psychic",
-          "Ice"
-        ],
-        "item": "Psychic Memory",
-        "required": [
-          "Psychic"
-        ],
-        "level": 94
-      },
-      {
-        "role": "Bulky Setup",
+        "role": "Bulky Attacker",
         "movepool": [
           "Blizzard",
           "Earth Power",
@@ -7370,6 +7240,9 @@
           "Psychic"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 81
       }
     ]
@@ -7630,10 +7503,10 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
-          "Accelerock",
           "Drill Run",
           "Iron Head",
           "Return",
+          "Stone Edge",
           "Swords Dance",
           "Zen Headbutt"
         ],
@@ -7647,7 +7520,7 @@
         "item": "Golisopite",
         "required": [
           "Iron Head",
-          "Accelerock"
+          "Drill Run"
         ],
         "level": 79
       }
@@ -7777,9 +7650,9 @@
       {
         "role": "Bulky Setup",
         "movepool": [
+          "Blizzard",
           "Energy Ball",
           "Hydro Pump",
-          "Ice Beam",
           "Surf",
           "Tail Glow"
         ],
@@ -7790,6 +7663,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 77
       },
       {
@@ -7903,7 +7780,7 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Swift",
+          "Discharge",
           "Taunt",
           "Thunderbolt",
           "Volt Switch"
@@ -7919,6 +7796,25 @@
         ],
         "item": "Garchompite Z",
         "level": 91
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Discharge",
+          "Taunt",
+          "Thunderbolt",
+          "Volt Switch"
+        ],
+        "abilities": [
+          "Aftermath",
+          "Soundproof",
+          "Static"
+        ],
+        "teraTypes": [
+          "Electric"
+        ],
+        "item": "Zap Plate",
+        "level": 99
       }
     ]
   },
@@ -8306,20 +8202,21 @@
           "Dark Pulse",
           "Dragon Pulse",
           "Ice Beam",
-          "U-turn",
-          "Water Pulse"
+          "Surf",
+          "U-turn"
         ],
         "abilities": [
           "Mega Launcher"
         ],
         "teraTypes": [
-          "Water"
+          "Water",
+          "Dragon"
         ],
-        "item": "Blastoisinite",
+        "item": "Garchompite Z",
         "required": [
           "Dragon Pulse"
         ],
-        "level": 86
+        "level": 84
       },
       {
         "role": "AV Pivot",
@@ -8411,8 +8308,8 @@
         "movepool": [
           "Air Slash",
           "Bug Buzz",
-          "Protect",
-          "Psychic"
+          "Psychic",
+          "Shadow Ball"
         ],
         "abilities": [
           "Speed Boost"
@@ -8532,9 +8429,10 @@
           "Water Absorb"
         ],
         "teraTypes": [
-          "Grass"
+          "Grass",
+          "Steel"
         ],
-        "item": "Sablenite",
+        "item": "Aggronite",
         "level": 94
       },
       {
@@ -8551,9 +8449,10 @@
           "Water Absorb"
         ],
         "teraTypes": [
-          "Grass"
+          "Grass",
+          "Steel"
         ],
-        "item": "Sablenite",
+        "item": "Aggronite",
         "level": 94
       }
     ]
@@ -8592,10 +8491,10 @@
       {
         "role": "Bulky Setup",
         "movepool": [
+          "Blizzard",
           "Encore",
           "Grass Knot",
           "Hydro Pump",
-          "Ice Beam",
           "Nasty Plot"
         ],
         "abilities": [
@@ -8606,15 +8505,19 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 90
       },
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Blizzard",
           "Flip Turn",
           "Grass Knot",
           "Hydro Pump",
-          "Ice Beam",
           "Nasty Plot"
         ],
         "abilities": [
@@ -8625,6 +8528,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 88
       }
     ]
@@ -8694,7 +8601,7 @@
       {
         "role": "Fast Attacker",
         "movepool": [
-          "Ice Beam",
+          "Blizzard",
           "Origin Pulse",
           "Thunder",
           "Water Spout"
@@ -8706,13 +8613,17 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Origin Pulse"
+        ],
         "level": 70
       },
       {
         "role": "Bulky Setup",
         "movepool": [
+          "Blizzard",
           "Calm Mind",
-          "Ice Beam",
           "Origin Pulse",
           "Thunder"
         ],
@@ -8723,6 +8634,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Origin Pulse"
+        ],
         "level": 72
       }
     ]
@@ -9023,11 +8938,11 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
+          "Blizzard",
           "Encore",
           "Haze",
           "Hydro Pump",
           "Hypnosis",
-          "Ice Beam",
           "Rest",
           "Surf"
         ],
@@ -9038,6 +8953,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 90
       },
       {
@@ -9063,10 +8982,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Blizzard",
+          "Earth Power",
           "Focus Blast",
-          "Hydro Pump",
-          "Ice Beam",
-          "Weather Ball"
+          "Hydro Pump"
         ],
         "abilities": [
           "Drizzle"
@@ -9075,6 +8994,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Focus Blast"
+        ],
         "level": 87
       }
     ]
@@ -9702,7 +9625,7 @@
         "level": 77
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Armor Cannon",
           "Energy Ball",
@@ -9962,7 +9885,6 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Defog",
           "Knock Off",
           "Power Whip",
           "Sleep Powder",
@@ -10046,10 +9968,10 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
-          "Body Slam",
           "Dragon Claw",
           "Dragon Dance",
-          "Earthquake"
+          "Earthquake",
+          "Hammer Arm"
         ],
         "abilities": [
           "Dragon's Maw"
@@ -10109,11 +10031,11 @@
     "level": 84,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Earth Power",
+          "Focus Blast",
           "Hydro Pump",
-          "Rain Dance",
           "Sludge Wave"
         ],
         "abilities": [
@@ -10123,26 +10045,8 @@
           "Water",
           "Ground"
         ],
-        "item": "Dragoninite",
-        "level": 85
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Earthquake",
-          "Hydro Pump",
-          "Rain Dance",
-          "Sludge Wave"
-        ],
-        "abilities": [
-          "Swift Swim"
-        ],
-        "teraTypes": [
-          "Water",
-          "Ground"
-        ],
-        "item": "Lustrous Globe",
-        "level": 90
+        "item": "Lucarionite Z",
+        "level": 82
       },
       {
         "role": "Bulky Attacker",
@@ -10160,13 +10064,13 @@
           "Water",
           "Ground"
         ],
-        "item": "Banettite",
+        "item": "Sablenite",
         "level": 85
       },
       {
         "role": "Staller",
         "movepool": [
-          "Earth Power",
+          "Earthquake",
           "Protect",
           "Scald",
           "Toxic"
@@ -10178,56 +10082,88 @@
           "Water",
           "Ground"
         ],
-        "item": "Dragoninite",
-        "level": 86
+        "item": "Sablenite",
+        "level": 82
       }
     ]
   },
-  "kyuremblack": {
-    "level": 71,
+  "regieleki": {
+    "level": 79,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Support",
         "movepool": [
-          "Body Slam",
-          "Dragon Dance",
-          "Fusion Bolt",
-          "Icicle Spear",
-          "Scale Shot"
+          "Explosion",
+          "Rapid Spin",
+          "Thunder",
+          "Volt Switch"
         ],
         "abilities": [
-          "Teravolt"
+          "Transistor"
         ],
         "teraTypes": [
-          "Dragon",
-          "Flying"
+          "Electric"
         ],
-        "item": "Pinsirite",
+        "item": "Raichunite Y",
         "required": [
-          "Body Slam"
+          "Thunder"
         ],
-        "level": 70
+        "level": 80
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Support",
         "movepool": [
-          "Body Slam",
-          "Fusion Bolt",
-          "Hone Claws",
-          "Outrage"
+          "Explosion",
+          "Rapid Spin",
+          "Thunderbolt",
+          "Volt Switch"
         ],
         "abilities": [
-          "Teravolt"
+          "Transistor"
         ],
         "teraTypes": [
-          "Dragon",
-          "Flying"
+          "Electric"
         ],
-        "item": "Pinsirite",
+        "item": "Zap Plate",
+        "level": 87
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Rapid Spin",
+          "Thunder",
+          "Volt Switch",
+          "Zap Cannon"
+        ],
+        "abilities": [
+          "Transistor"
+        ],
+        "teraTypes": [
+          "Electric"
+        ],
+        "item": "Raichunite Y",
         "required": [
-          "Body Slam"
+          "Zap Cannon",
+          "Thunder"
         ],
-        "level": 69
+        "level": 79
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Rapid Spin",
+          "Thunder",
+          "Thunderbolt",
+          "Volt Switch"
+        ],
+        "abilities": [
+          "Transistor"
+        ],
+        "teraTypes": [
+          "Electric"
+        ],
+        "item": "Zap Plate",
+        "level": 87
       }
     ]
   },
@@ -10397,8 +10333,8 @@
         "movepool": [
           "Dragon Ascent",
           "Earthquake",
-          "Extreme Speed",
           "Swords Dance",
+          "U-turn",
           "Wild Charge"
         ],
         "abilities": [
@@ -10525,6 +10461,9 @@
           "Ghost"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 80
       },
       {
@@ -10543,6 +10482,9 @@
           "Ghost"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 80
       }
     ]
@@ -10753,6 +10695,55 @@
       }
     ]
   },
+  "aggron": {
+    "level": 86,
+    "sets": [
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Double-Edge",
+          "Earthquake",
+          "Heavy Slam",
+          "Stealth Rock",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Rock Head"
+        ],
+        "teraTypes": [
+          "Steel",
+          "Dragon"
+        ],
+        "item": "Feraligite",
+        "required": [
+          "Double-Edge"
+        ],
+        "level": 83
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Body Press",
+          "Double-Edge",
+          "Heavy Slam",
+          "Rock Polish",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Rock Head"
+        ],
+        "teraTypes": [
+          "Steel",
+          "Dragon"
+        ],
+        "item": "Feraligite",
+        "required": [
+          "Double-Edge"
+        ],
+        "level": 83
+      }
+    ]
+  },
   "beedrill": {
     "level": 95,
     "sets": [
@@ -10940,7 +10931,7 @@
           "Knock Off",
           "Leaf Blade",
           "Lunge",
-          "Steel Wing",
+          "Slash",
           "Sticky Web"
         ],
         "abilities": [
@@ -10949,12 +10940,11 @@
         ],
         "teraTypes": [
           "Bug",
-          "Steel"
+          "Dragon"
         ],
-        "item": "Golisopite",
+        "item": "Feraligite",
         "required": [
-          "Steel Wing",
-          "Leaf Blade"
+          "Slash"
         ],
         "level": 85
       },
@@ -10963,6 +10953,7 @@
         "movepool": [
           "Bullet Seed",
           "Knock Off",
+          "Slash",
           "Sticky Web",
           "Triple Axel"
         ],
@@ -10971,13 +10962,13 @@
         ],
         "teraTypes": [
           "Bug",
-          "Grass"
+          "Dragon"
         ],
-        "item": "Heracronite",
+        "item": "Feraligite",
         "required": [
-          "Bullet Seed"
+          "Slash"
         ],
-        "level": 85
+        "level": 86
       },
       {
         "role": "Fast Attacker",
@@ -11000,6 +10991,28 @@
           "Shadow Claw"
         ],
         "level": 93
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Bullet Seed",
+          "Knock Off",
+          "Poison Jab",
+          "Sticky Web",
+          "Triple Axel"
+        ],
+        "abilities": [
+          "Chlorophyll"
+        ],
+        "teraTypes": [
+          "Poison",
+          "Grass"
+        ],
+        "item": "Poison Memory",
+        "required": [
+          "Poison Jab"
+        ],
+        "level": 94
       }
     ]
   },
@@ -11052,7 +11065,7 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
-          "Bite",
+          "Crunch",
           "Double-Edge",
           "Encore",
           "Population Bomb",
@@ -11177,10 +11190,10 @@
       {
         "role": "Wallbreaker",
         "movepool": [
+          "Blizzard",
           "Energy Ball",
           "Fire Blast",
           "Hydro Pump",
-          "Ice Beam",
           "Sludge Wave",
           "Thunder Wave"
         ],
@@ -11191,14 +11204,18 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 87
       },
       {
         "role": "Bulky Attacker",
         "movepool": [
+          "Blizzard",
           "Energy Ball",
           "Fire Blast",
-          "Ice Beam",
           "Scald",
           "Sludge Wave",
           "Thunder Wave"
@@ -11210,6 +11227,10 @@
           "Water"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Blizzard",
+          "Fire Blast"
+        ],
         "level": 89
       }
     ]
@@ -11317,8 +11338,8 @@
         "movepool": [
           "Earthquake",
           "Protect",
+          "Roost",
           "Scale Shot",
-          "Substitute",
           "Toxic"
         ],
         "abilities": [
@@ -11339,7 +11360,7 @@
         "movepool": [
           "Earthquake",
           "Knock Off",
-          "Protect",
+          "Roost",
           "Toxic",
           "Toxic Spikes"
         ],
@@ -11358,7 +11379,7 @@
         "movepool": [
           "Earthquake",
           "Knock Off",
-          "Protect",
+          "Roost",
           "Toxic",
           "Toxic Spikes"
         ],
@@ -11427,6 +11448,53 @@
       }
     ]
   },
+  "kyuremblack": {
+    "level": 71,
+    "sets": [
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Dragon Dance",
+          "Fusion Bolt",
+          "Icicle Spear",
+          "Scale Shot"
+        ],
+        "abilities": [
+          "Teravolt"
+        ],
+        "teraTypes": [
+          "Dragon",
+          "Ice"
+        ],
+        "item": "Heracronite",
+        "required": [
+          "Icicle Spear"
+        ],
+        "level": 70
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Fusion Bolt",
+          "Hone Claws",
+          "Icicle Spear",
+          "Outrage"
+        ],
+        "abilities": [
+          "Teravolt"
+        ],
+        "teraTypes": [
+          "Dragon",
+          "Ice"
+        ],
+        "item": "Heracronite",
+        "required": [
+          "Icicle Spear"
+        ],
+        "level": 70
+      }
+    ]
+  },
   "sigilyph": {
     "level": 82,
     "sets": [
@@ -11468,10 +11536,13 @@
         ],
         "teraTypes": [
           "Psychic",
-          "Flying"
+          "Fire"
         ],
-        "item": "Lucarionite Z",
-        "level": 81
+        "item": "Red Orb",
+        "required": [
+          "Heat Wave"
+        ],
+        "level": 83
       }
     ]
   },
@@ -11552,12 +11623,12 @@
         "level": 97
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
+          "Dazzling Gleam",
           "Earth Power",
-          "Solar Beam",
-          "Sunny Day",
-          "Weather Ball"
+          "Leaf Storm",
+          "Sludge Bomb"
         ],
         "abilities": [
           "Chlorophyll"
@@ -11579,6 +11650,7 @@
           "Body Slam",
           "Coil",
           "Earthquake",
+          "Iron Tail",
           "Roost"
         ],
         "abilities": [
@@ -11586,10 +11658,11 @@
         ],
         "teraTypes": [
           "Normal",
-          "Flying"
+          "Steel"
         ],
-        "item": "Pinsirite",
+        "item": "Golisopite",
         "required": [
+          "Iron Tail",
           "Body Slam"
         ],
         "level": 85
@@ -11630,7 +11703,7 @@
         "role": "Wallbreaker",
         "movepool": [
           "Brave Bird",
-          "Facade",
+          "Double-Edge",
           "Protect",
           "Quick Attack",
           "U-turn"
@@ -11681,7 +11754,7 @@
         "role": "Wallbreaker",
         "movepool": [
           "Brave Bird",
-          "Facade",
+          "Double-Edge",
           "Protect",
           "Quick Attack",
           "U-turn"
@@ -11708,7 +11781,7 @@
           "Double-Edge",
           "Foul Play",
           "Parting Shot",
-          "Protect"
+          "Quick Attack"
         ],
         "abilities": [
           "Hustle"
@@ -11717,10 +11790,7 @@
           "Normal",
           "Flying"
         ],
-        "item": "Blazikenite",
-        "required": [
-          "Protect"
-        ],
+        "item": "Diancite",
         "level": 89
       }
     ]
@@ -11810,12 +11880,12 @@
     "level": 81,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
-          "Belly Drum",
           "Drain Punch",
           "Facade",
-          "Play Rough"
+          "Play Rough",
+          "Thief"
         ],
         "abilities": [
           "Sweet Veil"
@@ -11840,9 +11910,9 @@
         "movepool": [
           "Crunch",
           "Double-Edge",
-          "Facade",
           "Protect",
           "Stomping Tantrum",
+          "Sucker Punch",
           "Swords Dance",
           "U-turn"
         ],
@@ -12134,24 +12204,6 @@
         "level": 98
       },
       {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Flamethrower",
-          "Leaf Storm",
-          "Leech Seed",
-          "Protect"
-        ],
-        "abilities": [
-          "Chlorophyll"
-        ],
-        "teraTypes": [
-          "Flying",
-          "Fire"
-        ],
-        "item": "Flying Memory",
-        "level": 99
-      },
-      {
         "role": "Fast Attacker",
         "movepool": [
           "Energy Ball",
@@ -12178,7 +12230,7 @@
           "Energy Ball",
           "Fire Blast",
           "Leaf Storm",
-          "Sunny Day"
+          "Overheat"
         ],
         "abilities": [
           "Chlorophyll"
@@ -12447,94 +12499,6 @@
         ],
         "item": "Glimmoranite",
         "level": 79
-      }
-    ]
-  },
-  "slaking": {
-    "level": 84,
-    "sets": [
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Double-Edge",
-          "Earthquake",
-          "Giga Impact",
-          "Hammer Arm",
-          "Knock Off"
-        ],
-        "abilities": [
-          "Truant"
-        ],
-        "teraTypes": [
-          "Normal",
-          "Fighting"
-        ],
-        "item": "Lopunnite",
-        "required": [
-          "Hammer Arm"
-        ],
-        "level": 81
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Double-Edge",
-          "Earthquake",
-          "Giga Impact",
-          "Hammer Arm",
-          "Knock Off"
-        ],
-        "abilities": [
-          "Truant"
-        ],
-        "teraTypes": [
-          "Normal",
-          "Fighting"
-        ],
-        "item": "Lopunnite",
-        "required": [
-          "Hammer Arm"
-        ],
-        "level": 81
-      }
-    ]
-  },
-  "regigigas": {
-    "level": 84,
-    "sets": [
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Body Slam",
-          "Knock Off",
-          "Rest",
-          "Sleep Talk"
-        ],
-        "abilities": [
-          "Slow Start"
-        ],
-        "teraTypes": [
-          "Normal"
-        ],
-        "item": "Malamarite",
-        "level": 83
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Body Slam",
-          "Knock Off",
-          "Protect",
-          "Substitute"
-        ],
-        "abilities": [
-          "Slow Start"
-        ],
-        "teraTypes": [
-          "Normal"
-        ],
-        "item": "Banettite",
-        "level": 83
       }
     ]
   },
@@ -13100,20 +13064,20 @@
           "Clanging Scales",
           "Close Combat",
           "Dragon Dance",
-          "Fire Punch",
-          "Iron Head"
+          "Iron Head",
+          "Throat Chop"
         ],
         "abilities": [
           "Bulletproof",
           "Soundproof"
         ],
         "teraTypes": [
-          "Fire",
+          "Dark",
           "Fighting"
         ],
-        "item": "Fire Memory",
+        "item": "Dark Memory",
         "required": [
-          "Fire Punch"
+          "Throat Chop"
         ],
         "level": 85
       }
@@ -13322,22 +13286,18 @@
         "movepool": [
           "Aerial Ace",
           "Encore",
-          "Lunge",
           "Sleep Powder",
-          "Strength Sap"
+          "Strength Sap",
+          "U-turn"
         ],
         "abilities": [
           "Infiltrator"
         ],
         "teraTypes": [
-          "Bug",
           "Flying"
         ],
-        "item": "Insect Plate",
-        "required": [
-          "Lunge"
-        ],
-        "level": 95
+        "item": "Sky Plate",
+        "level": 93
       }
     ]
   },
@@ -13433,7 +13393,7 @@
         "role": "Fast Attacker",
         "movepool": [
           "Brave Bird",
-          "Facade",
+          "Double-Edge",
           "Protect",
           "Quick Attack",
           "U-turn"
@@ -13451,9 +13411,9 @@
       {
         "role": "Wallbreaker",
         "movepool": [
+          "Air Slash",
           "Boomburst",
           "Heat Wave",
-          "Hurricane",
           "U-turn"
         ],
         "abilities": [
@@ -13553,7 +13513,6 @@
           "Calm Mind",
           "Dazzling Gleam",
           "Hyper Voice",
-          "Protect",
           "Roost",
           "Stored Power",
           "Substitute"
@@ -13593,6 +13552,9 @@
           "Fire"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 85
       },
       {
@@ -13612,6 +13574,9 @@
           "Fire"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 85
       }
     ]
@@ -13938,10 +13903,13 @@
         ],
         "teraTypes": [
           "Fairy",
-          "Flying"
+          "Fire"
         ],
-        "item": "Charizardite Y",
-        "level": 80
+        "item": "Hearthflame Mask",
+        "required": [
+          "Mystical Fire"
+        ],
+        "level": 82
       }
     ]
   },
@@ -14054,8 +14022,8 @@
           "Nasty Plot",
           "Sludge Wave",
           "Taunt",
+          "Thunder",
           "Thunder Wave",
-          "Thunderbolt",
           "U-turn"
         ],
         "abilities": [
@@ -14067,6 +14035,10 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 80
       },
       {
@@ -14075,7 +14047,7 @@
           "Focus Blast",
           "Nasty Plot",
           "Sludge Wave",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Defiant"
@@ -14085,6 +14057,10 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 79
       },
       {
@@ -14094,8 +14070,8 @@
           "Grass Knot",
           "Knock Off",
           "Taunt",
+          "Thunder",
           "Thunder Wave",
-          "Thunderbolt",
           "U-turn"
         ],
         "abilities": [
@@ -14107,6 +14083,10 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 80
       }
     ]
@@ -14132,28 +14112,6 @@
         ],
         "item": "Dragoninite",
         "level": 86
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Body Press",
-          "Ice Beam",
-          "Rest",
-          "Sleep Talk",
-          "Thunder Wave",
-          "Thunderbolt"
-        ],
-        "abilities": [
-          "Clear Body"
-        ],
-        "teraTypes": [
-          "Electric"
-        ],
-        "item": "Zap Plate",
-        "required": [
-          "Thunderbolt"
-        ],
-        "level": 94
       }
     ]
   },
@@ -14174,13 +14132,13 @@
         ],
         "teraTypes": [
           "Ground",
-          "Fairy"
+          "Flying"
         ],
-        "item": "Altarianite",
+        "item": "Pinsirite",
         "required": [
           "Double-Edge"
         ],
-        "level": 82
+        "level": 81
       },
       {
         "role": "Bulky Setup",
@@ -14196,13 +14154,13 @@
         ],
         "teraTypes": [
           "Ground",
-          "Fairy"
+          "Flying"
         ],
-        "item": "Altarianite",
+        "item": "Pinsirite",
         "required": [
           "Double-Edge"
         ],
-        "level": 82
+        "level": 81
       }
     ]
   },
@@ -14344,27 +14302,8 @@
           "Water",
           "Ghost"
         ],
-        "item": "Manectite",
-        "level": 89
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Ice Beam",
-          "Recover",
-          "Scald",
-          "Shadow Ball",
-          "Taunt"
-        ],
-        "abilities": [
-          "Water Absorb"
-        ],
-        "teraTypes": [
-          "Water",
-          "Ghost"
-        ],
-        "item": "Drampanite",
-        "level": 91
+        "item": "Dragoninite",
+        "level": 87
       }
     ]
   },
@@ -14378,7 +14317,6 @@
           "Giga Drain",
           "Knock Off",
           "Leaf Storm",
-          "Rapid Spin",
           "Spore",
           "Toxic"
         ],
@@ -14413,6 +14351,9 @@
           "Grass"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 85
       },
       {
@@ -14430,6 +14371,9 @@
           "Grass"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 85
       },
       {
@@ -14698,6 +14642,9 @@
           "Grass"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 87
       }
     ]
@@ -14857,6 +14804,9 @@
           "Fairy"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Hydro Pump"
+        ],
         "level": 78
       },
       {
@@ -14895,6 +14845,9 @@
           "Fairy"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Hydro Pump"
+        ],
         "level": 78
       },
       {
@@ -14916,6 +14869,9 @@
           "Fairy"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Hydro Pump"
+        ],
         "level": 78
       },
       {
@@ -15173,7 +15129,6 @@
         "role": "Bulky Setup",
         "movepool": [
           "Crush Claw",
-          "Dragon Claw",
           "Rest",
           "Sleep Talk",
           "Swords Dance"
@@ -15183,20 +15138,18 @@
         ],
         "teraTypes": [
           "Normal",
-          "Dragon"
+          "Flying"
         ],
-        "item": "Charizardite X",
+        "item": "Pinsirite",
         "required": [
-          "Dragon Claw",
           "Crush Claw"
         ],
-        "level": 86
+        "level": 85
       },
       {
         "role": "Bulky Attacker",
         "movepool": [
           "Crush Claw",
-          "Dragon Claw",
           "Payback",
           "Rest",
           "Swords Dance"
@@ -15206,11 +15159,10 @@
         ],
         "teraTypes": [
           "Normal",
-          "Dragon"
+          "Flying"
         ],
-        "item": "Charizardite X",
+        "item": "Pinsirite",
         "required": [
-          "Dragon Claw",
           "Crush Claw"
         ],
         "level": 85
@@ -15426,6 +15378,24 @@
         "level": 78
       },
       {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Draco Meteor",
+          "Fire Blast",
+          "Shadow Ball",
+          "U-turn"
+        ],
+        "abilities": [
+          "Infiltrator"
+        ],
+        "teraTypes": [
+          "Dragon",
+          "Ghost"
+        ],
+        "item": "Chandelurite",
+        "level": 80
+      },
+      {
         "role": "Setup Sweeper",
         "movepool": [
           "Double-Edge",
@@ -15482,25 +15452,6 @@
         "level": 81
       },
       {
-        "role": "Fast Support",
-        "movepool": [
-          "Dragon Darts",
-          "Hex",
-          "U-turn",
-          "Will-O-Wisp"
-        ],
-        "abilities": [
-          "Cursed Body",
-          "Infiltrator"
-        ],
-        "teraTypes": [
-          "Dragon",
-          "Ghost"
-        ],
-        "item": "Draco Plate",
-        "level": 83
-      },
-      {
         "role": "Setup Sweeper",
         "movepool": [
           "Dragon Dance",
@@ -15535,24 +15486,6 @@
         ],
         "item": "Griseous Core",
         "level": 80
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Dragon Dance",
-          "Dragon Darts",
-          "Substitute",
-          "Will-O-Wisp"
-        ],
-        "abilities": [
-          "Clear Body"
-        ],
-        "teraTypes": [
-          "Dragon",
-          "Ghost"
-        ],
-        "item": "Draco Plate",
-        "level": 83
       }
     ]
   },
@@ -15579,7 +15512,8 @@
         "item": "Pidgeotite",
         "required": [
           "Secret Sword",
-          "Focus Blast"
+          "Focus Blast",
+          "Hydro Pump"
         ],
         "level": 78
       },
@@ -15601,7 +15535,8 @@
         ],
         "item": "Pidgeotite",
         "required": [
-          "Secret Sword"
+          "Secret Sword",
+          "Hydro Pump"
         ],
         "level": 79
       },
@@ -15690,6 +15625,9 @@
           "Fighting"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Dynamic Punch"
+        ],
         "level": 80
       },
       {
@@ -15707,6 +15645,9 @@
           "Fighting"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Dynamic Punch"
+        ],
         "level": 80
       },
       {
@@ -15714,7 +15655,8 @@
         "movepool": [
           "Bullet Punch",
           "Close Combat",
-          "Facade",
+          "Dynamic Punch",
+          "Earthquake",
           "Knock Off"
         ],
         "abilities": [
@@ -15724,6 +15666,9 @@
           "Fighting"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Dynamic Punch"
+        ],
         "level": 83
       }
     ]
@@ -15761,9 +15706,9 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
+          "Blizzard",
           "Dragon Pulse",
           "Hydro Pump",
-          "Ice Beam",
           "Shell Smash"
         ],
         "abilities": [
@@ -15773,6 +15718,10 @@
           "Water"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Blizzard",
+          "Hydro Pump"
+        ],
         "level": 78
       }
     ]
@@ -15797,6 +15746,9 @@
           "Dark"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 75
       },
       {
@@ -15815,6 +15767,9 @@
           "Dark"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 75
       }
     ]
@@ -15846,6 +15801,26 @@
         "level": 89
       },
       {
+        "role": "Bulky Support",
+        "movepool": [
+          "Leech Seed",
+          "Psychic",
+          "Psychic Noise",
+          "Sleep Powder",
+          "Sludge Bomb",
+          "Substitute"
+        ],
+        "abilities": [
+          "Chlorophyll"
+        ],
+        "teraTypes": [
+          "Grass",
+          "Psychic"
+        ],
+        "item": "Heatranite",
+        "level": 91
+      },
+      {
         "role": "Bulky Attacker",
         "movepool": [
           "Leaf Storm",
@@ -15878,10 +15853,11 @@
           "Chlorophyll"
         ],
         "teraTypes": [
+          "Grass",
           "Psychic"
         ],
-        "item": "Mind Plate",
-        "level": 96
+        "item": "Heatranite",
+        "level": 91
       },
       {
         "role": "Bulky Setup",
@@ -15902,6 +15878,26 @@
         ],
         "item": "Venusaurite",
         "level": 90
+      },
+      {
+        "role": "Bulky Setup",
+        "movepool": [
+          "Calm Mind",
+          "Giga Drain",
+          "Psychic",
+          "Psyshock",
+          "Sleep Powder",
+          "Substitute"
+        ],
+        "abilities": [
+          "Chlorophyll"
+        ],
+        "teraTypes": [
+          "Grass",
+          "Psychic"
+        ],
+        "item": "Heatranite",
+        "level": 91
       }
     ]
   },
@@ -16306,55 +16302,6 @@
       }
     ]
   },
-  "aggron": {
-    "level": 86,
-    "sets": [
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Body Press",
-          "Earthquake",
-          "Heavy Slam",
-          "Rock Blast",
-          "Stealth Rock"
-        ],
-        "abilities": [
-          "Rock Head"
-        ],
-        "teraTypes": [
-          "Steel",
-          "Rock"
-        ],
-        "item": "Heracronite",
-        "required": [
-          "Rock Blast"
-        ],
-        "level": 84
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Body Press",
-          "Head Smash",
-          "Heavy Slam",
-          "Rock Blast",
-          "Rock Polish"
-        ],
-        "abilities": [
-          "Rock Head"
-        ],
-        "teraTypes": [
-          "Steel",
-          "Rock"
-        ],
-        "item": "Heracronite",
-        "required": [
-          "Rock Blast"
-        ],
-        "level": 85
-      }
-    ]
-  },
   "stakataka": {
     "level": 81,
     "sets": [
@@ -16390,9 +16337,9 @@
         "movepool": [
           "Dragon Dance",
           "Earthquake",
-          "Head Smash",
           "Heavy Slam",
-          "Rock Blast"
+          "Rock Blast",
+          "Stone Edge"
         ],
         "abilities": [
           "Rock Head"
@@ -16609,7 +16556,7 @@
           "Nasty Plot",
           "Nuzzle",
           "Surf",
-          "Thunderbolt",
+          "Thunder",
           "Volt Switch"
         ],
         "abilities": [
@@ -16619,6 +16566,10 @@
           "Electric"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 87
       },
       {
@@ -16628,7 +16579,7 @@
           "Focus Blast",
           "Nasty Plot",
           "Surf",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Lightning Rod"
@@ -16637,6 +16588,10 @@
           "Electric"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 87
       }
     ]
@@ -16657,13 +16612,13 @@
         ],
         "teraTypes": [
           "Grass",
-          "Fire"
+          "Dragon"
         ],
-        "item": "Red Orb",
+        "item": "Malamarite",
         "required": [
-          "Flamethrower"
+          "Draco Meteor"
         ],
-        "level": 88
+        "level": 87
       },
       {
         "role": "Fast Attacker",
@@ -16682,13 +16637,13 @@
         ],
         "teraTypes": [
           "Grass",
-          "Fire"
+          "Dragon"
         ],
-        "item": "Red Orb",
+        "item": "Malamarite",
         "required": [
-          "Flamethrower"
+          "Draco Meteor"
         ],
-        "level": 88
+        "level": 87
       },
       {
         "role": "Bulky Setup",
@@ -16955,6 +16910,50 @@
       }
     ]
   },
+  "gyarados": {
+    "level": 79,
+    "sets": [
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Dragon Dance",
+          "Earthquake",
+          "Stone Edge",
+          "Temper Flare",
+          "Waterfall"
+        ],
+        "abilities": [
+          "Intimidate",
+          "Moxie"
+        ],
+        "teraTypes": [
+          "Water",
+          "Flying"
+        ],
+        "item": "Scraftinite",
+        "level": 79
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Dragon Dance",
+          "Earthquake",
+          "Power Whip",
+          "Waterfall"
+        ],
+        "abilities": [
+          "Intimidate",
+          "Moxie"
+        ],
+        "teraTypes": [
+          "Water",
+          "Flying"
+        ],
+        "item": "Scraftinite",
+        "level": 79
+      }
+    ]
+  },
   "kingdra": {
     "level": 84,
     "sets": [
@@ -16963,7 +16962,7 @@
         "movepool": [
           "Draco Meteor",
           "Hurricane",
-          "Rain Dance",
+          "Ice Beam",
           "Wave Crash"
         ],
         "abilities": [
@@ -16981,8 +16980,8 @@
         "movepool": [
           "Draco Meteor",
           "Hurricane",
-          "Muddy Water",
-          "Rain Dance"
+          "Ice Beam",
+          "Muddy Water"
         ],
         "abilities": [
           "Swift Swim"
@@ -16999,8 +16998,8 @@
         "movepool": [
           "Draco Meteor",
           "Hurricane",
-          "Muddy Water",
-          "Rain Dance"
+          "Ice Beam",
+          "Muddy Water"
         ],
         "abilities": [
           "Swift Swim"
@@ -17110,7 +17109,6 @@
           "Fire Blast",
           "Giga Drain",
           "Knock Off",
-          "Scald",
           "Sludge Bomb"
         ],
         "abilities": [
@@ -17121,6 +17119,9 @@
           "Fairy"
         ],
         "item": "Meganiumite",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 85
       },
       {
@@ -17313,44 +17314,46 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
+          "Body Slam",
           "Close Combat",
           "Iron Head",
           "Psychic Fangs",
-          "Stone Edge",
-          "Tail Slap"
+          "Stone Edge"
         ],
         "abilities": [
           "Dauntless Shield"
         ],
         "teraTypes": [
-          "Fighting"
+          "Fighting",
+          "Fairy"
         ],
-        "item": "Heracronite",
+        "item": "Altarianite",
         "required": [
-          "Tail Slap"
+          "Body Slam"
         ],
-        "level": 71
+        "level": 70
       },
       {
         "role": "Bulky Setup",
         "movepool": [
           "Body Press",
+          "Body Slam",
           "Iron Defense",
           "Iron Head",
           "Rest",
           "Stone Edge",
-          "Substitute",
-          "Tail Slap"
+          "Substitute"
         ],
         "abilities": [
           "Dauntless Shield"
         ],
         "teraTypes": [
-          "Fighting"
+          "Fighting",
+          "Fairy"
         ],
-        "item": "Heracronite",
+        "item": "Altarianite",
         "required": [
-          "Tail Slap"
+          "Body Slam"
         ],
         "level": 69
       },
@@ -17526,8 +17529,8 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Avalanche",
           "Body Press",
+          "Icicle Spear",
           "Rapid Spin",
           "Recover",
           "Stone Edge"
@@ -17539,27 +17542,11 @@
           "Ice",
           "Rock"
         ],
-        "item": "Tyranitarite",
-        "level": 90
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Avalanche",
-          "Body Press",
-          "Rapid Spin",
-          "Recover",
-          "Stone Edge"
+        "item": "Heracronite",
+        "required": [
+          "Icicle Spear"
         ],
-        "abilities": [
-          "Sturdy"
-        ],
-        "teraTypes": [
-          "Ice",
-          "Rock"
-        ],
-        "item": "Scolipite",
-        "level": 90
+        "level": 89
       }
     ]
   },
@@ -17572,6 +17559,7 @@
           "Dragon Dance",
           "Earthquake",
           "Morning Sun",
+          "Rock Blast",
           "Sunsteel Strike"
         ],
         "abilities": [
@@ -17581,8 +17569,11 @@
           "Psychic",
           "Steel"
         ],
-        "item": "Eelektrossite",
-        "level": 70
+        "item": "Heracronite",
+        "required": [
+          "Rock Blast"
+        ],
+        "level": 69
       },
       {
         "role": "Bulky Setup",
@@ -17634,6 +17625,7 @@
           "Dragon Dance",
           "Earthquake",
           "Photon Geyser",
+          "Rock Blast",
           "Sunsteel Strike"
         ],
         "abilities": [
@@ -17643,8 +17635,11 @@
           "Psychic",
           "Steel"
         ],
-        "item": "Eelektrossite",
-        "level": 70
+        "item": "Heracronite",
+        "required": [
+          "Rock Blast"
+        ],
+        "level": 69
       },
       {
         "role": "Bulky Setup",
@@ -17695,8 +17690,8 @@
         "movepool": [
           "Autotomize",
           "Earthquake",
-          "Knock Off",
           "Photon Geyser",
+          "Rock Blast",
           "Sunsteel Strike",
           "Swords Dance"
         ],
@@ -17707,7 +17702,10 @@
           "Psychic",
           "Steel"
         ],
-        "item": "Eelektrossite",
+        "item": "Heracronite",
+        "required": [
+          "Rock Blast"
+        ],
         "level": 69
       },
       {
@@ -17778,6 +17776,9 @@
           "Rock"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Megahorn"
+        ],
         "level": 81
       },
       {
@@ -17797,6 +17798,9 @@
           "Rock"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Megahorn"
+        ],
         "level": 81
       }
     ]
@@ -18094,92 +18098,6 @@
       }
     ]
   },
-  "heracross": {
-    "level": 80,
-    "sets": [
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Close Combat",
-          "Facade",
-          "Knock Off",
-          "Trailblaze"
-        ],
-        "abilities": [
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Bug",
-          "Fighting"
-        ],
-        "item": "Lopunnite",
-        "level": 80
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Close Combat",
-          "Facade",
-          "Knock Off",
-          "Throat Chop",
-          "Trailblaze"
-        ],
-        "abilities": [
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Dark",
-          "Fighting"
-        ],
-        "item": "Dark Memory",
-        "required": [
-          "Throat Chop"
-        ],
-        "level": 89
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Close Combat",
-          "Facade",
-          "Knock Off",
-          "Stone Edge",
-          "Trailblaze"
-        ],
-        "abilities": [
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Rock",
-          "Fighting"
-        ],
-        "item": "Rock Memory",
-        "required": [
-          "Stone Edge"
-        ],
-        "level": 90
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Close Combat",
-          "Earthquake",
-          "Knock Off",
-          "Megahorn",
-          "Stone Edge"
-        ],
-        "abilities": [
-          "Moxie"
-        ],
-        "teraTypes": [
-          "Bug",
-          "Fighting"
-        ],
-        "item": "Lopunnite",
-        "level": 80
-      }
-    ]
-  },
   "rillaboom": {
     "level": 79,
     "sets": [
@@ -18209,7 +18127,6 @@
       {
         "role": "Wallbreaker",
         "movepool": [
-          "Grassy Glide",
           "Knock Off",
           "Swords Dance",
           "U-turn",
@@ -18273,7 +18190,7 @@
         "level": 74
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Earth Power",
           "Energy Ball",
@@ -18497,6 +18414,24 @@
         ],
         "item": "Chesnaughtite",
         "level": 86
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Avalanche",
+          "Body Press",
+          "Curse",
+          "Rapid Spin",
+          "Recover"
+        ],
+        "abilities": [
+          "Sturdy"
+        ],
+        "teraTypes": [
+          "Ice"
+        ],
+        "item": "Scolipite",
+        "level": 86
       }
     ]
   },
@@ -18526,12 +18461,12 @@
     "level": 90,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
+          "Focus Blast",
           "Giga Drain",
           "Hydro Pump",
-          "Ice Beam",
-          "Rain Dance"
+          "Ice Beam"
         ],
         "abilities": [
           "Swift Swim"
@@ -18582,6 +18517,9 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Hurricane"
+        ],
         "level": 81
       },
       {
@@ -18600,6 +18538,9 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Hurricane"
+        ],
         "level": 81
       }
     ]
@@ -18751,6 +18692,9 @@
           "Fairy"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 85
       },
       {
@@ -18772,6 +18716,9 @@
           "Fairy"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 85
       }
     ]
@@ -18899,15 +18846,15 @@
           "Water",
           "Flying"
         ],
-        "item": "Glimmoranite",
+        "item": "Lucarionite",
         "level": 88
       },
       {
         "role": "Fast Attacker",
         "movepool": [
           "Hurricane",
-          "Rain Dance",
-          "Rest",
+          "Ice Beam",
+          "Roost",
           "Scald"
         ],
         "abilities": [
@@ -18918,6 +18865,9 @@
           "Flying"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Hurricane"
+        ],
         "level": 87
       }
     ]
@@ -18939,10 +18889,13 @@
         ],
         "teraTypes": [
           "Grass",
-          "Psychic"
+          "Fighting"
         ],
-        "item": "Glimmoranite",
-        "level": 80
+        "item": "Lopunnite",
+        "required": [
+          "Close Combat"
+        ],
+        "level": 79
       }
     ]
   },
@@ -18957,7 +18910,7 @@
           "Psychic",
           "Psyshock",
           "Shadow Ball",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Sap Sipper"
@@ -18967,6 +18920,9 @@
           "Psychic"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Thunder"
+        ],
         "level": 90
       },
       {
@@ -19021,7 +18977,7 @@
           "Hyper Voice",
           "Nasty Plot",
           "Psyshock",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Sap Sipper"
@@ -19031,6 +18987,9 @@
           "Psychic"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Thunder"
+        ],
         "level": 89
       }
     ]
@@ -19045,7 +19004,7 @@
           "Nasty Plot",
           "Psychic",
           "Psyshock",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Inner Focus"
@@ -19055,6 +19014,10 @@
           "Psychic"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 91
       },
       {
@@ -19064,7 +19027,7 @@
           "Hyper Voice",
           "Nasty Plot",
           "Psyshock",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Inner Focus"
@@ -19074,6 +19037,10 @@
           "Psychic"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 90
       }
     ]
@@ -19483,16 +19450,13 @@
           "Rock",
           "Fire"
         ],
-        "item": "Red Orb",
-        "required": [
-          "Overheat"
-        ],
-        "level": 85
+        "item": "Charizardite Y",
+        "level": 89
       },
       {
         "role": "Bulky Support",
         "movepool": [
-          "Earth Power",
+          "Flamethrower",
           "Overheat",
           "Rapid Spin",
           "Spikes",
@@ -19504,13 +19468,30 @@
           "Flame Body"
         ],
         "teraTypes": [
-          "Ground",
           "Fire"
         ],
-        "item": "Ground Memory",
-        "required": [
-          "Earth Power"
+        "item": "Flame Plate",
+        "level": 95
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Flamethrower",
+          "Overheat",
+          "Rapid Spin",
+          "Spikes",
+          "Stealth Rock",
+          "Stone Edge",
+          "Will-O-Wisp"
         ],
+        "abilities": [
+          "Flame Body"
+        ],
+        "teraTypes": [
+          "Flying",
+          "Fire"
+        ],
+        "item": "Flying Memory",
         "level": 96
       }
     ]
@@ -19793,7 +19774,7 @@
           "Close Combat",
           "Extreme Speed",
           "Flare Blitz",
-          "Head Smash",
+          "Stone Edge",
           "Wild Charge"
         ],
         "abilities": [
@@ -19811,8 +19792,8 @@
         "movepool": [
           "Extreme Speed",
           "Flare Blitz",
-          "Head Smash",
-          "Morning Sun"
+          "Morning Sun",
+          "Stone Edge"
         ],
         "abilities": [
           "Rock Head"
@@ -19846,6 +19827,9 @@
           "Ghost"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Dynamic Punch"
+        ],
         "level": 86
       }
     ]
@@ -19861,7 +19845,7 @@
           "Nasty Plot",
           "Psychic",
           "Sludge Wave",
-          "Thunderbolt",
+          "Thunder",
           "Volt Switch"
         ],
         "abilities": [
@@ -19872,6 +19856,10 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 79
       },
       {
@@ -19880,7 +19868,7 @@
           "Focus Blast",
           "Nasty Plot",
           "Sludge Wave",
-          "Thunderbolt"
+          "Thunder"
         ],
         "abilities": [
           "Volt Absorb"
@@ -19890,6 +19878,10 @@
           "Flying"
         ],
         "item": "Raichunite Y",
+        "required": [
+          "Thunder",
+          "Focus Blast"
+        ],
         "level": 79
       }
     ]
@@ -19913,7 +19905,10 @@
           "Psychic",
           "Ghost"
         ],
-        "item": "Raichunite Y",
+        "item": "Pidgeotite",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 83
       }
     ]
@@ -20086,7 +20081,7 @@
           "Brick Break",
           "Earthquake",
           "Pain Split",
-          "Shadow Sneak",
+          "Poltergeist",
           "Will-O-Wisp"
         ],
         "abilities": [
@@ -20098,10 +20093,31 @@
         ],
         "item": "Barbaracite",
         "required": [
-          "Brick Break",
-          "Shadow Sneak"
+          "Brick Break"
         ],
         "level": 89
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
+          "Darkest Lariat",
+          "Earthquake",
+          "Pain Split",
+          "Poltergeist",
+          "Will-O-Wisp"
+        ],
+        "abilities": [
+          "Frisk"
+        ],
+        "teraTypes": [
+          "Ghost",
+          "Dark"
+        ],
+        "item": "Gyaradosite",
+        "required": [
+          "Darkest Lariat"
+        ],
+        "level": 88
       },
       {
         "role": "Bulky Support",
@@ -20149,6 +20165,28 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
+          "Darkest Lariat",
+          "Focus Punch",
+          "Pain Split",
+          "Poltergeist",
+          "Substitute"
+        ],
+        "abilities": [
+          "Frisk"
+        ],
+        "teraTypes": [
+          "Ghost",
+          "Dark"
+        ],
+        "item": "Gyaradosite",
+        "required": [
+          "Darkest Lariat"
+        ],
+        "level": 88
+      },
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
           "Fire Punch",
           "Focus Punch",
           "Pain Split",
@@ -20179,29 +20217,6 @@
           "Close Combat",
           "Earthquake",
           "Gunk Shot",
-          "Iron Head",
-          "Rock Slide",
-          "U-turn"
-        ],
-        "abilities": [
-          "Defiant"
-        ],
-        "teraTypes": [
-          "Fighting",
-          "Steel"
-        ],
-        "item": "Rusted Sword",
-        "required": [
-          "Iron Head"
-        ],
-        "level": 83
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Close Combat",
-          "Earthquake",
-          "Gunk Shot",
           "Knock Off",
           "Rock Slide",
           "U-turn"
@@ -20212,30 +20227,8 @@
         "teraTypes": [
           "Fighting"
         ],
-        "item": "Falinksite",
-        "level": 83
-      },
-      {
-        "role": "Bulky Setup",
-        "movepool": [
-          "Bulk Up",
-          "Drain Punch",
-          "Gunk Shot",
-          "Iron Head",
-          "Knock Off"
-        ],
-        "abilities": [
-          "Defiant"
-        ],
-        "teraTypes": [
-          "Fighting",
-          "Steel"
-        ],
-        "item": "Rusted Sword",
-        "required": [
-          "Iron Head"
-        ],
-        "level": 84
+        "item": "Lopunnite",
+        "level": 82
       },
       {
         "role": "Bulky Setup",
@@ -20251,8 +20244,11 @@
         "teraTypes": [
           "Fighting"
         ],
-        "item": "Falinksite",
-        "level": 84
+        "item": "Hawluchanite",
+        "required": [
+          "Gunk Shot"
+        ],
+        "level": 83
       }
     ]
   },
@@ -20659,6 +20655,9 @@
           "Ghost"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 71
       },
       {
@@ -20709,6 +20708,7 @@
         "role": "Fast Bulky Setup",
         "movepool": [
           "Calm Mind",
+          "Focus Blast",
           "Moongeist Beam",
           "Moonlight",
           "Psyshock"
@@ -20721,12 +20721,16 @@
           "Ghost"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 70
       },
       {
         "role": "Setup Sweeper",
         "movepool": [
           "Calm Mind",
+          "Focus Blast",
           "Moongeist Beam",
           "Psyshock",
           "Roost"
@@ -20739,6 +20743,9 @@
           "Ghost"
         ],
         "item": "Pidgeotite",
+        "required": [
+          "Focus Blast"
+        ],
         "level": 70
       }
     ]
@@ -20762,8 +20769,8 @@
           "Dark",
           "Fire"
         ],
-        "item": "Pidgeotite",
-        "level": 77
+        "item": "Eelektrossite",
+        "level": 78
       },
       {
         "role": "Fast Attacker",
@@ -20780,7 +20787,7 @@
           "Dark",
           "Fire"
         ],
-        "item": "Pidgeotite",
+        "item": "Eelektrossite",
         "level": 78
       }
     ]
@@ -20968,6 +20975,9 @@
           "Fire"
         ],
         "item": "Charizardite Y",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 86
       }
     ]
@@ -21135,10 +21145,7 @@
           "Grass",
           "Steel"
         ],
-        "item": "Aerodactylite",
-        "required": [
-          "Leaf Blade"
-        ],
+        "item": "Glimmoranite",
         "level": 74
       },
       {
@@ -21157,10 +21164,7 @@
           "Grass",
           "Steel"
         ],
-        "item": "Aerodactylite",
-        "required": [
-          "Leaf Blade"
-        ],
+        "item": "Glimmoranite",
         "level": 74
       }
     ]
@@ -21187,6 +21191,9 @@
           "Ground"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Precipice Blades"
+        ],
         "level": 73
       },
       {
@@ -21205,6 +21212,9 @@
           "Ground"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Precipice Blades"
+        ],
         "level": 73
       }
     ]
@@ -21530,7 +21540,7 @@
         "level": 78
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Dark Pulse",
           "Earth Power",
@@ -21558,7 +21568,7 @@
       {
         "role": "Bulky Support",
         "movepool": [
-          "Earthquake",
+          "Earth Power",
           "Hydro Pump",
           "Ice Beam",
           "Spikes",
@@ -21569,29 +21579,10 @@
         ],
         "teraTypes": [
           "Water",
-          "Ground"
+          "Flying"
         ],
-        "item": "Greninjite",
-        "level": 89
-      },
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Earthquake",
-          "Hydro Pump",
-          "Ice Beam",
-          "Spikes",
-          "Stealth Rock"
-        ],
-        "abilities": [
-          "Oblivious"
-        ],
-        "teraTypes": [
-          "Water",
-          "Ground"
-        ],
-        "item": "Chandelurite",
-        "level": 90
+        "item": "Clefablite",
+        "level": 88
       },
       {
         "role": "Setup Sweeper",
@@ -21608,8 +21599,8 @@
           "Water",
           "Ground"
         ],
-        "item": "Diancite",
-        "level": 86
+        "item": "Glimmoranite",
+        "level": 87
       }
     ]
   },
@@ -21863,6 +21854,9 @@
           "Ground"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Sludge Wave"
+        ],
         "level": 81
       }
     ]
@@ -21934,6 +21928,9 @@
           "Electric"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Earth Power"
+        ],
         "level": 85
       },
       {
@@ -21954,6 +21951,9 @@
           "Electric"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Earth Power"
+        ],
         "level": 85
       }
     ]
@@ -22170,10 +22170,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Energy Ball",
+          "Leaf Storm",
           "Power Whip",
-          "Sludge Wave",
-          "Sunny Day",
-          "Weather Ball"
+          "Sludge Wave"
         ],
         "abilities": [
           "Chlorophyll"
@@ -22188,10 +22188,10 @@
       {
         "role": "Fast Attacker",
         "movepool": [
+          "Leaf Storm",
           "Power Whip",
-          "Sludge Wave",
-          "Sunny Day",
-          "Weather Ball"
+          "Sludge Bomb",
+          "Sludge Wave"
         ],
         "abilities": [
           "Chlorophyll"
@@ -22262,8 +22262,11 @@
           "Ground",
           "Steel"
         ],
-        "item": "Shock Drive",
-        "level": 87
+        "item": "Golurkite",
+        "required": [
+          "Iron Head"
+        ],
+        "level": 81
       },
       {
         "role": "AV Pivot",
@@ -22319,8 +22322,11 @@
           "Ground",
           "Steel"
         ],
-        "item": "Shock Drive",
-        "level": 87
+        "item": "Golurkite",
+        "required": [
+          "Iron Head"
+        ],
+        "level": 81
       },
       {
         "role": "Setup Sweeper",
@@ -22339,24 +22345,6 @@
         ],
         "item": "Eelektrossite",
         "level": 79
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Earthquake",
-          "Iron Head",
-          "Rock Slide",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Sand Rush"
-        ],
-        "teraTypes": [
-          "Ground",
-          "Steel"
-        ],
-        "item": "Shock Drive",
-        "level": 87
       }
     ]
   },
@@ -22972,7 +22960,7 @@
         "movepool": [
           "Bulk Up",
           "Close Combat",
-          "Facade",
+          "Double-Edge",
           "Knock Off",
           "Parting Shot"
         ],
@@ -22991,7 +22979,7 @@
         "movepool": [
           "Bulk Up",
           "Close Combat",
-          "Facade",
+          "Double-Edge",
           "Parting Shot",
           "X-Scissor"
         ],
@@ -23013,7 +23001,7 @@
         "movepool": [
           "Bulk Up",
           "Close Combat",
-          "Facade",
+          "Double-Edge",
           "Knock Off",
           "Parting Shot"
         ],
@@ -23448,6 +23436,9 @@
           "Ground"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Earth Power"
+        ],
         "level": 89
       }
     ]
@@ -23473,6 +23464,9 @@
           "Psychic"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Bug Buzz"
+        ],
         "level": 90
       }
     ]
@@ -23495,8 +23489,8 @@
           "Rock",
           "Grass"
         ],
-        "item": "Hawluchanite",
-        "level": 86
+        "item": "Banettite",
+        "level": 87
       },
       {
         "role": "Bulky Support",
@@ -23671,8 +23665,8 @@
           "Dark",
           "Ghost"
         ],
-        "item": "Scizorite",
-        "level": 90
+        "item": "Banettite",
+        "level": 88
       }
     ]
   },
@@ -23813,7 +23807,7 @@
         "level": 78
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Grass Knot",
           "Meteor Beam",
@@ -23842,7 +23836,6 @@
           "Close Combat",
           "Earthquake",
           "Icicle Crash",
-          "Snowscape",
           "Swords Dance"
         ],
         "abilities": [
@@ -24069,8 +24062,8 @@
           "Fighting",
           "Water"
         ],
-        "item": "Zeraorite",
-        "level": 82
+        "item": "Falinksite",
+        "level": 81
       },
       {
         "role": "Wallbreaker",
@@ -24126,7 +24119,7 @@
           "Fighting",
           "Water"
         ],
-        "item": "Zeraorite",
+        "item": "Falinksite",
         "level": 83
       },
       {
@@ -24183,7 +24176,7 @@
           "Fighting",
           "Water"
         ],
-        "item": "Zeraorite",
+        "item": "Falinksite",
         "level": 83
       }
     ]
@@ -24209,6 +24202,9 @@
           "Fire"
         ],
         "item": "Charizardite Y",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 87
       },
       {
@@ -24323,6 +24319,9 @@
           "Fairy"
         ],
         "item": "Meganiumite",
+        "required": [
+          "Heat Wave"
+        ],
         "level": 83
       },
       {
@@ -24396,21 +24395,81 @@
           "Brave Bird",
           "Bulk Up",
           "Close Combat",
-          "Rock Slide",
-          "Roost"
+          "Roost",
+          "Zen Headbutt"
         ],
         "abilities": [
           "Defiant"
         ],
         "teraTypes": [
-          "Rock",
+          "Psychic",
           "Flying"
         ],
-        "item": "Rock Memory",
+        "item": "Psychic Memory",
         "required": [
-          "Rock Slide"
+          "Zen Headbutt"
         ],
         "level": 94
+      }
+    ]
+  },
+  "heracross": {
+    "level": 80,
+    "sets": [
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Close Combat",
+          "Knock Off",
+          "Megahorn",
+          "Trailblaze"
+        ],
+        "abilities": [
+          "Moxie"
+        ],
+        "teraTypes": [
+          "Bug",
+          "Fighting"
+        ],
+        "item": "Skarmorite",
+        "level": 81
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Close Combat",
+          "Knock Off",
+          "Megahorn",
+          "Trailblaze"
+        ],
+        "abilities": [
+          "Moxie"
+        ],
+        "teraTypes": [
+          "Bug",
+          "Fighting"
+        ],
+        "item": "Insect Plate",
+        "level": 89
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Close Combat",
+          "Earthquake",
+          "Knock Off",
+          "Megahorn",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Moxie"
+        ],
+        "teraTypes": [
+          "Bug",
+          "Fighting"
+        ],
+        "item": "Skarmorite",
+        "level": 81
       }
     ]
   },
@@ -24433,6 +24492,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Seed Flare"
+        ],
         "level": 75
       },
       {
@@ -24490,6 +24552,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Seed Flare"
+        ],
         "level": 74
       },
       {
@@ -24526,6 +24591,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Seed Flare"
+        ],
         "level": 74
       },
       {
@@ -24622,8 +24690,8 @@
           "Close Combat",
           "Dragon Dance",
           "Earthquake",
-          "Head Smash",
-          "Outrage"
+          "Outrage",
+          "Stone Edge"
         ],
         "abilities": [
           "Rock Head"
@@ -24640,8 +24708,8 @@
         "movepool": [
           "Dragon Dance",
           "Earthquake",
-          "Head Smash",
-          "Outrage"
+          "Outrage",
+          "Stone Edge"
         ],
         "abilities": [
           "Rock Head"
@@ -24686,8 +24754,8 @@
         "movepool": [
           "Hurricane",
           "Hydro Pump",
-          "U-turn",
-          "Weather Ball"
+          "Ice Beam",
+          "U-turn"
         ],
         "abilities": [
           "Drizzle"
@@ -24771,6 +24839,9 @@
           "Fairy"
         ],
         "item": "Meganiumite",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 88
       }
     ]
@@ -25193,6 +25264,56 @@
       }
     ]
   },
+  "archeops": {
+    "level": 82,
+    "sets": [
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Dual Wingbeat",
+          "Earthquake",
+          "Knock Off",
+          "Roost",
+          "Stone Edge",
+          "U-turn"
+        ],
+        "abilities": [
+          "Defeatist"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Flying"
+        ],
+        "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
+        "level": 79
+      },
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Dual Wingbeat",
+          "Earthquake",
+          "Head Smash",
+          "Knock Off",
+          "U-turn"
+        ],
+        "abilities": [
+          "Defeatist"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Flying"
+        ],
+        "item": "Hawluchanite",
+        "required": [
+          "Head Smash"
+        ],
+        "level": 79
+      }
+    ]
+  },
   "aerodactyl": {
     "level": 81,
     "sets": [
@@ -25213,6 +25334,9 @@
           "Flying"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 81
       },
       {
@@ -25231,6 +25355,9 @@
           "Flying"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 81
       }
     ]
@@ -25239,12 +25366,12 @@
     "level": 88,
     "sets": [
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Close Combat",
+          "Earthquake",
           "Knock Off",
-          "Liquidation",
-          "Rain Dance"
+          "Liquidation"
         ],
         "abilities": [
           "Swift Swim"
@@ -25260,7 +25387,7 @@
         "level": 88
       },
       {
-        "role": "Setup Sweeper",
+        "role": "Fast Attacker",
         "movepool": [
           "Close Combat",
           "Knock Off",
@@ -25550,6 +25677,28 @@
         "level": 76
       },
       {
+        "role": "Fast Bulky Setup",
+        "movepool": [
+          "Close Combat",
+          "Power Whip",
+          "Rock Slide",
+          "Swords Dance",
+          "Synthesis"
+        ],
+        "abilities": [
+          "Leaf Guard"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Grass"
+        ],
+        "item": "Rock Memory",
+        "required": [
+          "Rock Slide"
+        ],
+        "level": 85
+      },
+      {
         "role": "Fast Attacker",
         "movepool": [
           "Close Combat",
@@ -25570,6 +25719,28 @@
           "Iron Tail"
         ],
         "level": 76
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Close Combat",
+          "Knock Off",
+          "Power Whip",
+          "Rock Slide",
+          "U-turn"
+        ],
+        "abilities": [
+          "Leaf Guard"
+        ],
+        "teraTypes": [
+          "Rock",
+          "Grass"
+        ],
+        "item": "Rock Memory",
+        "required": [
+          "Rock Slide"
+        ],
+        "level": 85
       }
     ]
   },
@@ -25839,6 +26010,9 @@
           "Psychic"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Bug Buzz"
+        ],
         "level": 87
       },
       {
@@ -25900,6 +26074,9 @@
           "Psychic"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Bug Buzz"
+        ],
         "level": 87
       }
     ]
@@ -25974,6 +26151,24 @@
         "role": "Setup Sweeper",
         "movepool": [
           "Bolt Strike",
+          "Dragon Dance",
+          "Outrage",
+          "Substitute"
+        ],
+        "abilities": [
+          "Teravolt"
+        ],
+        "teraTypes": [
+          "Dragon",
+          "Electric"
+        ],
+        "item": "Draco Plate",
+        "level": 79
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Bolt Strike",
           "Hone Claws",
           "Outrage",
           "Roost"
@@ -26005,6 +26200,24 @@
         ],
         "item": "Griseous Core",
         "level": 75
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Bolt Strike",
+          "Hone Claws",
+          "Outrage",
+          "Roost"
+        ],
+        "abilities": [
+          "Teravolt"
+        ],
+        "teraTypes": [
+          "Dragon",
+          "Electric"
+        ],
+        "item": "Draco Plate",
+        "level": 79
       }
     ]
   },
@@ -26085,10 +26298,10 @@
         "role": "Setup Sweeper",
         "movepool": [
           "Dragon Dance",
-          "Extreme Speed",
           "Iron Tail",
           "Outrage",
-          "Substitute"
+          "Substitute",
+          "Thousand Arrows"
         ],
         "abilities": [
           "Aura Break"
@@ -26537,6 +26750,9 @@
           "Fairy"
         ],
         "item": "Meganiumite",
+        "required": [
+          "Eruption"
+        ],
         "level": 82
       }
     ]
@@ -26889,6 +27105,23 @@
         "level": 93
       },
       {
+        "role": "Fast Support",
+        "movepool": [
+          "Encore",
+          "Hydro Pump",
+          "Ice Beam",
+          "U-turn"
+        ],
+        "abilities": [
+          "Storm Drain"
+        ],
+        "teraTypes": [
+          "Water"
+        ],
+        "item": "Lustrous Globe",
+        "level": 99
+      },
+      {
         "role": "Fast Attacker",
         "movepool": [
           "Air Slash",
@@ -26991,6 +27224,101 @@
       }
     ]
   },
+  "regigigas": {
+    "level": 84,
+    "sets": [
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Body Slam",
+          "Drain Punch",
+          "Earthquake",
+          "Knock Off",
+          "Substitute",
+          "Thunder Wave"
+        ],
+        "abilities": [
+          "Slow Start"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Fighting"
+        ],
+        "item": "Mewtwonite X",
+        "required": [
+          "Drain Punch"
+        ],
+        "level": 72
+      },
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Body Slam",
+          "Drain Punch",
+          "Earthquake",
+          "Fire Punch",
+          "Substitute",
+          "Thunder Wave"
+        ],
+        "abilities": [
+          "Slow Start"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Fire"
+        ],
+        "item": "Hearthflame Mask",
+        "required": [
+          "Fire Punch"
+        ],
+        "level": 75
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Double-Edge",
+          "Drain Punch",
+          "Earthquake",
+          "Knock Off",
+          "Rock Polish"
+        ],
+        "abilities": [
+          "Slow Start"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Fighting"
+        ],
+        "item": "Mewtwonite X",
+        "required": [
+          "Drain Punch"
+        ],
+        "level": 71
+      },
+      {
+        "role": "Setup Sweeper",
+        "movepool": [
+          "Double-Edge",
+          "Drain Punch",
+          "Earthquake",
+          "Fire Punch",
+          "Rock Polish"
+        ],
+        "abilities": [
+          "Slow Start"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Fire"
+        ],
+        "item": "Hearthflame Mask",
+        "required": [
+          "Fire Punch"
+        ],
+        "level": 75
+      }
+    ]
+  },
   "ceruledge": {
     "level": 78,
     "sets": [
@@ -27037,6 +27365,9 @@
           "Dragon"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Sludge Wave"
+        ],
         "level": 91
       }
     ]
@@ -27176,6 +27507,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Shadow Ball"
+        ],
         "level": 86
       }
     ]
@@ -27186,7 +27520,6 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Defog",
           "Hurricane",
           "Roost",
           "Scald",
@@ -27375,6 +27708,9 @@
           "Bug"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 91
       },
       {
@@ -27417,6 +27753,9 @@
           "Bug"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 90
       }
     ]
@@ -27529,6 +27868,9 @@
           "Ground"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Sludge Wave"
+        ],
         "level": 83
       }
     ]
@@ -28153,6 +28495,9 @@
           "Fighting"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Gunk Shot"
+        ],
         "level": 82
       },
       {
@@ -28176,6 +28521,9 @@
           "Fighting"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Gunk Shot"
+        ],
         "level": 82
       }
     ]
@@ -28452,7 +28800,6 @@
           "Close Combat",
           "Flare Blitz",
           "Knock Off",
-          "Protect",
           "Stone Edge",
           "Swords Dance"
         ],
@@ -28514,6 +28861,9 @@
           "Poison"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Sludge Bomb"
+        ],
         "level": 85
       },
       {
@@ -28576,6 +28926,9 @@
           "Poison"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Energy Ball"
+        ],
         "level": 84
       },
       {
@@ -28630,21 +28983,23 @@
       {
         "role": "Bulky Attacker",
         "movepool": [
-          "Discharge",
+          "Poison Jab",
           "Recover",
           "Scald",
           "Spikes",
-          "Thunderbolt",
-          "Toxic Spikes"
+          "Toxic Spikes",
+          "Zing Zap"
         ],
         "abilities": [
           "Electric Surge"
         ],
         "teraTypes": [
-          "Electric",
-          "Flying"
+          "Electric"
         ],
-        "item": "Clefablite",
+        "item": "Raichunite X",
+        "required": [
+          "Zing Zap"
+        ],
         "level": 100
       },
       {
@@ -28668,6 +29023,25 @@
         "required": [
           "Surf"
         ],
+        "level": 100
+      },
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Discharge",
+          "Recover",
+          "Scald",
+          "Spikes",
+          "Thunderbolt",
+          "Toxic Spikes"
+        ],
+        "abilities": [
+          "Electric Surge"
+        ],
+        "teraTypes": [
+          "Electric"
+        ],
+        "item": "Zap Plate",
         "level": 100
       },
       {
@@ -28994,6 +29368,9 @@
           "Dragon"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Fire Blast"
+        ],
         "level": 83
       }
     ]
@@ -29138,7 +29515,10 @@
           "Fairy",
           "Steel"
         ],
-        "item": "Golurkite",
+        "item": "Excadrite",
+        "required": [
+          "Play Rough"
+        ],
         "level": 84
       },
       {
@@ -29195,7 +29575,10 @@
           "Fairy",
           "Steel"
         ],
-        "item": "Golurkite",
+        "item": "Excadrite",
+        "required": [
+          "Play Rough"
+        ],
         "level": 84
       }
     ]
@@ -29396,6 +29779,9 @@
           "Ground"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 87
       },
       {
@@ -29594,6 +29980,9 @@
           "Rock"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Megahorn"
+        ],
         "level": 84
       }
     ]
@@ -29646,6 +30035,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Thunderbolt"
+        ],
         "level": 78
       }
     ]
@@ -29829,6 +30221,9 @@
           "Flying"
         ],
         "item": "Cameruptite",
+        "required": [
+          "Thunderbolt"
+        ],
         "level": 84
       }
     ]
@@ -29874,7 +30269,10 @@
           "Fighting",
           "Fire"
         ],
-        "item": "Skarmorite",
+        "item": "Aerodactylite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 80
       },
       {
@@ -29892,7 +30290,10 @@
           "Fighting",
           "Fire"
         ],
-        "item": "Skarmorite",
+        "item": "Aerodactylite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 82
       }
     ]
@@ -30107,6 +30508,9 @@
           "Fairy"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Gunk Shot"
+        ],
         "level": 84
       },
       {
@@ -30125,6 +30529,9 @@
           "Fairy"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Gunk Shot"
+        ],
         "level": 84
       }
     ]
@@ -30291,28 +30698,6 @@
           "Shadow Claw"
         ],
         "level": 85
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Ice Shard",
-          "Knock Off",
-          "Low Kick",
-          "Poison Jab",
-          "Swords Dance"
-        ],
-        "abilities": [
-          "Pickpocket"
-        ],
-        "teraTypes": [
-          "Poison",
-          "Ice"
-        ],
-        "item": "Poison Memory",
-        "required": [
-          "Poison Jab"
-        ],
-        "level": 86
       }
     ]
   },
@@ -30569,7 +30954,7 @@
         "role": "Wallbreaker",
         "movepool": [
           "Close Combat",
-          "Facade",
+          "Earthquake",
           "Knock Off",
           "Mach Punch"
         ],
@@ -30578,35 +30963,10 @@
         ],
         "teraTypes": [
           "Fighting",
-          "Dragon"
+          "Steel"
         ],
-        "item": "Charizardite X",
-        "required": [
-          "Close Combat"
-        ],
+        "item": "Rusted Sword",
         "level": 82
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Close Combat",
-          "Facade",
-          "Fire Punch",
-          "Knock Off",
-          "Mach Punch"
-        ],
-        "abilities": [
-          "Sheer Force"
-        ],
-        "teraTypes": [
-          "Fighting",
-          "Fire"
-        ],
-        "item": "Hearthflame Mask",
-        "required": [
-          "Fire Punch"
-        ],
-        "level": 86
       }
     ]
   },
@@ -31031,29 +31391,6 @@
       }
     ]
   },
-  "archeops": {
-    "level": 82,
-    "sets": [
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Dual Wingbeat",
-          "Earthquake",
-          "Roost",
-          "Stone Edge"
-        ],
-        "abilities": [
-          "Defeatist"
-        ],
-        "teraTypes": [
-          "Rock",
-          "Flying"
-        ],
-        "item": "Hawluchanite",
-        "level": 82
-      }
-    ]
-  },
   "minior": {
     "level": 79,
     "sets": [
@@ -31225,6 +31562,7 @@
           "Haze",
           "Poltergeist",
           "Stealth Rock",
+          "Stone Edge",
           "Toxic Spikes",
           "Will-O-Wisp"
         ],
@@ -31236,6 +31574,9 @@
           "Ghost"
         ],
         "item": "Hawluchanite",
+        "required": [
+          "Stone Edge"
+        ],
         "level": 86
       },
       {
@@ -31343,9 +31684,10 @@
           "Early Bird"
         ],
         "teraTypes": [
+          "Bug",
           "Flying"
         ],
-        "item": "Sky Plate",
+        "item": "Chill Drive",
         "level": 100
       }
     ]
@@ -31435,7 +31777,10 @@
           "Grass",
           "Fighting"
         ],
-        "item": "Mewtwonite X",
+        "item": "Aerodactylite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 82
       }
     ]
@@ -31508,6 +31853,7 @@
           "Body Slam",
           "Dragon Dance",
           "Icicle Spear",
+          "Iron Head",
           "Scale Shot"
         ],
         "abilities": [
@@ -31743,7 +32089,7 @@
           "Dragon Rush",
           "Earthquake",
           "Glare",
-          "Headbutt",
+          "Hyper Drill",
           "Roost"
         ],
         "abilities": [
@@ -31756,7 +32102,7 @@
         "item": "Charizardite X",
         "required": [
           "Dragon Rush",
-          "Headbutt"
+          "Hyper Drill"
         ],
         "level": 84
       },
@@ -32129,7 +32475,8 @@
         ],
         "item": "Meganiumite",
         "required": [
-          "Dazzling Gleam"
+          "Dazzling Gleam",
+          "Heat Wave"
         ],
         "level": 92
       },
@@ -32229,6 +32576,31 @@
         "movepool": [
           "Body Slam",
           "Curse",
+          "Heal Bell",
+          "Milk Drink",
+          "Rock Slide",
+          "Stealth Rock",
+          "Toxic"
+        ],
+        "abilities": [
+          "Sap Sipper",
+          "Thick Fat"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Rock"
+        ],
+        "item": "Cornerstone Mask",
+        "required": [
+          "Rock Slide"
+        ],
+        "level": 88
+      },
+      {
+        "role": "Bulky Attacker",
+        "movepool": [
+          "Body Slam",
+          "Curse",
           "Fire Punch",
           "Heal Bell",
           "Milk Drink",
@@ -32248,27 +32620,6 @@
           "Fire Punch"
         ],
         "level": 86
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Body Slam",
-          "Curse",
-          "Earthquake",
-          "Heal Bell",
-          "Milk Drink",
-          "Stealth Rock",
-          "Toxic"
-        ],
-        "abilities": [
-          "Sap Sipper",
-          "Thick Fat"
-        ],
-        "teraTypes": [
-          "Normal"
-        ],
-        "item": "Excadrite",
-        "level": 85
       }
     ]
   },
@@ -32293,6 +32644,9 @@
           "Fairy"
         ],
         "item": "Meganiumite",
+        "required": [
+          "Burning Jealousy"
+        ],
         "level": 92
       }
     ]
@@ -32858,6 +33212,30 @@
       {
         "role": "Bulky Support",
         "movepool": [
+          "Alluring Voice",
+          "Dazzling Gleam",
+          "Fire Blast",
+          "Knock Off",
+          "Protect",
+          "Thunder Wave",
+          "Wish"
+        ],
+        "abilities": [
+          "Competitive"
+        ],
+        "teraTypes": [
+          "Fire",
+          "Fairy"
+        ],
+        "item": "Fire Memory",
+        "required": [
+          "Fire Blast"
+        ],
+        "level": 100
+      },
+      {
+        "role": "Bulky Support",
+        "movepool": [
           "Dazzling Gleam",
           "Energy Ball",
           "Fire Blast",
@@ -32876,30 +33254,6 @@
         "item": "Grass Memory",
         "required": [
           "Energy Ball"
-        ],
-        "level": 100
-      },
-      {
-        "role": "Bulky Support",
-        "movepool": [
-          "Dazzling Gleam",
-          "Fire Blast",
-          "Knock Off",
-          "Protect",
-          "Psychic",
-          "Thunder Wave",
-          "Wish"
-        ],
-        "abilities": [
-          "Competitive"
-        ],
-        "teraTypes": [
-          "Psychic",
-          "Fairy"
-        ],
-        "item": "Psychic Memory",
-        "required": [
-          "Psychic"
         ],
         "level": 100
       }
@@ -33050,11 +33404,31 @@
           "Fighting",
           "Water"
         ],
-        "item": "Aerodactylite",
+        "item": "Metagrossite",
         "required": [
           "Close Combat"
         ],
-        "level": 74
+        "level": 75
+      },
+      {
+        "role": "Fast Attacker",
+        "movepool": [
+          "Aqua Jet",
+          "Close Combat",
+          "Ice Spinner",
+          "Surging Strikes",
+          "Swords Dance",
+          "U-turn"
+        ],
+        "abilities": [
+          "Unseen Fist"
+        ],
+        "teraTypes": [
+          "Fighting",
+          "Water"
+        ],
+        "item": "Zeraorite",
+        "level": 76
       }
     ]
   },
@@ -33250,30 +33624,8 @@
         "role": "Bulky Attacker",
         "movepool": [
           "Body Slam",
+          "Close Combat",
           "Earthquake",
-          "Rest",
-          "Sleep Talk",
-          "Throat Chop"
-        ],
-        "abilities": [
-          "Guts"
-        ],
-        "teraTypes": [
-          "Normal"
-        ],
-        "item": "Metagrossite",
-        "required": [
-          "Body Slam"
-        ],
-        "level": 85
-      },
-      {
-        "role": "Bulky Attacker",
-        "movepool": [
-          "Body Slam",
-          "Earthquake",
-          "Rest",
-          "Sleep Talk",
           "Throat Chop"
         ],
         "abilities": [
@@ -33281,41 +33633,20 @@
         ],
         "teraTypes": [
           "Normal",
-          "Dark"
+          "Dragon"
         ],
-        "item": "Gyaradosite",
+        "item": "Charizardite X",
         "required": [
-          "Throat Chop"
+          "Close Combat"
         ],
-        "level": 84
+        "level": 83
       },
       {
         "role": "Setup Sweeper",
         "movepool": [
           "Close Combat",
           "Crunch",
-          "Facade",
-          "Swords Dance",
-          "Throat Chop"
-        ],
-        "abilities": [
-          "Quick Feet"
-        ],
-        "teraTypes": [
-          "Normal"
-        ],
-        "item": "Metagrossite",
-        "required": [
-          "Close Combat"
-        ],
-        "level": 84
-      },
-      {
-        "role": "Setup Sweeper",
-        "movepool": [
-          "Close Combat",
-          "Facade",
-          "Stone Edge",
+          "Double-Edge",
           "Swords Dance",
           "Throat Chop"
         ],
@@ -33324,13 +33655,64 @@
         ],
         "teraTypes": [
           "Normal",
-          "Rock"
+          "Dragon"
         ],
-        "item": "Cornerstone Mask",
+        "item": "Charizardite X",
         "required": [
-          "Stone Edge"
+          "Double-Edge"
         ],
-        "level": 88
+        "level": 83
+      }
+    ]
+  },
+  "slaking": {
+    "level": 84,
+    "sets": [
+      {
+        "role": "Bulky Setup",
+        "movepool": [
+          "Body Slam",
+          "Bulk Up",
+          "Drain Punch",
+          "Earthquake",
+          "Knock Off",
+          "Slack Off"
+        ],
+        "abilities": [
+          "Truant"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Dragon"
+        ],
+        "item": "Charizardite X",
+        "required": [
+          "Body Slam"
+        ],
+        "level": 71
+      },
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Double-Edge",
+          "Earthquake",
+          "Hammer Arm",
+          "Knock Off",
+          "Slack Off",
+          "Sucker Punch"
+        ],
+        "abilities": [
+          "Truant"
+        ],
+        "teraTypes": [
+          "Normal",
+          "Dragon"
+        ],
+        "item": "Charizardite X",
+        "required": [
+          "Double-Edge"
+        ],
+        "level": 71
       }
     ]
   },
@@ -33391,8 +33773,8 @@
           "Grass",
           "Poison"
         ],
-        "item": "Heatranite",
-        "level": 86
+        "item": "Drampanite",
+        "level": 87
       }
     ]
   },
@@ -33437,6 +33819,9 @@
           "Steel"
         ],
         "item": "Golurkite",
+        "required": [
+          "Iron Head"
+        ],
         "level": 79
       },
       {
@@ -33467,9 +33852,9 @@
       {
         "role": "Setup Sweeper",
         "movepool": [
-          "Facade",
           "Play Rough",
           "Supercell Slam",
+          "Superpower",
           "Throat Chop",
           "Trailblaze"
         ],
@@ -33699,7 +34084,8 @@
         ],
         "item": "Meganiumite",
         "required": [
-          "Dazzling Gleam"
+          "Dazzling Gleam",
+          "Fire Blast"
         ],
         "level": 83
       }
@@ -33742,6 +34128,9 @@
           "Steel"
         ],
         "item": "Golurkite",
+        "required": [
+          "Kowtow Cleave"
+        ],
         "level": 77
       },
       {
@@ -33908,7 +34297,7 @@
         "role": "Bulky Attacker",
         "movepool": [
           "Crunch",
-          "Facade",
+          "Double-Edge",
           "Headlong Rush",
           "Swords Dance",
           "Throat Chop",
@@ -33971,6 +34360,9 @@
           "Fighting"
         ],
         "item": "Excadrite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 82
       },
       {
@@ -34014,6 +34406,9 @@
           "Fighting"
         ],
         "item": "Excadrite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 82
       },
       {
@@ -34204,6 +34599,9 @@
           "Steel"
         ],
         "item": "Excadrite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 84
       },
       {
@@ -34225,6 +34623,9 @@
           "Steel"
         ],
         "item": "Golurkite",
+        "required": [
+          "Close Combat"
+        ],
         "level": 84
       }
     ]
@@ -34252,7 +34653,8 @@
         ],
         "item": "Meganiumite",
         "required": [
-          "Dazzling Gleam"
+          "Dazzling Gleam",
+          "Fire Blast"
         ],
         "level": 77
       }
@@ -34730,7 +35132,7 @@
           "Rock",
           "Fighting"
         ],
-        "item": "Chill Drive",
+        "item": "Douse Drive",
         "level": 86
       },
       {
@@ -34748,7 +35150,7 @@
           "Rock",
           "Fighting"
         ],
-        "item": "Douse Drive",
+        "item": "Shock Drive",
         "level": 86
       },
       {
@@ -34784,7 +35186,7 @@
           "Rock",
           "Fighting"
         ],
-        "item": "Chill Drive",
+        "item": "Douse Drive",
         "level": 86
       },
       {
@@ -34802,7 +35204,7 @@
           "Rock",
           "Fighting"
         ],
-        "item": "Douse Drive",
+        "item": "Shock Drive",
         "level": 86
       }
     ]
@@ -34852,6 +35254,74 @@
           "Double Shock"
         ],
         "level": 81
+      }
+    ]
+  },
+  "relicanth": {
+    "level": 89,
+    "sets": [
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Body Press",
+          "Earthquake",
+          "Liquidation",
+          "Rock Polish",
+          "Stealth Rock",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Rock Head"
+        ],
+        "teraTypes": [
+          "Water",
+          "Rock"
+        ],
+        "item": "Tyranitarite",
+        "level": 89
+      },
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Body Press",
+          "Earthquake",
+          "Liquidation",
+          "Rock Polish",
+          "Stealth Rock",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Rock Head"
+        ],
+        "teraTypes": [
+          "Water",
+          "Rock"
+        ],
+        "item": "Galladite",
+        "level": 89
+      },
+      {
+        "role": "Wallbreaker",
+        "movepool": [
+          "Body Press",
+          "Earthquake",
+          "Liquidation",
+          "Rock Polish",
+          "Stealth Rock",
+          "Stone Edge"
+        ],
+        "abilities": [
+          "Rock Head"
+        ],
+        "teraTypes": [
+          "Water",
+          "Rock"
+        ],
+        "item": "Excadrite",
+        "required": [
+          "Liquidation"
+        ],
+        "level": 89
       }
     ]
   },
@@ -35044,27 +35514,6 @@
         ],
         "teraTypes": [
           "Normal",
-          "Fire"
-        ],
-        "item": "Hearthflame Mask",
-        "required": [
-          "Fire Blast"
-        ],
-        "level": 90
-      },
-      {
-        "role": "Fast Attacker",
-        "movepool": [
-          "Boomburst",
-          "Fire Blast",
-          "Focus Blast",
-          "Surf"
-        ],
-        "abilities": [
-          "Scrappy"
-        ],
-        "teraTypes": [
-          "Normal",
           "Water"
         ],
         "item": "Wellspring Mask",
@@ -35130,7 +35579,6 @@
           "Earthquake",
           "Megahorn",
           "Poison Jab",
-          "Protect",
           "Spikes",
           "Swords Dance",
           "Toxic Spikes"
@@ -35151,7 +35599,6 @@
           "Earthquake",
           "Megahorn",
           "Poison Jab",
-          "Protect",
           "Spikes",
           "Swords Dance",
           "Toxic Spikes"
@@ -35172,7 +35619,6 @@
           "Earthquake",
           "Megahorn",
           "Poison Jab",
-          "Protect",
           "Spikes",
           "Swords Dance",
           "Toxic Spikes"
@@ -35260,71 +35706,6 @@
         ],
         "item": "Zeraorite",
         "level": 81
-      }
-    ]
-  },
-  "relicanth": {
-    "level": 89,
-    "sets": [
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Body Press",
-          "Earthquake",
-          "Head Smash",
-          "Liquidation",
-          "Rock Polish",
-          "Stealth Rock"
-        ],
-        "abilities": [
-          "Rock Head"
-        ],
-        "teraTypes": [
-          "Water",
-          "Rock"
-        ],
-        "item": "Tyranitarite",
-        "level": 89
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Body Press",
-          "Earthquake",
-          "Head Smash",
-          "Liquidation",
-          "Rock Polish",
-          "Stealth Rock"
-        ],
-        "abilities": [
-          "Rock Head"
-        ],
-        "teraTypes": [
-          "Water",
-          "Rock"
-        ],
-        "item": "Galladite",
-        "level": 89
-      },
-      {
-        "role": "Wallbreaker",
-        "movepool": [
-          "Body Press",
-          "Earthquake",
-          "Head Smash",
-          "Liquidation",
-          "Rock Polish",
-          "Stealth Rock"
-        ],
-        "abilities": [
-          "Rock Head"
-        ],
-        "teraTypes": [
-          "Water",
-          "Rock"
-        ],
-        "item": "Excadrite",
-        "level": 89
       }
     ]
   },
