@@ -7,7 +7,8 @@
  *
  *  - PokéRogue stats / abilities / move lists (pokedex.ts, learnsets.ts)
  *  - passives, handled like Pokébilities innates
- *  - Gigantamax forms work like Mega Evolutions: hold Max Mushrooms
+ *  - Gigantamax forms work like Mega Evolutions: hold Galarica Wreath
+ *    (or Max Mushrooms)
  *  - singles tiers (tiers.ts)
  *
  * init() puts the PokéRogue info on each species' data:
@@ -101,10 +102,12 @@ export function updatePassive(pokemon: Pokemon, announce = true) {
 	for (const innate of oldInnates) {
 		if (!newInnates.includes(innate)) pokemon.removeVolatile('ability:' + innate);
 	}
-	if (announce) battle.add('-end', pokemon, 'Passive', '[silent]');
+	for (const innate of oldInnates) {
+		if (announce && !newInnates.includes(innate)) battle.add('-end', pokemon, battle.dex.abilities.get(innate).name, '[silent]');
+	}
 	for (const innate of newInnates) {
 		if (oldInnates.includes(innate)) continue;
-		if (announce) battle.add('-start', pokemon, 'Passive', battle.dex.abilities.get(innate).name, '[silent]');
+		if (announce) battle.add('-start', pokemon, battle.dex.abilities.get(innate).name, '[silent]');
 		pokemon.addVolatile('ability:' + innate, pokemon);
 	}
 }
@@ -172,6 +175,23 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 
+		// Gigantamax item: Galarica Wreath, which every Showdown client knows
+		// (Max Mushrooms, PokéRogue's own item, still works too).
+		const mushrooms = this.data.Items['maxmushrooms'] as AnyObject;
+		Object.assign(this.modData('Items', 'galaricawreath'), {
+			megaStone: {...mushrooms.megaStone},
+			itemUser: [...mushrooms.itemUser],
+			onTakeItem: mushrooms.onTakeItem,
+			desc: "PokéRogue formats: if held by a Pokemon with a Gigantamax form, it can Gigantamax like a Mega Evolution.",
+			shortDesc: "PokéRogue formats: lets a Pokemon with a Gigantamax form Gigantamax (like a Mega Evolution).",
+		});
+		for (const id of legal) {
+			if (this.data.Pokedex[id]?.requiredItem !== 'Max Mushrooms') continue;
+			Object.assign(this.modData('Pokedex', id), {
+				requiredItem: 'Galarica Wreath', requiredItems: ['Galarica Wreath', 'Max Mushrooms'],
+			});
+		}
+
 		// Pokébilities' fixes for abilities that deal with other abilities
 		// (Mummy, Neutralizing Gas, Trace...) also cover passives.
 		for (const [id, data] of Object.entries(PokebilitiesAbilities)) {
@@ -230,9 +250,9 @@ export const Scripts: ModdedBattleScriptsData = {
 	actions: {
 		canMegaEvo(pokemon) {
 			const item = pokemon.getItem();
-			// Max Mushrooms: only the exact species listed can Gigantamax
-			// (Urshifu-Rapid-Strike -> Urshifu-Rapid-Strike-Gmax, not Urshifu-Gmax).
-			if (item.id === 'maxmushrooms') {
+			// Galarica Wreath / Max Mushrooms: only the exact species listed can
+			// Gigantamax (Urshifu-Rapid-Strike -> Urshifu-Rapid-Strike-Gmax, not Urshifu-Gmax).
+			if (item.id === 'galaricawreath' || item.id === 'maxmushrooms') {
 				const species = pokemon.baseSpecies;
 				const name = species.isCosmeticForme ? species.baseSpecies : species.name;
 				return item.megaStone?.[name] || null;
@@ -248,12 +268,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		transformInto(pokemon, effect) {
 			const transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);
 			if (transformed) {
-				for (const innate of this.m.innates || []) this.removeVolatile('ability:' + innate);
+				for (const innate of this.m.innates || []) {
+					this.removeVolatile('ability:' + innate);
+					this.battle.add('-end', this, this.battle.dex.abilities.get(innate).name, '[silent]');
+				}
 				this.m.innates = [...(pokemon.m.innates || [])];
 				this.m.passive = pokemon.m.passive;
-				this.battle.add('-end', this, 'Passive', '[silent]');
 				for (const innate of this.m.innates) {
-					this.battle.add('-start', this, 'Passive', this.battle.dex.abilities.get(innate).name, '[silent]');
+					this.battle.add('-start', this, this.battle.dex.abilities.get(innate).name, '[silent]');
 					this.addVolatile('ability:' + innate, this);
 				}
 			}

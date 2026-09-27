@@ -163,6 +163,8 @@ export class PokeRogueTeams extends RandomTeams {
 		this.addRequiredMoves(set, template, species);
 		this.trimMoves(set, template, species);
 		if (typeof template.level === 'number' && !this.adjustLevel) set.level = template.level;
+		// Gigantamax with Galarica Wreath (an item every client knows)
+		if (set.item === 'Max Mushrooms') set.item = 'Galarica Wreath';
 		this.fixChoiceItem(set);
 		this.fixPassiveItem(set, species);
 		// No EVs in PokéRogue random battles (the teambuilder formats keep them).

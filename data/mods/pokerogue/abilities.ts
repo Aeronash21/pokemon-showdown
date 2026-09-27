@@ -49,6 +49,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onEnd(pokemon) {
 			if (pokemon.illusion && !pokemon.beingCalledBack) {
 				this.debug('illusion cleared');
+				const shown = pokemon.illusion;
 				pokemon.illusion = null;
 				const details = pokemon.getUpdatedDetails();
 				this.add('replace', pokemon, details);
@@ -56,9 +57,11 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				if (this.ruleTable.has('illusionlevelmod')) {
 					this.hint("Illusion Level Mod is active, so this Pok\u00e9mon's true level was hidden.", true);
 				}
-				this.add('-end', pokemon, 'Passive', '[silent]');
+				if (shown.m.passiveOn && shown.m.passive) {
+					this.add('-end', pokemon, this.dex.abilities.get(shown.m.passive).name, '[silent]');
+				}
 				for (const innate of pokemon.m.innates || []) {
-					this.add('-start', pokemon, 'Passive', this.dex.abilities.get(innate).name, '[silent]');
+					this.add('-start', pokemon, this.dex.abilities.get(innate).name, '[silent]');
 				}
 			}
 		},

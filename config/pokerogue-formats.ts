@@ -12,14 +12,14 @@
  * data/mods/pokerogue/tiers.ts.
  *
  * "<Pokémon> + <Ability>" bans below are PASSIVE bans: that Pokémon is
- * legal, but only with its passive switched off in the teambuilder.
- * A plain ability ban (e.g. 'Arena Trap') also bans it as a passive.
+ * legal, and its passive is switched off automatically. A plain ability
+ * ban (e.g. 'Arena Trap') also switches it off as a passive.
  */
 
 const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacute;Rogue passive ability ` +
-	`(toggle it on or off in the teambuilder), egg moves and move list. Gigantamax works like Mega Evolution ` +
-	`with Max Mushrooms. The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
-	`Mega Stone, Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
+	`(a passive the format bans is switched off), egg moves and move list. Gigantamax works like Mega ` +
+	`Evolution with Galarica Wreath (or Max Mushrooms). The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
+	`Mega Stone, Galarica Wreath / Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
 
 /**
  * VGC: Mythicals are legal by strength. These (Uber in singles, at the

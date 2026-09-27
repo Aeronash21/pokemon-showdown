@@ -35,7 +35,6 @@ function reachableFormes(this: TeamValidator, set: PokemonSet, species: Species,
 		const from = Array.isArray(forme.battleOnly) ? forme.battleOnly : [forme.battleOnly];
 		if (!from.includes(species.name)) continue;
 		// Item forms (Megas, Primals, Gigantamax...) only count with their item.
-		if (forme.requiredItem && dex.toID(forme.requiredItem) !== item.id) continue;
 		if (forme.requiredItems && !forme.requiredItems.map(dex.toID).includes(item.id)) continue;
 		// Mega Rayquaza is only reachable with Dragon Ascent.
 		if (forme.requiredMove && !set.moves.map(dex.toID).includes(dex.toID(forme.requiredMove))) continue;
@@ -48,15 +47,15 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 	pokeroguemod: {
 		effectType: 'Rule',
 		name: 'PokeRogue Mod',
-		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle) and Gigantamax via Max Mushrooms.",
+		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle) and Gigantamax via Galarica Wreath (or Max Mushrooms).",
 		ruleset: ['NatDex Mod', '+Light of Ruin'],
 		onChangeSet(set) {
-			// "Charizard-Gmax" means "Charizard holding Max Mushrooms" here;
-			// there is no Dynamax flag.
+			// "Charizard-Gmax" means "Charizard holding Galarica Wreath (or Max
+			// Mushrooms)" here; there is no Dynamax flag.
 			if (set.gigantamax) {
 				delete set.gigantamax;
-				if (this.dex.toID(set.item) !== 'maxmushrooms') {
-					return [`${set.name || set.species} can only Gigantamax by holding Max Mushrooms in PokéRogue formats.`];
+				if (!['galaricawreath', 'maxmushrooms'].includes(this.dex.toID(set.item))) {
+					return [`${set.name || set.species} can only Gigantamax by holding Galarica Wreath in PokéRogue formats.`];
 				}
 			}
 		},
@@ -88,32 +87,28 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				problems.push(`${name} has no Gigantamax form, so it can't use Max Mushrooms.`);
 			}
 
-			// A passive that is on has to follow the format's ability bans.
+			// A passive the format bans (as an ability, or as "Pokemon + Ability") is
+			// switched off; the Pokémon stays legal.
 			if (set.passive !== false) {
 				const {tierSpecies} = this.getValidationSpecies(set);
 				for (const forme of reachableFormes.call(this, set, species, tierSpecies)) {
 					const passive = passiveOf(forme.species);
 					if (!passive || dex.toID(passive) === dex.toID(forme.ability)) continue;
 					const passiveID = 'ability:' + dex.toID(passive);
-					const as = forme.species === species ? '' : ` (as ${forme.species.name})`;
-
-					const banReason = this.ruleTable.check(passiveID);
-					if (banReason) {
-						problems.push(`${name}'s passive ${passive}${as} is ${banReason}. Turn its passive off to use it.`);
-						continue;
+					// A banned passive is switched off (the Pokémon stays legal).
+					if (this.ruleTable.check(passiveID)) {
+						set.passive = false;
+						break;
 					}
 					// "Pokemon + Ability" bans apply to the passive too.
-					for (const [rule, source, limit, bans] of this.ruleTable.complexBans) {
+					for (const [, , limit, bans] of this.ruleTable.complexBans) {
 						if (limit || !bans.includes(passiveID)) continue;
 						const matches = bans.every(ban => ban === passiveID ||
 							ban === 'pokemon:' + forme.species.id ||
 							ban === 'basepokemon:' + dex.toID(forme.species.baseSpecies) ||
 							(!ban.startsWith('pokemon:') && !ban.startsWith('basepokemon:') && !ban.startsWith('ability:') &&
 								setHas[ban]));
-						if (matches) {
-							problems.push(`${name}'s passive ${passive}${as} is banned (${rule}${source ? ` by ${source}` : ''}). ` +
-								`Turn its passive off to use it.`);
-						}
+						if (matches) set.passive = false;
 					}
 				}
 			}
@@ -179,7 +174,8 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			const innates: ID[] = pokemon.illusion ?
 				(shown.m.passiveOn && shown.m.passive ? [shown.m.passive] : []) : (pokemon.m.innates || []);
 			for (const innate of innates) {
-				this.add('-start', pokemon, 'Passive', this.dex.abilities.get(innate).name, '[silent]');
+				// (named after the ability, so every client shows it as that ability's name)
+				this.add('-start', pokemon, this.dex.abilities.get(innate).name, '[silent]');
 			}
 		},
 		onSwitchOut(pokemon) {
