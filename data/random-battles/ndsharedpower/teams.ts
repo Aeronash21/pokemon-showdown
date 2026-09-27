@@ -820,7 +820,7 @@ export class NDSharedPowerTeams extends RandomTeams {
 		const megaGuaranteed2v2Formats =
 			new Set([
 				'gen9ndsharedpower2v2',
-				'gen9ndsharedpower2v2b6p3',
+				'gen9ndsharedpowertagbattle',
 				'gen9ndsharedpower2v2b12p6',
 			]);
 

@@ -774,7 +774,9 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	},
 
 	// ========================================================
-	// 2v2 MULTI - BRING 6 PICK 3
+	// TAG BATTLE (2v2 MULTI - BRING 6 PICK 3)
+	//
+	// Formerly "[Gen 9] ND Shared Power 2v2 B6P3".
 	//
 	// Each of the four human players:
 	//   receives 6 random Pokemon
@@ -785,7 +787,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 	// ========================================================
 
 	{
-		name: '[Gen 9] ND Shared Power 2v2 B6P3',
+		name: '[Gen 9] ND Shared Power Tag Battle',
 
 		desc:
 			'Four-player 2v2 Shared Power Multi Battle. Each player receives 6 random Pokemon and picks 3.',
