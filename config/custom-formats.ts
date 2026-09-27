@@ -556,6 +556,67 @@ const ndspHooks = {
 	onAfterTerastallization: ndspAfterTerastallization,
 };
 
+/*
+ * ===========================================================
+ * ND MIX AND MEGA HOOKS
+ * ===========================================================
+ *
+ * Same as the official Mix and Mega format: remember each
+ * Pokemon's original species (the mixandmega scripts use it when
+ * it Mega Evolves) and show the Mega / type change on switches.
+ */
+const ndmnmHooks = {
+	onBegin(this: any) {
+		for (const pokemon of this.getAllPokemon()) {
+			pokemon.m.originalSpecies = pokemon.baseSpecies.name;
+		}
+
+		this.add(
+			'rule',
+			'Mix and Mega: Every Pokémon holds a Mega Stone and can Mega Evolve with it'
+		);
+	},
+
+	onSwitchIn(this: any, pokemon: any) {
+		const originalSpecies = this.dex.species.get(pokemon.species.originalSpecies);
+
+		if (originalSpecies.exists && pokemon.m.originalSpecies !== originalSpecies.baseSpecies) {
+			this.add(
+				'-start',
+				pokemon,
+				originalSpecies.requiredItems?.[0] || originalSpecies.requiredItem || originalSpecies.requiredMove,
+				'[silent]'
+			);
+
+			const oSpecies = this.dex.species.get(pokemon.m.originalSpecies);
+
+			if (oSpecies.types.join('/') !== pokemon.species.types.join('/')) {
+				this.add(
+					'-start',
+					pokemon,
+					'typechange',
+					pokemon.species.types.join('/'),
+					'[silent]',
+					'[from] format: Mix and Mega'
+				);
+			}
+		}
+	},
+
+	onSwitchOut(this: any, pokemon: any) {
+		const originalSpecies = this.dex.species.get(pokemon.species.originalSpecies);
+
+		if (originalSpecies.exists && pokemon.m.originalSpecies !== originalSpecies.baseSpecies) {
+			this.add(
+				'-end',
+				pokemon,
+				originalSpecies.requiredItems?.[0] || originalSpecies.requiredItem || originalSpecies.requiredMove,
+				'[silent]'
+			);
+		}
+	},
+};
+
 export const Formats: import('../sim/dex-formats').FormatList = [
 	{
 		section: 'ND Shared Power',
@@ -810,6 +871,85 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 
 		...ndspHooks,
+	},
+
+	// ========================================================
+	// ND MIX AND MEGA
+	//
+	// Random battles where every Pokemon holds a Mega Stone and
+	// can Mega Evolve with it, whatever the stone (Mix and Mega
+	// rules: it gains that Mega's stat changes, ability and type
+	// change). Pokemon pool = the legal NDSP Pokemon; sets and
+	// stone pairings are curated by tools/build-ndmnm-sets.cjs.
+	// ========================================================
+
+	{
+		section: 'ND Mix and Mega',
+		column: 1,
+	},
+
+	{
+		name: '[Gen 9] ND Mix and Mega RandBats',
+
+		desc:
+			'National Dex Random Battle where every Pokemon holds a curated Mega Stone and can Mega Evolve with it. Bring 12, pick 6.',
+
+		mod: 'ndmixandmega',
+		team: 'random',
+
+		rated: false,
+
+		ruleset: [
+			'Standard NatDex',
+			'Max Team Size = 12',
+			'Picked Team Size = 6',
+		],
+
+		...ndmnmHooks,
+	},
+
+	{
+		name: '[Gen 9] ND Mix and Mega FFA',
+
+		desc:
+			'Four-player National Dex Mix and Mega Random Battle. Bring 12, pick 6.',
+
+		mod: 'ndmixandmega',
+		team: 'random',
+		gameType: 'freeforall',
+
+		rated: false,
+		tournamentShow: false,
+
+		ruleset: [
+			'Standard NatDex',
+			'Max Team Size = 12',
+			'Picked Team Size = 6',
+		],
+
+		...ndmnmHooks,
+	},
+
+	{
+		name: '[Gen 9] ND Mix and Mega 2v2',
+
+		desc:
+			'Four-player 2v2 Multi Battle with National Dex Mix and Mega random teams. Every player controls one active Pokemon.',
+
+		mod: 'ndmixandmega',
+		team: 'random',
+		gameType: 'multi',
+
+		rated: false,
+		searchShow: false,
+		tournamentShow: false,
+
+		ruleset: [
+			'Standard NatDex',
+			'Max Team Size = 3',
+		],
+
+		...ndmnmHooks,
 	},
 
 	// PokéRogue formats live in config/pokerogue-formats.ts

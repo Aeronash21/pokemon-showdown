@@ -630,8 +630,8 @@ function fixSet(species, set, tables, doubles) {
 
 	const before = [...set.movepool];
 	const wrongIDs = new Set(wrong.map(m => m.id));
-	const pool = set.movepool.filter(name => !wrongIDs.has(toID(name)));
-	const poolIDs = () => new Set(pool.map(toID));
+	const pool = set.movepool.filter(name => !wrongIDs.has(dex.moves.get(name).id));
+	const poolIDs = () => new Set(pool.map(name => dex.moves.get(name).id));
 	const swaps = [];
 	const dropped = [];
 
@@ -946,6 +946,7 @@ function run(options = {}) {
 
 module.exports = {
 	run,
+	fixSet,
 	classify,
 	intendedSide,
 	isUtility,
