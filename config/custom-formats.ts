@@ -1,5 +1,7 @@
 // National Dex Shared Power custom formats
 
+import {PokeRogueFormats} from './pokerogue-formats';
+
 const NDSP_STANDARD_BANNED_ABILITIES = new Set([
 	'shadowtag',
 	'arenatrap',
@@ -810,4 +812,6 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		...ndspHooks,
 	},
 
+	// PokéRogue formats live in config/pokerogue-formats.ts
+	...PokeRogueFormats,
 ];
