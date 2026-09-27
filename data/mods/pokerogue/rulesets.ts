@@ -71,9 +71,17 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				return [`${species.name} is not available in PokéRogue.`];
 			}
 
-			// PokéRogue has Mega Evolution and Gigantamax, but no Z-Moves or Dynamax.
-			if (item.zMove || item.id === 'ultranecroziumz') {
-				problems.push(`${name}'s item ${item.name} does nothing in PokéRogue (there are no Z-Moves).`);
+			// PokéRogue has Mega Evolution and Gigantamax, but no Dynamax. The only
+			// Z-Move is Ultra Necrozma's: Necrozma-Dusk-Mane / Dawn-Wings holding
+			// Ultranecrozium Z Ultra Burst and get Light That Burns the Sky.
+			if (item.id === 'ultranecroziumz') {
+				if (!['Necrozma-Dusk-Mane', 'Necrozma-Dawn-Wings'].includes(species.name)) {
+					problems.push(`${name} can't hold ${item.name}: only Necrozma-Dusk-Mane and Necrozma-Dawn-Wings can ` +
+						`Ultra Burst.`);
+				}
+			} else if (item.zMove) {
+				problems.push(`${name}'s item ${item.name} can't be used: the only Z-Crystal in PokéRogue formats is ` +
+					`Ultranecrozium Z (for Ultra Necrozma).`);
 			}
 			if (item.id === 'maxmushrooms' &&
 				!item.megaStone?.[species.isCosmeticForme ? species.baseSpecies : species.name]) {
@@ -124,12 +132,16 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		// ---------------------------------------------------
 		onBegin() {
 			for (const pokemon of this.getAllPokemon()) {
-				// Pokémon holding their Mega Stone or Max Mushrooms can't Terastallize,
-				// even before they can use it (Zygarde needs Power Construct first).
+				// Pokémon holding their Mega Stone, Max Mushrooms or Ultranecrozium Z
+				// can't Terastallize, even before they can use it (Zygarde needs
+				// Power Construct first).
 				const item = pokemon.getItem();
 				if (item.megaStone && Object.keys(item.megaStone).some(
 					name => this.dex.species.get(name).baseSpecies === pokemon.baseSpecies.baseSpecies
 				)) {
+					pokemon.canTerastallize = null;
+				}
+				if (item.id === 'ultranecroziumz' && pokemon.baseSpecies.baseSpecies === 'Necrozma') {
 					pokemon.canTerastallize = null;
 				}
 

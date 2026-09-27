@@ -18,7 +18,18 @@
 
 const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacute;Rogue passive ability ` +
 	`(toggle it on or off in the teambuilder), egg moves and move list. Gigantamax works like Mega Evolution ` +
-	`with Max Mushrooms. Mega and Gigantamax Pok&eacute;mon can't Terastallize.`;
+	`with Max Mushrooms. The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
+	`Mega Stone, Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
+
+/**
+ * VGC: Mythicals are legal by strength. These (Uber in singles, at the
+ * level of Restricted Legendaries) are Restricted: banned in VGC, and
+ * count as the one Restricted Pokémon in VGC Restricted.
+ */
+const RESTRICTED_MYTHICALS = [
+	'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Speed', 'Genesect', 'Magearna', 'Marshadow',
+	'Shaymin-Sky',
+];
 
 export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	{
@@ -103,14 +114,30 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: '[Gen 9] PokeRogue FFA Random Battle',
-		desc: `Four-player free-for-all with random Pok&eacute;Rogue teams (egg moves and passives included).`,
+		desc: `Four-player free-for-all with random Pok&eacute;Rogue teams (egg moves and passives included). ` +
+			`Bring 12, pick 6.`,
 		mod: 'pokerogue',
 		team: 'random',
 		gameType: 'freeforall',
 		tournamentShow: false,
 		ruleset: [
 			'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Illusion Level Mod',
-			'PokeRogue Mod',
+			'Team Preview', 'Max Team Size = 12', 'Picked Team Size = 6', 'PokeRogue Mod',
+		],
+	},
+	{
+		// Four players, p1 + p3 vs p2 + p4; each player controls one active Pokémon.
+		name: '[Gen 9] PokeRogue 2v2',
+		desc: `Four-player 2v2 Multi Battle with random Pok&eacute;Rogue teams (egg moves and passives included). ` +
+			`Two players share each side; every player gets 3 Pok&eacute;mon and controls one active Pok&eacute;mon.`,
+		mod: 'pokerogue',
+		team: 'random',
+		gameType: 'multi',
+		searchShow: false,
+		tournamentShow: false,
+		ruleset: [
+			'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Illusion Level Mod',
+			'Max Team Size = 3', 'PokeRogue Mod',
 		],
 	},
 
@@ -120,26 +147,37 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 
 	{
 		name: '[Gen 9] PokeRogue VGC',
-		desc: `${POKEROGUE_DESC} VGC rules; no Restricted Legendaries or Mythicals.`,
+		desc: `${POKEROGUE_DESC} VGC rules; no Restricted Legendaries. Mythicals are allowed except the ones ` +
+			`as strong as a Restricted Legendary.`,
 		mod: 'pokerogue',
 		gameType: 'doubles',
 		bestOfDefault: true,
 		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Open Team Sheets', 'PokeRogue Mod'],
+		unbanlist: ['Mythical'],
 		banlist: [
+			// Mythicals at Restricted Legendary strength (allowed in VGC Restricted)
+			...RESTRICTED_MYTHICALS,
+			'Zeraorite', // Zeraora-Mega: 700 BST, Uber in singles
+			// Passive bans
+			'Manaphy + Primordial Sea', // unremovable heavy rain with no Restricted weather to answer it
 			'Smeargle + Prankster', // priority Spore
 		],
 	},
 	{
 		name: '[Gen 9] PokeRogue VGC Restricted',
-		desc: `${POKEROGUE_DESC} VGC rules with one Restricted Legendary allowed; no Mythicals.`,
+		desc: `${POKEROGUE_DESC} VGC rules with one Restricted Pok&eacute;mon allowed: a Restricted Legendary or ` +
+			`one of the strongest Mythicals. Other Mythicals are allowed freely.`,
 		mod: 'pokerogue',
 		gameType: 'doubles',
 		bestOfDefault: true,
 		ruleset: [
 			'Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Open Team Sheets', 'Limit One Restricted', 'PokeRogue Mod',
 		],
-		restricted: ['Restricted Legendary'],
+		unbanlist: ['Mythical'],
+		restricted: ['Restricted Legendary', ...RESTRICTED_MYTHICALS],
 		banlist: [
+			// Passive bans
+			'Arceus + Adaptability', // as in Ubers: Adaptability Multi-Attack / Judgment of any type
 			'Smeargle + Prankster', // priority Spore
 		],
 	},

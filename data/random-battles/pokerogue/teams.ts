@@ -165,6 +165,8 @@ export class PokeRogueTeams extends RandomTeams {
 		if (typeof template.level === 'number' && !this.adjustLevel) set.level = template.level;
 		this.fixChoiceItem(set);
 		this.fixPassiveItem(set, species);
+		// No EVs in PokéRogue random battles (the teambuilder formats keep them).
+		set.evs = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
 		return set;
 	}
 

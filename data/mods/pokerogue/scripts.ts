@@ -39,6 +39,37 @@ const EXCLUDED_SPECIES = new Set([
 ]);
 
 /**
+ * Passives changed from PokéRogue's (pokerogue-data.ts is generated, so
+ * the changes live here).
+ */
+const PASSIVE_CHANGES: {[speciesid: string]: string} = {
+	// Honey Gather does nothing in a battle.
+	illumise: 'Lingering Aroma',
+	pachirisu: 'Cheek Pouch',
+	spidops: 'Prankster',
+	gholdengo: 'Super Luck',
+	// Pickup barely does anything in a battle.
+	eevee: 'Fluffy',
+	eeveestarter: 'Fluffy',
+	liepard: 'Stakeout',
+	// Magician / Unburden / Poison Heal need the item slot, but these hold
+	// their Mega Stone or Max Mushrooms.
+	alakazammega: 'Magic Guard',
+	kinglergmax: 'Anger Shell',
+	eelektrossmega: 'Electromorphosis',
+	delphoxmega: 'Magic Guard',
+	// PokéRogue balances these around stacks of held items (see ABILITY_CHANGES).
+	machampgmax: 'Iron Fist',
+	snorlaxgmax: 'Comatose',
+};
+
+/** Abilities changed from PokéRogue's (the form's only ability). */
+const ABILITY_CHANGES: {[speciesid: string]: string} = {
+	machampgmax: 'No Guard', // was Guts (needs a Flame Orb; it holds Max Mushrooms)
+	snorlaxgmax: 'Thick Fat', // was Harvest (needs a Berry)
+};
+
+/**
  * The passive ability name of a species (or form), or null if it has none.
  * Some cosmetic forms have their own (Unown letters, Sawsbuck seasons):
  * those are kept on the base species as `cosmeticPassives`.
@@ -114,8 +145,10 @@ export const Scripts: ModdedBattleScriptsData = {
 			// Alcremie flavours copy it from their base species).
 			const pokedexEntry = this.modData('Pokedex', id) as AnyObject;
 			pokedexEntry.pokeRogue = true;
-			if (PokeRogueData.passives[id]) pokedexEntry.passive = PokeRogueData.passives[id];
+			const passive = PASSIVE_CHANGES[id] || PokeRogueData.passives[id];
+			if (passive) pokedexEntry.passive = passive;
 			if (PokeRogueData.eggMoves[id]) pokedexEntry.eggMoves = PokeRogueData.eggMoves[id];
+			if (ABILITY_CHANGES[id]) pokedexEntry.abilities = {0: ABILITY_CHANGES[id]};
 
 			const species = this.data.Pokedex[id];
 			if (species.isCosmeticForme) continue;
@@ -146,9 +179,29 @@ export const Scripts: ModdedBattleScriptsData = {
 			Object.assign(this.modData('Abilities', id), fields);
 		}
 
+		const legalSet = new Set(legal);
+
+		// Evolutions can use their pre-evolutions' moves too (Slaking gets
+		// Slakoth's Slack Off, Raichu gets Pichu's moves, ...).
+		for (const id of legal) {
+			if (!this.data.Learnsets[id]?.learnset || !(this.data.Learnsets[id] as AnyObject).pokeRogue) continue;
+			// (cosmetic forms with their own move list, like the Vivillon patterns,
+			// use their base species' pre-evolution)
+			const entry = this.data.Pokedex[id];
+			let prevo = entry?.prevo || (entry?.baseSpecies ? this.data.Pokedex[toID(entry.baseSpecies)]?.prevo : undefined);
+			for (let i = 0; prevo && i < 3; i++) {
+				const prevoID = toID(prevo);
+				const prevoMoves = legalSet.has(prevoID) ? this.data.Learnsets[prevoID]?.learnset : undefined;
+				for (const moveid in prevoMoves || {}) {
+					if (this.data.Learnsets[id].learnset![moveid]) continue;
+					this.modData('Learnsets', id).learnset![moveid] = prevoMoves![moveid];
+				}
+				prevo = this.data.Pokedex[prevoID]?.prevo;
+			}
+		}
+
 		// Every move in a PokéRogue move list is usable (LGPE partner moves,
 		// Legends: Z-A moves, ...).
-		const legalSet = new Set(legal);
 		for (const id in this.data.Learnsets) {
 			if (!legalSet.has(id)) continue;
 			for (const moveid in this.data.Learnsets[id].learnset || {}) {
