@@ -54,7 +54,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Revival Blessing', 'Simple', 'Primordial Sea', 'Desolate Land',
 			// Passive bans
 			'Articuno-Galar + Serene Grace', // 40% freeze Freezing Glare
-			'Blacephalon + Magic Guard', // recoil-free Mind Blown
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Drampa-Mega + Adaptability', // 160 Sp. Atk Adaptability Boomburst / Draco Meteor
 			'Flapple-Gmax + No Guard', // Hustle with no accuracy drop
@@ -62,7 +61,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
 			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
-			'Scolipede-Mega + Speed Boost', // 140 Atk / 149 Def Speed Boost
 			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
 			'Swampert-Mega + Drizzle', // sets its own rain for Swift Swim
 			'Thundurus-Therian + Drizzle', // 100% accurate Thunder / Hurricane + Nasty Plot

@@ -106,6 +106,7 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Emboar-Mega': 'RU',
 	// 165 Atk / 103 Spe; Piercing Drill plus a Mold Breaker passive.
 	'Excadrill-Mega': 'Uber',
+	'Gardevoir-Mega': 'Uber', // Pixilate Hyper Voice with a Psychic Surge passive (Expanding Force)
 	'Scolipede-Mega': 'RU',
 	'Scrafty-Mega': 'RU',
 	'Eelektross-Mega': 'RU',
