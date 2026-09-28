@@ -617,6 +617,74 @@ const ndmnmHooks = {
 	},
 };
 
+
+/*
+ * ===========================================================
+ * ND MIX AND MEGA (TEAMBUILDER FORMATS)
+ * ===========================================================
+ *
+ * Build-your-own-team Mix and Mega on the full National Dex (the
+ * official mixandmega mod): any Pokémon can hold any Mega Stone,
+ * Primal Orb, Rusted item, Origin item, Mask, Plate, Memory or Drive
+ * and gains that forme's stat changes, ability and type.
+ *
+ * - One of each transformation item per team.
+ * - "Restricted" Pokémon can only use their own transformation item.
+ * - A Pokémon's tier is its own (holding a foreign stone doesn't
+ *   change it); stones that are too strong on anything are banned.
+ */
+function mnmBuilderValidateTeam(this: any, team: any[]) {
+	const seen = new Set<string>();
+	for (const set of team) {
+		const item = this.dex.items.get(set.item);
+		const isTransformation = item.megaStone || item.isPrimalOrb || item.name.startsWith('Rusted') ||
+			(item.forcedForme && !item.zMove);
+		if (!isTransformation) continue;
+		const species = this.dex.species.get(set.species);
+		const own = item.megaStone ?
+			Object.keys(item.megaStone).some(name => [species.name, species.baseSpecies].includes(name) ||
+				this.dex.species.get(name).baseSpecies === species.baseSpecies) :
+			([...(item.itemUser || []), item.forcedForme || ''].some(name => name &&
+				this.dex.species.get(name).baseSpecies === species.baseSpecies) ||
+				(item.isPrimalOrb && ['Groudon', 'Kyogre'].includes(species.baseSpecies)));
+		if (!own && (this.ruleTable.isRestrictedSpecies(species) || this.toID(set.ability) === 'powerconstruct')) {
+			return [`${species.name} can only use its own transformation item, not ${item.name}.`];
+		}
+		if (seen.has(item.id)) {
+			return [
+				`You are limited to one of each Mega Stone / Primal Orb / Rusted item / Origin item / Mask / Plate / ` +
+				`Memory / Drive. (You have more than one ${item.name}.)`,
+			];
+		}
+		seen.add(item.id);
+	}
+}
+
+const mnmBuilderHooks = {
+	onValidateTeam: mnmBuilderValidateTeam,
+	onBegin(this: any) {
+		for (const pokemon of this.getAllPokemon()) {
+			pokemon.m.originalSpecies = pokemon.baseSpecies.name;
+		}
+	},
+	onSwitchIn: ndmnmHooks.onSwitchIn,
+	onSwitchOut: ndmnmHooks.onSwitchOut,
+};
+
+/** Stones that are too strong on anything (official Mix and Mega OU list + Zygardite). */
+const MNM_OU_STONE_BANS = [
+	'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Lucarionite Z', 'Malamarite', 'Mawilite',
+	'Medichamite', 'Pidgeotite', 'Raichunite Y', 'Red Orb', 'Scovillainite', 'Starminite', 'Zygardite',
+];
+/** Can only use their own transformation item (official Mix and Mega list). */
+const MNM_RESTRICTED = [
+	'Arceus', 'Calyrex-Ice', 'Ceruledge', 'Deoxys-Normal', 'Deoxys-Attack', 'Dialga', 'Eternatus', 'Flutter Mane',
+	'Gholdengo', 'Giratina', 'Gouging Fire', 'Groudon', 'Ho-Oh', 'Iron Bundle', 'Kyurem-Black', 'Kyurem-White',
+	'Lugia', 'Lunala', 'Manaphy', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza',
+	'Regigigas', 'Reshiram', 'Slaking', 'Sneasler', 'Solgaleo', 'Ursaluna-Bloodmoon', 'Urshifu-Single-Strike',
+	'Walking Wake', 'Zacian', 'Zekrom',
+];
+
 export const Formats: import('../sim/dex-formats').FormatList = [
 	{
 		section: 'ND Shared Power',
@@ -954,6 +1022,74 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 
 		...ndmnmHooks,
+	},
+
+	// ========================================================
+	// ND MIX AND MEGA: BUILD YOUR OWN TEAM
+	// (full National Dex, official Mix and Mega mechanics)
+	// ========================================================
+
+	{
+		name: '[Gen 9] ND Mix and Mega OU',
+		desc: 'National Dex Mix and Mega: any Pokémon can Mega Evolve with any Mega Stone (or use any Primal Orb, ' +
+			'Rusted item, Origin item, Mask, Plate, Memory or Drive) and gains its stat changes, ability and type. ' +
+			'One of each item per team; Pokémon are tiered by their own National Dex tier.',
+		mod: 'mixandmega',
+		ruleset: ['Standard NatDex', 'Terastal Clause'],
+		banlist: [
+			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock", 'Quick Claw',
+			'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
+			...MNM_OU_STONE_BANS,
+		],
+		restricted: MNM_RESTRICTED,
+		...mnmBuilderHooks,
+	},
+	{
+		name: '[Gen 9] ND Mix and Mega Ubers',
+		desc: 'National Dex Mix and Mega with the Ubers. Restricted Legendaries (and a few others) can only use ' +
+			'their own Mega Stone / Orb / item; everyone else can use any.',
+		mod: 'mixandmega',
+		ruleset: [
+			'Standard NatDex', 'Terastal Clause', '!Evasion Clause', 'Evasion Moves Clause', 'Evasion Items Clause',
+			'Mega Rayquaza Clause',
+		],
+		banlist: [
+			'ND AG', 'Shedinja', 'Moody', 'Shadow Tag', 'Arena Trap', 'Assist', 'Baton Pass',
+			'Gengarite', // Shadow Tag on anything
+			'Zygardite', // +125 Sp. Atk on anything
+		],
+		restricted: ['Restricted Legendary', ...MNM_RESTRICTED, 'Magearna', 'Marshadow', 'Darkrai'],
+		...mnmBuilderHooks,
+	},
+	{
+		name: '[Gen 9] ND Mix and Mega AG',
+		desc: 'National Dex Mix and Mega Anything Goes: every Pokémon can use any transformation item (one of each ' +
+			'per team).',
+		mod: 'mixandmega',
+		ruleset: ['Standard AG', 'NatDex Mod', 'Terastal Clause'],
+		...mnmBuilderHooks,
+	},
+	{
+		// Four players, p1 + p3 vs p2 + p4; each brings 6 and picks 3, and controls one active Pokémon.
+		name: '[Gen 9] ND Mix and Mega 2v2 (Teambuilder)',
+		desc: 'Four-player 2v2 Multi Battle with your own National Dex Mix and Mega teams. Bring 6, pick 3.',
+		mod: 'mixandmega',
+		gameType: 'multi',
+		rated: false,
+		searchShow: false,
+		tournamentShow: false,
+		ruleset: [
+			'Standard NatDex', 'Terastal Clause', 'Gravity Sleep Clause', 'Max Team Size = 6', 'Picked Team Size = 3',
+		],
+		banlist: [
+			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock", 'Quick Claw',
+			'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
+			...MNM_OU_STONE_BANS,
+			// doubles (official Mix and Mega Doubles list)
+			'Banettite', 'Blue Orb', 'Magearnite', 'Staraptite',
+		],
+		restricted: [...MNM_RESTRICTED, 'Dondozo', 'Urshifu-Rapid-Strike'],
+		...mnmBuilderHooks,
 	},
 
 	// PokéRogue formats live in config/pokerogue-formats.ts
