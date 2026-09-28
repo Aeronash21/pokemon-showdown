@@ -572,6 +572,8 @@ export class PokeRogueTeams extends RandomTeams {
 			if (!types.includes('Fire')) set.item = 'Flame Orb';
 			return;
 		case 'guts': case 'marvelscale': case 'quickfeet':
+			// Guts only boosts physical attacks (a burn would just hurt a special attacker)
+			if (passive === 'guts' && attacks.filter(m => m.category === 'Physical').length * 2 < attacks.length) return;
 			if (!types.includes('Fire')) {
 				set.item = 'Flame Orb';
 			} else if (!types.includes('Poison') && !types.includes('Steel')) {
