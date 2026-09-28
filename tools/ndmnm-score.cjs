@@ -16,8 +16,10 @@
  *
  * 1. Each (set, stone) pair is scored with Mix and Mega's own
  *    maths (tools/ndmnm-mix.cjs): the stat changes weighted by
- *    what the set uses, the Mega's ability for this set, and the
- *    type change.
+ *    what the set uses (a Speed drop barely matters to a slow,
+ *    bulky Pokémon but costs a fast one its speed tier), the Mega's
+ *    ability for this set (weather-reliant abilities only count
+ *    when the Pokémon can set the weather), and the type change.
  * 2. Every Pokémon gets its 1-2 best stones. Usage per stone is
  *    capped and every stone is given out at least a few times,
  *    so all Mega Stones appear. Power stones (Huge Power, Pure
@@ -159,10 +161,14 @@ const CURATED_MOVES = (() => {
 
 // Moves that don't work (or make no sense) while holding a Mega
 // Stone, or that only exist for Z-Moves / Tera / Dynamax.
+// Transformation items can't be removed in Mix and Mega, so Thief /
+// Covet never steal and Corrosive Gas / Embargo / Magic Room do
+// nothing useful.
 const ITEM_RELIANT_MOVES = new Set([
 	'trick', 'switcheroo', 'fling', 'naturalgift', 'stuffcheeks', 'recycle',
 	'acrobatics', 'terablast', 'celebrate', 'happyhour', 'holdhands',
 	'conversion', 'splash', 'belch', 'bestow', 'teatime',
+	'thief', 'covet', 'corrosivegas', 'embargo', 'magicroom',
 ]);
 
 // Never add these as a replacement / synergy move.
@@ -223,7 +229,11 @@ function moveValue(move, context) {
 		move.isNonstandard !== 'Unobtainable') return -Infinity;
 	if (move.flags.charge || move.flags.recharge) return -Infinity;
 	if (ITEM_RELIANT_MOVES.has(move.id)) return -Infinity;
-	if (!context.trusted.has(move.id) && BAD_ADDITIONS.has(move.id)) return -Infinity;
+	// Outrage is a fine Dragon STAB in singles for a Pokémon with no
+	// other strong physical Dragon move (a Mega Dragon typing...); in
+	// doubles it hits a random target.
+	if (!context.trusted.has(move.id) && BAD_ADDITIONS.has(move.id) &&
+		!(move.id === 'outrage' && !context.doubles && context.types.includes('Dragon'))) return -Infinity;
 	if (move.damage || move.damageCallback || move.ohko) return -Infinity;
 
 	const accuracy = move.accuracy === true || context.noGuard ? 100 : move.accuracy;
@@ -235,6 +245,9 @@ function moveValue(move, context) {
 	let power = move.basePower * hits;
 
 	if (context.technician && move.basePower <= 60) power *= 1.5;
+	// The item's ability boosting this kind of move (Tough Claws,
+	// Strong Jaw, Mega Launcher, Sharpness, Iron Fist, Sheer Force...).
+	if (context.powerMod) power *= context.powerMod(move);
 	if (move.priority > 0) power = Math.max(power, 70);
 	if (power < 55) return -Infinity;
 
@@ -349,6 +362,9 @@ function referenceStats(species, set) {
 		return avg(get('Aegislash'), get('Aegislash-Blade'));
 	}
 	if (species.id === 'wishiwashi' && abilities.includes('schooling')) return get('Wishiwashi-School');
+	// Palafin's NDSP level is for Hero Palafin, but it Mega Evolves from
+	// its Zero forme (Mix and Mega mixes the original species) and never
+	// becomes Hero afterwards: the level has to pay for that.
 	if (species.id === 'palafin' && abilities.includes('zerotohero')) return get('Palafin-Hero');
 	if (species.id === 'minior' && abilities.includes('shieldsdown')) {
 		return avg(get('Minior-Meteor'), get('Minior'));
@@ -615,12 +631,29 @@ function megaAbilityValue(abilityID, ctx) {
 		return (types.includes('Ice') ? 22 : 0) + (learn(m => m.id === 'blizzard') ? 12 : 0) + 3;
 	case 'sandstream':
 		return types.includes('Rock') ? 25 : ['Ground', 'Steel'].some(t => types.includes(t)) ? 8 : -5;
-	case 'sandforce':
-		return count(m => ['Rock', 'Ground', 'Steel'].includes(m.type)) ? 6 : 0;
-	case 'solarpower':
-		return -5;
-	case 'swiftswim':
-		return 0;
+	// Weather-reliant abilities: worth a lot with the Pokémon's own
+	// weather (it sets it on switching in, before Mega Evolving), some
+	// if it can set the weather itself (the builder adds the move) and
+	// nothing otherwise.
+	case 'sandforce': {
+		const typed = count(m => ['Rock', 'Ground', 'Steel'].includes(m.type)) ||
+			(learn(m => ['Rock', 'Ground', 'Steel'].includes(m.type) && m.basePower >= 80) ? 1 : 0);
+		if (!attacker || !typed) return -5;
+		if (ctx.weatherSource === 'own') return 12 + 8 * Math.min(2, typed);
+		return ctx.weatherSource === 'move' ? 5 : -5;
+	}
+	case 'solarpower': {
+		if (!special) return -10;
+		const fire = count(m => m.type === 'Fire' && m.category === 'Special') ? 1 : 0;
+		if (ctx.weatherSource === 'own') return 40 + 5 * fire;
+		return ctx.weatherSource === 'move' ? 5 + 10 * fire : -10;
+	}
+	case 'swiftswim': {
+		if (!attacker) return -5;
+		const water = count(m => m.type === 'Water') ? 1 : 0;
+		if (ctx.weatherSource === 'own') return (fast || set.role.includes('Setup') ? 45 : 35) + 8 * water;
+		return ctx.weatherSource === 'move' ? (fast || set.role.includes('Setup') ? 15 : 8) + 6 * water : -5;
+	}
 	case 'soulheart':
 		return special ? 30 : 5;
 	case 'spicyspray':
@@ -718,6 +751,31 @@ function itemBoostValue(item, set, side) {
 	return Math.round(25 * boosted / attacks.length);
 }
 
+// Weather that an item's ability needs (Swift Swim from Swampertite,
+// Solar Power from Houndoominite, Sand Force...), how to set it, and
+// the Pokémon's own abilities that set it on switching in.
+const WEATHER_NEEDS = {
+	swiftswim: {weather: 'rain', move: 'raindance', setters: ['drizzle', 'primordialsea']},
+	solarpower: {weather: 'sun', move: 'sunnyday', setters: ['drought', 'desolateland', 'orichalcumpulse']},
+	chlorophyll: {weather: 'sun', move: 'sunnyday', setters: ['drought', 'desolateland', 'orichalcumpulse']},
+	sandforce: {weather: 'sand', move: 'sandstorm', setters: ['sandstream']},
+	sandrush: {weather: 'sand', move: 'sandstorm', setters: ['sandstream']},
+	slushrush: {weather: 'snow', move: 'snowscape', setters: ['snowwarning']},
+};
+
+// 'own' (a listed ability sets the weather), 'move' (it can learn the
+// weather move) or null.
+function weatherSource(species, set, abilityID) {
+	const need = WEATHER_NEEDS[abilityID];
+	if (!need) return null;
+	const own = [...(set.abilities || []), ...Object.entries(species.abilities)
+		.filter(([slot]) => slot !== 'S').map(([, name]) => name)];
+	if (own.some(a => need.setters.includes(toID(a)))) return 'own';
+	if (set.movepool.some(m => toID(m) === need.move) || learnable(species).has(need.move)) return 'move';
+
+	return null;
+}
+
 function evaluate(species, set, stoneID, doubles) {
 	const info = STONE_INFO.get(stoneID);
 	const mixed = mix(species.name, stoneID);
@@ -733,19 +791,30 @@ function evaluate(species, set, stoneID, doubles) {
 		technician: info.ability === 'technician',
 		ate: ['pixilate', 'aerilate', 'refrigerate', 'galvanize', 'dragonize'].includes(info.ability),
 	};
-	const ctx = {side, set, species, types: mixed.types, stats: mixed.baseStats, doubles, moveContext};
+	const ctx = {side, set, species, types: mixed.types, stats: mixed.baseStats, doubles, moveContext,
+		weatherSource: weatherSource(species, set, info.ability)};
 
 	let statScore = 0;
 	for (const stat of STATS) {
 		let weight = w[stat];
 
-		// Extra Speed matters less on Pokémon that are already fast.
+		const change = mixed.baseStats[stat] - species.baseStats[stat];
+
 		if (stat === 'spe' && weight > 0) {
 			const spe = species.baseStats.spe;
-			weight *= spe >= 125 ? 0.4 : spe >= 105 ? 0.65 : 1;
+
+			if (change >= 0) {
+				// Extra Speed matters less on Pokémon that are already fast.
+				weight *= spe >= 125 ? 0.4 : spe >= 105 ? 0.65 : 1;
+			} else {
+				// Losing Speed barely hurts a slow, bulky Pokémon (it
+				// moves last anyway) but costs a fast one its speed tier.
+				weight = spe <= 45 ? 0.05 : spe <= 65 ? 0.15 : BULKY_ROLES.has(set.role) ? weight * 0.6 :
+					Math.max(weight, 0.6);
+			}
 		}
 
-		statScore += weight * (mixed.baseStats[stat] - species.baseStats[stat]);
+		statScore += weight * change;
 	}
 
 	const abilityScore = megaAbilityValue(info.ability, ctx);
@@ -826,14 +895,15 @@ function allowed(species, stoneID) {
 
 function referenceStatsForBST(species) {
 	if (species.id === 'wishiwashi') return dex.species.get('Wishiwashi-School').baseStats;
-	if (species.id === 'palafin') return dex.species.get('Palafin-Hero').baseStats;
+	// Palafin fights as Zero after Mega Evolving (Zero to Hero is gone),
+	// so power items are fair game for it.
 	if (species.id === 'terapagos') return dex.species.get('Terapagos-Terastal').baseStats;
 
 	return species.baseStats;
 }
 
 module.exports = {
-	raisesOwnStats, ITEMS, ITEM_INFO, STONES, STONE_INFO, POWER_STONES, POWER_ITEMS, legalPool, kindOf, evaluate, allowed, setSide, learnable,
+	raisesOwnStats, WEATHER_NEEDS, weatherSource, secondariesOf, ITEMS, ITEM_INFO, STONES, STONE_INFO, POWER_STONES, POWER_ITEMS, legalPool, kindOf, evaluate, allowed, setSide, learnable,
 	bestLearnable, moveValue, sideAttack, ITEM_RELIANT_MOVES, toID, typeScore, effectiveness,
 	MANUAL_PAIRINGS, MANUAL_EXCLUSIONS, POWER_STONE_MAX_USES, SRC, OUT, REPORT, dex,
 };
