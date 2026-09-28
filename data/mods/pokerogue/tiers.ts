@@ -40,8 +40,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Butterfree-Gmax': 'RU',
 	'Pikachu-Gmax': 'RU',
 	'Meowth-Gmax': 'RU',
-	// 170 Atk Guts + Quick Feet: 255 effective Atk once statused.
-	'Machamp-Gmax': 'Uber',
+	// 170 Atk No Guard + Iron Fist (was Uber with Guts + Quick Feet); OU by request.
+	'Machamp-Gmax': 'OU',
 	// Shadow Tag with 150 HP / 150 Sp. Atk and Regenerator (like Mega Gengar).
 	'Gengar-Gmax': 'Uber',
 	'Kingler-Gmax': 'RU',
