@@ -20,10 +20,14 @@
  *    so it fights with the item's ability, not its own. NDSP sets
  *    that only work with their own ability are replaced
  *    (SET_OVERRIDES: Truant Slaking, Slow Start Regigigas, Defeatist
- *    Archeops), and moves that only made sense with an own ability
- *    no item gives back go: Giga Impact for Truant, Facade for Guts,
- *    Rest + Sleep Talk for Guts / Slow Start, Head Smash for Rock
- *    Head, berry Belly Drum for Unburden... (1b).
+ *    Archeops, Unburden Slurpuff), and moves that only made sense
+ *    with an own ability no item gives back go: Giga Impact for
+ *    Truant, Facade for Guts, Rest + Sleep Talk for Guts / Slow Start,
+ *    Head Smash for Rock Head, berry Belly Drum for Unburden, Protect
+ *    for Hunger Switch... (1b). Transformation items can't be removed,
+ *    so Knock Off is a plain 65 BP attack (swapped for a stronger Dark
+ *    move where there is one) and Thief / Covet go. Wishiwashi (Solo
+ *    forme for good once it Mega Evolves) is dropped.
  * 2. Score every (set, item) pair and give each Pokémon its
  *    1-2 best transformation items. Items are Mega Stones plus
  *    Primal Orbs, Rusted Sword / Shield, Origin items, Ogerpon
@@ -37,7 +41,14 @@
  *    that the Mega's ability wants (Normal moves for -ate
  *    abilities, pulse moves for Mega Launcher, stat-dropping
  *    moves for Contrary, status moves for Prankster, inaccurate
- *    moves for No Guard, physical attacks for Huge Power...).
+ *    moves for No Guard, physical attacks for Huge Power...), and
+ *    attacks are swapped for ones the ability boosts when that is
+ *    stronger (High Horsepower over Earthquake with Tough Claws,
+ *    Psycho Cut over Zen Headbutt with Sharpness...). Weather-reliant
+ *    abilities (Swift Swim, Solar Power, Sand Force) get the weather:
+ *    the holder's own Drizzle / Drought / Sand Stream, or the weather
+ *    move as a required move (ITEM_USES lets those items go only to
+ *    such holders).
  *    These are stored as `required` so the generator always
  *    includes them. Moves built around an own ability the item
  *    replaces are swapped (Leaf Storm without Contrary, Bullet
@@ -45,7 +56,8 @@
  *    Swift Swim, Solar Beam / Weather Ball without the weather...),
  *    and moves the new ability makes pointless go (hazard removal
  *    with Magic Bounce, Magnet Rise with Levitate, Thunder /
- *    Hurricane in sun...).
+ *    Hurricane in sun...). Doubles templates keep four moves that
+ *    aren't ally-only, as the FFA generator drops those.
  * 4. Set each template's level from how much the mix changes the
  *    Pokémon's strength compared with a typical pairing
  *    (about 1 level per 10.5 points, fitted on Smogon's levels
@@ -78,8 +90,18 @@ const USES = {
 	memory: [4, 7],
 	drive: [5, 7],
 };
-const minUses = id => USES[STONE_INFO.get(id).kind][0];
-const maxUses = id => Math.min(USES[STONE_INFO.get(id).kind][1],
+// Items whose ability only works in a weather (Swift Swim, Solar
+// Power, Sand Force) only go to Pokémon that can set that weather
+// (with their own ability or a move), so they need fewer holders.
+const ITEM_USES = {
+	swampertite: [2, 13],
+	houndoominite: [2, 13],
+	garchompite: [2, 13],
+	steelixite: [2, 13],
+};
+const usesOf = id => ITEM_USES[id] || USES[STONE_INFO.get(id).kind];
+const minUses = id => usesOf(id)[0];
+const maxUses = id => Math.min(usesOf(id)[1],
 	POWER_STONES.has(id) ? S.POWER_STONE_MAX_USES : Infinity);
 const SECOND_STONE_MIN_GAIN = 0.06;
 const SAME_SET_RATIO = 0.9;
@@ -131,6 +153,21 @@ const SET_OVERRIDES = {
 				movepool: ['Double-Edge', 'Drain Punch', 'High Horsepower', 'Ice Punch', 'Knock Off', 'Protect']},
 		],
 	},
+	// Belly Drum with Unburden and a berry: no berry here, and its only
+	// other physical moves are Play Rough, Drain Punch and Facade. Its
+	// special side is much deeper.
+	slurpuff: {
+		singles: [
+			{role: 'Bulky Setup', abilities: ['Sweet Veil'],
+				movepool: ['Calm Mind', 'Dazzling Gleam', 'Flamethrower', 'Surf', 'Thunderbolt']},
+			{role: 'Bulky Support', abilities: ['Sweet Veil'],
+				movepool: ['Dazzling Gleam', 'Flamethrower', 'Protect', 'Sticky Web', 'Wish', 'Yawn']},
+		],
+		doubles: [
+			{role: 'Doubles Bulky Setup', abilities: ['Sweet Veil'],
+				movepool: ['Calm Mind', 'Dazzling Gleam', 'Flamethrower', 'Protect', 'Thunderbolt']},
+		],
+	},
 	archeops: {
 		singles: [
 			{role: 'Fast Attacker',
@@ -144,6 +181,12 @@ const SET_OVERRIDES = {
 		],
 	},
 };
+
+/*
+ * Pokémon that are hopeless once they Mega Evolve: Wishiwashi mixes
+ * from its Solo forme (175 BST) and loses Schooling for good.
+ */
+const DROP_SPECIES = new Set(['wishiwashi']);
 
 function overrideSets(species, data, doubles) {
 	const override = SET_OVERRIDES[species.id]?.[doubles ? 'doubles' : 'singles'];
@@ -266,8 +309,11 @@ function cleanSet(species, set, doubles) {
 	// Moves that only worked with the Pokémon's own ability.
 	retargetNativeMoves(species, out, doubles);
 
-	// Keep at least four moves.
-	while (out.movepool.length < 4) {
+	// Keep at least four moves (in doubles, four that aren't ally-only:
+	// the FFA generator drops those).
+	const counted = () => doubles ? out.movepool.filter(n => !ALLY_ONLY_MOVES.has(toID(n))).length :
+		out.movepool.length;
+	while (counted() < 4) {
 		const filler = pickFiller(species, moveContextFor(species, out, doubles), side === 'Support' ? 'Mixed' : side,
 			out.movepool);
 
@@ -411,6 +457,30 @@ function retargetNativeMoves(species, out, doubles) {
 	// Headbutt was there for Serene Grace flinches.
 	if (own.includes('serenegrace')) {
 		swap('headbutt', m => m.type === 'Normal' && m.category === 'Physical' && m.basePower >= 80, true);
+	}
+
+	// Hunger Switch is gone once Morpeko Mega Evolves: Protect was
+	// there to flip its forme.
+	if (own.includes('hungerswitch') && !doubles && !/Protect/.test(out.role)) remove('protect');
+
+	// Transformation items can't be removed in Mix and Mega, so Knock
+	// Off is a plain 65 BP Dark attack: use a stronger Dark attack of
+	// the set's kind when there is one (Crunch, Throat Chop, Dark
+	// Pulse...), and drop it next to another Dark attack.
+	if (ids().has('knockoff')) {
+		const side = S.setSide(out);
+		const otherDark = out.movepool.some(n => {
+			const m = dex.moves.get(n);
+			return m.type === 'Dark' && m.category !== 'Status' && m.id !== 'knockoff' && !category.isUtility(m);
+		});
+
+		if (otherDark) {
+			remove('knockoff');
+		} else {
+			swap('knockoff', m => m.type === 'Dark' && m.category !== 'Status' && !category.isUtility(m) &&
+				m.basePower >= 70 && (side === 'Physical' || side === 'Special' ? m.category === side :
+				m.category === 'Physical'), true);
+		}
 	}
 
 	// Belly Drum relied on a berry (Unburden, Gluttony...) or Ice Face.
@@ -625,7 +695,20 @@ const PRANKSTER_MOVES = {
 	singles: ['thunderwave', 'willowisp', 'encore', 'taunt', 'spore', 'sleeppowder', 'glare', 'partingshot',
 		'toxic', 'reflect', 'lightscreen', 'substitute'],
 	doubles: ['tailwind', 'thunderwave', 'willowisp', 'encore', 'taunt', 'spore', 'sleeppowder', 'reflect',
-		'lightscreen', 'helpinghand'],
+		'lightscreen'],
+};
+// Moves that only help an ally: the FFA generator drops them, so
+// doubles templates keep at least four other moves.
+const ALLY_ONLY_MOVES = new Set(['followme', 'ragepowder', 'allyswitch', 'helpinghand', 'afteryou', 'coaching',
+	'decorate', 'instruct', 'aromaticmist', 'holdhands', 'spotlight', 'wideguard']);
+// Items' abilities that boost a kind of move, with the boost.
+const MOVE_BOOSTS = {
+	toughclaws: {test: m => !!m.flags.contact, mult: 1.3},
+	strongjaw: {test: m => !!m.flags.bite, mult: 1.5},
+	ironfist: {test: m => !!m.flags.punch, mult: 1.2},
+	sharpness: {test: m => !!m.flags.slicing, mult: 1.5},
+	megalauncher: {test: m => !!m.flags.pulse, mult: 1.5},
+	sheerforce: {test: m => secondariesOf(m).length > 0, mult: 1.3},
 };
 
 function secondariesOf(move) {
@@ -700,6 +783,7 @@ function adapt(species, set, stoneID, result, doubles) {
 		skillLink: ability === 'skilllink',
 		technician: ability === 'technician',
 		ate: !!ATE_TYPES[ability],
+		powerMod: moveBoost(ability),
 	};
 	// For swaps: how good a move is on its own, without the bonus for
 	// moves the NDSP set already had.
@@ -883,6 +967,32 @@ function adapt(species, set, stoneID, result, doubles) {
 		}
 	}
 
+	// The item's ability boosts a kind of move (Tough Claws contact
+	// moves, Strong Jaw bites, Sharpness slicing moves...): swap attacks
+	// for a boosted move of the same type and category when that is
+	// stronger (Earthquake -> High Horsepower with Tough Claws, Zen
+	// Headbutt -> Psycho Cut with Sharpness, Focus Blast -> Aura Sphere
+	// with Mega Launcher...).
+	const boost = MOVE_BOOSTS[ability];
+	if (boost) {
+		for (const move of attacks()) {
+			// Priority moves keep their job (Sucker Punch, Bullet Punch...).
+			if (boost.test(move) || category.isUtility(move) || required.includes(move.name) ||
+				move.priority > 0) continue;
+
+			const better = S.bestLearnable(species, plain, m => sameKind(move)(m) && boost.test(m) &&
+				!ids().has(m.id) && !dropped.has(m.id) && !(m.recoil && m.recoil[0] / m.recoil[1] >= 0.5));
+			// The current move's own value (it may be one that is never
+			// added on its own, like Sucker Punch).
+			const current = S.moveValue(move, {...plain, trusted: new Set([move.id])}) - 40;
+
+			if (better && S.moveValue(better, plain) > current + 5) {
+				pool[at(move.id)] = better.name;
+				dropped.add(move.id);
+			}
+		}
+	}
+
 	// Refill what the swaps above dropped before deciding the set's
 	// side (a support set down to one attack is still an attacker).
 	const fillTo4 = fillSide => {
@@ -1052,6 +1162,40 @@ function adapt(species, set, stoneID, result, doubles) {
 		}
 	}
 
+	// Weather-reliant abilities (Swift Swim, Solar Power, Sand Force):
+	// without a weather of its own the Pokémon sets it with the move,
+	// and brings attacks that use it.
+	const need = S.WEATHER_NEEDS[ability];
+	if (need && attackSide) {
+		const ownSetter = weatherSetterOf(species, set.abilities, ability);
+
+		if (!ownSetter && learnableID(species, need.move)) {
+			const name = dex.moves.get(need.move).name;
+			if (!ids().has(need.move)) pool.push(name);
+			required.splice(formeMove ? 1 : 0, 0, name);
+		}
+
+		if (ownSetter || ids().has(need.move)) {
+			if (ability === 'solarpower') {
+				ensure(m => m.type === 'Fire' && m.category === 'Special' && m.basePower >= 70);
+				for (const move of attacks()) {
+					if (move.type === 'Water' && !result.mixed.types.includes('Water')) removeID(move.id);
+				}
+			} else if (ability === 'sandforce') {
+				ensure(m => ['Rock', 'Ground', 'Steel'].includes(m.type) && m.basePower >= 70);
+			} else if (ability === 'swiftswim' && attackSide !== 'Physical') {
+				// Thunder and Hurricane never miss in rain.
+				for (const [weak, strong] of [['thunderbolt', 'thunder'], ['airslash', 'hurricane']]) {
+					const index = at(weak);
+					if (index >= 0 && learnableID(species, strong) && !ids().has(strong)) {
+						pool[index] = dex.moves.get(strong).name;
+						required.push(pool[index]);
+					}
+				}
+			}
+		}
+	}
+
 	// Sun (Drought, Mega Sol) halves Water attacks: keep only STAB ones.
 	if (megaWeather === 'sun' && ability !== 'desolateland') {
 		for (const move of attacks()) {
@@ -1135,8 +1279,14 @@ function adapt(species, set, stoneID, result, doubles) {
 		pool.splice(pool.indexOf(drop), 1);
 	}
 
-	// Always leave the generator at least four moves.
+	// Always leave the generator at least four moves, and in doubles
+	// four that aren't ally-only (the FFA generator drops those).
 	fillTo4(attackSide || 'Mixed');
+	while (doubles && pool.filter(n => !ALLY_ONLY_MOVES.has(toID(n))).length < 4) {
+		const filler = pickFiller(species, context, attackSide || 'Mixed', pool, dropped);
+		if (!filler) break;
+		pool.push(filler.name);
+	}
 
 	return {
 		// Setup sets that lost their setup move (Contrary...) become attackers.
@@ -1151,6 +1301,12 @@ function adapt(species, set, stoneID, result, doubles) {
 // it Mega Evolves. Drop a weather of its own that the item's
 // weather would fight with (Drought with Abomasite).
 function templateAbilities(species, abilities, stoneID) {
+	// Swift Swim / Solar Power / Sand Force holders that can set the
+	// weather on switching in always do (Drizzle Pelipper with
+	// Swampertite, Drought Ninetales with Houndoominite...).
+	const weatherSetter = weatherSetterOf(species, abilities, STONE_INFO.get(stoneID).ability);
+	if (weatherSetter) return [weatherSetter];
+
 	const megaWeather = WEATHER_OF[STONE_INFO.get(stoneID).ability];
 	const setter = id => ['drought', 'drizzle', 'sandstream', 'snowwarning', 'orichalcumpulse'].includes(id);
 	const clash = name => megaWeather && setter(toID(name)) && WEATHER_OF[toID(name)] !== megaWeather;
@@ -1169,6 +1325,28 @@ function templateAbilities(species, abilities, stoneID) {
 
 const BULKY_SETUP = new Set(['Bulky Setup', 'Doubles Bulky Setup']);
 
+// The Pokémon's own ability that sets the weather an item's ability
+// needs (Drizzle for Swift Swim...): one listed on the set, or else a
+// legal one of the species.
+function weatherSetterOf(species, abilities, abilityID) {
+	const need = S.WEATHER_NEEDS[abilityID];
+	if (!need) return null;
+
+	const listed = (abilities || []).find(a => need.setters.includes(toID(a)));
+	if (listed) return listed;
+
+	return Object.entries(species.abilities)
+		.filter(([slot]) => slot !== 'S')
+		.map(([, name]) => name)
+		.find(name => need.setters.includes(toID(name))) || null;
+}
+
+// Power multiplier from an item's ability for picking moves.
+function moveBoost(abilityID) {
+	const boost = MOVE_BOOSTS[abilityID];
+	return boost ? move => boost.test(move) ? boost.mult : 1 : null;
+}
+
 function learnableID(species, id) {
 	return S.learnable(species).has(id);
 }
@@ -1184,6 +1362,8 @@ function buildPool(file, doubles) {
 	const entries = [];
 
 	for (const id of ids) {
+		if (DROP_SPECIES.has(id)) continue;
+
 		const species = dex.species.get(id);
 		const sets = cleanSpecies(species, overrideSets(species, source[id], doubles), doubles);
 
@@ -1208,6 +1388,15 @@ function buildPool(file, doubles) {
 
 		const sets = cleanSpecies(species, data.sets, doubles);
 		if (!sets.length) continue;
+
+		// Crowned Zacian / Zamazenta are generated as their Hero formes
+		// holding the Rusted item, which turns Iron Head into Behemoth
+		// Blade / Bash at the start of the battle: list Iron Head (the
+		// legal move).
+		for (const set of sets) {
+			set.movepool = set.movepool.map(name =>
+				['behemothblade', 'behemothbash'].includes(toID(name)) ? 'Iron Head' : name);
+		}
 
 		fixed.push({species, level: data.level, sets, item: STONE_INFO.get(own).stone.name});
 		fixedUsage.set(own, (fixedUsage.get(own) || 0) + 1);

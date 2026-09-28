@@ -17,9 +17,11 @@
  *   required   moves the mix relies on (e.g. a Normal move for
  *              Pixilate); always included in the final set
  *
- * Built on the NDSP generator, so FFA keeps its move filters
- * (no Wide Guard / Follow Me / Rage Powder) and ally-only
- * abilities are avoided outside 2v2.
+ * Built on the NDSP generator, so ally-only abilities are avoided
+ * outside 2v2. FFA and 2v2 share the doubles pool: in FFA, moves
+ * that only help an ally (Helping Hand, Follow Me, Coaching...) are
+ * taken out of the template first (the builder leaves every doubles
+ * template at least four other moves).
  */
 import {NDSharedPowerTeams} from '../ndsharedpower/teams';
 
@@ -28,6 +30,12 @@ interface NDMnMTemplate extends RandomTeamsTypes.RandomSetData {
 	level?: number;
 	required?: string[];
 }
+
+/** Moves that only help an ally: useless when every other Pokémon is a foe. */
+const FFA_REMOVED_MOVES = new Set([
+	'followme', 'ragepowder', 'allyswitch', 'helpinghand', 'afteryou', 'coaching', 'decorate', 'instruct',
+	'aromaticmist', 'holdhands', 'spotlight', 'wideguard',
+]);
 
 const PROTECTED_STATUS = new Set([
 	'protect', 'detect', 'spikyshield', 'kingsshield', 'banefulbunker', 'silktrap',
@@ -68,6 +76,16 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 	 * Skip a Pokémon when every item it can hold is already on the
 	 * team (one of each item per team, like Mix and Mega).
 	 */
+	/*
+	 * Keep Pikachu in its usual forme: the cap formes can't learn some
+	 * of the moves its templates give it (Double-Edge for Aerilate...).
+	 */
+	override getForme(species: Species): string {
+		if (species.baseSpecies === 'Pikachu') return species.name;
+
+		return super.getForme(species);
+	}
+
 	override getPokemonCompatibility(
 		species: Species,
 		pokemon: RandomTeamsTypes.RandomSet[],
@@ -92,6 +110,7 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 		const table = isDoubles ? this.randomDoublesSets : this.randomSets;
 		const data = table[species.id];
 		const all = data.sets as NDMnMTemplate[];
+		const isFFA = this.format.gameType === 'freeforall';
 
 		// Prefer a stone the team doesn't have yet.
 		const fresh = all.filter(t => !this.ndmnmUsedStones.has(this.dex.toID(t.item)));
@@ -104,6 +123,16 @@ export class NDMixAndMegaTeams extends NDSharedPowerTeams {
 		for (let attempt = 0; ; attempt++) {
 			const index = this.random(options.length);
 			template = options[index];
+
+			// No allies to help in FFA.
+			if (isFFA) {
+				const useful = (name: string) => !FFA_REMOVED_MOVES.has(this.dex.toID(name));
+				template = {
+					...template,
+					movepool: template.movepool.filter(useful),
+					...(template.required ? {required: template.required.filter(useful)} : {}),
+				};
+			}
 
 			// The Gen 9 generator skips Fast Bulky Setup sets for
 			// Paradox leads; don't let that leave it with no set.
