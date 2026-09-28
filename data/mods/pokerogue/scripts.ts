@@ -10,6 +10,7 @@
  *  - Gigantamax forms work like Mega Evolutions: hold Galarica Wreath
  *    (or Max Mushrooms)
  *  - singles tiers (tiers.ts)
+ *  - Pokémon Champions' move / ability changes (champions-changes.ts)
  *
  * init() puts the PokéRogue info on each species' data:
  *   species.pokeRogue  true for everything in the PokéRogue dex
@@ -32,6 +33,7 @@ import {Scripts as PokebilitiesScripts} from '../pokebilities/scripts';
 import {Abilities as PokebilitiesAbilities} from '../pokebilities/abilities';
 import {PokeRogueData} from './pokerogue-data';
 import {PokeRogueTiers} from './tiers';
+import {applyChampionsChanges, championsCalculatePP} from './champions-changes';
 
 /** In the PokéRogue dex but impossible to get in these formats. */
 const EXCLUDED_SPECIES = new Set([
@@ -114,6 +116,9 @@ export function updatePassive(pokemon: Pokemon, announce = true) {
 
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
+
+	// Pokémon Champions' PP formula (see champions-changes.ts).
+	calculatePP: championsCalculatePP,
 
 	init() {
 		const toID = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -220,6 +225,9 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 
+		// Pokémon Champions' move and ability changes (not its move bans).
+		applyChampionsChanges(this);
+
 		// Every move in a PokéRogue move list is usable (LGPE partner moves,
 		// Legends: Z-A moves, ...).
 		for (const id in this.data.Learnsets) {
@@ -264,6 +272,11 @@ export const Scripts: ModdedBattleScriptsData = {
 	pokemon: {
 		ignoringAbility: PokebilitiesScripts.pokemon!.ignoringAbility,
 		hasAbility: PokebilitiesScripts.pokemon!.hasAbility,
+		// Champions: Rage Fist's counter resets when the Pokémon switches out.
+		clearVolatile(includeSwitchFlags) {
+			Pokemon.prototype.clearVolatile.call(this, includeSwitchFlags);
+			this.timesAttacked = 0;
+		},
 		// Transform / Imposter copy the target's passive along with its ability.
 		transformInto(pokemon, effect) {
 			const transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);

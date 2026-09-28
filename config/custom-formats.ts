@@ -624,7 +624,8 @@ const ndmnmHooks = {
  * ===========================================================
  *
  * Build-your-own-team Mix and Mega on the full National Dex (the
- * official mixandmega mod): any Pokémon can hold any Mega Stone,
+ * official mixandmega mod, with Pokémon Champions' move / ability
+ * changes: data/mods/ndmixandmegabuilder): any Pokémon can hold any Mega Stone,
  * Primal Orb, Rusted item, Origin item, Mask, Plate, Memory or Drive
  * and gains that forme's stat changes, ability and type.
  *
@@ -1034,7 +1035,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		desc: 'National Dex Mix and Mega: any Pokémon can Mega Evolve with any Mega Stone (or use any Primal Orb, ' +
 			'Rusted item, Origin item, Mask, Plate, Memory or Drive) and gains its stat changes, ability and type. ' +
 			'One of each item per team; Pokémon are tiered by their own National Dex tier.',
-		mod: 'mixandmega',
+		mod: 'ndmixandmegabuilder',
 		ruleset: ['Standard NatDex', 'Terastal Clause'],
 		banlist: [
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock", 'Quick Claw',
@@ -1048,7 +1049,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: '[Gen 9] ND Mix and Mega Ubers',
 		desc: 'National Dex Mix and Mega with the Ubers. Restricted Legendaries (and a few others) can only use ' +
 			'their own Mega Stone / Orb / item; everyone else can use any.',
-		mod: 'mixandmega',
+		mod: 'ndmixandmegabuilder',
 		ruleset: [
 			'Standard NatDex', 'Terastal Clause', '!Evasion Clause', 'Evasion Moves Clause', 'Evasion Items Clause',
 			'Mega Rayquaza Clause',
@@ -1065,7 +1066,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		name: '[Gen 9] ND Mix and Mega AG',
 		desc: 'National Dex Mix and Mega Anything Goes: every Pokémon can use any transformation item (one of each ' +
 			'per team).',
-		mod: 'mixandmega',
+		mod: 'ndmixandmegabuilder',
 		ruleset: ['Standard AG', 'NatDex Mod', 'Terastal Clause'],
 		...mnmBuilderHooks,
 	},
@@ -1073,7 +1074,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		// Four players, p1 + p3 vs p2 + p4; each brings 6 and picks 3, and controls one active Pokémon.
 		name: '[Gen 9] ND Mix and Mega 2v2 (Teambuilder)',
 		desc: 'Four-player 2v2 Multi Battle with your own National Dex Mix and Mega teams. Bring 6, pick 3.',
-		mod: 'mixandmega',
+		mod: 'ndmixandmegabuilder',
 		gameType: 'multi',
 		rated: false,
 		searchShow: false,
