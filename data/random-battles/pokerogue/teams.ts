@@ -3,33 +3,52 @@
  * POKÉROGUE RANDOM TEAMS
  * ===========================================================
  *
- * Random teams for [Gen 9] PokeRogue Random Battle (singles) and
- * [Gen 9] PokeRogue FFA Random Battle. Built on Showdown's Gen 9
- * generator with set data from tools/pokerogue/build-random-sets.cjs,
- * which adds two fields to each set:
+ * Random teams for [Gen 9] PokeRogue Random Battle (singles),
+ * [Gen 9] PokeRogue FFA Random Battle and [Gen 9] PokeRogue 2v2.
+ * Built on Showdown's Gen 9 generator with set data from
+ * tools/pokerogue/build-random-sets.cjs:
+ *
+ *   sets.json          singles
+ *   ffa-sets.json      FFA: singles-style, self-sufficient sets, generated
+ *                      with the singles logic (no ally in a free-for-all)
+ *   doubles-sets.json  2v2: doubles sets (Protect, Fake Out, redirection,
+ *                      Helping Hand, speed control, spread attacks...)
+ *
+ * The builder adds these fields to each set:
  *
  *   level      this set's level (lower when its passive / egg moves
  *              make it stronger)
  *   required   moves the set is built around (egg moves, passive
  *              moves like Aerilate Extreme Speed); always kept
+ *   item       an item the set always holds (Ultranecrozium Z, fixed sets)
+ *   fixed      a set the user wrote (FIXED_SETS in the builder): its four
+ *              moves and its ability are used exactly as written, with
+ *   nature     its nature and
+ *   gender     its gender
  *
  * Megas and Gigantamax forms (Max Mushrooms) have their own entries;
  * a team gets at most one of them, since only one can transform per
  * battle.
  */
 import RandomTeams, {MoveCounter} from '../gen9/teams';
+import type {PRNG, PRNGSeed} from '../../../sim/prng';
 
 interface PokeRogueTemplate extends RandomTeamsTypes.RandomSetData {
 	level?: number;
 	required?: string[];
+	item?: string;
+	fixed?: boolean;
+	nature?: string;
+	gender?: string;
 }
 
 /** Moves that only help an ally: useless when every other Pokémon is a foe. */
 const FFA_REMOVED_MOVES = new Set([
 	'followme', 'ragepowder', 'allyswitch', 'helpinghand', 'afteryou', 'coaching', 'decorate', 'instruct',
-	'aromaticmist', 'holdhands', 'spotlight',
+	'aromaticmist', 'holdhands', 'spotlight', 'healpulse', 'floralhealing', 'lifedew', 'quash', 'wideguard',
+	'quickguard', 'matblock', 'craftyshield',
 ]);
-/** Abilities that only affect an ally. */
+/** Abilities that only affect an ally (useless in singles and FFA). */
 const ALLY_ONLY_ABILITIES = new Set([
 	'battery', 'commander', 'costar', 'curiousmedicine', 'friendguard', 'healer', 'hospitality', 'minus', 'plus',
 	'powerofalchemy', 'powerspot', 'receiver', 'symbiosis', 'telepathy',
@@ -38,6 +57,11 @@ const KEEP_STATUS = new Set([
 	'protect', 'detect', 'spikyshield', 'kingsshield', 'banefulbunker', 'silktrap', 'burningbulwark', 'recover',
 	'roost', 'softboiled', 'moonlight', 'morningsun', 'synthesis', 'slackoff', 'milkdrink', 'shoreup',
 	'strengthsap', 'wish', 'healorder', 'lunarblessing', 'spore', 'revivalblessing', 'stealthrock', 'stickyweb',
+]);
+/** 2v2: moves a doubles set is built around (kept over optional moves). */
+const DOUBLES_KEEP = new Set([
+	'followme', 'ragepowder', 'fakeout', 'helpinghand', 'tailwind', 'trickroom', 'wideguard', 'coaching', 'decorate',
+	'instruct', 'pollenpuff', 'icywind', 'electroweb', 'snarl',
 ]);
 /** Status moves that still work with a Choice item. */
 const CHOICE_STATUS = new Set(['trick', 'switcheroo', 'healingwish', 'lunardance', 'memento', 'partingshot']);
@@ -48,6 +72,34 @@ const ATE: {[passive: string]: string} = {
 export class PokeRogueTeams extends RandomTeams {
 	override randomSets: {[species: string]: RandomTeamsTypes.RandomSpeciesData} = require('./sets.json');
 	override randomDoublesSets: {[species: string]: RandomTeamsTypes.RandomSpeciesData} = require('./doubles-sets.json');
+	randomFFASets: {[species: string]: RandomTeamsTypes.RandomSpeciesData} = require('./ffa-sets.json');
+
+	constructor(format: Format | string, prng: PRNG | PRNGSeed | null) {
+		super(format, prng);
+		// FFA: its own pool, for both the team (species list) and the sets.
+		if (this.isFFA) {
+			this.randomSets = this.randomFFASets;
+			this.randomDoublesSets = this.randomFFASets;
+		}
+	}
+
+	protected get isFFA() {
+		return this.format.gameType === 'freeforall';
+	}
+
+	/** Formats where each Pokémon has an ally next to it. */
+	protected get hasAllies() {
+		return this.format.gameType === 'doubles' || this.format.gameType === 'multi';
+	}
+
+	/**
+	 * The Gen 9 move pool culling can look up a MOVE_PAIRS move that an
+	 * earlier pair already removed (Protect with both Wish and Leech Seed).
+	 */
+	override fastPop(list: any[], index: number) {
+		if (index === -1) return undefined;
+		return super.fastPop(list, index);
+	}
 
 	/** Megas and Gigantamax forms: species that need their transformation item. */
 	protected isTransformation(species: Species) {
@@ -116,8 +168,11 @@ export class PokeRogueTeams extends RandomTeams {
 		teraType: string,
 		role: RandomTeamsTypes.Role,
 	): string {
-		// No allies in singles or FFA.
-		const useful = abilities.filter(a => !ALLY_ONLY_ABILITIES.has(this.dex.toID(a)));
+		// No allies in singles or FFA (and no Dondozo to command in 2v2).
+		const useful = abilities.filter(a => {
+			const id = this.dex.toID(a);
+			return this.hasAllies ? id !== 'commander' : !ALLY_ONLY_ABILITIES.has(id);
+		});
 		return super.getAbility(types, moves, useful.length ? useful : abilities, counter, teamDetails, species,
 			isLead, isDoubles, teraType, role);
 	}
@@ -129,10 +184,12 @@ export class PokeRogueTeams extends RandomTeams {
 		isDoubles = false
 	): RandomTeamsTypes.RandomSet {
 		const species = this.dex.species.get(s);
+		const isFFA = this.isFFA;
+		// FFA sets are singles sets: no ally, so the singles move / item logic fits.
+		if (isFFA) isDoubles = false;
 		const table = isDoubles ? this.randomDoublesSets : this.randomSets;
 		const data = table[species.id];
 		const all = data.sets as PokeRogueTemplate[];
-		const isFFA = this.format.gameType === 'freeforall';
 
 		const options = [...all];
 		let template!: PokeRogueTemplate;
@@ -160,9 +217,12 @@ export class PokeRogueTeams extends RandomTeams {
 			}
 		}
 
+		if (template.fixed) return this.applyFixedSet(set, template);
 		this.addRequiredMoves(set, template, species);
 		this.trimMoves(set, template, species);
+		this.fillMoves(set, template);
 		if (typeof template.level === 'number' && !this.adjustLevel) set.level = template.level;
+		if (template.item) set.item = template.item;
 		// Gigantamax with Galarica Wreath (an item every client knows)
 		if (set.item === 'Max Mushrooms') set.item = 'Galarica Wreath';
 		this.fixChoiceItem(set);
@@ -210,11 +270,16 @@ export class PokeRogueTeams extends RandomTeams {
 
 			const rank = ({move}: {move: Move}) => {
 				if (needed.category !== 'Status' && move.category !== 'Status' && typeOf(move) === typeOf(needed)) return 0;
+				if (this.hasAllies && DOUBLES_KEEP.has(move.id)) return 5;
 				if (move.category === 'Status') {
 					if (KEEP_STATUS.has(move.id) || (move.boosts && move.target === 'self')) return 5;
 					return 1;
 				}
 				const stab = species.types.includes(typeOf(move));
+				// never replace the only STAB attack
+				const stabAttacks = set.moves.map(m => this.dex.moves.get(m))
+					.filter(m => m.category !== 'Status' && species.types.includes(typeOf(m)));
+				if (stab && stabAttacks.length === 1) return 6;
 				return (stab ? 4 : 2) + move.basePower / 1000;
 			};
 			candidates.sort((a, b) => rank(a) - rank(b));
@@ -246,6 +311,33 @@ export class PokeRogueTeams extends RandomTeams {
 			let worst = 0;
 			for (let i = 1; i < moves.length; i++) if (score(moves[i]) < score(moves[worst])) worst = i;
 			set.moves.splice(worst, 1);
+		}
+	}
+
+	/** A set written by hand: exactly its moves, ability, item, nature and gender. */
+	protected applyFixedSet(set: RandomTeamsTypes.RandomSet, template: PokeRogueTemplate) {
+		set.moves = template.movepool.map(m => this.dex.toID(m));
+		// Hidden Power's type comes from the move name (Hidden Power Rock)
+		const hiddenPower = set.moves.find(id => id.startsWith('hiddenpower') && id !== 'hiddenpower');
+		if (hiddenPower) set.hpType = this.dex.types.get(hiddenPower.slice(11)).name;
+		set.ability = template.abilities![0];
+		if (template.item) set.item = template.item;
+		if (template.nature) set.nature = template.nature;
+		if (template.gender) set.gender = template.gender;
+		if (typeof template.level === 'number' && !this.adjustLevel) set.level = template.level;
+		set.evs = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+		return set;
+	}
+
+	/**
+	 * The Gen 9 generator can stop at three moves when the only moves left
+	 * are MOVE_PAIRS it has no room for (Leech Seed + Protect / Substitute).
+	 */
+	protected fillMoves(set: RandomTeamsTypes.RandomSet, template: PokeRogueTemplate) {
+		const have = new Set(set.moves.map(m => this.dex.toID(m)));
+		const rest = template.movepool.map(m => this.dex.toID(m)).filter(id => !have.has(id));
+		while (set.moves.length < this.maxMoveCount && rest.length) {
+			set.moves.push(this.sampleNoReplace(rest));
 		}
 	}
 
