@@ -93,7 +93,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Chimecho-Mega': 'RU',
 	// 154 Atk / 151 Spe with Sharpness as its passive.
 	'Absol-Mega-Z': 'Uber',
-	'Staraptor-Mega': 'RU',
+	// 140 Atk / 110 Spe Contrary (Close Combat raises its defenses) with a Rock Head passive (recoil-free Brave Bird).
+	'Staraptor-Mega': 'Uber',
 	// 151 Spe mixed attacker (130 / 141) with a Levitate passive: outspeeds all of OU.
 	'Garchomp-Mega-Z': 'Uber',
 	// 164 Sp. Atk / 151 Spe, Mega Launcher Aura Sphere / Dark Pulse.
