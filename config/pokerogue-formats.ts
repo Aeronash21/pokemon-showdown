@@ -60,6 +60,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Articuno-Galar + Serene Grace', // 40% freeze Freezing Glare
+			'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Drampa-Mega + Adaptability', // 160 Sp. Atk Adaptability Boomburst / Draco Meteor
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
