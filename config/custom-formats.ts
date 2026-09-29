@@ -677,13 +677,20 @@ const MNM_OU_STONE_BANS = [
 	'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Lucarionite Z', 'Malamarite', 'Mawilite',
 	'Medichamite', 'Pidgeotite', 'Raichunite Y', 'Red Orb', 'Scovillainite', 'Starminite', 'Zygardite',
 ];
-/** Can only use their own transformation item (official Mix and Mega list). */
+/**
+ * Can only use their own transformation item: only the really strong ones
+ * (by request; the official Mix and Mega list is longer). Ubers adds every
+ * Restricted Legendary plus Darkrai, Magearna and Marshadow.
+ */
 const MNM_RESTRICTED = [
-	'Arceus', 'Calyrex-Ice', 'Ceruledge', 'Deoxys-Normal', 'Deoxys-Attack', 'Dialga', 'Eternatus', 'Flutter Mane',
-	'Gholdengo', 'Giratina', 'Gouging Fire', 'Groudon', 'Ho-Oh', 'Iron Bundle', 'Kyurem-Black', 'Kyurem-White',
-	'Lugia', 'Lunala', 'Manaphy', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza',
-	'Regigigas', 'Reshiram', 'Slaking', 'Sneasler', 'Solgaleo', 'Ursaluna-Bloodmoon', 'Urshifu-Single-Strike',
-	'Walking Wake', 'Zacian', 'Zekrom',
+	// box legends
+	'Calyrex-Ice', 'Dialga', 'Eternatus', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyurem-Black', 'Kyurem-White', 'Lugia',
+	'Lunala', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Solgaleo',
+	'Zacian', 'Zekrom',
+	// Mythicals as strong as them
+	'Arceus', 'Deoxys-Normal', 'Deoxys-Attack',
+	// any Mega Stone would replace Truant / Slow Start
+	'Regigigas', 'Slaking',
 ];
 
 export const Formats: import('../sim/dex-formats').FormatList = [
@@ -1089,7 +1096,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			// doubles (official Mix and Mega Doubles list)
 			'Banettite', 'Blue Orb', 'Magearnite', 'Staraptite',
 		],
-		restricted: [...MNM_RESTRICTED, 'Dondozo', 'Urshifu-Rapid-Strike'],
+		restricted: MNM_RESTRICTED,
 		...mnmBuilderHooks,
 	},
 
