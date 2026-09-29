@@ -689,9 +689,9 @@ const MNM_RESTRICTED = [
 	'Zacian', 'Zekrom',
 	// Mythicals as strong as them
 	'Arceus', 'Deoxys-Normal', 'Deoxys-Attack',
-	// any Mega Stone would replace Truant / Slow Start
-	'Regigigas', 'Slaking',
 ];
+/** OU / 2v2 only: any Mega Stone would replace Truant / Slow Start (fine in Ubers). */
+const MNM_RESTRICTED_OU = [...MNM_RESTRICTED, 'Regigigas', 'Slaking'];
 
 export const Formats: import('../sim/dex-formats').FormatList = [
 	{
@@ -1049,7 +1049,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
 			...MNM_OU_STONE_BANS,
 		],
-		restricted: MNM_RESTRICTED,
+		restricted: MNM_RESTRICTED_OU,
 		...mnmBuilderHooks,
 	},
 	{
@@ -1096,7 +1096,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			// doubles (official Mix and Mega Doubles list)
 			'Banettite', 'Blue Orb', 'Magearnite', 'Staraptite',
 		],
-		restricted: MNM_RESTRICTED,
+		restricted: MNM_RESTRICTED_OU,
 		...mnmBuilderHooks,
 	},
 
