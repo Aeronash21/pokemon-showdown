@@ -52,7 +52,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
 			// PokéRogue: egg move / passive additions
 			'Revival Blessing', 'Simple', 'Primordial Sea', 'Desolate Land',
-			'Regigigas', // Normalize + Scrappy passive (160 Atk boosted Normal STAB that hits everything) and Recover
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
 			'Garchomp', // Dragon Dance, Dragon Hammer and Bitter Blade egg moves (and its Megas)
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
