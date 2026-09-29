@@ -54,6 +54,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Revival Blessing', 'Simple', 'Primordial Sea', 'Desolate Land',
 			'Regigigas', // Normalize + Scrappy passive (160 Atk boosted Normal STAB that hits everything) and Recover
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
+			'Garchomp', // Dragon Dance, Dragon Hammer and Bitter Blade egg moves (and its Megas)
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
 			// boosted by their passive: these Pokémon are legal, just without the move
 			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
