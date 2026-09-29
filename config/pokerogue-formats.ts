@@ -64,7 +64,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
-			'Drampa-Mega + Adaptability', // 160 Sp. Atk Adaptability Boomburst / Draco Meteor
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
 			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
