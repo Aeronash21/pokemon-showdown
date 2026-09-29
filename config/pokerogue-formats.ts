@@ -51,7 +51,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
 			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
 			// PokéRogue: egg move / passive additions
-			'Revival Blessing', 'Simple', 'Primordial Sea', 'Desolate Land',
+			'Revival Blessing', 'Simple',
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
 			'Garchomp', // Dragon Dance, Dragon Hammer and Bitter Blade egg moves (and its Megas)
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
@@ -69,6 +69,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
 			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
+			'Manaphy + Primordial Sea', // Tail Glow / Take Heart in its own unremovable heavy rain
 			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
 			'Swampert-Mega + Drizzle', // sets its own rain for Swift Swim
 			// Legendaries with a Drizzle passive: their own rain (100% accurate Thunder /
