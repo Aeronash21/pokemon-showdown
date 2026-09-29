@@ -104,8 +104,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	// Darkrai is already Uber; the Mega has 165 Sp. Atk and 130 / 130 defenses.
 	'Darkrai-Mega': 'Uber',
 	'Emboar-Mega': 'RU',
-	// 165 Atk / 103 Spe; Piercing Drill plus a Mold Breaker passive.
-	'Excadrill-Mega': 'Uber',
+	// 165 Atk / 103 Spe; Piercing Drill plus a Mold Breaker passive. OU by request.
+	'Excadrill-Mega': 'OU',
 	'Gardevoir-Mega': 'Uber', // Pixilate Hyper Voice with a Psychic Surge passive (Expanding Force)
 	'Scolipede-Mega': 'RU',
 	'Scrafty-Mega': 'RU',
