@@ -3894,8 +3894,7 @@
 					"Knock Off",
 					"U-turn",
 					"Tail Slap",
-					"Heart Stamp",
-					"Sizzly Slide"
+					"Heart Stamp"
 				],
 				"abilities": [
 					"Technician"
@@ -3905,9 +3904,9 @@
 				],
 				"required": [
 					"Tail Slap",
-					"Sizzly Slide"
+					"Heart Stamp"
 				],
-				"level": 88
+				"level": 89
 			},
 			{
 				"role": "Setup Sweeper",
@@ -38539,7 +38538,7 @@
 					"Body Press",
 					"Play Rough",
 					"Poltergeist",
-					"Sizzly Slide",
+					"Fire Fang",
 					"Ice Fang"
 				],
 				"abilities": [

@@ -67,6 +67,13 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 	snorlaxgmax: 'Comatose',
 };
 
+/**
+ * Moves that only Pokémon learning them naturally can use: PokéRogue hands
+ * them out as egg moves, and those egg-move users can't have them.
+ * Sizzly Slide (100% burn): Partner Eevee and Flareon only.
+ */
+const NATURAL_ONLY_MOVES = ['sizzlyslide'];
+
 /** Abilities changed from PokéRogue's (the form's only ability). */
 const ABILITY_CHANGES: {[speciesid: string]: string} = {
 	machampgmax: 'No Guard', // was Guts (needs a Flame Orb; it holds Max Mushrooms)
@@ -244,6 +251,22 @@ export const Scripts: ModdedBattleScriptsData = {
 					this.modData('Learnsets', id).learnset![moveid] = prevoMoves![moveid];
 				}
 				prevo = this.data.Pokedex[prevoID]?.prevo;
+			}
+		}
+
+		// Moves only the Pokémon that learn them naturally (level-up, TM...) keep:
+		// as a PokéRogue egg move (inherited by evolutions too) they're gone.
+		for (const id of legal) {
+			const learnset = this.data.Learnsets[id]?.learnset;
+			if (!learnset) continue;
+			for (const moveid of NATURAL_ONLY_MOVES) {
+				const sources = learnset[moveid];
+				if (!sources) continue;
+				const kept = sources.filter(source => !/^\d+E/.test(source));
+				if (kept.length === sources.length) continue;
+				const modLearnset = this.modData('Learnsets', id).learnset!;
+				if (kept.length) modLearnset[moveid] = kept;
+				else delete modLearnset[moveid];
 			}
 		}
 
