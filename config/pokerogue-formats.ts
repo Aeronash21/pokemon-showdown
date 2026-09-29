@@ -69,6 +69,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
 			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
+			'Bisharp + Sword of Ruin', // Eviolite Bisharp with Sword of Ruin
 			'Manaphy + Primordial Sea', // Tail Glow / Take Heart in its own unremovable heavy rain
 			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
 			'Swampert-Mega + Drizzle', // sets its own rain for Swift Swim
@@ -93,7 +94,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// PokéRogue
 			'Moody',
 			'Zygardite', // Zygarde-Mega (778 BST)
-			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Arceus + Adaptability', // Adaptability Multi-Attack / Judgment of any type, plus No Retreat
 			'Deoxys-Attack + Adaptability', // 180 / 180 attacking stats with 2x STAB
