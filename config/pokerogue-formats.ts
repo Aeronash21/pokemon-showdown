@@ -57,6 +57,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// boosted by their passive: these Pokémon are legal, just without the move
 			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
 			'Zapdos-Galar + Bolt Beak',
+			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Articuno-Galar + Serene Grace', // 40% freeze Freezing Glare
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
@@ -88,6 +89,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// PokéRogue
 			'Moody',
 			'Zygardite', // Zygarde-Mega (778 BST)
+			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Arceus + Adaptability', // Adaptability Multi-Attack / Judgment of any type, plus No Retreat
 			'Deoxys-Attack + Adaptability', // 180 / 180 attacking stats with 2x STAB
@@ -163,6 +165,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Mythicals at Restricted Legendary strength (allowed in VGC Restricted)
 			...RESTRICTED_MYTHICALS,
 			'Zeraorite', // Zeraora-Mega: 700 BST, Uber in singles
+			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Manaphy + Primordial Sea', // unremovable heavy rain with no Restricted weather to answer it
 			'Smeargle + Prankster', // priority Spore
@@ -181,6 +184,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		unbanlist: ['Mythical'],
 		restricted: ['Restricted Legendary', ...RESTRICTED_MYTHICALS],
 		banlist: [
+			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Arceus + Adaptability', // as in Ubers: Adaptability Multi-Attack / Judgment of any type
 			'Smeargle + Prankster', // priority Spore
