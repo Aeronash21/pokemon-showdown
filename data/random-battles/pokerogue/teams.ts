@@ -94,6 +94,20 @@ const PASSIVE_MOVE_BANS = new Set([
 ]);
 const PASSIVE_ITEM_SWAPPABLE = new Set(['Leftovers', 'Heavy-Duty Boots', 'Sitrus Berry', 'Expert Belt', 'Life Orb',
 	'Black Sludge']);
+/** Abilities / passives that boost a kind of move: the set gets a strong move of that kind. */
+const MOVE_ABILITIES = ['ironfist', 'strongjaw', 'megalauncher', 'sharpness', 'punkrock', 'toughclaws', 'reckless',
+	'technician', 'skilllink', 'transistor', 'dragonsmaw', 'steelworker', 'steelyspirit', 'rockypayload', 'waterbubble',
+	'darkaura', 'fairyaura', 'galewings', 'triage', 'noguard', 'sheerforce', 'contrary', ...Object.keys(ATE)];
+/** Attacks kept for what they do, not their power (never swapped for a stronger move of the same kind). */
+const UTILITY_ATTACKS = new Set([...PIVOT_MOVES, 'rapidspin', 'mortalspin', 'knockoff', 'fakeout', 'nuzzle', 'icywind',
+	'electroweb', 'snarl', 'foulplay', 'seismictoss', 'nightshade', 'superfang', 'saltcure', 'firstimpression', 'suckerpunch',
+	'bodypress', 'dragontail', 'circlethrow', 'trick', 'ruination', 'finalgambit', 'endeavor', 'counter', 'mirrorcoat']);
+/** Moves whose base power isn't in the data (friendship, weight...): about what they hit for. */
+const VARIABLE_POWER: {[moveid: string]: number} = {
+	return: 102, frustration: 102, pikapapow: 102, veeveevolley: 102, lowkick: 80, grassknot: 80, heavyslam: 80,
+	heatcrash: 80, gyroball: 60, electroball: 60, risingvoltage: 105, expandingforce: 100, terrainpulse: 75, eruption: 120, waterspout: 120, dragonenergy: 120, crushgrip: 96,
+	wringout: 96, acrobatics: 90, storedpower: 60, powertrip: 60, punishment: 60, flail: 100, reversal: 100,
+};
 
 export class PokeRogueTeams extends RandomTeams {
 	override randomSets: {[species: string]: RandomTeamsTypes.RandomSpeciesData} = require('./sets.json');
@@ -160,6 +174,9 @@ export class PokeRogueTeams extends RandomTeams {
 	 * Gen 9 generator hands out).
 	 */
 	override getForme(species: Species): string {
+		// Partner Pikachu stays Partner Pikachu (the Gen 9 generator turns every
+		// Pikachu into a random one).
+		if (species.id === 'pikachustarter') return species.name;
 		const forme = super.getForme(species);
 		const result = this.dex.species.get(forme);
 		if ((result as AnyObject).pokeRogue) return forme;
@@ -383,8 +400,8 @@ export class PokeRogueTeams extends RandomTeams {
 	}
 
 	/**
-	 * How much the passive (and the weather / terrain it sets) is worth to
-	 * a move: 1 = nothing, 1.5 = a 50% boost.
+	 * How much an ability (or passive, and the weather / terrain it sets) is
+	 * worth to a move: 1 = nothing, 1.5 = a 50% boost.
 	 */
 	protected passiveBoost(passive: ID, move: Move, species: Species) {
 		const f = move.flags;
@@ -404,9 +421,17 @@ export class PokeRogueTeams extends RandomTeams {
 		case 'steelworker': case 'steelyspirit': return move.type === 'Steel' ? 1.5 : 1;
 		case 'rockypayload': return move.type === 'Rock' ? 1.5 : 1;
 		case 'waterbubble': return move.type === 'Water' ? 2 : 1;
+		case 'darkaura': return move.type === 'Dark' ? 1.33 : 1;
+		case 'fairyaura': return move.type === 'Fairy' ? 1.33 : 1;
+		// +1 priority (at full HP): worth about as much as a 50% boost
+		case 'galewings': return move.type === 'Flying' ? 1.5 : 1;
+		// +3 priority for draining attacks
+		case 'triage': return move.drain ? 1.5 : 1;
 		case 'sheerforce': return move.secondary || move.secondaries ? 1.3 : 1;
 		case 'serenegrace': return move.secondary?.volatileStatus === 'flinch' || move.secondary?.chance ? 1.15 : 1;
 		case 'noguard': return typeof move.accuracy === 'number' && move.accuracy < 100 ? 100 / move.accuracy : 1;
+		case 'compoundeyes':
+			return typeof move.accuracy === 'number' && move.accuracy < 100 ? Math.min(100, move.accuracy * 1.3) / move.accuracy : 1;
 		case 'contrary': return move.self?.boosts && Object.values(move.self.boosts).some(v => v! < 0) ? 1.3 : 1;
 		case 'drought': case 'orichalcumpulse':
 			return move.type === 'Fire' ? 1.5 : move.type === 'Water' ? 0.5 : 1;
@@ -424,31 +449,68 @@ export class PokeRogueTeams extends RandomTeams {
 		return 1;
 	}
 
-	/** Expected power of an attack for this species with its passive (STAB, accuracy, hits). */
-	protected passivePower(passive: ID, move: Move, species: Species) {
-		if (move.category === 'Status' || !move.basePower) return 0;
-		let power = move.basePower;
+	/** The combined boost of all of the set's abilities (its ability and its passive). */
+	protected effectsBoost(effects: ID[], move: Move, species: Species) {
+		return effects.reduce((boost, effect) => boost * this.passiveBoost(effect, move, species), 1);
+	}
+
+	/** The set's abilities that change what moves / items it wants: its ability and its passive. */
+	protected setEffects(set: RandomTeamsTypes.RandomSet, species: Species): ID[] {
+		const effects = [this.dex.toID(set.ability), this.dex.toID((species as AnyObject).passive || '')];
+		return effects.filter((effect, i) => effect && effects.indexOf(effect) === i);
+	}
+
+	/** A move's base power, counting its hits and moves with a variable one. */
+	protected rawPower(move: Move, effects: ID[]) {
+		if (move.category === 'Status') return 0;
+		let bp = VARIABLE_POWER[move.id] ?? move.basePower;
 		if (move.multihit) {
-			power *= Array.isArray(move.multihit) ? (passive === 'skilllink' ? move.multihit[1] : 3) : move.multihit;
+			bp *= Array.isArray(move.multihit) ? (effects.includes('skilllink' as ID) ? move.multihit[1] : 3) : move.multihit;
 		}
-		const type = move.type === 'Normal' && ATE[passive] ? ATE[passive] : move.type;
-		if (species.types.includes(type)) power *= passive === 'adaptability' ? 2 : 1.5;
+		return bp;
+	}
+
+	/** Expected power of an attack for this species with its abilities (STAB, accuracy, hits). */
+	protected passivePower(effects: ID[], move: Move, species: Species) {
+		if (move.category === 'Status') return 0;
+		let power = this.rawPower(move, effects);
+		if (!power) return 0;
+		const ate = effects.find(e => ATE[e]);
+		const type = move.type === 'Normal' && ate ? ATE[ate] : move.type;
+		if (species.types.includes(type)) power *= effects.includes('adaptability' as ID) ? 2 : 1.5;
 		if (typeof move.accuracy === 'number') power *= move.accuracy / 100;
 		if (move.priority > 0) power *= 1.1;
-		return power * this.passiveBoost(passive, move, species);
+		return power * this.effectsBoost(effects, move, species);
 	}
 
 	/**
-	 * Moves that fit the passive: stronger versions of the set's attacks
-	 * that the passive boosts (Iron Fist punches, Strong Jaw bites, No Guard
-	 * Stone Edge / Blizzard, Drizzle Thunder...), at least one boosted move
-	 * for passives that boost a kind of move, Protect for Speed Boost /
-	 * Moody, setup for Simple, a pivot for Regenerator, Facade for Guts,
-	 * a status move for Prankster.
+	 * Is this a strong move of the kind the ability boosts? (Dragon's Maw
+	 * wants Draco Meteor / Dragon Claw, not Dragon Tail; Gale Wings wants
+	 * Brave Bird, not Aerial Ace.)
+	 */
+	protected strongBoostedMove(effect: ID, move: Move, species: Species, effects: ID[]) {
+		if (move.category === 'Status' || this.passiveBoost(effect, move, species) <= 1) return false;
+		// Triage: any draining attack (+3 priority Draining Kiss is the point); a
+		// priority attack is worth having whatever its power (Technician Bullet Punch)
+		if (effect === 'triage' || move.priority > 0) return true;
+		const power = this.rawPower(move, effects) * (effect === 'technician' ? 1.5 : 1);
+		return power >= 75;
+	}
+
+	/**
+	 * Moves that fit the set's ability and passive: stronger versions of the
+	 * set's attacks that they boost (Iron Fist punches, Strong Jaw bites,
+	 * No Guard Stone Edge / Blizzard, Drizzle Thunder...), at least one
+	 * strong move of the kind a move-boosting ability wants (Dragon's Maw
+	 * Draco Meteor, Gale Wings Brave Bird, Transistor Thunderbolt, Aerilate
+	 * Return...), and for the passive: Protect for Speed Boost / Moody,
+	 * setup for Simple, a pivot for Regenerator, Facade for Guts, a status
+	 * move for Prankster.
 	 */
 	protected fitPassiveMoves(set: RandomTeamsTypes.RandomSet, template: PokeRogueTemplate, species: Species) {
 		const passive = this.dex.toID((species as AnyObject).passive || '');
-		if (!passive || passive === this.dex.toID(set.ability)) return;
+		const effects = this.setEffects(set, species);
+		if (!effects.length) return;
 		const learnable = this.pokeRogueMoves(species);
 		if (!learnable.size) return;
 		const required = new Set((template.required || []).map(m => this.dex.toID(m)));
@@ -457,19 +519,29 @@ export class PokeRogueTeams extends RandomTeams {
 		const attacks = () => set.moves.map(get).filter(m => m.category !== 'Status');
 		const physical = attacks().filter(m => m.category === 'Physical').length;
 		const special = attacks().filter(m => m.category === 'Special').length;
-		const category = ['hugepower', 'purepower'].includes(passive) || physical > special ? 'Physical' :
+		const powerDoubled = effects.some(e => ['hugepower', 'purepower'].includes(e));
+		const category = powerDoubled || physical > special ? 'Physical' :
 			special > physical ? 'Special' : (species.baseStats.atk >= species.baseStats.spa ? 'Physical' : 'Special');
 		const usable = (m: Move) => m.exists && learnable.has(m.id) && !PASSIVE_MOVE_BANS.has(m.id) && !m.isZ && !m.isMax &&
 			!m.id.startsWith('hiddenpower') && !(this.isFFA && FFA_REMOVED_MOVES.has(m.id));
-		const power = (m: Move) => this.passivePower(passive, m, species);
-		const typeOf = (m: Move) => (m.type === 'Normal' && ATE[passive]) ? ATE[passive] : m.type;
+		const power = (m: Move) => this.passivePower(effects, m, species);
+		const boost = (m: Move) => this.effectsBoost(effects, m, species);
+		const ate = effects.find(e => ATE[e]);
+		const typeOf = (m: Move) => (m.type === 'Normal' && ate) ? ATE[ate] : m.type;
+		// The only strong move of the kind an ability wants (Dragon's Maw's Draco
+		// Meteor): kept when another ability wants a move too.
+		// (`covered`: abilities the move replacing it is strong for, too)
+		const strongFor = (m: Move) => effects.filter(e => MOVE_ABILITIES.includes(e) &&
+			this.strongBoostedMove(e, m, species, effects));
+		const onlyStrongMove = (m: Move, covered: ID[] = []) => strongFor(m).some(e => !covered.includes(e) &&
+			attacks().filter(x => this.strongBoostedMove(e, x, species, effects)).length === 1);
 		// The move the set can best do without (never a required move or the only STAB attack).
-		const replaceable = () => {
+		const replaceable = (covered: ID[] = []) => {
 			let best = -1;
 			let bestScore = Infinity;
 			const moves = set.moves.map(get);
 			for (const [i, m] of moves.entries()) {
-				if (required.has(m.id)) continue;
+				if (required.has(m.id) || onlyStrongMove(m, covered)) continue;
 				let score;
 				if (m.category === 'Status') {
 					const important = KEEP_STATUS.has(m.id) || (m.boosts && m.target === 'self') ||
@@ -491,26 +563,24 @@ export class PokeRogueTeams extends RandomTeams {
 		};
 		const put = (id: string) => {
 			if (has(id)) return true;
-			const index = replaceable();
+			const index = replaceable(strongFor(get(id)));
 			if (index < 0) return false;
 			set.moves[index] = id;
 			return true;
 		};
 		const candidates = [...learnable].map(get).filter(usable);
 
-		// 1. Upgrade attacks to versions the passive boosts (same type; Huge / Pure
+		// 1. Upgrade attacks to versions the abilities boost (same type; Huge / Pure
 		// Power also turns special attacks physical).
-		const boostedPassive = candidates.some(m => this.passiveBoost(passive, m, species) > 1);
-		if (boostedPassive) {
+		if (candidates.some(m => boost(m) > 1) || powerDoubled) {
 			for (const [i, name] of set.moves.entries()) {
 				const current = get(name);
 				if (current.category === 'Status' || required.has(current.id)) continue;
-				const wantCategory = ['hugepower', 'purepower'].includes(passive) ? 'Physical' : current.category;
+				const wantCategory = powerDoubled ? 'Physical' : current.category;
 				let best: Move | null = null;
 				for (const m of candidates) {
 					if (has(m.id) || m.category !== wantCategory || typeOf(m) !== typeOf(current)) continue;
-					if (this.passiveBoost(passive, m, species) <= this.passiveBoost(passive, current, species) &&
-						wantCategory === current.category) continue;
+					if (boost(m) <= boost(current) && wantCategory === current.category) continue;
 					if (power(m) < power(current) * 1.1) continue;
 					if (!best || power(m) > power(best)) best = m;
 				}
@@ -518,19 +588,40 @@ export class PokeRogueTeams extends RandomTeams {
 			}
 		}
 
-		// 2. At least one move the passive boosts.
-		const MOVE_PASSIVES = ['ironfist', 'strongjaw', 'megalauncher', 'sharpness', 'punkrock', 'toughclaws', 'reckless',
-			'technician', 'skilllink', 'transistor', 'dragonsmaw', 'steelworker', 'rockypayload', 'waterbubble', 'noguard',
-			'sheerforce', 'contrary', ...Object.keys(ATE)];
-		if (MOVE_PASSIVES.includes(passive) && !attacks().some(m => this.passiveBoost(passive, m, species) > 1)) {
+		// 2. A strong move of the kind a move-boosting ability wants (for both the
+		// ability and the passive). A weak one of that kind is swapped out first.
+		for (const effect of effects) {
+			if (!MOVE_ABILITIES.includes(effect) || !attacks().length) continue;
+			const strong = (m: Move) => this.strongBoostedMove(effect, m, species, effects);
+			if (attacks().some(strong)) continue;
 			const coveredTwice = (type: string) => attacks().filter(m => typeOf(m) === type).length >= 2;
-			const options = candidates.filter(m => m.category === category && !has(m.id) &&
-				this.passiveBoost(passive, m, species) > 1 && !coveredTwice(typeOf(m)) && power(m) >= 70);
-			options.sort((a, b) => power(b) - power(a));
-			if (options.length) put(options[0].id);
+			const options = candidates.filter(m => !has(m.id) && strong(m) &&
+				(m.category === category || powerDoubled && m.category === 'Physical'));
+			if (!options.length) continue;
+			// (best: a move more than one of the abilities wants, like a Sheer Force + Strong Jaw Crunch)
+			options.sort((a, b) => strongFor(b).length - strongFor(a).length || power(b) - power(a));
+			const pick = options.find(m => !coveredTwice(typeOf(m))) || options[0];
+			const covered = strongFor(pick);
+			// Swap out a weak move of the kind (Dragon Tail for Draco Meteor), else a
+			// weaker move of the same type, else the move the set can best do without.
+			// (Utility attacks stay, and the only STAB attack only goes for another one.)
+			const stabs = attacks().filter(m => species.types.includes(typeOf(m))).length;
+			const swappable = set.moves.map((name, index) => ({index, move: get(name)})).filter(({move}) =>
+				move.category !== 'Status' && !required.has(move.id) && !UTILITY_ATTACKS.has(move.id) && !onlyStrongMove(move, covered) &&
+				!(species.types.includes(typeOf(move)) && stabs === 1 && !species.types.includes(typeOf(pick))));
+			const weakKind = swappable.filter(({move}) => this.passiveBoost(effect, move, species) > 1);
+			const sameType = swappable.filter(({move}) => typeOf(move) === typeOf(pick));
+			const targets = (weakKind.length ? weakKind : sameType).sort((a, b) => power(a.move) - power(b.move));
+			if (targets.length) {
+				set.moves[targets[0].index] = pick.id;
+			} else if (!coveredTwice(typeOf(pick))) {
+				put(pick.id);
+			}
 		}
 
-		// 3. Passives that want a particular status move.
+		// 3. Passives that want a particular status move (the ability's are
+		// already in the Gen 9 sets).
+		if (!passive || passive === this.dex.toID(set.ability)) return;
 		const firstLearnable = (ids: string[]) => ids.find(id => learnable.has(id as ID) && usable(get(id)));
 		const hasAny = (ids: string[]) => ids.some(has);
 		if ((passive === 'speedboost' || passive === 'moody') && !this.isFFA && !hasAny(PROTECT_MOVES)) {
@@ -551,35 +642,65 @@ export class PokeRogueTeams extends RandomTeams {
 		}
 	}
 
-	/** Items the passive wants (the Gen 9 generator only looks at the ability). */
+	/**
+	 * The status orb the set's ability / passive wants, if any. Poison Heal
+	 * always gets a Toxic Orb (it heals instead of hurting), even next to
+	 * Guts / Flare Boost / Marvel Scale / Quick Feet.
+	 */
+	protected statusOrb(set: RandomTeamsTypes.RandomSet, species: Species, effects: ID[]): string | null {
+		const moves = set.moves.map(m => this.dex.moves.get(m));
+		const attacks = moves.filter(m => m.category !== 'Status');
+		const physical = attacks.filter(m => m.category === 'Physical').length;
+		const special = attacks.filter(m => m.category === 'Special').length;
+		const has = (...ids: string[]) => ids.some(id => effects.includes(id as ID));
+		const types = species.types;
+		const canPoison = !types.includes('Poison') && !types.includes('Steel') &&
+			!has('immunity', 'pastelveil', 'comatose', 'purifyingsalt');
+		const canBurn = !types.includes('Fire') && !has('waterveil', 'waterbubble', 'thermalexchange', 'comatose', 'purifyingsalt');
+		const mostlyPhysical = physical > 0 && physical * 2 >= attacks.length;
+
+		if (has('poisonheal') && canPoison) return 'Toxic Orb';
+		if (has('toxicboost') && canPoison && physical) return 'Toxic Orb';
+		if (has('flareboost') && canBurn && special) return 'Flame Orb';
+		if (has('guts') && mostlyPhysical) {
+			if (canBurn) return 'Flame Orb';
+			if (canPoison) return 'Toxic Orb';
+		}
+		if (has('marvelscale', 'quickfeet')) {
+			// a burn would halve a physical attacker's damage
+			if (mostlyPhysical) return canPoison ? 'Toxic Orb' : null;
+			if (canBurn) return 'Flame Orb';
+			if (canPoison) return 'Toxic Orb';
+		}
+		return null;
+	}
+
+	/** Items the ability and passive want (the Gen 9 generator only looks at the ability). */
 	protected fitPassiveItem(set: RandomTeamsTypes.RandomSet, species: Species) {
 		const item = this.dex.items.get(set.item);
 		if (!set.item || item.megaStone || item.zMove) return;
+		const effects = this.setEffects(set, species);
+		const orb = this.statusOrb(set, species, effects);
+		if (orb) {
+			set.item = orb;
+			return;
+		}
+		// A status orb nothing on the set wants (e.g. Guts's Flame Orb next to a
+		// Water Veil passive that stops the burn)
+		if (['Flame Orb', 'Toxic Orb'].includes(set.item) && !set.moves.some(m => ['facade', 'fling', 'psychoshift', 'trick',
+			'switcheroo'].includes(this.dex.toID(m)))) {
+			set.item = 'Leftovers';
+		}
+
 		const passive = this.dex.toID((species as AnyObject).passive || '');
 		if (!passive || passive === this.dex.toID(set.ability)) return;
 		const moves = set.moves.map(m => this.dex.moves.get(m));
-		const types = species.types;
 		const attacks = moves.filter(m => m.category !== 'Status');
 		const choice = set.item.startsWith('Choice');
 		const swappable = PASSIVE_ITEM_SWAPPABLE.has(set.item);
 		const rockWeak = this.dex.getEffectiveness('Rock', species) >= 1 && this.dex.getImmunity('Rock', species);
 
 		switch (passive) {
-		case 'poisonheal': case 'toxicboost':
-			if (!types.includes('Poison') && !types.includes('Steel')) set.item = 'Toxic Orb';
-			return;
-		case 'flareboost':
-			if (!types.includes('Fire')) set.item = 'Flame Orb';
-			return;
-		case 'guts': case 'marvelscale': case 'quickfeet':
-			// Guts only boosts physical attacks (a burn would just hurt a special attacker)
-			if (passive === 'guts' && attacks.filter(m => m.category === 'Physical').length * 2 < attacks.length) return;
-			if (!types.includes('Fire')) {
-				set.item = 'Flame Orb';
-			} else if (!types.includes('Poison') && !types.includes('Steel')) {
-				set.item = 'Toxic Orb';
-			}
-			return;
 		case 'magicguard':
 			// hazards don't hurt it, so it doesn't need Heavy-Duty Boots
 			if (attacks.length >= 2 && (swappable || choice && moves.some(m => m.category === 'Status'))) {

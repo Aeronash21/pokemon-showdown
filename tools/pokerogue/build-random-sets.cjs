@@ -66,6 +66,47 @@ const GEN9 = {
 	singles: require('../../data/random-battles/gen9/sets.json'),
 	doubles: require('../../data/random-battles/gen9/doubles-sets.json'),
 };
+/**
+ * Partner Pikachu and Partner Eevee (PokéRogue's starter forms) are in the
+ * random battle pool instead of the regular Pikachu (which is skipped, see
+ * SKIP; G-Max Pikachu still uses its sets). Showdown has no sets for them,
+ * so these are the source sets; the level comes from the stats
+ * (levelFromBST) and the usual egg move / passive adjustments.
+ */
+const PARTNER_SETS = {
+	singles: {
+		pikachustarter: {sets: [
+			{role: 'Fast Attacker', movepool: ['Volt Tackle', 'Zippy Zap', 'Wave Crash', 'Floaty Fall', 'Knock Off',
+				'Triple Axel', 'Play Rough'], abilities: ['Lightning Rod'], teraTypes: ['Water', 'Flying']},
+			{role: 'Setup Sweeper', movepool: ['Bulk Up', 'Zippy Zap', 'Volt Tackle', 'Wave Crash', 'Floaty Fall', 'Knock Off'],
+				abilities: ['Lightning Rod'], teraTypes: ['Water', 'Flying']},
+			{role: 'Setup Sweeper', movepool: ['Nasty Plot', 'Pika Papow', 'Thunderbolt', 'Splishy Splash', 'Moonblast',
+				'Grass Knot'], abilities: ['Lightning Rod'], teraTypes: ['Water', 'Fairy']},
+		]},
+		eeveestarter: {sets: [
+			{role: 'Setup Sweeper', movepool: ['No Retreat', 'Veevee Volley', 'Zippy Zap', 'Sappy Seed', 'Sizzly Slide'],
+				abilities: ['Adaptability'], teraTypes: ['Normal', 'Ghost']},
+			{role: 'Wallbreaker', movepool: ['Boomburst', 'Sparkly Swirl', 'Freezy Frost', 'Shadow Ball', 'Baddy Bad',
+				'Bouncy Bubble'], abilities: ['Adaptability'], teraTypes: ['Normal']},
+			{role: 'Bulky Support', movepool: ['Wish', 'Protect', 'Baddy Bad', 'Glitzy Glow', 'Veevee Volley', 'Heal Bell',
+				'Sappy Seed'], abilities: ['Adaptability'], teraTypes: ['Normal', 'Ghost']},
+		]},
+	},
+	doubles: {
+		pikachustarter: {sets: [
+			{role: 'Doubles Fast Attacker', movepool: ['Volt Tackle', 'Zippy Zap', 'Wave Crash', 'Floaty Fall', 'Knock Off',
+				'Protect', 'Feint'], abilities: ['Lightning Rod'], teraTypes: ['Water', 'Flying']},
+			{role: 'Doubles Support', movepool: ['Nuzzle', 'Encore', 'Helping Hand', 'Electroweb', 'Protect', 'Volt Tackle',
+				'Knock Off'], abilities: ['Lightning Rod'], teraTypes: ['Electric', 'Water']},
+		]},
+		eeveestarter: {sets: [
+			{role: 'Doubles Wallbreaker', movepool: ['Hyper Voice', 'Boomburst', 'Sparkly Swirl', 'Freezy Frost', 'Protect',
+				'Shadow Ball'], abilities: ['Adaptability'], teraTypes: ['Normal']},
+			{role: 'Doubles Support', movepool: ['Helping Hand', 'Protect', 'Baddy Bad', 'Glitzy Glow', 'Wish', 'Veevee Volley',
+				'Buzzy Buzz'], abilities: ['Adaptability'], teraTypes: ['Normal', 'Ghost']},
+		]},
+	},
+};
 
 /*
  * -----------------------------------------------------------
@@ -307,7 +348,7 @@ function effectivePower(move, ctx) {
 	case 'risingvoltage': bp = conditionalOK(move, ctx) ? 140 : 70; break;
 	case 'lowkick': case 'grassknot': case 'heavyslam': case 'heatcrash': bp = 80; break;
 	case 'gyroball': case 'electroball': bp = 60; break;
-	case 'return': case 'frustration': bp = 102; break;
+	case 'return': case 'frustration': case 'pikapapow': case 'veeveevolley': bp = 102; break;
 	case 'hex': case 'venoshock': case 'brine': bp = 70; break;
 	case 'storedpower': case 'powertrip': bp = 60; break;
 	case 'ragefist': bp = 75; break;
@@ -1000,6 +1041,8 @@ function borrowedSets(species, table) {
 // in-battle forms, and Pokémon that don't work in random battles.
 const SKIP = new Set([
 	'eternatuseternamax', 'kyogreprimal', 'groudonprimal', 'shedinja', 'wobbuffet', 'unown', 'meltan',
+	// Partner Pikachu instead (PARTNER_SETS); G-Max Pikachu still borrows Pikachu's sets
+	'pikachu',
 	'pichuspikyeared', 'pikachucosplay', 'pikachurockstar', 'pikachubelle', 'pikachupopstar', 'pikachuphd',
 	'pikachulibre', 'zygardecomplete', 'necrozmaultra', 'ogerponwellspringtera', 'ogerponhearthflametera',
 	'ogerponcornerstonetera', 'ogerpontealtera', 'terapagosterastal', 'terapagosstellar', 'zaciancrowned',
@@ -1168,7 +1211,7 @@ function fixedSetLevel(species, fixed, baseLevel, mode) {
 function build(mode) {
 	const isDoubles = mode === 'doubles';
 	const baseMode = isDoubles ? 'doubles' : 'singles';
-	const base = {...GEN9[baseMode], ...NDSP[baseMode]};
+	const base = {...GEN9[baseMode], ...NDSP[baseMode], ...PARTNER_SETS[baseMode]};
 	const out = {};
 	const review = [];
 	const notes = [];

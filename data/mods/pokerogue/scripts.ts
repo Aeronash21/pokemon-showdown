@@ -31,6 +31,7 @@ import {Pokemon} from '../../../sim/pokemon';
 import {BattleActions} from '../../../sim/battle-actions';
 import {Scripts as PokebilitiesScripts} from '../pokebilities/scripts';
 import {Abilities as PokebilitiesAbilities} from '../pokebilities/abilities';
+import {Abilities as PokeRogueAbilities} from './abilities';
 import {PokeRogueData} from './pokerogue-data';
 import {PokeRogueTiers} from './tiers';
 import {applyChampionsChanges, championsCalculatePP} from './champions-changes';
@@ -109,9 +110,28 @@ export function updatePassive(pokemon: Pokemon, announce = true) {
 	}
 	for (const innate of newInnates) {
 		if (oldInnates.includes(innate)) continue;
+		// (a foe's Neutralizing Gas keeps it off until the gas goes away)
+		if (!battle.dex.abilities.get(innate).flags['cantsuppress'] && neutralizedByFoe(pokemon)) continue;
 		if (announce) battle.add('-start', pokemon, battle.dex.abilities.get(innate).name, '[silent]');
 		pokemon.addVolatile('ability:' + innate, pokemon);
 	}
+}
+
+/**
+ * Is a foe's Neutralizing Gas (its ability or its passive) switching off
+ * this Pokémon's ability and passive? It only affects the holder's foes, and
+ * never a Pokémon that has Neutralizing Gas itself.
+ */
+export function neutralizedByFoe(pokemon: Pokemon) {
+	if (pokemon.hasItem('Ability Shield') || pokemon.volatiles['commanding']) return false;
+	if (pokemon.ability === 'neutralizinggas' || pokemon.m.innates?.includes('neutralizinggas')) return false;
+	for (const foe of pokemon.foes()) {
+		if (foe.volatiles['gastroacid'] || foe.transformed) continue;
+		if (foe.ability === 'neutralizinggas' && !foe.abilityState.ending) return true;
+		const gas = foe.volatiles['ability:neutralizinggas'];
+		if (gas && !gas.ending) return true;
+	}
+	return false;
 }
 
 export const Scripts: ModdedBattleScriptsData = {
@@ -198,8 +218,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		}
 
 		// Pokébilities' fixes for abilities that deal with other abilities
-		// (Mummy, Neutralizing Gas, Trace...) also cover passives.
+		// (Mummy, Trace...) also cover passives. (Neutralizing Gas has its own
+		// version in abilities.ts.)
 		for (const [id, data] of Object.entries(PokebilitiesAbilities)) {
+			if (id in PokeRogueAbilities) continue;
 			const {inherit, ...fields} = data as AnyObject;
 			Object.assign(this.modData('Abilities', id), fields);
 		}
@@ -270,7 +292,14 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 
 	pokemon: {
-		ignoringAbility: PokebilitiesScripts.pokemon!.ignoringAbility,
+		ignoringAbility() {
+			if (this.battle.gen >= 5 && !this.isActive) return true;
+			// Certain Abilities won't activate while Transformed, even if they ordinarily couldn't be suppressed (e.g. Disguise)
+			if (this.getAbility().flags['notransform'] && this.transformed) return true;
+			if (this.getAbility().flags['cantsuppress']) return false;
+			if (this.volatiles['gastroacid']) return true;
+			return neutralizedByFoe(this);
+		},
 		hasAbility: PokebilitiesScripts.pokemon!.hasAbility,
 		// Champions: Rage Fist's counter resets when the Pokémon switches out.
 		clearVolatile(includeSwitchFlags) {

@@ -52,18 +52,25 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
 			// PokéRogue: egg move / passive additions
 			'Revival Blessing', 'Simple', 'Primordial Sea', 'Desolate Land',
+			'Regigigas', // Normalize + Scrappy passive (160 Atk boosted Normal STAB that hits everything) and Recover
+			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
+			// boosted by their passive: these Pokémon are legal, just without the move
+			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
+			'Zapdos-Galar + Bolt Beak',
 			// Passive bans
 			'Articuno-Galar + Serene Grace', // 40% freeze Freezing Glare
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Drampa-Mega + Adaptability', // 160 Sp. Atk Adaptability Boomburst / Draco Meteor
-			'Flapple-Gmax + No Guard', // Hustle with no accuracy drop
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
 			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
 			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
 			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
 			'Swampert-Mega + Drizzle', // sets its own rain for Swift Swim
-			'Thundurus-Therian + Drizzle', // 100% accurate Thunder / Hurricane + Nasty Plot
+			// Legendaries with a Drizzle passive: their own rain (100% accurate Thunder /
+			// Hurricane, boosted Water attacks) on a legendary stat spread
+			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
+			'Zapdos + Drizzle',
 			'Typhlosion + Drought', // sun Eruption (Typhlosion and Hisuian Typhlosion)
 		],
 	},

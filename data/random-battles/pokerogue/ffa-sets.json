@@ -360,11 +360,11 @@
 				"movepool": [
 					"Agility",
 					"Knock Off",
+					"Rock Slide",
 					"Superpower",
 					"X-Scissor",
 					"Crabhammer",
 					"Dragon Hammer",
-					"Ivy Cudgel",
 					"Jet Punch"
 				],
 				"abilities": [
@@ -701,7 +701,7 @@
 					"Dragon Hammer",
 					"Bitter Blade"
 				],
-				"level": 72
+				"level": 71
 			}
 		]
 	},
@@ -1570,9 +1570,9 @@
 			{
 				"role": "Bulky Attacker",
 				"movepool": [
+					"Apple Acid",
 					"Leech Seed",
 					"Recover",
-					"Leaf Storm",
 					"Core Enforcer"
 				],
 				"abilities": [
@@ -1585,8 +1585,7 @@
 					"Dragon"
 				],
 				"required": [
-					"Core Enforcer",
-					"Leaf Storm"
+					"Core Enforcer"
 				],
 				"level": 90
 			}
@@ -2937,7 +2936,7 @@
 					"Floaty Fall",
 					"Hyper Drill"
 				],
-				"level": 82
+				"level": 81
 			}
 		]
 	},
@@ -3015,28 +3014,78 @@
 			}
 		]
 	},
-	"pikachu": {
-		"level": 91,
+	"pikachustarter": {
+		"level": 88,
 		"sets": [
 			{
 				"role": "Fast Attacker",
 				"movepool": [
-					"Knock Off",
-					"Play Rough",
-					"Volt Switch",
 					"Volt Tackle",
-					"Wave Crash"
+					"Zippy Zap",
+					"Wave Crash",
+					"Floaty Fall",
+					"Knock Off",
+					"Triple Axel",
+					"Play Rough"
 				],
 				"abilities": [
 					"Lightning Rod"
 				],
 				"teraTypes": [
-					"Water"
+					"Water",
+					"Flying"
 				],
 				"required": [
+					"Wave Crash",
+					"Triple Axel"
+				],
+				"level": 88
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Bulk Up",
+					"Zippy Zap",
+					"Volt Tackle",
+					"Wave Crash",
+					"Floaty Fall",
+					"Knock Off",
+					"Triple Axel"
+				],
+				"abilities": [
+					"Lightning Rod"
+				],
+				"teraTypes": [
+					"Water",
+					"Flying"
+				],
+				"required": [
+					"Bulk Up",
 					"Wave Crash"
 				],
-				"level": 91
+				"level": 88
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Nasty Plot",
+					"Pika Papow",
+					"Thunderbolt",
+					"Splishy Splash",
+					"Moonblast",
+					"Grass Knot"
+				],
+				"abilities": [
+					"Lightning Rod"
+				],
+				"teraTypes": [
+					"Water",
+					"Fairy"
+				],
+				"required": [
+					"Moonblast"
+				],
+				"level": 88
 			}
 		]
 	},
@@ -3559,7 +3608,7 @@
 		]
 	},
 	"wigglytuff": {
-		"level": 86,
+		"level": 85,
 		"sets": [
 			{
 				"role": "Bulky Attacker",
@@ -3578,7 +3627,7 @@
 				],
 				"fixed": true,
 				"item": "Normal Gem",
-				"level": 86
+				"level": 85
 			}
 		]
 	},
@@ -4712,8 +4761,8 @@
 				"movepool": [
 					"High Horsepower",
 					"Swords Dance",
-					"Zen Headbutt",
 					"Magical Torque",
+					"Psyshield Bash",
 					"Extreme Speed",
 					"Flare Blitz"
 				],
@@ -4726,6 +4775,7 @@
 				],
 				"required": [
 					"Magical Torque",
+					"Psyshield Bash",
 					"Flare Blitz"
 				],
 				"level": 81
@@ -4736,7 +4786,7 @@
 					"High Horsepower",
 					"Swords Dance",
 					"Magical Torque",
-					"Psycho Cut",
+					"Psyshield Bash",
 					"Extreme Speed",
 					"Flare Blitz"
 				],
@@ -4749,10 +4799,10 @@
 				],
 				"required": [
 					"Magical Torque",
-					"Psycho Cut",
+					"Psyshield Bash",
 					"Flare Blitz"
 				],
-				"level": 81
+				"level": 80
 			}
 		]
 	},
@@ -5387,7 +5437,7 @@
 		]
 	},
 	"kingler": {
-		"level": 82,
+		"level": 81,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -5396,8 +5446,8 @@
 					"Knock Off",
 					"Liquidation",
 					"Rock Slide",
-					"Superpower",
 					"Dire Claw",
+					"Dragon Hammer",
 					"Ivy Cudgel",
 					"Jet Punch"
 				],
@@ -5410,7 +5460,7 @@
 				"required": [
 					"Jet Punch"
 				],
-				"level": 82
+				"level": 81
 			}
 		]
 	},
@@ -6889,6 +6939,80 @@
 				"required": [
 					"Shell Smash",
 					"Recover"
+				],
+				"level": 84
+			}
+		]
+	},
+	"eeveestarter": {
+		"level": 86,
+		"sets": [
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"No Retreat",
+					"Veevee Volley",
+					"Zippy Zap",
+					"Sappy Seed",
+					"Sizzly Slide",
+					"Wish"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal",
+					"Ghost"
+				],
+				"required": [
+					"No Retreat",
+					"Wish",
+					"Zippy Zap"
+				],
+				"level": 85
+			},
+			{
+				"role": "Wallbreaker",
+				"movepool": [
+					"Boomburst",
+					"Sparkly Swirl",
+					"Freezy Frost",
+					"Shadow Ball",
+					"Baddy Bad",
+					"Bouncy Bubble"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal"
+				],
+				"required": [
+					"Boomburst"
+				],
+				"level": 86
+			},
+			{
+				"role": "Bulky Support",
+				"movepool": [
+					"Wish",
+					"Protect",
+					"Baddy Bad",
+					"Glitzy Glow",
+					"Heal Bell",
+					"Sappy Seed",
+					"Boomburst"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal",
+					"Ghost"
+				],
+				"required": [
+					"Boomburst",
+					"Wish"
 				],
 				"level": 84
 			}
@@ -9319,7 +9443,7 @@
 					"Psyshock",
 					"Thunderbolt",
 					"Boomburst",
-					"Energy Ball"
+					"Night Daze"
 				],
 				"abilities": [
 					"Sap Sipper"
@@ -12474,7 +12598,7 @@
 					"Stomping Tantrum",
 					"Thunder Wave",
 					"Toxic",
-					"V-create"
+					"Fire Lash"
 				],
 				"abilities": [
 					"Wonder Skin"
@@ -12483,7 +12607,7 @@
 					"Normal"
 				],
 				"required": [
-					"V-create"
+					"Fire Lash"
 				],
 				"level": 98
 			},
@@ -12495,7 +12619,7 @@
 					"Shadow Ball",
 					"Stomping Tantrum",
 					"Tidy Up",
-					"V-create"
+					"Fire Lash"
 				],
 				"abilities": [
 					"Wonder Skin"
@@ -12505,7 +12629,7 @@
 				],
 				"required": [
 					"Tidy Up",
-					"V-create"
+					"Fire Lash"
 				],
 				"level": 98
 			}
@@ -13791,7 +13915,7 @@
 		]
 	},
 	"solrock": {
-		"level": 89,
+		"level": 88,
 		"sets": [
 			{
 				"role": "Bulky Support",
@@ -13801,7 +13925,7 @@
 					"Stealth Rock",
 					"Will-O-Wisp",
 					"Mighty Cleave",
-					"Zen Headbutt",
+					"Psyshield Bash",
 					"Sacred Fire"
 				],
 				"abilities": [
@@ -13813,10 +13937,10 @@
 				],
 				"required": [
 					"Mighty Cleave",
-					"Zen Headbutt",
+					"Psyshield Bash",
 					"Sacred Fire"
 				],
-				"level": 89
+				"level": 88
 			},
 			{
 				"role": "Setup Sweeper",
@@ -13825,7 +13949,7 @@
 					"Morning Sun",
 					"Shell Smash",
 					"Mighty Cleave",
-					"Zen Headbutt",
+					"Psyshield Bash",
 					"Sacred Fire"
 				],
 				"abilities": [
@@ -13838,14 +13962,14 @@
 				"required": [
 					"Shell Smash",
 					"Mighty Cleave",
-					"Zen Headbutt"
+					"Psyshield Bash"
 				],
-				"level": 89
+				"level": 88
 			}
 		]
 	},
 	"whiscash": {
-		"level": 84,
+		"level": 83,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -13864,7 +13988,7 @@
 				],
 				"fixed": true,
 				"item": "Rocky Helmet",
-				"level": 84,
+				"level": 83,
 				"nature": "Adamant"
 			}
 		]
@@ -14897,8 +15021,8 @@
 				"movepool": [
 					"Earthquake",
 					"Knock Off",
-					"Psychic Fangs",
 					"Meteor Mash",
+					"Psyshield Bash",
 					"Drain Punch",
 					"Ice Hammer",
 					"Shift Gear"
@@ -14911,8 +15035,8 @@
 				],
 				"required": [
 					"Shift Gear",
-					"Meteor Mash",
-					"Ice Hammer"
+					"Psyshield Bash",
+					"Meteor Mash"
 				],
 				"level": 75
 			},
@@ -14922,9 +15046,9 @@
 					"Bullet Punch",
 					"Earthquake",
 					"Knock Off",
-					"Psychic Fangs",
 					"Stealth Rock",
 					"Meteor Mash",
+					"Psyshield Bash",
 					"Drain Punch",
 					"Ice Hammer"
 				],
@@ -14935,6 +15059,7 @@
 					"Water"
 				],
 				"required": [
+					"Psyshield Bash",
 					"Meteor Mash",
 					"Ice Hammer"
 				],
@@ -14952,7 +15077,7 @@
 					"Earthquake",
 					"Hammer Arm",
 					"Meteor Mash",
-					"Psychic Fangs",
+					"Psyshield Bash",
 					"Ice Hammer"
 				],
 				"abilities": [
@@ -14963,7 +15088,7 @@
 					"Psychic"
 				],
 				"required": [
-					"Psychic Fangs",
+					"Psyshield Bash",
 					"Ice Hammer"
 				],
 				"level": 72
@@ -14974,7 +15099,7 @@
 					"Earthquake",
 					"Hammer Arm",
 					"Meteor Mash",
-					"Psychic Fangs",
+					"Psyshield Bash",
 					"Ice Hammer",
 					"Shift Gear"
 				],
@@ -14987,10 +15112,10 @@
 				],
 				"required": [
 					"Shift Gear",
-					"Psychic Fangs",
+					"Psyshield Bash",
 					"Ice Hammer"
 				],
-				"level": 71
+				"level": 70
 			}
 		]
 	},
@@ -17211,16 +17336,16 @@
 		]
 	},
 	"bronzong": {
-		"level": 86,
+		"level": 85,
 		"sets": [
 			{
 				"role": "Bulky Support",
 				"movepool": [
+					"Earthquake",
 					"Hypnosis",
 					"Iron Head",
-					"Psychic",
-					"Psychic Noise",
 					"Stealth Rock",
+					"Psyshield Bash",
 					"Recover",
 					"Body Press",
 					"Glare"
@@ -17233,6 +17358,7 @@
 					"Water"
 				],
 				"required": [
+					"Psyshield Bash",
 					"Recover",
 					"Body Press"
 				],
@@ -17245,7 +17371,7 @@
 					"Iron Defense",
 					"Iron Head",
 					"Rest",
-					"Psychic",
+					"Psyshield Bash",
 					"Recover"
 				],
 				"abilities": [
@@ -17255,11 +17381,11 @@
 					"Fighting"
 				],
 				"required": [
+					"Psyshield Bash",
 					"Recover",
-					"Psychic",
 					"Body Press"
 				],
-				"level": 86
+				"level": 85
 			}
 		]
 	},
@@ -17413,7 +17539,7 @@
 					"Dragon Hammer",
 					"Bitter Blade"
 				],
-				"level": 71
+				"level": 70
 			}
 		]
 	},
@@ -18164,7 +18290,7 @@
 		]
 	},
 	"electivire": {
-		"level": 82,
+		"level": 81,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -18189,7 +18315,7 @@
 					"Fire Lash",
 					"Play Rough"
 				],
-				"level": 82
+				"level": 81
 			},
 			{
 				"role": "Setup Sweeper",
@@ -18210,7 +18336,7 @@
 				],
 				"required": [
 					"Shift Gear",
-					"Play Rough"
+					"Fire Lash"
 				],
 				"level": 80
 			}
@@ -20670,7 +20796,7 @@
 		]
 	},
 	"arceusghost": {
-		"level": 63,
+		"level": 64,
 		"sets": [
 			{
 				"role": "Bulky Attacker",
@@ -20691,7 +20817,7 @@
 				"required": [
 					"Astral Barrage"
 				],
-				"level": 63
+				"level": 64
 			},
 			{
 				"role": "Setup Sweeper",
@@ -20735,7 +20861,7 @@
 					"No Retreat",
 					"Astral Barrage"
 				],
-				"level": 63
+				"level": 64
 			}
 		]
 	},
@@ -21810,7 +21936,7 @@
 		]
 	},
 	"unfezant": {
-		"level": 84,
+		"level": 83,
 		"sets": [
 			{
 				"role": "Bulky Attacker",
@@ -21820,7 +21946,7 @@
 					"Roost",
 					"Toxic",
 					"U-turn",
-					"Return",
+					"Slash",
 					"Triple Arrows"
 				],
 				"abilities": [
@@ -21831,10 +21957,10 @@
 					"Flying"
 				],
 				"required": [
-					"Return",
+					"Slash",
 					"Triple Arrows"
 				],
-				"level": 84
+				"level": 83
 			},
 			{
 				"role": "Setup Sweeper",
@@ -21843,7 +21969,7 @@
 					"Roost",
 					"U-turn",
 					"Tidy Up",
-					"Return",
+					"Slash",
 					"Triple Arrows"
 				],
 				"abilities": [
@@ -21855,10 +21981,10 @@
 				],
 				"required": [
 					"Tidy Up",
-					"Return",
+					"Slash",
 					"Triple Arrows"
 				],
-				"level": 84
+				"level": 83
 			}
 		]
 	},
@@ -22702,7 +22828,8 @@
 					"Knock Off",
 					"Headlong Rush",
 					"Dire Claw",
-					"Sucker Punch"
+					"Sucker Punch",
+					"Fire Lash"
 				],
 				"abilities": [
 					"Intimidate"
@@ -23208,7 +23335,7 @@
 		]
 	},
 	"zoroarkhisui": {
-		"level": 76,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Wallbreaker",
@@ -23233,7 +23360,7 @@
 					"Blood Moon",
 					"Secret Sword"
 				],
-				"level": 76
+				"level": 77
 			},
 			{
 				"role": "Fast Attacker",
@@ -23255,7 +23382,7 @@
 					"Blood Moon",
 					"Secret Sword"
 				],
-				"level": 76
+				"level": 77
 			}
 		]
 	},
@@ -24138,7 +24265,7 @@
 		]
 	},
 	"haxorus": {
-		"level": 75,
+		"level": 74,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -24147,10 +24274,10 @@
 					"Dragon Dance",
 					"Earthquake",
 					"Iron Head",
-					"Outrage",
-					"Stone Axe",
+					"Dragon Claw",
 					"Cross Poison",
-					"First Impression"
+					"First Impression",
+					"Bitter Blade"
 				],
 				"abilities": [
 					"Mold Breaker"
@@ -24159,9 +24286,10 @@
 					"Steel"
 				],
 				"required": [
-					"Stone Axe"
+					"Dragon Claw",
+					"Bitter Blade"
 				],
-				"level": 75
+				"level": 74
 			},
 			{
 				"role": "Fast Bulky Setup",
@@ -24171,9 +24299,9 @@
 					"Scale Shot",
 					"Swords Dance",
 					"Dragon Claw",
-					"Stone Axe",
 					"Cross Poison",
-					"First Impression"
+					"First Impression",
+					"Bitter Blade"
 				],
 				"abilities": [
 					"Mold Breaker"
@@ -24183,19 +24311,19 @@
 				],
 				"required": [
 					"Dragon Claw",
-					"Stone Axe"
+					"Bitter Blade"
 				],
-				"level": 75
+				"level": 74
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Dragon Dance",
 					"Earthquake",
-					"Outrage",
+					"Dragon Claw",
 					"Cross Poison",
-					"Stone Axe",
-					"First Impression"
+					"First Impression",
+					"Bitter Blade"
 				],
 				"abilities": [
 					"Mold Breaker"
@@ -24204,15 +24332,16 @@
 					"Dragon"
 				],
 				"required": [
+					"Dragon Claw",
 					"Cross Poison",
-					"Stone Axe"
+					"Bitter Blade"
 				],
-				"level": 74
+				"level": 73
 			}
 		]
 	},
 	"beartic": {
-		"level": 88,
+		"level": 87,
 		"sets": [
 			{
 				"role": "Wallbreaker",
@@ -24235,7 +24364,7 @@
 				"required": [
 					"Mountain Gale"
 				],
-				"level": 88
+				"level": 87
 			}
 		]
 	},
@@ -24453,7 +24582,8 @@
 					"Knock Off",
 					"Stone Edge",
 					"U-turn",
-					"Gunk Shot"
+					"Gunk Shot",
+					"Mountain Gale"
 				],
 				"abilities": [
 					"Reckless"
@@ -24462,9 +24592,10 @@
 					"Fighting"
 				],
 				"required": [
-					"Gunk Shot"
+					"Gunk Shot",
+					"Mountain Gale"
 				],
-				"level": 81
+				"level": 80
 			},
 			{
 				"role": "AV Pivot",
@@ -24511,7 +24642,7 @@
 					"Gunk Shot",
 					"Mountain Gale"
 				],
-				"level": 81
+				"level": 80
 			}
 		]
 	},
@@ -26353,7 +26484,7 @@
 					"Night Daze",
 					"Steam Eruption"
 				],
-				"level": 78
+				"level": 77
 			},
 			{
 				"role": "Fast Support",
@@ -27952,13 +28083,12 @@
 			{
 				"role": "AV Pivot",
 				"movepool": [
-					"Draco Meteor",
-					"Dragon Tail",
 					"Earthquake",
 					"Fire Blast",
 					"Knock Off",
 					"Power Whip",
 					"Scald",
+					"Dragon Hammer",
 					"Sludge Wave"
 				],
 				"abilities": [
@@ -27972,17 +28102,20 @@
 					"Steel",
 					"Water"
 				],
+				"required": [
+					"Dragon Hammer"
+				],
 				"level": 83
 			},
 			{
 				"role": "Bulky Setup",
 				"movepool": [
-					"Draco Meteor",
-					"Dragon Tail",
 					"Earthquake",
+					"Fire Blast",
 					"Knock Off",
 					"Scald",
 					"Calm Mind",
+					"Dragon Hammer",
 					"Sludge Wave",
 					"Recover"
 				],
@@ -27999,6 +28132,7 @@
 				],
 				"required": [
 					"Calm Mind",
+					"Dragon Hammer",
 					"Recover"
 				],
 				"level": 82
@@ -28011,13 +28145,12 @@
 			{
 				"role": "AV Pivot",
 				"movepool": [
-					"Draco Meteor",
-					"Dragon Tail",
 					"Earthquake",
 					"Fire Blast",
 					"Heavy Slam",
 					"Knock Off",
 					"Thunderbolt",
+					"Dragon Hammer",
 					"Surf"
 				],
 				"abilities": [
@@ -28029,17 +28162,20 @@
 					"Ground",
 					"Water"
 				],
+				"required": [
+					"Dragon Hammer"
+				],
 				"level": 80
 			},
 			{
 				"role": "Bulky Setup",
 				"movepool": [
-					"Draco Meteor",
-					"Dragon Tail",
 					"Earthquake",
+					"Fire Blast",
 					"Heavy Slam",
 					"Knock Off",
 					"Calm Mind",
+					"Dragon Hammer",
 					"Surf",
 					"Recover"
 				],
@@ -28054,6 +28190,7 @@
 				],
 				"required": [
 					"Calm Mind",
+					"Dragon Hammer",
 					"Recover"
 				],
 				"level": 79
@@ -28182,7 +28319,7 @@
 					"Poltergeist",
 					"Substitute",
 					"Sappy Seed",
-					"Dire Claw"
+					"Fire Lash"
 				],
 				"abilities": [
 					"Frisk"
@@ -29148,7 +29285,7 @@
 				],
 				"required": [
 					"Population Bomb",
-					"Trailblaze"
+					"Bone Rush"
 				],
 				"level": 83
 			}
@@ -32956,7 +33093,7 @@
 					"Make It Rain",
 					"Moonblast"
 				],
-				"level": 73
+				"level": 74
 			},
 			{
 				"role": "Setup Sweeper",
@@ -33029,7 +33166,7 @@
 					"Make It Rain",
 					"Moonblast"
 				],
-				"level": 73
+				"level": 74
 			},
 			{
 				"role": "Setup Sweeper",
@@ -33608,7 +33745,7 @@
 		]
 	},
 	"inteleon": {
-		"level": 79,
+		"level": 80,
 		"sets": [
 			{
 				"role": "Wallbreaker",
@@ -33616,9 +33753,8 @@
 					"Ice Beam",
 					"Scald",
 					"U-turn",
-					"Surf",
-					"Aeroblast",
-					"Energy Ball"
+					"Snipe Shot",
+					"Aeroblast"
 				],
 				"abilities": [
 					"Torrent"
@@ -33627,10 +33763,10 @@
 					"Water"
 				],
 				"required": [
-					"Surf",
+					"Snipe Shot",
 					"Aeroblast"
 				],
-				"level": 79
+				"level": 80
 			},
 			{
 				"role": "Setup Sweeper",
@@ -33639,9 +33775,8 @@
 					"Scald",
 					"U-turn",
 					"Nasty Plot",
-					"Surf",
-					"Aeroblast",
-					"Energy Ball"
+					"Snipe Shot",
+					"Aeroblast"
 				],
 				"abilities": [
 					"Torrent"
@@ -33651,10 +33786,10 @@
 				],
 				"required": [
 					"Nasty Plot",
-					"Surf",
+					"Snipe Shot",
 					"Aeroblast"
 				],
-				"level": 79
+				"level": 80
 			}
 		]
 	},
@@ -34079,9 +34214,9 @@
 			{
 				"role": "Bulky Attacker",
 				"movepool": [
+					"Apple Acid",
 					"Leech Seed",
 					"Recover",
-					"Leaf Storm",
 					"Core Enforcer"
 				],
 				"abilities": [
@@ -34091,8 +34226,7 @@
 					"Steel"
 				],
 				"required": [
-					"Core Enforcer",
-					"Leaf Storm"
+					"Core Enforcer"
 				],
 				"level": 90
 			}
@@ -34187,7 +34321,7 @@
 					"Roost",
 					"Surf",
 					"Aeroblast",
-					"Blizzard"
+					"Apple Acid"
 				],
 				"abilities": [
 					"Gulp Missile"
@@ -35239,7 +35373,7 @@
 		]
 	},
 	"arctozolt": {
-		"level": 83,
+		"level": 82,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -35262,7 +35396,7 @@
 					"High Horsepower",
 					"Zippy Zap"
 				],
-				"level": 83
+				"level": 82
 			}
 		]
 	},
@@ -35493,7 +35627,7 @@
 					"Spirit Shackle",
 					"Fire Lash"
 				],
-				"level": 70
+				"level": 69
 			},
 			{
 				"role": "Setup Sweeper",
@@ -36981,11 +37115,12 @@
 				"role": "Wallbreaker",
 				"movepool": [
 					"Close Combat",
+					"Double Shock",
 					"Ice Punch",
 					"Revival Blessing",
-					"Plasma Fists",
 					"Meteor Mash",
-					"Jet Punch"
+					"Jet Punch",
+					"Plasma Fists"
 				],
 				"abilities": [
 					"Iron Fist"
@@ -36994,8 +37129,7 @@
 					"Electric"
 				],
 				"required": [
-					"Plasma Fists",
-					"Meteor Mash"
+					"Plasma Fists"
 				],
 				"level": 77
 			}
@@ -38674,8 +38808,8 @@
 					"Protect",
 					"Boomburst",
 					"Psychic",
-					"Energy Ball",
-					"Thunderbolt"
+					"Night Daze",
+					"Energy Ball"
 				],
 				"abilities": [
 					"Sap Sipper"
@@ -38702,7 +38836,7 @@
 					"Earthquake",
 					"Glare",
 					"Roost",
-					"Double-Edge",
+					"Hyper Drill",
 					"Magical Torque"
 				],
 				"abilities": [
@@ -39490,7 +39624,7 @@
 		]
 	},
 	"baxcalibur": {
-		"level": 73,
+		"level": 72,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -39512,7 +39646,7 @@
 					"Mountain Gale",
 					"Behemoth Blade"
 				],
-				"level": 73
+				"level": 72
 			},
 			{
 				"role": "Setup Sweeper",
@@ -39535,7 +39669,7 @@
 					"Mountain Gale",
 					"Behemoth Blade"
 				],
-				"level": 73
+				"level": 72
 			},
 			{
 				"role": "Bulky Setup",
@@ -39559,12 +39693,12 @@
 					"Mountain Gale",
 					"Glaive Rush"
 				],
-				"level": 73
+				"level": 72
 			}
 		]
 	},
 	"baxcaliburmega": {
-		"level": 73,
+		"level": 72,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -39588,7 +39722,7 @@
 					"Mountain Gale",
 					"Behemoth Blade"
 				],
-				"level": 73
+				"level": 72
 			},
 			{
 				"role": "Setup Sweeper",
@@ -39614,12 +39748,12 @@
 					"Mountain Gale",
 					"Glaive Rush"
 				],
-				"level": 73
+				"level": 72
 			}
 		]
 	},
 	"gholdengo": {
-		"level": 74,
+		"level": 73,
 		"sets": [
 			{
 				"role": "Bulky Attacker",
@@ -39628,7 +39762,8 @@
 					"Nasty Plot",
 					"Trick",
 					"Aura Sphere",
-					"Astral Barrage"
+					"Astral Barrage",
+					"Surf"
 				],
 				"abilities": [
 					"Good as Gold"
@@ -39640,9 +39775,10 @@
 				],
 				"required": [
 					"Astral Barrage",
-					"Aura Sphere"
+					"Aura Sphere",
+					"Surf"
 				],
-				"level": 74
+				"level": 73
 			},
 			{
 				"role": "Bulky Support",
@@ -39651,7 +39787,8 @@
 					"Nasty Plot",
 					"Recover",
 					"Thunder Wave",
-					"Astral Barrage"
+					"Astral Barrage",
+					"Surf"
 				],
 				"abilities": [
 					"Good as Gold"
@@ -39662,9 +39799,10 @@
 					"Water"
 				],
 				"required": [
-					"Astral Barrage"
+					"Astral Barrage",
+					"Surf"
 				],
-				"level": 74
+				"level": 73
 			}
 		]
 	},
@@ -39854,7 +39992,7 @@
 		]
 	},
 	"roaringmoon": {
-		"level": 70,
+		"level": 69,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -39907,7 +40045,7 @@
 					"Dragon Ascent",
 					"Meteor Mash"
 				],
-				"level": 70
+				"level": 69
 			},
 			{
 				"role": "Bulky Attacker",

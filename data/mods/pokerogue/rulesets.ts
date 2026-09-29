@@ -21,6 +21,22 @@ function pokeRogueLearnset(species: Species, dex: ModdedDex): {[moveid: string]:
 	return null;
 }
 
+/**
+ * Is a foe's Neutralizing Gas switching this Pokémon's passive off? (Same
+ * check as neutralizedByFoe in scripts.ts, which data files can't import.)
+ */
+function neutralizedByFoe(pokemon: Pokemon) {
+	if (pokemon.hasItem('Ability Shield') || pokemon.volatiles['commanding']) return false;
+	if (pokemon.ability === 'neutralizinggas' || pokemon.m.innates?.includes('neutralizinggas')) return false;
+	for (const foe of pokemon.foes()) {
+		if (foe.volatiles['gastroacid'] || foe.transformed) continue;
+		if (foe.ability === 'neutralizinggas' && !foe.abilityState.ending) return true;
+		const gas = foe.volatiles['ability:neutralizinggas'];
+		if (gas && !gas.ending) return true;
+	}
+	return false;
+}
+
 /** Every form a set can end up in during a battle (for passive bans). */
 function reachableFormes(this: TeamValidator, set: PokemonSet, species: Species, tierSpecies: Species) {
 	const dex = this.dex;
@@ -160,8 +176,11 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			const passive = passiveOf(pokemon.species);
 			if (passive) pokemon.m.passive = this.toID(passive);
 			pokemon.m.innates = pokemon.m.passive && pokemon.m.passive !== pokemon.ability ? [pokemon.m.passive] : [];
+			const gassed = neutralizedByFoe(pokemon);
 			for (const innate of pokemon.m.innates) {
 				if (pokemon.hasAbility(innate)) continue;
+				// (a foe's Neutralizing Gas keeps it off until the gas goes away)
+				if (gassed && !this.dex.abilities.get(innate).flags['cantsuppress']) continue;
 				const effect = 'ability:' + innate;
 				pokemon.volatiles[effect] = this.initEffectState({id: effect, target: pokemon});
 			}
@@ -172,7 +191,9 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			// (the real one is shown when the Illusion breaks).
 			const shown = pokemon.illusion || pokemon;
 			const innates: ID[] = pokemon.illusion ?
-				(shown.m.passiveOn && shown.m.passive ? [shown.m.passive] : []) : (pokemon.m.innates || []);
+				(shown.m.passiveOn && shown.m.passive ? [shown.m.passive] : []) :
+				// (not a passive a foe's Neutralizing Gas is keeping off)
+				(pokemon.m.innates || []).filter((innate: ID) => pokemon.volatiles['ability:' + innate]);
 			for (const innate of innates) {
 				// (named after the ability, so every client shows it as that ability's name)
 				this.add('-start', pokemon, this.dex.abilities.get(innate).name, '[silent]');

@@ -27,8 +27,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 
 	// Choice Specs Dragon Energy (150 BP at full HP) from 130 Sp. Atk.
 	'Kyurem': 'Uber',
-	// Bolt Beak (170 BP when it moves first) with Tough Claws / Defiant.
-	'Zapdos-Galar': 'Uber',
+	// (Zapdos-Galar is back at its National Dex tier; OU bans it from using
+	// its Bolt Beak egg move instead, see config/pokerogue-formats.ts.)
 
 	// -------------------------------------------------------
 	// Gigantamax forms (hold Max Mushrooms)
@@ -159,4 +159,6 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Eevee-Starter': 'RU',
 	'Pichu-Spiky-eared': 'LC',
 	'Greninja-Ash': 'UUBL',
+	// Battle Bond turns it into Ash-Greninja, so it's tiered as Ash-Greninja.
+	'Greninja-Bond': 'UUBL',
 };
