@@ -19,8 +19,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				if (pokemon.hasItem('Ability Shield')) return false;
 				this.add('-endability', pokemon);
 				this.singleEvent('End', pokemon.getAbility(), pokemon.abilityState, pokemon, pokemon, 'gastroacid');
-				// Gastro Acid suppresses the passive too.
+				// Gastro Acid suppresses the passive too (unless it can't be
+				// suppressed, like Battle Bond; same as Neutralizing Gas).
 				for (const innate of pokemon.m.innates || []) {
+					if (this.dex.abilities.get(innate).flags['cantsuppress']) continue;
 					pokemon.removeVolatile('ability:' + innate);
 				}
 			},

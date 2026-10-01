@@ -218,5 +218,18 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				this.singleEvent('End', innateEffect, null, pokemon);
 			}
 		},
+		// Battle Bond on anything but Greninja (Charizard, Infernape as a
+		// passive), as in PokéRogue: +1 Atk / Sp. Atk / Spe when it KOs a foe
+		// with a move, once each time it's sent in, and it can't be suppressed.
+		// (Greninja's form change is the ability's, see abilities.ts.)
+		onAfterFaint(length, target, source, effect) {
+			if (!source || effect?.effectType !== 'Move') return;
+			if (!source.hp || source.transformed || !source.side.foePokemonLeft()) return;
+			if (source.baseSpecies.baseSpecies === 'Greninja') return;
+			if (source.ability !== 'battlebond' && !source.m.innates?.includes('battlebond')) return;
+			if (source.m.battleBondSwitchIn === source.previouslySwitchedIn) return;
+			source.m.battleBondSwitchIn = source.previouslySwitchedIn;
+			this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.dex.abilities.get('battlebond'));
+		},
 	},
 };

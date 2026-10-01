@@ -7,8 +7,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 
 	// Greninja: turns into Ash-Greninja the first time it KOs a foe (as in
 	// Gen 7), for the rest of the battle.
-	// Charizard, Infernape (passive): +1 Atk / Sp. Atk / Spe the first time
-	// it KOs a foe.
+	// Everything else with Battle Bond (Charizard, Infernape as a passive):
+	// +1 Atk / Sp. Atk / Spe after a KO, once each time it's sent in. That
+	// part is in the 'PokeRogue Mod' rule (rulesets.ts), because like in
+	// PokéRogue it can't be suppressed (Gastro Acid, Core Enforcer...).
 	battlebond: {
 		inherit: true,
 		onSourceAfterFaint(length, target, source, effect) {
@@ -17,12 +19,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (['Greninja', 'Greninja-Bond'].includes(source.species.name)) {
 				this.add('-activate', source, 'ability: Battle Bond');
 				source.formeChange('Greninja-Ash', this.effect, true);
-				return;
 			}
-			if (source.bondTriggered || source.species.name === 'Greninja-Ash') return;
-			this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.effect);
-			this.add('-activate', source, 'ability: Battle Bond');
-			source.bondTriggered = true;
 		},
 	},
 	// Neutralizing Gas, as the ability or the passive: switches off the
