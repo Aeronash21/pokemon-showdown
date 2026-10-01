@@ -27322,6 +27322,60 @@
 			}
 		]
 	},
+	"meowsticfmega": {
+		"level": 87,
+		"sets": [
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Nasty Plot",
+					"Psyshock",
+					"Shadow Ball",
+					"Thunderbolt",
+					"Moonblast",
+					"Mystical Fire"
+				],
+				"abilities": [
+					"Keen Eye",
+					"Infiltrator",
+					"Competitive"
+				],
+				"teraTypes": [
+					"Psychic"
+				],
+				"required": [
+					"Moonblast",
+					"Mystical Fire"
+				],
+				"level": 87
+			},
+			{
+				"role": "Fast Attacker",
+				"movepool": [
+					"Dark Pulse",
+					"Energy Ball",
+					"Shadow Ball",
+					"Thunderbolt",
+					"Expanding Force",
+					"Luster Purge",
+					"Moonblast"
+				],
+				"abilities": [
+					"Keen Eye",
+					"Infiltrator",
+					"Competitive"
+				],
+				"teraTypes": [
+					"Psychic"
+				],
+				"required": [
+					"Expanding Force",
+					"Luster Purge"
+				],
+				"level": 86
+			}
+		]
+	},
 	"doublade": {
 		"level": 75,
 		"sets": [

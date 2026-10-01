@@ -27,7 +27,7 @@ const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacut
  * count as the one Restricted Pokémon in VGC Restricted.
  */
 const RESTRICTED_MYTHICALS = [
-	'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Genesect', 'Magearna', 'Marshadow',
+	'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Speed', 'Genesect', 'Magearna', 'Marshadow',
 	'Shaymin-Sky',
 ];
 

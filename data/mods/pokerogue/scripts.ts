@@ -43,6 +43,12 @@ const EXCLUDED_SPECIES = new Set([
 ]);
 
 /**
+ * Not in the PokéRogue dex, but available here (their passive is in
+ * PASSIVE_CHANGES). Female Meowstic Mega Evolves like the male one.
+ */
+const EXTRA_SPECIES = ['meowsticfmega'];
+
+/**
  * Passives changed from PokéRogue's (pokerogue-data.ts is generated, so
  * the changes live here).
  */
@@ -74,6 +80,8 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 	garchompmegaz: 'Intimidate', // (Levitate, now its ability)
 	absolmegaz: 'Super Luck', // (Sharpness, now its ability)
 	lucariomegaz: 'Neuroforce', // (Mega Launcher)
+	// (EXTRA_SPECIES) the same passive as the male Mega
+	meowsticfmega: 'Psychic Surge',
 };
 
 /**
@@ -206,7 +214,7 @@ export const Scripts: ModdedBattleScriptsData = {
 
 	init() {
 		const toID = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '');
-		const legal = PokeRogueData.species.filter(id => !EXCLUDED_SPECIES.has(id));
+		const legal = [...PokeRogueData.species, ...EXTRA_SPECIES].filter(id => !EXCLUDED_SPECIES.has(id));
 
 		const fallbackTier = (id: string): string => {
 			const species = this.data.Pokedex[id];

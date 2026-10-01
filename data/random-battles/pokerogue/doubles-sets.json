@@ -26348,6 +26348,59 @@
 			}
 		]
 	},
+	"meowsticfmega": {
+		"level": 87,
+		"sets": [
+			{
+				"role": "Offensive Protect",
+				"movepool": [
+					"Fake Out",
+					"Protect",
+					"Shadow Ball",
+					"Moonblast",
+					"Expanding Force",
+					"Luster Purge"
+				],
+				"abilities": [
+					"Keen Eye",
+					"Infiltrator",
+					"Competitive"
+				],
+				"teraTypes": [
+					"Psychic"
+				],
+				"required": [
+					"Expanding Force",
+					"Moonblast"
+				],
+				"level": 87
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Nasty Plot",
+					"Protect",
+					"Psyshock",
+					"Shadow Ball",
+					"Moonblast",
+					"Mystical Fire"
+				],
+				"abilities": [
+					"Keen Eye",
+					"Infiltrator",
+					"Competitive"
+				],
+				"teraTypes": [
+					"Psychic"
+				],
+				"required": [
+					"Protect",
+					"Mystical Fire"
+				],
+				"level": 86
+			}
+		]
+	},
 	"doublade": {
 		"level": 75,
 		"sets": [

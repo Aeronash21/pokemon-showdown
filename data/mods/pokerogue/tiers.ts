@@ -27,6 +27,12 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 
 	// Choice Specs Dragon Energy (150 BP at full HP) from 130 Sp. Atk.
 	'Kyurem': 'Uber',
+
+	// -------------------------------------------------------
+	// Moved down (by request)
+	// -------------------------------------------------------
+
+	'Deoxys-Speed': 'OU', // National Dex Uber
 	// (Zapdos-Galar is back at its National Dex tier; OU bans it from using
 	// its Bolt Beak egg move instead, see config/pokerogue-formats.ts.)
 
@@ -119,6 +125,7 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Greninja-Mega': 'Uber',
 	'Pyroar-Mega': 'RU',
 	'Meowstic-M-Mega': 'RU',
+	'Meowstic-F-Mega': 'RU',
 	'Malamar-Mega': 'RU',
 	'Barbaracle-Mega': 'RU',
 	'Dragalge-Mega': 'RU',
