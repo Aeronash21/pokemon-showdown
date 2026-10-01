@@ -7177,7 +7177,7 @@
 		]
 	},
 	"flareon": {
-		"level": 84,
+		"level": 86,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -7201,6 +7201,26 @@
 					"Wish"
 				],
 				"level": 84
+			},
+			{
+				"role": "Bulky Support",
+				"movepool": [
+					"Sizzly Slide",
+					"Bouncy Bubble",
+					"Zippy Zap",
+					"Wish"
+				],
+				"abilities": [
+					"Flash Fire"
+				],
+				"teraTypes": [
+					"Water"
+				],
+				"fixed": true,
+				"item": "Rocky Helmet",
+				"level": 86,
+				"nature": "Bold",
+				"gender": "F"
 			}
 		]
 	},

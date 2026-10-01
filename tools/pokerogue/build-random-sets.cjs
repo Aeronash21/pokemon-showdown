@@ -1098,6 +1098,17 @@ const FIXED_SETS = {
 	},
 };
 /**
+ * EXTRA SETS (requested by the user): written out in full like the fixed sets
+ * (same fields, plus an optional `teraType`), but added next to the Pokémon's
+ * other singles and FFA sets instead of replacing them.
+ */
+const EXTRA_SETS = {
+	flareon: [{
+		role: 'Bulky Support', item: 'Rocky Helmet', ability: 'Flash Fire', nature: 'Bold', gender: 'F',
+		teraType: 'Water', moves: ['Sizzly Slide', 'Bouncy Bubble', 'Zippy Zap', 'Wish'],
+	}],
+};
+/**
  * Ultra Burst sets: Necrozma-Dusk-Mane / Dawn-Wings holding Ultranecrozium Z
  * with Photon Geyser (Ultra Necrozma is the only Z-Move user). Level: the
  * form's lowest level minus ULTRA_BURST_LEVELS.
@@ -1266,24 +1277,34 @@ function build(mode) {
 		out[species.id] = {level: Math.max(...finalSets.map(t => t.level)), sets: finalSets};
 	}
 
-	// The user's fixed sets replace everything else in singles and FFA.
+	/** A written-out set (FIXED_SETS / EXTRA_SETS) as a template. */
+	const writtenTemplate = (id, fixed, label) => {
+		const species = dex.species.get(id);
+		const baseLevel = base[id]?.level || levelFromBST(species);
+		const {level, levelDrop, notes: n} = fixedSetLevel(species, fixed, baseLevel, mode);
+		const template = {
+			role: fixed.role, movepool: fixed.moves.slice(), abilities: [fixed.ability],
+			teraTypes: fixed.teraType ? [fixed.teraType] : species.types.slice(), fixed: true, item: fixed.item, level,
+		};
+		if (fixed.nature) template.nature = fixed.nature;
+		if (fixed.gender) template.gender = fixed.gender;
+		const problems = checkFixedSet(species, fixed);
+		for (const problem of problems) notes.push(`${label} SET ${species.name}: not legal in PokéRogue: ${problem} (kept as written)`);
+		review.push(`${species.name.padEnd(26)} ${String(level).padStart(3)} (base ${baseLevel}, -${levelDrop}: passive ${n.passive || '-'} ${n.passiveLv}, egg ${n.eggLv})  ${label}: ${fixed.moves.join(', ')} @ ${fixed.item} [${fixed.ability}]` +
+			(n.changes.length ? `  {egg: ${n.changes.join('; ')}}` : ''));
+		return template;
+	};
 	if (!isDoubles) {
+		// The user's fixed sets replace everything else in singles and FFA.
 		for (const id in FIXED_SETS) {
-			const species = dex.species.get(id);
-			const fixed = FIXED_SETS[id];
-			const baseLevel = base[id]?.level || levelFromBST(species);
-			const {level, levelDrop, notes: n} = fixedSetLevel(species, fixed, baseLevel, mode);
-			const template = {
-				role: fixed.role, movepool: fixed.moves.slice(), abilities: [fixed.ability], teraTypes: species.types.slice(),
-				fixed: true, item: fixed.item, level,
-			};
-			if (fixed.nature) template.nature = fixed.nature;
-			if (fixed.gender) template.gender = fixed.gender;
-			out[id] = {level, sets: [template]};
-			const problems = checkFixedSet(species, fixed);
-			for (const problem of problems) notes.push(`FIXED SET ${species.name}: not legal in PokéRogue: ${problem} (kept as written)`);
-			review.push(`${species.name.padEnd(26)} ${String(level).padStart(3)} (base ${baseLevel}, -${levelDrop}: passive ${n.passive || '-'} ${n.passiveLv}, egg ${n.eggLv})  FIXED: ${fixed.moves.join(', ')} @ ${fixed.item} [${fixed.ability}]` +
-				(n.changes.length ? `  {egg: ${n.changes.join('; ')}}` : ''));
+			const template = writtenTemplate(id, FIXED_SETS[id], 'FIXED');
+			out[id] = {level: template.level, sets: [template]};
+		}
+		// Their extra sets join the other ones.
+		for (const id in EXTRA_SETS) {
+			const templates = EXTRA_SETS[id].map(extra => writtenTemplate(id, extra, 'EXTRA'));
+			const sets = [...(out[id]?.sets || []), ...templates];
+			out[id] = {level: Math.max(...sets.map(t => t.level)), sets};
 		}
 	}
 	return {out, review, notes};
@@ -1302,9 +1323,11 @@ function main() {
 		const setCount = Object.values(out).reduce((a, s) => a + s.sets.length, 0);
 		const withRequired = Object.values(out).reduce((a, s) => a + s.sets.filter(t => t.required).length, 0);
 		console.log(`${file}: ${Object.keys(out).length} Pokémon, ${setCount} sets, ${withRequired} with egg / passive moves they must keep`);
-		for (const note of notes) if (note.startsWith('FIXED SET')) console.log(`  warning: ${note}`);
+		for (const note of notes) if (/^(FIXED|EXTRA) SET/.test(note)) console.log(`  warning: ${note}`);
 		if (mode !== 'doubles') {
 			console.log(`  fixed sets: ${Object.keys(FIXED_SETS).map(id => `${dex.species.get(id).name} L${out[id].level}`).join(', ')}`);
+			console.log(`  extra sets: ${Object.keys(EXTRA_SETS).map(id => `${dex.species.get(id).name} ` +
+				out[id].sets.filter(t => t.fixed).map(t => `L${t.level}`).join('/')).join(', ')}`);
 		}
 		lines.push(`==== ${TITLES[mode]} ====`, ...review, '',
 			`-- moves dropped because they aren't in PokéRogue move lists --`, ...notes, '');
