@@ -172,7 +172,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		banlist: [
 			// Mythicals at Restricted Legendary strength (allowed in VGC Restricted)
 			...RESTRICTED_MYTHICALS,
-			'Zeraorite', // Zeraora-Mega: 700 BST, Uber in singles
 			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Manaphy + Primordial Sea', // unremovable heavy rain with no Restricted weather to answer it

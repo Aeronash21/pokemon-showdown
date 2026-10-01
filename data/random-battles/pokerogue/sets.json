@@ -13062,7 +13062,7 @@
 		]
 	},
 	"volbeat": {
-		"level": 90,
+		"level": 88,
 		"sets": [
 			{
 				"role": "Bulky Support",
@@ -13080,7 +13080,7 @@
 					"Steel",
 					"Water"
 				],
-				"level": 89
+				"level": 88
 			},
 			{
 				"role": "Bulky Attacker",
@@ -13098,7 +13098,7 @@
 					"Steel",
 					"Water"
 				],
-				"level": 90
+				"level": 88
 			},
 			{
 				"role": "Setup Sweeper",
@@ -13119,7 +13119,7 @@
 				"required": [
 					"Victory Dance"
 				],
-				"level": 90
+				"level": 88
 			}
 		]
 	},

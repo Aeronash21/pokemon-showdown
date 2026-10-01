@@ -12789,7 +12789,7 @@
 		]
 	},
 	"volbeat": {
-		"level": 82,
+		"level": 80,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -12810,7 +12810,7 @@
 					"Steel",
 					"Water"
 				],
-				"level": 81
+				"level": 80
 			},
 			{
 				"role": "Doubles Setup Sweeper",
@@ -12832,7 +12832,7 @@
 					"Victory Dance",
 					"Protect"
 				],
-				"level": 82
+				"level": 80
 			}
 		]
 	},

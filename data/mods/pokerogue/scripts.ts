@@ -50,6 +50,9 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 	// Honey Gather does nothing in a battle.
 	illumise: 'Lingering Aroma',
 	pachirisu: 'Cheek Pouch',
+	volbeat: 'Tinted Lens',
+	// Pickup barely does anything in a battle.
+	ribombee: 'Aroma Veil',
 	spidops: 'Prankster',
 	gholdengo: 'Super Luck',
 	// Pickup barely does anything in a battle.
