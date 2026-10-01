@@ -169,27 +169,46 @@
 		"level": 83,
 		"sets": [
 			{
-				"role": "Doubles Support",
+				"role": "Doubles Fast Attacker",
 				"movepool": [
-					"Encore",
+					"Volt Tackle",
+					"Zippy Zap",
+					"Wave Crash",
+					"Floaty Fall",
 					"Knock Off",
 					"Protect",
-					"Volt Tackle",
-					"Wave Crash",
-					"Triple Axel",
-					"Helping Hand",
-					"Electroweb"
+					"Double-Edge",
+					"Triple Axel"
 				],
 				"abilities": [
-					"Static",
+					"Lightning Rod"
+				],
+				"teraTypes": [
+					"Water",
+					"Flying"
+				],
+				"required": [
+					"Wave Crash"
+				],
+				"level": 82
+			},
+			{
+				"role": "Doubles Support",
+				"movepool": [
+					"Nuzzle",
+					"Encore",
+					"Helping Hand",
+					"Electroweb",
+					"Protect",
+					"Volt Tackle",
+					"Knock Off"
+				],
+				"abilities": [
 					"Lightning Rod"
 				],
 				"teraTypes": [
 					"Electric",
-					"Grass"
-				],
-				"required": [
-					"Wave Crash"
+					"Water"
 				],
 				"level": 83
 			}
@@ -435,6 +454,81 @@
 					"Freeze-Dry"
 				],
 				"level": 82
+			}
+		]
+	},
+	"eeveegmax": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Doubles Wallbreaker",
+				"movepool": [
+					"Hyper Voice",
+					"Boomburst",
+					"Sparkly Swirl",
+					"Freezy Frost",
+					"Protect",
+					"Shadow Ball"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal"
+				],
+				"required": [
+					"Boomburst"
+				],
+				"level": 81
+			},
+			{
+				"role": "Doubles Support",
+				"movepool": [
+					"Helping Hand",
+					"Protect",
+					"Baddy Bad",
+					"Glitzy Glow",
+					"Wish",
+					"Buzzy Buzz",
+					"Boomburst"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal",
+					"Ghost"
+				],
+				"required": [
+					"Boomburst",
+					"Wish"
+				],
+				"level": 80
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Hyper Voice",
+					"Boomburst",
+					"Sparkly Swirl",
+					"Freezy Frost",
+					"Protect",
+					"Shadow Ball",
+					"No Retreat",
+					"Wish"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal"
+				],
+				"required": [
+					"No Retreat",
+					"Boomburst",
+					"Wish"
+				],
+				"level": 80
 			}
 		]
 	},

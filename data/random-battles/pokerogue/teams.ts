@@ -177,6 +177,10 @@ export class PokeRogueTeams extends RandomTeams {
 		// Partner Pikachu stays Partner Pikachu (the Gen 9 generator turns every
 		// Pikachu into a random one).
 		if (species.id === 'pikachustarter') return species.name;
+		// G-Max Pikachu / Eevee start out as the partner forms (which Gigantamax
+		// into the regular G-Max forms).
+		if (species.id === 'pikachugmax') return 'Pikachu-Starter';
+		if (species.id === 'eeveegmax') return 'Eevee-Starter';
 		const forme = super.getForme(species);
 		const result = this.dex.species.get(forme);
 		if ((result as AnyObject).pokeRogue) return forme;

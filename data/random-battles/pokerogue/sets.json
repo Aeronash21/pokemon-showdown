@@ -202,29 +202,77 @@
 		]
 	},
 	"pikachugmax": {
-		"level": 84,
+		"level": 83,
 		"sets": [
 			{
 				"role": "Fast Attacker",
 				"movepool": [
-					"Knock Off",
-					"Play Rough",
-					"Volt Switch",
 					"Volt Tackle",
+					"Zippy Zap",
 					"Wave Crash",
-					"Triple Axel"
+					"Floaty Fall",
+					"Knock Off",
+					"Triple Axel",
+					"Play Rough"
 				],
 				"abilities": [
-					"Static",
 					"Lightning Rod"
 				],
 				"teraTypes": [
-					"Water"
+					"Water",
+					"Flying"
 				],
 				"required": [
+					"Wave Crash",
+					"Triple Axel"
+				],
+				"level": 83
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Bulk Up",
+					"Zippy Zap",
+					"Volt Tackle",
+					"Wave Crash",
+					"Floaty Fall",
+					"Knock Off",
+					"Triple Axel"
+				],
+				"abilities": [
+					"Lightning Rod"
+				],
+				"teraTypes": [
+					"Water",
+					"Flying"
+				],
+				"required": [
+					"Bulk Up",
 					"Wave Crash"
 				],
-				"level": 84
+				"level": 82
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Nasty Plot",
+					"Pika Papow",
+					"Thunderbolt",
+					"Splishy Splash",
+					"Moonblast",
+					"Grass Knot"
+				],
+				"abilities": [
+					"Lightning Rod"
+				],
+				"teraTypes": [
+					"Water",
+					"Fairy"
+				],
+				"required": [
+					"Moonblast"
+				],
+				"level": 83
 			}
 		]
 	},
@@ -460,6 +508,80 @@
 					"Freeze-Dry"
 				],
 				"level": 82
+			}
+		]
+	},
+	"eeveegmax": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"No Retreat",
+					"Veevee Volley",
+					"Zippy Zap",
+					"Sappy Seed",
+					"Sizzly Slide",
+					"Wish"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal",
+					"Ghost"
+				],
+				"required": [
+					"No Retreat",
+					"Wish",
+					"Zippy Zap"
+				],
+				"level": 80
+			},
+			{
+				"role": "Wallbreaker",
+				"movepool": [
+					"Boomburst",
+					"Sparkly Swirl",
+					"Freezy Frost",
+					"Shadow Ball",
+					"Baddy Bad",
+					"Bouncy Bubble"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal"
+				],
+				"required": [
+					"Boomburst"
+				],
+				"level": 81
+			},
+			{
+				"role": "Bulky Support",
+				"movepool": [
+					"Wish",
+					"Protect",
+					"Baddy Bad",
+					"Glitzy Glow",
+					"Heal Bell",
+					"Sappy Seed",
+					"Boomburst"
+				],
+				"abilities": [
+					"Adaptability"
+				],
+				"teraTypes": [
+					"Normal",
+					"Ghost"
+				],
+				"required": [
+					"Boomburst",
+					"Wish"
+				],
+				"level": 80
 			}
 		]
 	},

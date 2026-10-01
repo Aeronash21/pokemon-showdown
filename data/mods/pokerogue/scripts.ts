@@ -266,6 +266,12 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		// Gigantamax item: Galarica Wreath, which every Showdown client knows
 		// (Max Mushrooms, PokéRogue's own item, still works too).
+		// Partner Pikachu and Partner Eevee Gigantamax too, into the regular
+		// G-Max forms (with their stats).
+		const partnerGmax = {'Pikachu-Starter': 'Pikachu-Gmax', 'Eevee-Starter': 'Eevee-Gmax'};
+		const mushroomData = this.modData('Items', 'maxmushrooms') as AnyObject;
+		mushroomData.megaStone = {...mushroomData.megaStone, ...partnerGmax};
+		mushroomData.itemUser = [...mushroomData.itemUser, ...Object.keys(partnerGmax)];
 		const mushrooms = this.data.Items['maxmushrooms'] as AnyObject;
 		Object.assign(this.modData('Items', 'galaricawreath'), {
 			megaStone: {...mushrooms.megaStone},

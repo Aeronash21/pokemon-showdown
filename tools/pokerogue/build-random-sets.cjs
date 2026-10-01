@@ -69,7 +69,8 @@ const GEN9 = {
 /**
  * Partner Pikachu and Partner Eevee (PokéRogue's starter forms) are in the
  * random battle pool instead of the regular Pikachu (which is skipped, see
- * SKIP; G-Max Pikachu still uses its sets). Showdown has no sets for them,
+ * SKIP; G-Max Pikachu and G-Max Eevee start out as the partners and borrow
+ * these sets, see GMAX_FROM_PARTNER). Showdown has no sets for them,
  * so these are the source sets; the level comes from the stats
  * (levelFromBST) and the usual egg move / passive adjustments.
  */
@@ -224,8 +225,13 @@ function conditionalOK(move, ctx) {
  * PokéRogue data helpers
  * -----------------------------------------------------------
  */
+/**
+ * G-Max forms that start out as a partner form in random battles (the regular
+ * Pikachu / Eevee are replaced by Partner Pikachu / Eevee there).
+ */
+const GMAX_FROM_PARTNER = {pikachugmax: 'pikachustarter', eeveegmax: 'eeveestarter'};
 function prLearnset(species) {
-	let current = species;
+	let current = GMAX_FROM_PARTNER[species.id] ? dex.species.get(GMAX_FROM_PARTNER[species.id]) : species;
 	for (let i = 0; current && i < 3; i++) {
 		const data = dex.data.Learnsets[current.id];
 		if (data && data.pokeRogue && data.learnset) return new Set(Object.keys(data.learnset));
@@ -243,6 +249,7 @@ function canLearn(learnset, moveid) {
 }
 /** The species a set is used by out of battle (Megas / G-Max start as their base form). */
 function outOfBattle(species) {
+	if (GMAX_FROM_PARTNER[species.id]) return dex.species.get(GMAX_FROM_PARTNER[species.id]);
 	if (species.battleOnly) return dex.species.get(Array.isArray(species.battleOnly) ? species.battleOnly[0] : species.battleOnly);
 	return species;
 }
@@ -576,7 +583,8 @@ function convertTemplate(species, source, mode, notes) {
 		abilities = rated.length ? rated : prAbilities;
 	}
 	template.abilities = abilities;
-	if (species.isMega || species.forme.includes('Gmax')) template.abilities = prAbilities;
+	// (G-Max Pikachu / Eevee keep the partner sets' abilities: they start out as the partners)
+	if ((species.isMega || species.forme.includes('Gmax')) && !GMAX_FROM_PARTNER[species.id]) template.abilities = prAbilities;
 
 	// 2v2: singles support roles become doubles support (the Gen 9 generator
 	// then enforces redirection, Fake Out and speed control).
@@ -1041,7 +1049,7 @@ function borrowedSets(species, table) {
 // in-battle forms, and Pokémon that don't work in random battles.
 const SKIP = new Set([
 	'eternatuseternamax', 'kyogreprimal', 'groudonprimal', 'shedinja', 'wobbuffet', 'unown', 'meltan',
-	// Partner Pikachu instead (PARTNER_SETS); G-Max Pikachu still borrows Pikachu's sets
+	// Partner Pikachu instead (PARTNER_SETS); G-Max Pikachu / Eevee borrow the partners' sets
 	'pikachu',
 	'pichuspikyeared', 'pikachucosplay', 'pikachurockstar', 'pikachubelle', 'pikachupopstar', 'pikachuphd',
 	'pikachulibre', 'zygardecomplete', 'necrozmaultra', 'ogerponwellspringtera', 'ogerponhearthflametera',
