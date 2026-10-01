@@ -85,7 +85,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	// -------------------------------------------------------
 
 	'Raichu-Mega-X': 'RU',
-	'Raichu-Mega-Y': 'RU',
+	// 160 Sp. Atk / 130 Spe No Guard (100% Thunder / Zap Cannon) with a Teravolt passive.
+	'Raichu-Mega-Y': 'Uber',
 	'Clefable-Mega': 'RU',
 	'Victreebel-Mega': 'RU',
 	// Huge Power on 100 Atk / 120 Spe, with Regenerator as its passive.
