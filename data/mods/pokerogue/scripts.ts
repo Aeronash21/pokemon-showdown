@@ -34,7 +34,7 @@ import {Abilities as PokebilitiesAbilities} from '../pokebilities/abilities';
 import {Abilities as PokeRogueAbilities} from './abilities';
 import {PokeRogueData} from './pokerogue-data';
 import {PokeRogueTiers} from './tiers';
-import {applyChampionsChanges, championsCalculatePP} from './champions-changes';
+import {applyChampionsChanges, championsCalculatePP, CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from './champions-changes';
 
 /** In the PokéRogue dex but impossible to get in these formats. */
 const EXCLUDED_SPECIES = new Set([
@@ -408,6 +408,8 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 
 	actions: {
+		// Champions (see champions-changes.ts)
+		...CHAMPIONS_ACTIONS,
 		canMegaEvo(pokemon) {
 			const item = pokemon.getItem();
 			// Galarica Wreath / Max Mushrooms: only the exact species listed can
@@ -431,6 +433,8 @@ export const Scripts: ModdedBattleScriptsData = {
 			return neutralizedByFoe(this);
 		},
 		hasAbility: PokebilitiesScripts.pokemon!.hasAbility,
+		// Champions: no Trick Room speed underflow (see champions-changes.ts)
+		...CHAMPIONS_POKEMON,
 		// Champions: Rage Fist's counter resets when the Pokémon switches out.
 		clearVolatile(includeSwitchFlags) {
 			Pokemon.prototype.clearVolatile.call(this, includeSwitchFlags);

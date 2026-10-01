@@ -15,6 +15,7 @@
  *   and `pokemon` are reset to the standard behaviour.
  */
 import {Scripts as MixAndMegaScripts} from '../mixandmega/scripts';
+import {CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from '../pokerogue/champions-changes';
 
 export const Scripts: ModdedBattleScriptsData = {
 	...MixAndMegaScripts,
@@ -23,7 +24,12 @@ export const Scripts: ModdedBattleScriptsData = {
 
 	gen: 9,
 
-	// No Shared Power ability volatiles in these formats.
+	// No Shared Power ability volatiles in these formats (but Champions'
+	// battle changes, see pokerogue/champions-changes.ts).
 	field: {},
-	pokemon: {},
+	pokemon: {...CHAMPIONS_POKEMON},
+	actions: {
+		...(MixAndMegaScripts.actions || {}),
+		...CHAMPIONS_ACTIONS,
+	} as ModdedBattleActions,
 };

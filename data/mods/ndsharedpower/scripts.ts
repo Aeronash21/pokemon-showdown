@@ -1,4 +1,5 @@
 import {Scripts as SharedPowerScripts} from '../sharedpower/scripts';
+import {CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from '../pokerogue/champions-changes';
 
 const NDSP_MEGA_ACTIONS = new Set([
 	'megaEvo',
@@ -51,6 +52,14 @@ export const Scripts: ModdedBattleScriptsData = {
 	pokemon: {
 		inherit: true,
 		...(SharedPowerScripts.pokemon || {}),
+		// Champions (the statuses come with the Champions conditions)
+		...CHAMPIONS_POKEMON,
+	},
+
+	actions: {
+		inherit: true,
+		...(SharedPowerScripts.actions || {}),
+		...CHAMPIONS_ACTIONS,
 	},
 
 	queue: {
