@@ -105,6 +105,39 @@ const ABILITY_CHANGES: {[speciesid: string]: string} = {
 };
 
 /**
+ * PokéRogue's Multi Lens, on Prism Scale (an item every Showdown client knows,
+ * which does nothing in a battle). The holder's single-hit attacks hit one more
+ * time: the first hit does 75% of the normal damage and the extra hit 25%, so
+ * the total is the same, split in two. With Parental Bond (ability or passive)
+ * it's three hits: 75% / 25% / 25%.
+ * Like PokéRogue's, it skips multi-hit, charge, self-KO and spread moves, Fling,
+ * Uproar, Rollout, Ice Ball and Endeavor; here also fixed-damage moves
+ * (Seismic Toss, Super Fang...), which would otherwise do their damage twice.
+ */
+const MULTI_LENS = {
+	desc: "PokéRogue formats (Multi Lens): the holder's single-hit attacks hit one extra time; the first hit deals " +
+		"75% damage and the extra hit 25%. Not for multi-hit, charge, spread, self-KO or fixed-damage moves.",
+	shortDesc: "Multi Lens: the holder's single-hit attacks hit twice (75% + 25% damage).",
+	onPrepareHit(this: Battle, source: Pokemon, target: Pokemon, move: ActiveMove) {
+		if (move.category === 'Status' || move.flags['noparentalbond'] || move.flags['charge'] ||
+			move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax || move.selfdestruct ||
+			move.damage || move.damageCallback || move.id === 'uproar') return;
+		// (Parental Bond's own extra hit may or may not have been added yet)
+		if (move.multihit && move.multihitType !== 'parentalbond') return;
+		const bond = move.multihitType === 'parentalbond' || source.hasAbility('parentalbond');
+		move.multihit = bond ? 3 : 2;
+		if (bond) move.multihitType = 'parentalbond';
+		(move as AnyObject).multiLens = true;
+	},
+	onModifyDamage(this: Battle, damage: number, source: Pokemon, target: Pokemon, move: ActiveMove) {
+		if (!(move as AnyObject).multiLens) return;
+		if (move.hit === 1) return this.chainModify(0.75);
+		// (Parental Bond's 25% already applies to its hits after the first)
+		if (move.multihitType !== 'parentalbond') return this.chainModify(0.25);
+	},
+};
+
+/**
  * The passive ability name of a species (or form), or null if it has none.
  * Some cosmetic forms have their own (Unown letters, Sawsbuck seasons):
  * those are kept on the base species as `cosmeticPassives`.
@@ -241,6 +274,9 @@ export const Scripts: ModdedBattleScriptsData = {
 			desc: "PokéRogue formats: if held by a Pokemon with a Gigantamax form, it can Gigantamax like a Mega Evolution.",
 			shortDesc: "PokéRogue formats: lets a Pokemon with a Gigantamax form Gigantamax (like a Mega Evolution).",
 		});
+		// Multi Lens (see MULTI_LENS)
+		Object.assign(this.modData('Items', 'prismscale'), MULTI_LENS);
+
 		for (const id of legal) {
 			if (this.data.Pokedex[id]?.requiredItem !== 'Max Mushrooms') continue;
 			Object.assign(this.modData('Pokedex', id), {
