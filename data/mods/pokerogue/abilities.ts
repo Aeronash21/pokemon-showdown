@@ -148,4 +148,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	// Tera Shell for Pokémon other than Terapagos is in scripts.ts (runEffectiveness).
+
+	// Mega Lucario Z's ability (Pokémon Champions).
+	auraguard: {
+		inherit: true,
+		isNonstandard: null,
+	},
 };

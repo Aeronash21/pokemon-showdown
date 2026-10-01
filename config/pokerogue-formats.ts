@@ -5,8 +5,8 @@
  *
  * National Dex with PokéRogue's Pokémon, stats, move lists (level-up,
  * TM, all four egg moves) and passives. Gigantamax forms work like
- * Mega Evolutions with Max Mushrooms. Tera is allowed, except for
- * Pokémon holding a Mega Stone or Max Mushrooms.
+ * Mega Evolutions with Max Mushrooms. Tera is allowed (except for
+ * Pokémon holding a Mega Stone or Max Mushrooms), but not in OU.
  *
  * Singles tiers: Smogon National Dex tiers + the PokéRogue changes in
  * data/mods/pokerogue/tiers.ts.
@@ -43,9 +43,9 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 
 	{
 		name: '[Gen 9] PokeRogue OU',
-		desc: POKEROGUE_DESC,
+		desc: `${POKEROGUE_DESC} No Terastallization in OU.`,
 		mod: 'pokerogue',
-		ruleset: ['Standard NatDex', 'PokeRogue Mod'],
+		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'Terastal Clause'],
 		banlist: [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
@@ -54,6 +54,10 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Revival Blessing', 'Simple',
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
 			'Garchomp', // Dragon Dance, Dragon Hammer and Bitter Blade egg moves (and its Megas)
+			'Enamorus-Incarnate', // (Enamorus-Therian is legal)
+			'Darmanitan-Base', // Unovan Darmanitan (and its Zen Mode); Galarian Darmanitan is already Uber
+			// No Sketch on Grafaiai (or Shroodle): no Sketch, and no Sketched moves
+			'Grafaiai + Sketch', 'Shroodle + Sketch',
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
 			// boosted by their passive: these Pokémon are legal, just without the move
 			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
@@ -62,6 +66,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Passive bans
 			'Articuno-Galar + Serene Grace', // 40% freeze Freezing Glare
 			'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
+			'Blissey + Fur Coat', // doubled Defense on top of its HP and Special Defense
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
@@ -71,11 +76,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Bisharp + Sword of Ruin', // Eviolite Bisharp with Sword of Ruin
 			'Manaphy + Primordial Sea', // Tail Glow / Take Heart in its own unremovable heavy rain
 			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
-			'Swampert-Mega + Drizzle', // sets its own rain for Swift Swim
 			// Legendaries with a Drizzle passive: their own rain (100% accurate Thunder /
 			// Hurricane, boosted Water attacks) on a legendary stat spread
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle',
+			'Toedscruel + Prankster', // priority status moves
 			'Typhlosion + Drought', // sun Eruption (Typhlosion and Hisuian Typhlosion)
 		],
 	},

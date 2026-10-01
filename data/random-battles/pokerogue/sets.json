@@ -605,17 +605,17 @@
 		]
 	},
 	"absolmegaz": {
-		"level": 79,
+		"level": 81,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
+					"Night Slash",
 					"Psycho Cut",
 					"Shadow Claw",
 					"Sucker Punch",
 					"Swords Dance",
-					"Kowtow Cleave",
-					"Sacred Sword",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -628,19 +628,19 @@
 					"Ghost"
 				],
 				"required": [
-					"Kowtow Cleave",
-					"Sacred Sword"
+					"Bitter Blade"
 				],
-				"level": 79
+				"level": 81
 			},
 			{
 				"role": "Fast Attacker",
 				"movepool": [
+					"Close Combat",
+					"Night Slash",
 					"Psycho Cut",
 					"Shadow Claw",
 					"Sucker Punch",
-					"Sacred Sword",
-					"Kowtow Cleave",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -653,16 +653,14 @@
 					"Ghost"
 				],
 				"required": [
-					"Kowtow Cleave",
-					"Sacred Sword",
-					"Bitter Blade"
+					"Cross Poison"
 				],
-				"level": 79
+				"level": 81
 			}
 		]
 	},
 	"garchompmegaz": {
-		"level": 73,
+		"level": 72,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -680,15 +678,15 @@
 				"teraTypes": [
 					"Dragon"
 				],
-				"level": 73
+				"level": 72
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
+					"Outrage",
 					"Stone Edge",
 					"Bitter Blade",
-					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -700,7 +698,6 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
 				"level": 71
@@ -731,7 +728,7 @@
 				"required": [
 					"Tachyon Cutter"
 				],
-				"level": 80
+				"level": 81
 			},
 			{
 				"role": "Fast Attacker",
@@ -11798,7 +11795,7 @@
 		]
 	},
 	"swampertmega": {
-		"level": 76,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Bulky Attacker",
@@ -11823,7 +11820,7 @@
 					"Shore Up",
 					"Wave Crash"
 				],
-				"level": 76
+				"level": 77
 			}
 		]
 	},
@@ -14639,10 +14636,10 @@
 				"movepool": [
 					"Close Combat",
 					"Knock Off",
-					"Play Rough",
 					"Sucker Punch",
 					"Swords Dance",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -14652,7 +14649,8 @@
 					"Fairy"
 				],
 				"required": [
-					"Bitter Blade"
+					"Spirit Break",
+					"Cross Poison"
 				],
 				"level": 79
 			}
@@ -14665,11 +14663,11 @@
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Knock Off",
-					"Play Rough",
 					"Sucker Punch",
 					"Superpower",
 					"Swords Dance",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -14681,7 +14679,8 @@
 					"Fairy"
 				],
 				"required": [
-					"Bitter Blade"
+					"Spirit Break",
+					"Cross Poison"
 				],
 				"level": 78
 			},
@@ -14690,11 +14689,11 @@
 				"movepool": [
 					"Iron Tail",
 					"Knock Off",
-					"Play Rough",
 					"Pursuit",
 					"Sucker Punch",
 					"Superpower",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -14706,6 +14705,7 @@
 					"Fairy"
 				],
 				"required": [
+					"Spirit Break",
 					"Bitter Blade"
 				],
 				"level": 78
@@ -17507,10 +17507,11 @@
 			{
 				"role": "Fast Support",
 				"movepool": [
+					"Dragon Tail",
 					"Earthquake",
+					"Outrage",
 					"Spikes",
 					"Stealth Rock",
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -17521,7 +17522,6 @@
 					"Steel"
 				],
 				"required": [
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
 				"level": 71
@@ -17534,7 +17534,7 @@
 					"Scale Shot",
 					"Stone Edge",
 					"Bitter Blade",
-					"Dragon Hammer",
+					"Dragon Claw",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17547,18 +17547,18 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Hammer",
+					"Dragon Claw",
 					"Bitter Blade"
 				],
-				"level": 70
+				"level": 71
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
+					"Outrage",
 					"Stone Edge",
 					"Bitter Blade",
-					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17569,10 +17569,9 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
-				"level": 70
+				"level": 71
 			}
 		]
 	},
@@ -17583,10 +17582,10 @@
 				"role": "Bulky Support",
 				"movepool": [
 					"Earthquake",
+					"Outrage",
 					"Stealth Rock",
 					"Stone Edge",
-					"Bitter Blade",
-					"Dragon Hammer"
+					"Bitter Blade"
 				],
 				"abilities": [
 					"Sand Veil",
@@ -17597,7 +17596,6 @@
 					"Ground"
 				],
 				"required": [
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
 				"level": 75
@@ -17606,9 +17604,9 @@
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
+					"Outrage",
 					"Stone Edge",
 					"Bitter Blade",
-					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17621,7 +17619,6 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Hammer",
 					"Bitter Blade"
 				],
 				"level": 75
@@ -34555,6 +34552,7 @@
 					"Bulk Up",
 					"Drain Punch",
 					"Ice Punch",
+					"Knock Off",
 					"Jet Punch",
 					"Flip Turn"
 				],
@@ -34563,6 +34561,9 @@
 				],
 				"teraTypes": [
 					"Fighting"
+				],
+				"required": [
+					"Knock Off"
 				],
 				"level": 84
 			},
@@ -38409,18 +38410,19 @@
 					"Ground"
 				],
 				"required": [
-					"Malignant Chain"
+					"Malignant Chain",
+					"Earth Power"
 				],
 				"level": 73
 			},
 			{
-				"role": "Setup Sweeper",
+				"role": "Fast Attacker",
 				"movepool": [
 					"Earth Power",
 					"Energy Ball",
 					"Power Gem",
 					"Malignant Chain",
-					"Calm Mind"
+					"Dazzling Gleam"
 				],
 				"abilities": [
 					"Toxic Debris"
@@ -38429,11 +38431,11 @@
 					"Grass"
 				],
 				"required": [
-					"Calm Mind",
 					"Malignant Chain",
-					"Power Gem"
+					"Power Gem",
+					"Earth Power"
 				],
-				"level": 72
+				"level": 73
 			}
 		]
 	},
@@ -38459,7 +38461,8 @@
 					"Poison"
 				],
 				"required": [
-					"Malignant Chain"
+					"Malignant Chain",
+					"Earth Power"
 				],
 				"level": 73
 			},
@@ -38481,7 +38484,8 @@
 					"Poison"
 				],
 				"required": [
-					"Malignant Chain"
+					"Malignant Chain",
+					"Earth Power"
 				],
 				"level": 73
 			}

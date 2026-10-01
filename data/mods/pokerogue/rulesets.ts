@@ -133,8 +133,15 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		checkCanLearn(move, species, setSources, set) {
 			const learnset = pokeRogueLearnset(species, this.dex) || {};
 			if (learnset[move.id]) return null;
-			// Smeargle's Sketch.
-			if (learnset['sketch'] && !move.flags['nosketch'] && !move.isZ && !move.isMax) return null;
+			// Smeargle's Sketch (a format's "Pokemon + Sketch" ban, like
+			// "Grafaiai + Sketch", takes it away from that Pokémon).
+			if (learnset['sketch'] && !move.flags['nosketch'] && !move.isZ && !move.isMax) {
+				const sketchBanned = this.ruleTable.complexBans.some(([, , limit, bans]) => !limit &&
+					bans.includes('move:sketch') && bans.length === 2 && bans.some(ban =>
+						ban === 'pokemon:' + species.id || ban === 'basepokemon:' + this.dex.toID(species.baseSpecies)));
+				if (!sketchBanned) return null;
+				return ` can't learn ${move.name}: Sketch is banned on ${species.name}.`;
+			}
 			return ` can't learn ${move.name} in PokéRogue.`;
 		},
 

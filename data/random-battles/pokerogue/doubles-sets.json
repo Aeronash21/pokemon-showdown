@@ -567,17 +567,17 @@
 		]
 	},
 	"absolmegaz": {
-		"level": 79,
+		"level": 81,
 		"sets": [
 			{
 				"role": "Offensive Protect",
 				"movepool": [
+					"Night Slash",
 					"Protect",
 					"Psycho Cut",
 					"Shadow Claw",
 					"Sucker Punch",
-					"Kowtow Cleave",
-					"Sacred Sword",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -590,21 +590,20 @@
 					"Ghost"
 				],
 				"required": [
-					"Kowtow Cleave",
-					"Sacred Sword"
+					"Bitter Blade"
 				],
-				"level": 79
+				"level": 81
 			},
 			{
 				"role": "Doubles Setup Sweeper",
 				"movepool": [
+					"Night Slash",
 					"Protect",
 					"Psycho Cut",
 					"Sucker Punch",
 					"Swords Dance",
-					"Kowtow Cleave",
 					"Shadow Claw",
-					"Sacred Sword",
+					"Cross Poison",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -617,16 +616,16 @@
 					"Ghost"
 				],
 				"required": [
-					"Kowtow Cleave",
 					"Shadow Claw",
-					"Protect"
+					"Protect",
+					"Bitter Blade"
 				],
-				"level": 79
+				"level": 81
 			}
 		]
 	},
 	"garchompmegaz": {
-		"level": 76,
+		"level": 75,
 		"sets": [
 			{
 				"role": "Offensive Protect",
@@ -644,14 +643,14 @@
 				"teraTypes": [
 					"Dragon"
 				],
-				"level": 76
+				"level": 75
 			},
 			{
 				"role": "Doubles Setup Sweeper",
 				"movepool": [
+					"Dragon Claw",
 					"Protect",
 					"Rock Slide",
-					"Dragon Hammer",
 					"Land's Wrath",
 					"Bitter Blade",
 					"Dragon Dance"
@@ -665,10 +664,10 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Hammer",
-					"Protect"
+					"Protect",
+					"Land's Wrath"
 				],
-				"level": 73
+				"level": 74
 			}
 		]
 	},
@@ -696,7 +695,7 @@
 				"required": [
 					"Tachyon Cutter"
 				],
-				"level": 82
+				"level": 83
 			},
 			{
 				"role": "Doubles Setup Sweeper",
@@ -11452,7 +11451,7 @@
 		]
 	},
 	"swampertmega": {
-		"level": 76,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Doubles Bulky Attacker",
@@ -11478,7 +11477,7 @@
 					"Shore Up",
 					"Wave Crash"
 				],
-				"level": 76
+				"level": 77
 			}
 		]
 	},
@@ -14259,11 +14258,11 @@
 			{
 				"role": "Wallbreaker",
 				"movepool": [
-					"Close Combat",
 					"Knock Off",
 					"Sucker Punch",
 					"Swords Dance",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade",
 					"Protect",
 					"Brutal Swing"
@@ -14275,7 +14274,8 @@
 					"Fairy"
 				],
 				"required": [
-					"Bitter Blade"
+					"Spirit Break",
+					"Cross Poison"
 				],
 				"level": 79
 			}
@@ -14289,9 +14289,9 @@
 				"movepool": [
 					"Knock Off",
 					"Sucker Punch",
-					"Superpower",
 					"Swords Dance",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade",
 					"Protect",
 					"Brutal Swing"
@@ -14306,7 +14306,8 @@
 				],
 				"required": [
 					"Protect",
-					"Bitter Blade"
+					"Spirit Break",
+					"Cross Poison"
 				],
 				"level": 78
 			},
@@ -14316,8 +14317,8 @@
 					"Knock Off",
 					"Pursuit",
 					"Sucker Punch",
-					"Superpower",
-					"Psyblade",
+					"Spirit Break",
+					"Cross Poison",
 					"Bitter Blade",
 					"Protect",
 					"Brutal Swing"
@@ -14331,6 +14332,7 @@
 					"Fairy"
 				],
 				"required": [
+					"Spirit Break",
 					"Bitter Blade"
 				],
 				"level": 78
@@ -16906,7 +16908,7 @@
 		]
 	},
 	"garchomp": {
-		"level": 73,
+		"level": 74,
 		"sets": [
 			{
 				"role": "Doubles Setup Sweeper",
@@ -16914,7 +16916,7 @@
 					"Protect",
 					"Scale Shot",
 					"Land's Wrath",
-					"Dragon Hammer",
+					"Dragon Claw",
 					"Bitter Blade",
 					"Dragon Dance"
 				],
@@ -16928,9 +16930,9 @@
 				"required": [
 					"Dragon Dance",
 					"Land's Wrath",
-					"Dragon Hammer"
+					"Dragon Claw"
 				],
-				"level": 73
+				"level": 74
 			}
 		]
 	},
@@ -16940,11 +16942,11 @@
 			{
 				"role": "Doubles Support",
 				"movepool": [
+					"Outrage",
 					"Stealth Rock",
 					"Stone Edge",
 					"Land's Wrath",
 					"Bitter Blade",
-					"Dragon Hammer",
 					"Protect",
 					"Helping Hand"
 				],
@@ -16958,17 +16960,17 @@
 				],
 				"required": [
 					"Land's Wrath",
-					"Dragon Hammer"
+					"Bitter Blade"
 				],
 				"level": 75
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
+					"Outrage",
 					"Stone Edge",
 					"Land's Wrath",
 					"Bitter Blade",
-					"Dragon Hammer",
 					"Dragon Dance",
 					"Protect"
 				],
@@ -16983,7 +16985,7 @@
 				"required": [
 					"Dragon Dance",
 					"Land's Wrath",
-					"Dragon Hammer"
+					"Protect"
 				],
 				"level": 75
 			}
@@ -33609,6 +33611,7 @@
 					"Bulk Up",
 					"Drain Punch",
 					"Ice Punch",
+					"Knock Off",
 					"Jet Punch",
 					"Flip Turn",
 					"Protect"
@@ -33620,7 +33623,8 @@
 					"Fighting"
 				],
 				"required": [
-					"Protect"
+					"Protect",
+					"Knock Off"
 				],
 				"level": 84
 			},
@@ -37557,7 +37561,8 @@
 					"Water"
 				],
 				"required": [
-					"Malignant Chain"
+					"Malignant Chain",
+					"Earth Power"
 				],
 				"level": 75
 			},
@@ -37578,7 +37583,8 @@
 				],
 				"required": [
 					"Malignant Chain",
-					"Power Gem"
+					"Power Gem",
+					"Earth Power"
 				],
 				"level": 75
 			}
@@ -37605,7 +37611,8 @@
 					"Poison"
 				],
 				"required": [
-					"Malignant Chain"
+					"Malignant Chain",
+					"Earth Power"
 				],
 				"level": 75
 			},
@@ -37616,7 +37623,7 @@
 					"Power Gem",
 					"Spiky Shield",
 					"Malignant Chain",
-					"Fiery Dance"
+					"Earth Power"
 				],
 				"abilities": [
 					"Toxic Debris",
@@ -37627,10 +37634,9 @@
 					"Poison"
 				],
 				"required": [
-					"Malignant Chain",
-					"Fiery Dance"
+					"Malignant Chain"
 				],
-				"level": 74
+				"level": 75
 			}
 		]
 	},

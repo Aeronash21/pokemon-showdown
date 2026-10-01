@@ -91,13 +91,13 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Feraligatr-Mega': 'Uber',
 	'Skarmory-Mega': 'RU',
 	'Chimecho-Mega': 'RU',
-	// 154 Atk / 151 Spe with Sharpness as its passive.
+	// 154 Atk / 151 Spe Sharpness, with Super Luck as its passive.
 	'Absol-Mega-Z': 'Uber',
 	// 140 Atk / 110 Spe Contrary (Close Combat raises its defenses) with a Rock Head passive (recoil-free Brave Bird).
 	'Staraptor-Mega': 'Uber',
-	// 151 Spe mixed attacker (130 / 141) with a Levitate passive: outspeeds all of OU.
+	// 151 Spe mixed attacker (130 / 141) with Levitate and an Intimidate passive: outspeeds all of OU.
 	'Garchomp-Mega-Z': 'Uber',
-	// 164 Sp. Atk / 151 Spe, Mega Launcher Aura Sphere / Dark Pulse.
+	// 164 Sp. Atk / 151 Spe, with Aura Guard and a Neuroforce passive.
 	'Lucario-Mega-Z': 'Uber',
 	'Froslass-Mega': 'RU',
 	// 175 Sp. Atk on a 91 / 106 / 141 Fire/Steel body.
@@ -135,8 +135,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Zeraora-Mega': 'Uber',
 	'Falinks-Mega': 'RU',
 	'Scovillain-Mega': 'RU',
-	// 150 Sp. Atk Adaptability Sludge Wave / Power Gem.
-	'Glimmora-Mega': 'Uber',
+	// 150 Sp. Atk Adaptability Sludge Wave / Power Gem. OU by request.
+	'Glimmora-Mega': 'OU',
 	'Tatsugiri-Curly-Mega': 'RU',
 	'Tatsugiri-Droopy-Mega': 'RU',
 	'Tatsugiri-Stretchy-Mega': 'RU',

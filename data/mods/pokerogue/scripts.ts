@@ -65,6 +65,23 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 	// PokéRogue balances these around stacks of held items (see ABILITY_CHANGES).
 	machampgmax: 'Iron Fist',
 	snorlaxgmax: 'Comatose',
+	// Balance changes (the old passive in brackets).
+	minun: 'Friend Guard', // (Power Spot)
+	swampertmega: 'Regenerator', // (Drizzle)
+	garchompmegaz: 'Intimidate', // (Levitate, now its ability)
+	absolmegaz: 'Super Luck', // (Sharpness, now its ability)
+	lucariomegaz: 'Neuroforce', // (Mega Launcher)
+};
+
+/**
+ * Egg moves changed from PokéRogue's, for a whole evolution family (keyed by
+ * its first stage; Mega forms included). The 4th is the rare egg move.
+ */
+const EGG_MOVE_CHANGES: {[familyRoot: string]: string[]} = {
+	absol: ['Spirit Break', 'First Impression', 'Cross Poison', 'Bitter Blade'],
+	gible: ['Nasty Plot', 'Bitter Blade', "Land's Wrath", 'Dragon Dance'],
+	glimmet: ['Earth Power', 'Giga Drain', 'Mystical Fire', 'Malignant Chain'],
+	clobbopus: ['Knock Off', 'Jet Punch', 'Flip Turn', 'Surging Strikes'],
 };
 
 /**
@@ -78,6 +95,10 @@ const NATURAL_ONLY_MOVES = ['sizzlyslide'];
 const ABILITY_CHANGES: {[speciesid: string]: string} = {
 	machampgmax: 'No Guard', // was Guts (needs a Flame Orb; it holds Max Mushrooms)
 	snorlaxgmax: 'Thick Fat', // was Harvest (needs a Berry)
+	// The Legends: Z-A Megas' official abilities (PokéRogue has its own).
+	absolmegaz: 'Sharpness', // was Super Luck
+	garchompmegaz: 'Levitate', // was Rough Skin
+	lucariomegaz: 'Aura Guard', // was Inner Focus
 };
 
 /**
@@ -235,6 +256,39 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		const legalSet = new Set(legal);
 
+		// Egg move changes: the old egg moves go (unless learned another way),
+		// the new ones come in, for the whole family.
+		const familyRoot = (id: string) => {
+			let entry = this.data.Pokedex[id];
+			for (let i = 0; entry && i < 6; i++) {
+				const base = entry.baseSpecies && toID(entry.baseSpecies) !== toID(entry.name) ?
+					this.data.Pokedex[toID(entry.baseSpecies)] : undefined;
+				const next = base || (entry.prevo ? this.data.Pokedex[toID(entry.prevo)] : undefined);
+				if (!next) break;
+				entry = next;
+			}
+			return entry ? toID(entry.name) : id;
+		};
+		for (const id of legal) {
+			const newEggMoves = EGG_MOVE_CHANGES[familyRoot(id)];
+			if (!newEggMoves || !this.data.Pokedex[id]) continue;
+			const oldIDs = (PokeRogueData.eggMoves[id] || []).map(toID);
+			const newIDs = newEggMoves.map(toID);
+			(this.modData('Pokedex', id) as AnyObject).eggMoves = newEggMoves;
+			if (!this.data.Learnsets[id]?.learnset) continue;
+			const learnset = this.modData('Learnsets', id).learnset as {[moveid: string]: string[]};
+			for (const moveid of oldIDs) {
+				if (newIDs.includes(moveid) || !learnset[moveid]) continue;
+				const kept = learnset[moveid].filter(source => !/^\d+E/.test(source));
+				if (kept.length) learnset[moveid] = kept;
+				else delete learnset[moveid];
+			}
+			for (const moveid of newIDs) {
+				const sources = learnset[moveid] || [];
+				if (!sources.some(source => /^\d+E/.test(source))) learnset[moveid] = [...sources, '9E'];
+			}
+		}
+
 		// Evolutions can use their pre-evolutions' moves too (Slaking gets
 		// Slakoth's Slack Off, Raichu gets Pichu's moves, ...).
 		for (const id of legal) {
@@ -257,14 +311,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		// Moves only the Pokémon that learn them naturally (level-up, TM...) keep:
 		// as a PokéRogue egg move (inherited by evolutions too) they're gone.
 		for (const id of legal) {
-			const learnset = this.data.Learnsets[id]?.learnset;
+			const learnset = this.data.Learnsets[id]?.learnset as {[moveid: string]: string[]} | undefined;
 			if (!learnset) continue;
 			for (const moveid of NATURAL_ONLY_MOVES) {
 				const sources = learnset[moveid];
 				if (!sources) continue;
 				const kept = sources.filter(source => !/^\d+E/.test(source));
 				if (kept.length === sources.length) continue;
-				const modLearnset = this.modData('Learnsets', id).learnset!;
+				const modLearnset = this.modData('Learnsets', id).learnset as {[moveid: string]: string[]};
 				if (kept.length) modLearnset[moveid] = kept;
 				else delete modLearnset[moveid];
 			}
