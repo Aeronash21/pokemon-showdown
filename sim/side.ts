@@ -309,7 +309,7 @@ export class Side {
 	}
 
 	canDynamaxNow(): boolean {
-		if (this.battle.gen !== 8 && this.battle.format.mod !== 'ndsharedpower') return false;
+		if (this.battle.gen !== 8 && !['ndsharedpower', 'chaos'].includes(this.battle.format.mod)) return false;
 		// In multi battles, players on a team are alternatingly given the option to dynamax each turn
 		// On turn 1, the players on their team's respective left have the first chance (p1 and p2)
 		if (this.battle.gameType === 'multi' && this.battle.turn % 2 !== [1, 1, 0, 0][this.n]) return false;
@@ -793,7 +793,7 @@ export class Side {
 			if (pokemon.volatiles['dynamax']) {
 				dynamax = false;
 			} else {
-				if (this.battle.gen !== 8 && this.battle.format.mod !== 'ndsharedpower') {
+				if (this.battle.gen !== 8 && !['ndsharedpower', 'chaos'].includes(this.battle.format.mod)) {
 					return this.emitChoiceError(`Can't move: Dynamaxing doesn't outside of Gen 8.`);
 				} else if (pokemon.side.canDynamaxNow()) {
 					return this.emitChoiceError(`Can't move: ${pokemon.name} can't Dynamax now.`);

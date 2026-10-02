@@ -67,10 +67,13 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		ruleset: ['NatDex Mod', '+Light of Ruin'],
 		onChangeSet(set) {
 			// "Charizard-Gmax" means "Charizard holding Galarica Wreath (or Max
-			// Mushrooms)" here; there is no Dynamax flag.
+			// Mushrooms)" here; there is no Dynamax flag. (Chaos has Dynamax, so
+			// there it's the usual Gigantamax factor, unless the Wreath is doing it.)
 			if (set.gigantamax) {
+				const wreath = ['galaricawreath', 'maxmushrooms'].includes(this.dex.toID(set.item));
+				if (this.ruleTable.has('chaosmod') && !wreath) return;
 				delete set.gigantamax;
-				if (!['galaricawreath', 'maxmushrooms'].includes(this.dex.toID(set.item))) {
+				if (!wreath) {
 					return [`${set.name || set.species} can only Gigantamax by holding Galarica Wreath in PokéRogue formats.`];
 				}
 			}
@@ -89,7 +92,10 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			// PokéRogue has Mega Evolution and Gigantamax, but no Dynamax. The only
 			// Z-Move is Ultra Necrozma's: Necrozma-Dusk-Mane / Dawn-Wings holding
 			// Ultranecrozium Z Ultra Burst and get Light That Burns the Sky.
-			if (item.id === 'ultranecroziumz') {
+			// (Chaos has every Z-Crystal.)
+			if (this.ruleTable.has('chaosmod')) {
+				// any Z-Crystal
+			} else if (item.id === 'ultranecroziumz') {
 				if (!['Necrozma-Dusk-Mane', 'Necrozma-Dawn-Wings'].includes(species.name)) {
 					problems.push(`${name} can't hold ${item.name}: only Necrozma-Dusk-Mane and Necrozma-Dawn-Wings can ` +
 						`Ultra Burst.`);
@@ -226,7 +232,9 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (!source || effect?.effectType !== 'Move') return;
 			if (!source.hp || source.transformed || !source.side.foePokemonLeft()) return;
 			if (source.baseSpecies.baseSpecies === 'Greninja') return;
-			if (source.ability !== 'battlebond' && !source.m.innates?.includes('battlebond')) return;
+			// (its own ability, its passive, or shared by its team in Chaos)
+			if (source.ability !== 'battlebond' && !source.m.innates?.includes('battlebond') &&
+				!source.volatiles['ability:battlebond']) return;
 			if (source.m.battleBondSwitchIn === source.previouslySwitchedIn) return;
 			source.m.battleBondSwitchIn = source.previouslySwitchedIn;
 			this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.dex.abilities.get('battlebond'));

@@ -1052,13 +1052,13 @@ export class Pokemon {
 		// {gigantamax?: string, maxMoves: {[k: string]: string} | null}[]
 		if (!skipChecks) {
 			/*
-			 * NDSP: Tera blocks Dynamax
+			 * NDSP / Chaos: Tera blocks Dynamax
 			 *
-			 * In ND Shared Power, a Pokémon may use either
+			 * In ND Shared Power and Chaos, a Pokémon may use either
 			 * Terastallization OR Dynamax, never both.
 			 */
 			if (
-				this.battle.format.mod === 'ndsharedpower' &&
+				['ndsharedpower', 'chaos'].includes(this.battle.format.mod) &&
 				this.terastallized
 			) {
 				return;

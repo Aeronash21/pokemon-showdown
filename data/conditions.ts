@@ -766,7 +766,7 @@ export const Conditions: import('../sim/dex-conditions').ConditionDataTable = {
 			 * Dynamax expires or the Pokémon switches out.
 			 */
 			if (
-				this.format.mod === 'ndsharedpower'
+				['ndsharedpower', 'chaos'].includes(this.format.mod)
 			) {
 				pokemon.canTerastallize = null;
 			}

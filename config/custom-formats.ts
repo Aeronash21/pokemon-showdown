@@ -10,7 +10,19 @@ const NDSP_STANDARD_BANNED_ABILITIES = new Set([
 ]);
 
 function ndspIsAG(battle: any) {
-	return battle.format.id === 'gen9ndsharedpowerag';
+	return ['gen9ndsharedpowerag', 'gen9chaos'].includes(battle.format.id);
+}
+
+/** Chaos: PokéRogue passives go into the Shared Power pool too. */
+function ndspSharesPassives(battle: any) {
+	return battle.format.mod === 'chaos';
+}
+
+/** What a Pokémon adds to its team's pool: its ability (and in Chaos, its passive). */
+function ndspContribution(battle: any, pokemon: any): string[] {
+	const abilities = [pokemon.baseAbility || pokemon.ability];
+	if (ndspSharesPassives(battle) && pokemon.m.passiveOn && pokemon.m.passive) abilities.push(pokemon.m.passive);
+	return abilities;
 }
 
 function ndspAlliance(side: any): any[] {
@@ -183,10 +195,6 @@ function ndspUnlock(
 	battle: any,
 	pokemon: any
 ) {
-	const ability =
-		pokemon.baseAbility ||
-		pokemon.ability;
-
 	const memory =
 		pokemon.m as any;
 
@@ -198,17 +206,20 @@ function ndspUnlock(
 		memory.ndspUnlockedAbilities = [];
 	}
 
-	if (
-		ability &&
-		ndspAbilityAllowed(
-			battle,
-			ability
-		) &&
-		!memory.ndspUnlockedAbilities
-			.includes(ability)
-	) {
-		memory.ndspUnlockedAbilities
-			.push(ability);
+	// (its ability, and in Chaos its passive)
+	for (const ability of ndspContribution(battle, pokemon)) {
+		if (
+			ability &&
+			ndspAbilityAllowed(
+				battle,
+				ability
+			) &&
+			!memory.ndspUnlockedAbilities
+				.includes(ability)
+		) {
+			memory.ndspUnlockedAbilities
+				.push(ability);
+		}
 	}
 
 	const pool =
@@ -505,20 +516,18 @@ function ndspRepairAll(this: any) {
 					pokemon.previouslySwitchedIn >
 						0
 				) {
-					const ability =
-						pokemon.baseAbility ||
-						pokemon.ability;
-
-					if (
-						ability &&
-						ndspAbilityAllowed(
-							this,
-							ability
-						)
-					) {
-						pool.add(
-							ability
-						);
+					for (const ability of ndspContribution(this, pokemon)) {
+						if (
+							ability &&
+							ndspAbilityAllowed(
+								this,
+								ability
+							)
+						) {
+							pool.add(
+								ability
+							);
+						}
 					}
 				}
 			}
@@ -670,6 +679,47 @@ const mnmBuilderHooks = {
 	},
 	onSwitchIn: ndmnmHooks.onSwitchIn,
 	onSwitchOut: ndmnmHooks.onSwitchOut,
+};
+
+/*
+ * ===========================================================
+ * CHAOS
+ * ===========================================================
+ *
+ * PokéRogue (data/mods/chaos inherits the pokerogue mod) + Mix and Mega
+ * (any Pokémon can use any Mega Stone or transformation item, no limit on
+ * how many Mega Evolve) + persistent Shared Power, where PokéRogue passives
+ * are shared too. Terastallization, Dynamax / Gigantamax, Z-Moves and
+ * Galarica Wreath Gigantamax are all allowed.
+ */
+const CHAOS_DESC = `Pok&eacute;Rogue Pok&eacute;mon (stats, egg moves, passives) with Mix and Mega (any ` +
+	`Pok&eacute;mon can Mega Evolve with any Mega Stone, as many as you like) and Shared Power (every ability ` +
+	`<em>and passive</em> your team has sent out is shared by the whole team). Terastallization, Dynamax, ` +
+	`Gigantamax and Z-Moves are all allowed.`;
+
+const chaosHooks = {
+	// (Dynamax in Gen 9, as in ND Shared Power)
+	side: dynamaxSide,
+	onBegin(this: any) {
+		ndspBegin.call(this);
+		// Mix and Mega: the scripts need each Pokémon's own species.
+		for (const pokemon of this.getAllPokemon()) {
+			pokemon.m.originalSpecies = pokemon.baseSpecies.name;
+		}
+		this.add('rule', 'Chaos: Passives are shared too, and any Pokémon can Mega Evolve with any Mega Stone');
+		if (ndspIsAG(this)) this.add('rule', 'Huge Power + Pure Power do not stack');
+	},
+	onBeforeSwitchIn: ndspBeforeSwitchIn,
+	onSwitchIn(this: any, pokemon: any) {
+		ndspSwitchIn.call(this, pokemon);
+		ndmnmHooks.onSwitchIn.call(this, pokemon);
+	},
+	onSwitchOut: ndmnmHooks.onSwitchOut,
+	onAfterMega: ndspAfterMega,
+	onBeforeTurn: ndspRepairAll,
+	onAfterMove: ndspRepairAll,
+	onAfterFaint: ndspRepairAll,
+	onAfterTerastallization: ndspAfterTerastallization,
 };
 
 /** Stones that are too strong on anything (official Mix and Mega OU list + Zygardite). */
@@ -1098,6 +1148,38 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 		restricted: MNM_RESTRICTED_OU,
 		...mnmBuilderHooks,
+	},
+
+	// ========================================================
+	// CHAOS
+	// PokéRogue + Mix and Mega + Shared Power (see chaosHooks)
+	// ========================================================
+
+	{
+		section: 'Chaos',
+		column: 1,
+	},
+	{
+		name: '[Gen 9] Chaos',
+		desc: `${CHAOS_DESC} Build your own team. Anything Goes: one of each Mega Stone / transformation item per ` +
+			`team is the only limit.`,
+		mod: 'chaos',
+		ruleset: ['Standard AG', 'Chaos Mod'],
+		onValidateTeam: mnmBuilderValidateTeam,
+		...chaosHooks,
+	},
+	{
+		name: '[Gen 9] Chaos Random Battle',
+		desc: `${CHAOS_DESC} Random teams of Pok&eacute;Rogue sets, some holding a Mega Stone or a Z-Crystal. ` +
+			`Shadow Tag, Arena Trap, Moody and Simple aren't shared. Bring 12, pick 6.`,
+		mod: 'chaos',
+		team: 'random',
+		rated: false,
+		ruleset: [
+			'Obtainable', 'Team Preview', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod',
+			'Illusion Level Mod', 'Max Team Size = 12', 'Picked Team Size = 6', 'Chaos Mod',
+		],
+		...chaosHooks,
 	},
 
 	// PokéRogue formats live in config/pokerogue-formats.ts
