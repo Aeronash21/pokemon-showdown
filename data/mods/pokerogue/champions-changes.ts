@@ -70,20 +70,54 @@ function applyChanges(entry: AnyObject, changes: AnyObject) {
 	}
 }
 
+/** Same data? (Functions by reference: a merged entry keeps the base entry's functions.) */
+function sameData(a: any, b: any): boolean {
+	if (a === b) return true;
+	if (!a || !b || typeof a !== 'object' || typeof b !== 'object') return false;
+	if (Array.isArray(a) !== Array.isArray(b)) return false;
+	const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+	for (const key of keys) {
+		if (!sameData(a[key], b[key])) return false;
+	}
+	return true;
+}
+
+/**
+ * What a Champions data entry changes from the base (Gen 9) entry.
+ *
+ * Only the fields that differ from the base data count: once a
+ * Champions-based dex (Champions, ND Shared Power...) has loaded, Showdown
+ * has filled the Champions modules' data tables with every base entry and
+ * merged each changed entry with its base entry, so taking every field
+ * would copy base data over this mod's own changes (PokéRogue's Zippy Zap,
+ * Gastro Acid, Neutralizing Gas...) whenever such a format was played first.
+ */
+function championsChanges(data: AnyObject, base: AnyObject | undefined, skip: string[]) {
+	const changes: AnyObject = {};
+	if (data === base) return changes;
+	for (const key in data) {
+		if (key === 'inherit' || skip.includes(key)) continue;
+		if (base && sameData(data[key], base[key])) continue;
+		changes[key] = data[key];
+	}
+	return changes;
+}
+
 export function applyChampionsChanges(dex: ModdedDex) {
+	const base = dex.mod('gen9').data;
 	for (const [id, data] of Object.entries(ChampionsConditions)) {
-		const {inherit, ...changes} = data as AnyObject;
-		if (!dex.data.Conditions[id]) continue;
+		const changes = championsChanges(data, base.Conditions[id], []);
+		if (!dex.data.Conditions[id] || !Object.keys(changes).length) continue;
 		applyChanges(dex.modData('Conditions', id), changes);
 	}
 	for (const [id, data] of Object.entries(ChampionsMoves)) {
-		const {inherit, isNonstandard, ...changes} = data as AnyObject;
+		const changes = championsChanges(data, base.Moves[id], ['isNonstandard']);
 		if (!dex.data.Moves[id] || !Object.keys(changes).length) continue;
 		applyChanges(dex.modData('Moves', id), changes);
 	}
 	for (const [id, data] of Object.entries(ChampionsAbilities)) {
-		const {inherit, ...changes} = data as AnyObject;
-		if (!dex.data.Abilities[id]) continue;
+		const changes = championsChanges(data, base.Abilities[id], []);
+		if (!dex.data.Abilities[id] || !Object.keys(changes).length) continue;
 		applyChanges(dex.modData('Abilities', id), changes);
 	}
 	// Champions: no move has more than 20 PP.
