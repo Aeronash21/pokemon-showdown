@@ -36,7 +36,7 @@ export const PokeRogueData: {
 	"caterpie": "Gluttony",
 	"metapod": "Sturdy",
 	"butterfree": "Magician",
-	"butterfreegmax": "Magician",
+	"butterfreegmax": "Delta Stream",
 	"weedle": "Poison Point",
 	"kakuna": "Sturdy",
 	"beedrill": "Adaptability",
