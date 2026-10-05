@@ -3357,7 +3357,9 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	poisonpuppeteer: {
 		onAnyAfterSetStatus(status, target, source, effect) {
 			if (source.baseSpecies.name !== "Pecharunt") return;
-			if (source !== this.effectState.target || target === source || effect.effectType !== 'Move') return;
+			if (source !== this.effectState.target || target === source) return;
+			// Moves, and Toxic Chain (Pecharunt's PokéRogue passive, or a shared ability)
+			if (effect.effectType !== 'Move' && effect.name !== 'Toxic Chain') return;
 			if (status.id === 'psn' || status.id === 'tox') {
 				target.addVolatile('confusion');
 			}
