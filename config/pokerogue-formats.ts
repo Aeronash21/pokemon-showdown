@@ -46,6 +46,13 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		desc: `${POKEROGUE_DESC} No Terastallization in OU.`,
 		mod: 'pokerogue',
 		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'Terastal Clause'],
+		onValidateSet(set) {
+			// Bitter Blade: Ceruledge only (Garchomp, Kingambit, Kartana... get it as an egg move)
+			const species = this.dex.species.get(set.species);
+			if (species.baseSpecies !== 'Ceruledge' && set.moves.some(move => this.dex.toID(move) === 'bitterblade')) {
+				return [`${set.name || set.species} can't use Bitter Blade: only Ceruledge can in PokéRogue OU.`];
+			}
+		},
 		banlist: [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
@@ -53,7 +60,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// PokéRogue: egg move / passive additions
 			'Revival Blessing', 'Simple',
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
-			'Garchomp', // Dragon Dance, Dragon Hammer and Bitter Blade egg moves (and its Megas)
+			'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
 			'Enamorus-Incarnate', // (Enamorus-Therian is legal)
 			'Darmanitan-Base', // Unovan Darmanitan (and its Zen Mode); Galarian Darmanitan is already Uber
 			// No Sketch on Grafaiai (or Shroodle): no Sketch, and no Sketched moves
