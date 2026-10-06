@@ -63,8 +63,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
 			'Enamorus-Incarnate', // (Enamorus-Therian is legal)
 			'Darmanitan-Base', // Unovan Darmanitan (and its Zen Mode); Galarian Darmanitan is already Uber
-			// No Sketch on Grafaiai (or Shroodle): no Sketch, and no Sketched moves
-			'Grafaiai + Sketch', 'Shroodle + Sketch',
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
 			// boosted by their passive: these Pokémon are legal, just without the move
 			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
