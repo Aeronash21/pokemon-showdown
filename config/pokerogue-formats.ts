@@ -62,12 +62,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
 			'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
 			'Enamorus-Incarnate', // (Enamorus-Therian is legal)
-			'Darmanitan-Base', // Unovan Darmanitan (and its Zen Mode); Galarian Darmanitan is already Uber
+			'Jirachi',
 			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
 			// boosted by their passive: these Pokémon are legal, just without the move
 			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
 			'Zapdos-Galar + Bolt Beak',
-			'Ferrothorn + Sappy Seed', // (its rare egg move) Leech Seed on every hit
 			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Alomomola + Multiscale', // half damage at full HP on 165 HP, with Regenerator to get back there

@@ -1,4 +1,11 @@
 export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
+	// Dark Void works for any Pokémon that has it (Gengar, Hypno, Meowstic...), not just Darkrai.
+	darkvoid: {
+		inherit: true,
+		onTry: undefined,
+		desc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the foe(s) to fall asleep.",
+	},
 	// The original (Let's Go) Zippy Zap, as in PokéRogue: 50 BP, always a
 	// critical hit, no Evasion boost (instead of 80 BP with +1 Evasion).
 	zippyzap: {
