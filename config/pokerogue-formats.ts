@@ -47,8 +47,12 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		mod: 'pokerogue',
 		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'Terastal Clause'],
 		onValidateSet(set) {
-			// Bitter Blade: Ceruledge only (Garchomp, Kingambit, Kartana... get it as an egg move)
 			const species = this.dex.species.get(set.species);
+			// Mega Gallade's Sharpness passive is switched off (165 Atk, 1.5x Sacred Sword /
+			// Psycho Cut / Leaf Blade). Gallade can still have Sharpness as its ability before
+			// Mega Evolving; it's gone once it Mega Evolves (Inner Focus, no passive).
+			if (species.baseSpecies === 'Gallade' && this.dex.toID(set.item) === 'galladite') set.passive = false;
+			// Bitter Blade: Ceruledge only (Garchomp, Kingambit, Kartana... get it as an egg move)
 			if (species.baseSpecies !== 'Ceruledge' && set.moves.some(move => this.dex.toID(move) === 'bitterblade')) {
 				return [`${set.name || set.species} can't use Bitter Blade: only Ceruledge can in PokéRogue OU.`];
 			}
@@ -76,7 +80,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
 			'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
-			'Gallade-Mega + Sharpness', // 165 Atk, 1.5x Sacred Sword / Psycho Cut / Leaf Blade
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
 			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
 			'Bisharp + Sword of Ruin', // Eviolite Bisharp with Sword of Ruin
