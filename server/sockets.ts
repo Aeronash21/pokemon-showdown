@@ -468,7 +468,8 @@ export class ServerStream extends Streams.ObjectReadWriteStream<string> {
 			const ips = (socket.headers['x-forwarded-for'] || '').split(',').reverse();
 			for (const ip of ips) {
 				const proxy = ip.trim();
-				if (!this.isTrustedProxyIp(proxy)) {
+				// (no X-Forwarded-For header: keep the proxy's address rather than an empty one)
+				if (proxy && !this.isTrustedProxyIp(proxy)) {
 					socketip = proxy;
 					break;
 				}

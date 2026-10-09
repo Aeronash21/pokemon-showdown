@@ -82,7 +82,10 @@ Main's SSL deploy script from Let's Encrypt looks like:
  *   know what you are doing
  * @type {false | string[]}.
  */
-exports.proxyip = false;
+// Render: every connection comes through Render's proxy (a private address), so
+// without this every user would share the proxy's IP, and banning or locking one
+// user would ban everyone. The real IP is taken from X-Forwarded-For instead.
+exports.proxyip = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', '100.64.0.0/10', '127.0.0.0/8'];
 
 // subprocesses - the number of child processes to use for various tasks.
 //   Can be set to `0` instead of `{...}` to stop using subprocesses, if you're running out of RAM.
