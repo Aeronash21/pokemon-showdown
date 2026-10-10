@@ -503,6 +503,8 @@ export class Format extends BasicEffect implements Readonly<BasicEffect> {
 	declare readonly teraPreviewDefault?: boolean;
 	declare readonly itemClauseDefault?: boolean;
 	declare readonly threads?: string[];
+	/** Extra lines for the PokéRogue /tier banlist: rules the format checks itself (onValidateSet) */
+	declare readonly banlistNotes?: string[];
 	declare readonly tournamentShow?: boolean;
 	declare readonly checkCanLearn?: (
 		this: TeamValidator, move: Move, species: Species, setSources: PokemonSources, set: PokemonSet

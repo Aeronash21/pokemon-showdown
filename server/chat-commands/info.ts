@@ -10,6 +10,7 @@
  */
 import * as net from 'net';
 import { YouTube, Twitch } from '../chat-plugins/youtube';
+import { pokeRogueBanlistHTML } from '../chat-plugins/pokerogue-banlist';
 import { Net, Utils } from '../../lib';
 import { RoomSections } from './room-settings';
 
@@ -1896,6 +1897,7 @@ export const commands: Chat.ChatCommands = {
 		`/battlerules - Provides information on the rules that can be added to tournament and challenge battles.`,
 	],
 
+	banlist: 'formathelp',
 	banlists: 'formathelp',
 	tier: 'formathelp',
 	tiers: 'formathelp',
@@ -1925,6 +1927,13 @@ export const commands: Chat.ChatCommands = {
 		const format = totalMatches === 1 ? Dex.formats.get(Object.values(sections)[0].formats[0]) : null;
 
 		if (!this.runBroadcast(`!formathelp ${format ? format.id : target}`)) return;
+
+		// PokéRogue: a readable banlist built from the format's rules (no Smogon resources to fetch)
+		const pokeRogueBans = format && pokeRogueBanlistHTML(format);
+		if (format && pokeRogueBans) {
+			const desc = format.desc ? `${format.desc}<hr />` : '';
+			return this.sendReplyBox(`<h2>${format.name}</h2><hr />${desc}${pokeRogueBans}`);
+		}
 
 		if (format) {
 			const rules: string[] = [];

@@ -14,6 +14,10 @@
  * "<Pokémon> + <Ability>" bans below are PASSIVE bans: that Pokémon is
  * legal, and its passive is switched off automatically. A plain ability
  * ban (e.g. 'Arena Trap') also switches it off as a passive.
+ *
+ * /tier <format> builds its banlist from these rules automatically
+ * (server/chat-plugins/pokerogue-banlist.ts). Anything a format checks in
+ * its own onValidateSet needs a line in its `banlistNotes`.
  */
 
 const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacute;Rogue passive ability ` +
@@ -57,6 +61,12 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 				return [`${set.name || set.species} can't use Bitter Blade: only Ceruledge can in PokéRogue OU.`];
 			}
 		},
+		// Shown in /tier's banlist (keep in step with onValidateSet above)
+		banlistNotes: [
+			`Bitter Blade: only Ceruledge can use it.`,
+			`Gallade holding Galladite has no passive, so Mega Gallade doesn't get Sharpness. ` +
+			`Gallade can still have Sharpness as its regular ability before it Mega Evolves.`,
+		],
 		banlist: [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
