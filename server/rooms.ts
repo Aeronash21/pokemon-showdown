@@ -1190,6 +1190,86 @@ export abstract class BasicRoom {
 	}
 }
 
+const LEVEL_RULES = ['adjustlevel', 'adjustleveldown', 'maxlevel'];
+/**
+ * The level a format is played at, for the format list (level 50 formats get
+ * a flag so the teambuilder defaults to level 50).
+ *
+ * The format list covers every format, and a full rule table loads the
+ * format's mod: all ~50 mods' data, ~170 MB, as soon as anyone connected, which
+ * is too much for a 512 MB host like Render's free plan. The level only depends
+ * on the "Adjust Level" / "Adjust Level Down" / "Max Level" rules, so this
+ * works it out from rule names alone: the base rulesets and formats, plus the
+ * rulesets files of the format's mod and its parents (read only when a rule
+ * isn't found otherwise). If a rule still isn't found, or the mod is loaded
+ * anyway, it uses the full rule table.
+ */
+function formatListLevel(format: Format): number {
+	const fullLevel = () => {
+		const ruleTable = Dex.formats.getRuleTable(format);
+		return ruleTable.adjustLevel || ruleTable.adjustLevelDown || ruleTable.maxLevel;
+	};
+	const mod = format.mod || 'gen9';
+	const dexes = Dex.dexes;
+	if (format.ruleTable || !dexes[mod] || dexes[mod].isBase || dexes[mod].dataCache) return fullLevel();
+
+	const tables: AnyObject[] = [];
+	let nextMod: string | null = mod;
+	const seenMods = new Set<string>();
+	const addParentRulesets = () => {
+		const dex = nextMod ? dexes[nextMod] : null;
+		if (!dex || dex.isBase || seenMods.has(dex.currentMod)) return false;
+		seenMods.add(dex.currentMod);
+		const rulesets = dex.loadDataFile(dex.dataDir + '/', 'Rulesets');
+		if (rulesets) tables.push(rulesets);
+		nextMod = (dex.loadDataFile(dex.dataDir + '/', 'Scripts') as AnyObject | undefined)?.inherit || null;
+		return true;
+	};
+	addParentRulesets();
+	const lookup = (id: string): AnyObject | null => {
+		do {
+			for (const table of tables) {
+				if (table[id]) return table[id];
+			}
+		} while (addParentRulesets());
+		return Dex.data.Rulesets[id] || null;
+	};
+
+	// value rules set by these rules (and the rules they include), minus repealed ones
+	const resolve = (rules: string[] | undefined, depth: number): Map<string, string> | null => {
+		const values = new Map<string, string>();
+		const repealed = new Set<string>();
+		for (let rule of rules || []) {
+			if ('-+*'.includes(rule.charAt(0))) continue;
+			if (rule.startsWith('^')) rule = rule.slice(1);
+			if (rule.startsWith('!') && !rule.startsWith('!!')) {
+				repealed.add(toID(rule));
+				continue;
+			}
+			const [name, value] = rule.replace(/^!!/, '').split('=');
+			const id = toID(name);
+			if (value !== undefined) {
+				if (LEVEL_RULES.includes(id)) values.set(id, value.trim());
+				continue;
+			}
+			const subformat = lookup(id);
+			if (!subformat) return null;
+			if (depth > 16) continue;
+			const subValues = resolve(subformat.ruleset, depth + 1);
+			if (!subValues) return null;
+			for (const [key, subValue] of subValues) {
+				if (!values.has(key)) values.set(key, subValue);
+			}
+		}
+		for (const key of repealed) values.delete(key);
+		return values;
+	};
+	const values = resolve(format.ruleset, 1);
+	if (!values) return fullLevel();
+	return Number(values.get('adjustlevel')) || Number(values.get('adjustleveldown')) ||
+		Number(values.get('maxlevel')) || 100;
+}
+
 export class GlobalRoomState {
 	readonly settingsList: RoomSettings[];
 	readonly chatRooms: ChatRoom[];
@@ -1493,9 +1573,7 @@ export class GlobalRoomState {
 			if (format.searchShow) displayCode |= 2;
 			if (format.challengeShow) displayCode |= 4;
 			if (format.tournamentShow) displayCode |= 8;
-			const ruleTable = Dex.formats.getRuleTable(format);
-			const level = ruleTable.adjustLevel || ruleTable.adjustLevelDown || ruleTable.maxLevel;
-			if (level === 50) displayCode |= 16;
+			if (formatListLevel(format) === 50) displayCode |= 16;
 			// 32 was previously used for Multi Battles
 			if (format.bestOfDefault) displayCode |= 64;
 			if (format.teraPreviewDefault) displayCode |= 128;

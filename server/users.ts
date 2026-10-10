@@ -1687,6 +1687,10 @@ function socketReceive(worker: ProcessManager.StreamWorker, workerid: number, so
 
 	const connection = connections.get(id);
 	if (!connection) return;
+	// Keep-alive from the client, sent every few minutes so that hosts which shut
+	// down idle servers (Render's free plan: after 15 minutes with no incoming
+	// messages) count an open connection as traffic. It isn't user activity.
+	if (message === '|/keepalive') return;
 	connection.lastActiveTime = Date.now();
 
 	// Due to a bug in SockJS or Faye, if an exception propagates out of

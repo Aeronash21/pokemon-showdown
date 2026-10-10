@@ -131,6 +131,31 @@ if (cli.values['help']) {
 	process.exit(0);
 }
 
+// Hosts with little RAM (Render's free plan: 512 MB): cap Node's heap. Node only
+// cleans up memory when it thinks it's running short, so without a cap the
+// server can grow past the instance's RAM and get killed, disconnecting
+// everyone. On Render the server restarts itself (in the same process) with a
+// heap cap of 320 MB. PS_MAX_HEAP_MB sets another cap (0: none), on any host.
+var isServerStart = !cli.positionals.length || /^[0-9]+$/.test(cli.positionals[0]) || cli.positionals[0] === 'start';
+var heapCapMB = process.env.PS_MAX_HEAP_MB !== undefined ? Number(process.env.PS_MAX_HEAP_MB) : (process.env.RENDER ? 320 : 0);
+var hasHeapFlag = process.execArgv.concat((process.env.NODE_OPTIONS || '').split(/\s+/)).some(function (arg) {
+	return arg.startsWith('--max-old-space-size') || arg.startsWith('--max_old_space_size');
+});
+if (isServerStart && heapCapMB > 0 && !hasHeapFlag) {
+	var nodeArgs = ['--max-old-space-size=' + heapCapMB].concat(process.execArgv, process.argv.slice(1));
+	if (typeof process.execve === 'function') {
+		// replaces this process: same PID, same signals
+		process.execve(process.execPath, [process.execPath].concat(nodeArgs), process.env);
+	}
+	// older Node: run the server as a child process instead
+	var serverProcess = require('child_process').spawn(process.execPath, nodeArgs, {stdio: 'inherit'});
+	['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(function (signal) {
+		process.on(signal, function () { serverProcess.kill(signal); });
+	});
+	serverProcess.on('exit', function (code) { process.exit(code === null ? 1 : code); });
+	return;
+}
+
 if (!cli.positionals.length || /^[0-9]+$/.test(cli.positionals[0])) {
 	// Start the server.
 	//
