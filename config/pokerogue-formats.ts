@@ -24,6 +24,9 @@ const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacut
 	`(a passive the format bans is switched off), egg moves and move list. Gigantamax works like Mega ` +
 	`Evolution with Galarica Wreath (or Max Mushrooms). The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
 	`Mega Stone, Galarica Wreath / Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
+/** Teambuilder formats: PokéRogue move lists plus every move learnt in any game ('PokeRogue All Moves'). */
+const POKEROGUE_BUILDER_DESC = `${POKEROGUE_DESC} Pok&eacute;mon can also use every move they've learnt in any ` +
+	`Pok&eacute;mon game.`;
 
 /**
  * VGC: Mythicals are legal by strength. These (Uber in singles, at the
@@ -47,9 +50,9 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 
 	{
 		name: '[Gen 9] PokeRogue OU',
-		desc: `${POKEROGUE_DESC} No Terastallization in OU.`,
+		desc: `${POKEROGUE_BUILDER_DESC} No Terastallization in OU.`,
 		mod: 'pokerogue',
-		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'Terastal Clause'],
+		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'PokeRogue All Moves', 'Terastal Clause'],
 		onValidateSet(set) {
 			const species = this.dex.species.get(set.species);
 			// Mega Gallade's Sharpness passive is switched off (165 Atk, 1.5x Sacred Sword /
@@ -105,10 +108,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: '[Gen 9] PokeRogue Ubers',
-		desc: POKEROGUE_DESC,
+		desc: POKEROGUE_BUILDER_DESC,
 		mod: 'pokerogue',
 		ruleset: [
-			'Standard NatDex', 'PokeRogue Mod', '!Evasion Clause', 'Evasion Moves Clause', 'Evasion Items Clause',
+			'Standard NatDex', 'PokeRogue Mod', 'PokeRogue All Moves', '!Evasion Clause', 'Evasion Moves Clause',
+			'Evasion Items Clause',
 			'Mega Rayquaza Clause',
 		],
 		banlist: [
@@ -124,9 +128,9 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: '[Gen 9] PokeRogue AG',
-		desc: POKEROGUE_DESC,
+		desc: POKEROGUE_BUILDER_DESC,
 		mod: 'pokerogue',
-		ruleset: ['Standard AG', 'PokeRogue Mod'],
+		ruleset: ['Standard AG', 'PokeRogue Mod', 'PokeRogue All Moves'],
 	},
 
 	// ========================================================
@@ -181,12 +185,15 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 
 	{
 		name: '[Gen 9] PokeRogue VGC',
-		desc: `${POKEROGUE_DESC} VGC rules; no Restricted Legendaries. Mythicals are allowed except the ones ` +
+		desc: `${POKEROGUE_BUILDER_DESC} VGC rules; no Restricted Legendaries. Mythicals are allowed except the ones ` +
 			`as strong as a Restricted Legendary.`,
 		mod: 'pokerogue',
 		gameType: 'doubles',
 		bestOfDefault: true,
-		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Open Team Sheets', 'PokeRogue Mod'],
+		ruleset: [
+			'Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Open Team Sheets', 'PokeRogue Mod',
+			'PokeRogue All Moves',
+		],
 		unbanlist: ['Mythical'],
 		banlist: [
 			// Mythicals at Restricted Legendary strength (allowed in VGC Restricted)
@@ -199,13 +206,14 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	},
 	{
 		name: '[Gen 9] PokeRogue VGC Restricted',
-		desc: `${POKEROGUE_DESC} VGC rules with one Restricted Pok&eacute;mon allowed: a Restricted Legendary or ` +
-			`one of the strongest Mythicals. Other Mythicals are allowed freely.`,
+		desc: `${POKEROGUE_BUILDER_DESC} VGC rules with one Restricted Pok&eacute;mon allowed: a Restricted ` +
+			`Legendary or one of the strongest Mythicals. Other Mythicals are allowed freely.`,
 		mod: 'pokerogue',
 		gameType: 'doubles',
 		bestOfDefault: true,
 		ruleset: [
 			'Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Open Team Sheets', 'Limit One Restricted', 'PokeRogue Mod',
+			'PokeRogue All Moves',
 		],
 		unbanlist: ['Mythical'],
 		restricted: ['Restricted Legendary', ...RESTRICTED_MYTHICALS],

@@ -33,6 +33,7 @@ import {Scripts as PokebilitiesScripts} from '../pokebilities/scripts';
 import {Abilities as PokebilitiesAbilities} from '../pokebilities/abilities';
 import {Abilities as PokeRogueAbilities} from './abilities';
 import {PokeRogueData} from './pokerogue-data';
+import {AllGameMoves} from './all-game-moves';
 import {PokeRogueTiers} from './tiers';
 import {applyChampionsChanges, championsCalculatePP, CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from './champions-changes';
 
@@ -379,6 +380,14 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		// Pokémon Champions' move and ability changes (not its move bans).
 		applyChampionsChanges(this);
+
+		// The moves each Pokémon has learnt in any game but not in PokéRogue
+		// (all-game-moves.ts, from tools/pokerogue/build-all-game-moves.cjs).
+		// Only formats with the "PokeRogue All Moves" rule allow them.
+		for (const id in AllGameMoves) {
+			const entry = this.data.Learnsets[id] as AnyObject | undefined;
+			if (entry?.pokeRogue) entry.allGameMoves = AllGameMoves[id];
+		}
 
 		// Every move in a PokéRogue move list is usable (LGPE partner moves,
 		// Legends: Z-A moves, ...).

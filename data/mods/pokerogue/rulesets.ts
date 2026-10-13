@@ -7,18 +7,35 @@ function passiveOf(species: Species): string | null {
 	return data.cosmeticPassives?.[species.id] || data.passive || null;
 }
 
-/** The PokéRogue move list a species uses (battle-only forms use their base form's). */
-function pokeRogueLearnset(species: Species, dex: ModdedDex): {[moveid: string]: string[]} | null {
+/** The PokéRogue move list entry a species uses (battle-only forms use their base form's). */
+function pokeRogueLearnsetEntry(species: Species, dex: ModdedDex): AnyObject | null {
 	let current: Species | null = species;
 	for (let i = 0; current && i < 3; i++) {
 		const data = dex.data.Learnsets[current.id] as AnyObject | undefined;
-		if (data?.pokeRogue && data.learnset) return data.learnset;
+		if (data?.pokeRogue && data.learnset) return data;
 		const from: string | string[] | undefined = current.battleOnly || current.changesFrom ||
 			(current.isCosmeticForme ? current.baseSpecies : undefined);
 		const next: Species = dex.species.get(Array.isArray(from) ? from[0] : from || '');
 		current = next.exists && next.id !== current.id ? next : null;
 	}
 	return null;
+}
+
+/** The PokéRogue move list a species uses. */
+function pokeRogueLearnset(species: Species, dex: ModdedDex): {[moveid: string]: string[]} | null {
+	return pokeRogueLearnsetEntry(species, dex)?.learnset || null;
+}
+
+const NO_MOVES: ReadonlySet<string> = new Set();
+/**
+ * The moves a species has learnt in any game that aren't in its PokéRogue
+ * move list (scripts.ts puts them on the move list entry).
+ */
+function allGameMoves(species: Species, dex: ModdedDex): ReadonlySet<string> {
+	const entry = pokeRogueLearnsetEntry(species, dex);
+	if (!entry?.allGameMoves) return NO_MOVES;
+	if (!entry.allGameMovesSet) entry.allGameMovesSet = new Set(entry.allGameMoves.split(' '));
+	return entry.allGameMovesSet;
 }
 
 /**
@@ -60,6 +77,14 @@ function reachableFormes(this: TeamValidator, set: PokemonSet, species: Species,
 }
 
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
+	pokerogueallmoves: {
+		effectType: 'ValidatorRule',
+		name: 'PokeRogue All Moves',
+		desc: "Pok&eacute;mon can also use every move they've learnt in any Pok&eacute;mon game " +
+			"(as a pre-evolution too).",
+		// The moves: data/mods/pokerogue/all-game-moves.ts. PokeRogue Mod's
+		// checkCanLearn allows them when a format has this rule.
+	},
 	pokeroguemod: {
 		effectType: 'Rule',
 		name: 'PokeRogue Mod',
@@ -139,6 +164,8 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		checkCanLearn(move, species, setSources, set) {
 			const learnset = pokeRogueLearnset(species, this.dex) || {};
 			if (learnset[move.id]) return null;
+			const allGames = this.ruleTable.has('pokerogueallmoves');
+			if (allGames && allGameMoves(species, this.dex).has(move.id)) return null;
 			// Smeargle's Sketch (a format's "Pokemon + Sketch" ban, like
 			// "Grafaiai + Sketch", takes it away from that Pokémon).
 			if (learnset['sketch'] && !move.flags['nosketch'] && !move.isZ && !move.isMax) {
@@ -148,7 +175,8 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				if (!sketchBanned) return null;
 				return ` can't learn ${move.name}: Sketch is banned on ${species.name}.`;
 			}
-			return ` can't learn ${move.name} in PokéRogue.`;
+			return allGames ? ` can't learn ${move.name} in PokéRogue or any Pokémon game.` :
+				` can't learn ${move.name} in PokéRogue.`;
 		},
 
 		// ---------------------------------------------------
