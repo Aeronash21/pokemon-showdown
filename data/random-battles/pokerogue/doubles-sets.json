@@ -110,7 +110,7 @@
 		]
 	},
 	"butterfreegmax": {
-		"level": 86,
+		"level": 85,
 		"sets": [
 			{
 				"role": "Bulky Setup",
@@ -135,7 +135,7 @@
 					"Silk Trap",
 					"Sandsear Storm"
 				],
-				"level": 86
+				"level": 85
 			},
 			{
 				"role": "Setup Sweeper",
@@ -161,7 +161,7 @@
 					"Silk Trap",
 					"Sandsear Storm"
 				],
-				"level": 86
+				"level": 85
 			}
 		]
 	},
@@ -660,163 +660,6 @@
 			}
 		]
 	},
-	"absolmegaz": {
-		"level": 81,
-		"sets": [
-			{
-				"role": "Offensive Protect",
-				"movepool": [
-					"Night Slash",
-					"Protect",
-					"Psycho Cut",
-					"Shadow Claw",
-					"Sucker Punch",
-					"Cross Poison",
-					"Bitter Blade"
-				],
-				"abilities": [
-					"Pressure",
-					"Super Luck",
-					"Justified"
-				],
-				"teraTypes": [
-					"Dark",
-					"Ghost"
-				],
-				"required": [
-					"Bitter Blade"
-				],
-				"level": 81
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Night Slash",
-					"Protect",
-					"Psycho Cut",
-					"Sucker Punch",
-					"Swords Dance",
-					"Shadow Claw",
-					"Cross Poison",
-					"Bitter Blade"
-				],
-				"abilities": [
-					"Pressure",
-					"Super Luck",
-					"Justified"
-				],
-				"teraTypes": [
-					"Dark",
-					"Ghost"
-				],
-				"required": [
-					"Shadow Claw",
-					"Protect",
-					"Bitter Blade"
-				],
-				"level": 81
-			}
-		]
-	},
-	"garchompmegaz": {
-		"level": 75,
-		"sets": [
-			{
-				"role": "Offensive Protect",
-				"movepool": [
-					"Draco Meteor",
-					"Dragon Pulse",
-					"Earth Power",
-					"Fire Blast",
-					"Protect"
-				],
-				"abilities": [
-					"Sand Veil",
-					"Rough Skin"
-				],
-				"teraTypes": [
-					"Dragon"
-				],
-				"level": 75
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Dragon Claw",
-					"Protect",
-					"Rock Slide",
-					"Land's Wrath",
-					"Bitter Blade",
-					"Dragon Dance"
-				],
-				"abilities": [
-					"Sand Veil",
-					"Rough Skin"
-				],
-				"teraTypes": [
-					"Dragon"
-				],
-				"required": [
-					"Dragon Dance",
-					"Protect",
-					"Land's Wrath"
-				],
-				"level": 74
-			}
-		]
-	},
-	"lucariomegaz": {
-		"level": 83,
-		"sets": [
-			{
-				"role": "Offensive Protect",
-				"movepool": [
-					"Aura Sphere",
-					"Dark Pulse",
-					"Protect",
-					"Vacuum Wave",
-					"Tachyon Cutter"
-				],
-				"abilities": [
-					"Steadfast",
-					"Inner Focus",
-					"Justified"
-				],
-				"teraTypes": [
-					"Fighting",
-					"Steel"
-				],
-				"required": [
-					"Tachyon Cutter"
-				],
-				"level": 83
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Aura Sphere",
-					"Nasty Plot",
-					"Protect",
-					"Vacuum Wave",
-					"Tachyon Cutter"
-				],
-				"abilities": [
-					"Steadfast",
-					"Inner Focus",
-					"Justified"
-				],
-				"teraTypes": [
-					"Fighting",
-					"Steel"
-				],
-				"required": [
-					"Tachyon Cutter",
-					"Protect"
-				],
-				"level": 83
-			}
-		]
-	},
 	"heatranmega": {
 		"level": 75,
 		"sets": [
@@ -1091,59 +934,6 @@
 				"required": [
 					"Surging Strikes",
 					"Obstruct"
-				],
-				"level": 80
-			}
-		]
-	},
-	"golisopodmega": {
-		"level": 80,
-		"sets": [
-			{
-				"role": "Offensive Protect",
-				"movepool": [
-					"First Impression",
-					"Iron Head",
-					"Leech Life",
-					"Surging Strikes",
-					"Obstruct"
-				],
-				"abilities": [
-					"Emergency Exit",
-					"Anticipation"
-				],
-				"teraTypes": [
-					"Bug",
-					"Steel"
-				],
-				"required": [
-					"Obstruct",
-					"Surging Strikes"
-				],
-				"level": 80
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Iron Head",
-					"Leech Life",
-					"Swords Dance",
-					"Bullet Punch",
-					"Obstruct",
-					"Surging Strikes"
-				],
-				"abilities": [
-					"Emergency Exit",
-					"Anticipation"
-				],
-				"teraTypes": [
-					"Bug",
-					"Steel"
-				],
-				"required": [
-					"Obstruct",
-					"Surging Strikes",
-					"Bullet Punch"
 				],
 				"level": 80
 			}
@@ -1987,16 +1777,15 @@
 		]
 	},
 	"alcremiegmax": {
-		"level": 82,
+		"level": 84,
 		"sets": [
 			{
 				"role": "Bulky Setup",
 				"movepool": [
+					"Calm Mind",
 					"Mystical Fire",
 					"Recover",
-					"Moonblast",
-					"Earth Power",
-					"Geomancy",
+					"Sparkly Swirl",
 					"Protect",
 					"Dazzling Gleam"
 				],
@@ -2008,11 +1797,11 @@
 					"Fairy"
 				],
 				"required": [
-					"Geomancy",
-					"Moonblast",
-					"Protect"
+					"Sparkly Swirl",
+					"Protect",
+					"Mystical Fire"
 				],
-				"level": 82
+				"level": 84
 			}
 		]
 	},
@@ -4380,7 +4169,7 @@
 		]
 	},
 	"alakazam": {
-		"level": 78,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -4388,6 +4177,7 @@
 					"Shadow Ball",
 					"Aura Sphere",
 					"Psystrike",
+					"Thunderbolt",
 					"Ice Beam",
 					"Protect"
 				],
@@ -4402,7 +4192,7 @@
 					"Aura Sphere",
 					"Ice Beam"
 				],
-				"level": 78
+				"level": 77
 			},
 			{
 				"role": "Setup Sweeper",
@@ -4411,6 +4201,7 @@
 					"Shadow Ball",
 					"Aura Sphere",
 					"Psystrike",
+					"Thunderbolt",
 					"Ice Beam",
 					"Protect"
 				],
@@ -4425,22 +4216,22 @@
 					"Protect",
 					"Aura Sphere"
 				],
-				"level": 78
+				"level": 77
 			}
 		]
 	},
 	"alakazammega": {
-		"level": 74,
+		"level": 73,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Calm Mind",
 					"Encore",
-					"Shadow Ball",
 					"Substitute",
 					"Aura Sphere",
 					"Psystrike",
+					"Thunderbolt",
 					"Ice Beam",
 					"Protect"
 				],
@@ -4457,7 +4248,7 @@
 					"Protect",
 					"Aura Sphere"
 				],
-				"level": 74
+				"level": 73
 			}
 		]
 	},
@@ -5072,14 +4863,14 @@
 		]
 	},
 	"dewgong": {
-		"level": 87,
+		"level": 86,
 		"sets": [
 			{
 				"role": "Doubles Support",
 				"movepool": [
 					"Encore",
 					"Icy Wind",
-					"Steam Eruption",
+					"Splishy Splash",
 					"Slack Off",
 					"Protect",
 					"Helping Hand"
@@ -5093,7 +4884,7 @@
 				"required": [
 					"Slack Off"
 				],
-				"level": 87
+				"level": 86
 			}
 		]
 	},
@@ -5821,6 +5612,7 @@
 					"Soft-Boiled",
 					"Stealth Rock",
 					"Thunder Wave",
+					"Lovely Kiss",
 					"Revival Blessing",
 					"Protect",
 					"Helping Hand",
@@ -10822,7 +10614,7 @@
 		]
 	},
 	"blissey": {
-		"level": 92,
+		"level": 91,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -10832,6 +10624,7 @@
 					"Life Dew",
 					"Soft-Boiled",
 					"Thunder Wave",
+					"Lovely Kiss",
 					"Revival Blessing",
 					"Protect",
 					"Icy Wind"
@@ -10847,7 +10640,7 @@
 				"required": [
 					"Revival Blessing"
 				],
-				"level": 92
+				"level": 91
 			}
 		]
 	},
@@ -13489,7 +13282,7 @@
 		]
 	},
 	"zangoose": {
-		"level": 85,
+		"level": 84,
 		"sets": [
 			{
 				"role": "Offensive Protect",
@@ -13498,7 +13291,8 @@
 					"Feint",
 					"Knock Off",
 					"Protect",
-					"High Horsepower",
+					"Headlong Rush",
+					"Dire Claw",
 					"Fake Out"
 				],
 				"abilities": [
@@ -13509,9 +13303,9 @@
 					"Normal"
 				],
 				"required": [
-					"High Horsepower"
+					"Headlong Rush"
 				],
-				"level": 85
+				"level": 84
 			},
 			{
 				"role": "Doubles Fast Attacker",
@@ -13521,7 +13315,8 @@
 					"Knock Off",
 					"Protect",
 					"Fake Out",
-					"High Horsepower"
+					"Headlong Rush",
+					"Dire Claw"
 				],
 				"abilities": [
 					"Toxic Boost"
@@ -13532,33 +13327,9 @@
 				],
 				"required": [
 					"Fake Out",
-					"High Horsepower"
+					"Headlong Rush"
 				],
 				"level": 84
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Facade",
-					"Feint",
-					"Knock Off",
-					"Protect",
-					"Tidy Up",
-					"High Horsepower"
-				],
-				"abilities": [
-					"Toxic Boost"
-				],
-				"teraTypes": [
-					"Ghost",
-					"Normal"
-				],
-				"required": [
-					"Tidy Up",
-					"Protect",
-					"High Horsepower"
-				],
-				"level": 85
 			}
 		]
 	},
@@ -14433,6 +14204,65 @@
 			}
 		]
 	},
+	"absolmegaz": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Offensive Protect",
+				"movepool": [
+					"Night Slash",
+					"Protect",
+					"Psycho Cut",
+					"Shadow Claw",
+					"Sucker Punch",
+					"Sacred Sword",
+					"Cross Poison",
+					"Bitter Blade"
+				],
+				"abilities": [
+					"Pressure",
+					"Super Luck",
+					"Justified"
+				],
+				"teraTypes": [
+					"Dark",
+					"Ghost"
+				],
+				"required": [
+					"Sacred Sword"
+				],
+				"level": 81
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Night Slash",
+					"Protect",
+					"Sucker Punch",
+					"Swords Dance",
+					"Shadow Claw",
+					"Sacred Sword",
+					"Cross Poison",
+					"Bitter Blade"
+				],
+				"abilities": [
+					"Pressure",
+					"Super Luck",
+					"Justified"
+				],
+				"teraTypes": [
+					"Dark",
+					"Ghost"
+				],
+				"required": [
+					"Shadow Claw",
+					"Protect",
+					"Sacred Sword"
+				],
+				"level": 81
+			}
+		]
+	},
 	"glalie": {
 		"level": 92,
 		"sets": [
@@ -15068,6 +14898,30 @@
 					"Fusion Flare"
 				],
 				"level": 76
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Mist Ball",
+					"Protect",
+					"Recover",
+					"Take Heart",
+					"Core Enforcer",
+					"Fusion Flare",
+					"Sparkly Swirl"
+				],
+				"abilities": [
+					"Levitate"
+				],
+				"teraTypes": [
+					"Steel"
+				],
+				"required": [
+					"Take Heart",
+					"Core Enforcer",
+					"Protect"
+				],
+				"level": 77
 			}
 		]
 	},
@@ -15096,6 +14950,31 @@
 				"required": [
 					"Core Enforcer",
 					"Fusion Flare"
+				],
+				"level": 75
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Psyshock",
+					"Roost",
+					"Take Heart",
+					"Core Enforcer",
+					"Fusion Flare",
+					"Sparkly Swirl",
+					"Protect"
+				],
+				"abilities": [
+					"Levitate"
+				],
+				"teraTypes": [
+					"Dragon",
+					"Psychic"
+				],
+				"required": [
+					"Take Heart",
+					"Core Enforcer",
+					"Protect"
 				],
 				"level": 75
 			}
@@ -15158,7 +15037,7 @@
 				"movepool": [
 					"Luster Purge",
 					"Protect",
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare",
 					"Tachyon Cutter"
@@ -15170,7 +15049,7 @@
 					"Steel"
 				],
 				"required": [
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Protect"
 				],
@@ -15211,7 +15090,7 @@
 				"movepool": [
 					"Psyshock",
 					"Roost",
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare",
 					"Tachyon Cutter",
@@ -15225,7 +15104,7 @@
 					"Psychic"
 				],
 				"required": [
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Protect"
 				],
@@ -17010,8 +16889,7 @@
 					"Protect",
 					"Scale Shot",
 					"Land's Wrath",
-					"Dragon Claw",
-					"Bitter Blade",
+					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17024,23 +16902,23 @@
 				"required": [
 					"Dragon Dance",
 					"Land's Wrath",
-					"Dragon Claw"
+					"Dragon Hammer"
 				],
 				"level": 74
 			}
 		]
 	},
 	"garchompmega": {
-		"level": 75,
+		"level": 76,
 		"sets": [
 			{
 				"role": "Doubles Support",
 				"movepool": [
-					"Outrage",
+					"Fire Fang",
 					"Stealth Rock",
 					"Stone Edge",
 					"Land's Wrath",
-					"Bitter Blade",
+					"Dragon Hammer",
 					"Protect",
 					"Helping Hand"
 				],
@@ -17054,17 +16932,17 @@
 				],
 				"required": [
 					"Land's Wrath",
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
-				"level": 75
+				"level": 76
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
-					"Outrage",
+					"Fire Fang",
 					"Stone Edge",
 					"Land's Wrath",
-					"Bitter Blade",
+					"Dragon Hammer",
 					"Dragon Dance",
 					"Protect"
 				],
@@ -17079,9 +16957,55 @@
 				"required": [
 					"Dragon Dance",
 					"Land's Wrath",
+					"Dragon Hammer"
+				],
+				"level": 76
+			}
+		]
+	},
+	"garchompmegaz": {
+		"level": 75,
+		"sets": [
+			{
+				"role": "Offensive Protect",
+				"movepool": [
+					"Draco Meteor",
+					"Dragon Pulse",
+					"Earth Power",
+					"Fire Blast",
 					"Protect"
 				],
+				"abilities": [
+					"Sand Veil",
+					"Rough Skin"
+				],
+				"teraTypes": [
+					"Dragon"
+				],
 				"level": 75
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Protect",
+					"Rock Slide",
+					"Dragon Hammer",
+					"Land's Wrath",
+					"Dragon Dance"
+				],
+				"abilities": [
+					"Sand Veil",
+					"Rough Skin"
+				],
+				"teraTypes": [
+					"Dragon"
+				],
+				"required": [
+					"Dragon Dance",
+					"Dragon Hammer",
+					"Protect"
+				],
+				"level": 73
 			}
 		]
 	},
@@ -17181,6 +17105,58 @@
 					"Protect"
 				],
 				"level": 73
+			}
+		]
+	},
+	"lucariomegaz": {
+		"level": 83,
+		"sets": [
+			{
+				"role": "Offensive Protect",
+				"movepool": [
+					"Aura Sphere",
+					"Dark Pulse",
+					"Protect",
+					"Vacuum Wave",
+					"Tachyon Cutter"
+				],
+				"abilities": [
+					"Steadfast",
+					"Inner Focus",
+					"Justified"
+				],
+				"teraTypes": [
+					"Fighting",
+					"Steel"
+				],
+				"required": [
+					"Tachyon Cutter"
+				],
+				"level": 83
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Aura Sphere",
+					"Nasty Plot",
+					"Protect",
+					"Vacuum Wave",
+					"Tachyon Cutter"
+				],
+				"abilities": [
+					"Steadfast",
+					"Inner Focus",
+					"Justified"
+				],
+				"teraTypes": [
+					"Fighting",
+					"Steel"
+				],
+				"required": [
+					"Tachyon Cutter",
+					"Protect"
+				],
+				"level": 83
 			}
 		]
 	},
@@ -18747,7 +18723,7 @@
 		]
 	},
 	"uxie": {
-		"level": 82,
+		"level": 83,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -18772,7 +18748,7 @@
 				"required": [
 					"Recover"
 				],
-				"level": 82
+				"level": 83
 			},
 			{
 				"role": "Doubles Setup Sweeper",
@@ -19362,6 +19338,7 @@
 					"Lunar Blessing",
 					"Thunder Wave",
 					"Lumina Crash",
+					"Will-O-Wisp",
 					"Protect"
 				],
 				"abilities": [
@@ -19432,7 +19409,7 @@
 					"Protect",
 					"Scald",
 					"Tail Glow",
-					"Origin Pulse"
+					"Splishy Splash"
 				],
 				"abilities": [
 					"Hydration"
@@ -19441,7 +19418,7 @@
 					"Grass"
 				],
 				"required": [
-					"Origin Pulse",
+					"Splishy Splash",
 					"Protect"
 				],
 				"level": 74
@@ -21053,6 +21030,7 @@
 				"role": "Doubles Setup Sweeper",
 				"movepool": [
 					"Brave Bird",
+					"Night Slash",
 					"Roost",
 					"U-turn",
 					"Tidy Up",
@@ -21594,7 +21572,7 @@
 		]
 	},
 	"leavanny": {
-		"level": 88,
+		"level": 87,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -21603,6 +21581,7 @@
 					"Leaf Blade",
 					"Sticky Web",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade",
 					"Protect",
 					"Helping Hand",
@@ -21618,9 +21597,9 @@
 				],
 				"required": [
 					"X-Scissor",
-					"Bitter Blade"
+					"Mighty Cleave"
 				],
-				"level": 88
+				"level": 87
 			},
 			{
 				"role": "Offensive Protect",
@@ -21629,6 +21608,7 @@
 					"Protect",
 					"Sticky Web",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -21641,17 +21621,18 @@
 				],
 				"required": [
 					"X-Scissor",
-					"Bitter Blade"
+					"Mighty Cleave"
 				],
-				"level": 88
+				"level": 87
 			},
 			{
 				"role": "Doubles Setup Sweeper",
 				"movepool": [
 					"Leaf Blade",
 					"Protect",
-					"Victory Dance",
+					"Tidy Up",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -21663,11 +21644,11 @@
 					"Water"
 				],
 				"required": [
-					"Victory Dance",
+					"Tidy Up",
 					"X-Scissor",
 					"Protect"
 				],
-				"level": 88
+				"level": 87
 			}
 		]
 	},
@@ -22066,7 +22047,7 @@
 					"U-turn",
 					"Pyro Ball",
 					"Ice Spinner",
-					"Zing Zap",
+					"Thunder Punch",
 					"Protect"
 				],
 				"abilities": [
@@ -29628,6 +29609,59 @@
 			}
 		]
 	},
+	"golisopodmega": {
+		"level": 80,
+		"sets": [
+			{
+				"role": "Offensive Protect",
+				"movepool": [
+					"First Impression",
+					"Iron Head",
+					"Leech Life",
+					"Surging Strikes",
+					"Obstruct"
+				],
+				"abilities": [
+					"Emergency Exit",
+					"Anticipation"
+				],
+				"teraTypes": [
+					"Bug",
+					"Steel"
+				],
+				"required": [
+					"Obstruct",
+					"Surging Strikes"
+				],
+				"level": 80
+			},
+			{
+				"role": "Doubles Setup Sweeper",
+				"movepool": [
+					"Iron Head",
+					"Leech Life",
+					"Swords Dance",
+					"Bullet Punch",
+					"Obstruct",
+					"Surging Strikes"
+				],
+				"abilities": [
+					"Emergency Exit",
+					"Anticipation"
+				],
+				"teraTypes": [
+					"Bug",
+					"Steel"
+				],
+				"required": [
+					"Obstruct",
+					"Surging Strikes",
+					"Bullet Punch"
+				],
+				"level": 80
+			}
+		]
+	},
 	"palossand": {
 		"level": 89,
 		"sets": [
@@ -34137,7 +34171,7 @@
 		]
 	},
 	"alcremie": {
-		"level": 88,
+		"level": 87,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -34145,9 +34179,9 @@
 					"Decorate",
 					"Encore",
 					"Protect",
-					"Moonblast",
+					"Sparkly Swirl",
+					"Milk Drink",
 					"Chilly Reception",
-					"Earth Power",
 					"Helping Hand"
 				],
 				"abilities": [
@@ -34157,8 +34191,8 @@
 					"Steel"
 				],
 				"required": [
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl",
+					"Milk Drink"
 				],
 				"level": 87
 			},
@@ -34168,8 +34202,8 @@
 					"Decorate",
 					"Helping Hand",
 					"Protect",
-					"Moonblast",
-					"Earth Power",
+					"Sparkly Swirl",
+					"Milk Drink",
 					"Dazzling Gleam"
 				],
 				"abilities": [
@@ -34179,32 +34213,10 @@
 					"Steel"
 				],
 				"required": [
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl",
+					"Milk Drink"
 				],
-				"level": 88
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Protect",
-					"Geomancy",
-					"Moonblast",
-					"Earth Power",
-					"Dazzling Gleam"
-				],
-				"abilities": [
-					"Aroma Veil"
-				],
-				"teraTypes": [
-					"Steel"
-				],
-				"required": [
-					"Geomancy",
-					"Moonblast",
-					"Protect"
-				],
-				"level": 88
+				"level": 87
 			}
 		]
 	},
@@ -37002,7 +37014,7 @@
 		]
 	},
 	"toedscruel": {
-		"level": 84,
+		"level": 85,
 		"sets": [
 			{
 				"role": "Doubles Support",
@@ -37023,7 +37035,7 @@
 				"required": [
 					"Strength Sap"
 				],
-				"level": 84
+				"level": 85
 			},
 			{
 				"role": "Doubles Setup Sweeper",
@@ -37046,7 +37058,7 @@
 					"Strength Sap",
 					"Protect"
 				],
-				"level": 84
+				"level": 85
 			}
 		]
 	},
@@ -37953,8 +37965,8 @@
 					"Body Press",
 					"Heavy Slam",
 					"Wave Crash",
-					"Soft-Boiled",
 					"Breaking Swipe",
+					"Soft-Boiled",
 					"Protect"
 				],
 				"abilities": [
@@ -38349,32 +38361,6 @@
 					"Ground"
 				],
 				"required": [
-					"Collision Course",
-					"Morning Sun"
-				],
-				"level": 78
-			},
-			{
-				"role": "Doubles Setup Sweeper",
-				"movepool": [
-					"Headlong Rush",
-					"Knock Off",
-					"Protect",
-					"Rapid Spin",
-					"Shift Gear",
-					"Collision Course",
-					"Morning Sun",
-					"Earthquake"
-				],
-				"abilities": [
-					"Protosynthesis"
-				],
-				"teraTypes": [
-					"Fire",
-					"Ground"
-				],
-				"required": [
-					"Shift Gear",
 					"Collision Course",
 					"Morning Sun"
 				],
@@ -38939,16 +38925,16 @@
 		]
 	},
 	"ironmoth": {
-		"level": 75,
+		"level": 76,
 		"sets": [
 			{
 				"role": "Offensive Protect",
 				"movepool": [
 					"Energy Ball",
 					"Protect",
+					"Sludge Wave",
 					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power"
+					"Dazzling Gleam"
 				],
 				"abilities": [
 					"Quark Drive"
@@ -38958,11 +38944,9 @@
 					"Grass"
 				],
 				"required": [
-					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power"
+					"Searing Shot"
 				],
-				"level": 75
+				"level": 76
 			},
 			{
 				"role": "Doubles Setup Sweeper",
@@ -38971,8 +38955,7 @@
 					"Meteor Beam",
 					"Protect",
 					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power",
+					"Sludge Wave",
 					"Quiver Dance"
 				],
 				"abilities": [
@@ -38985,9 +38968,9 @@
 				"required": [
 					"Quiver Dance",
 					"Searing Shot",
-					"Malignant Chain"
+					"Sludge Wave"
 				],
-				"level": 72
+				"level": 74
 			}
 		]
 	},

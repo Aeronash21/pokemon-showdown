@@ -357,24 +357,6 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 			"H": "Stall"
 		}
 	},
-	"absolmegaz": {
-		"inherit": true,
-		"abilities": {
-			"0": "Super Luck"
-		}
-	},
-	"garchompmegaz": {
-		"inherit": true,
-		"abilities": {
-			"0": "Rough Skin"
-		}
-	},
-	"lucariomegaz": {
-		"inherit": true,
-		"abilities": {
-			"0": "Inner Focus"
-		}
-	},
 	"heatranmega": {
 		"inherit": true,
 		"abilities": {
@@ -454,12 +436,6 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		"abilities": {
 			"0": "Emergency Exit",
 			"H": "Anticipation"
-		}
-	},
-	"golisopodmega": {
-		"inherit": true,
-		"abilities": {
-			"0": "Shell Armor"
 		}
 	},
 	"melmetalgmax": {

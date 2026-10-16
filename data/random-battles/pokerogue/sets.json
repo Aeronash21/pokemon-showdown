@@ -150,7 +150,7 @@
 		]
 	},
 	"butterfreegmax": {
-		"level": 87,
+		"level": 86,
 		"sets": [
 			{
 				"role": "Bulky Setup",
@@ -173,7 +173,7 @@
 					"Bleakwind Storm",
 					"Sandsear Storm"
 				],
-				"level": 87
+				"level": 86
 			},
 			{
 				"role": "Setup Sweeper",
@@ -197,7 +197,7 @@
 					"Bleakwind Storm",
 					"Sandsear Storm"
 				],
-				"level": 87
+				"level": 86
 			}
 		]
 	},
@@ -726,157 +726,6 @@
 			}
 		]
 	},
-	"absolmegaz": {
-		"level": 81,
-		"sets": [
-			{
-				"role": "Setup Sweeper",
-				"movepool": [
-					"Night Slash",
-					"Psycho Cut",
-					"Shadow Claw",
-					"Sucker Punch",
-					"Swords Dance",
-					"Cross Poison",
-					"Bitter Blade"
-				],
-				"abilities": [
-					"Pressure",
-					"Super Luck",
-					"Justified"
-				],
-				"teraTypes": [
-					"Dark",
-					"Ghost"
-				],
-				"required": [
-					"Bitter Blade"
-				],
-				"level": 81
-			},
-			{
-				"role": "Fast Attacker",
-				"movepool": [
-					"Close Combat",
-					"Night Slash",
-					"Psycho Cut",
-					"Shadow Claw",
-					"Sucker Punch",
-					"Cross Poison",
-					"Bitter Blade"
-				],
-				"abilities": [
-					"Pressure",
-					"Super Luck",
-					"Justified"
-				],
-				"teraTypes": [
-					"Dark",
-					"Ghost"
-				],
-				"required": [
-					"Cross Poison"
-				],
-				"level": 81
-			}
-		]
-	},
-	"garchompmegaz": {
-		"level": 72,
-		"sets": [
-			{
-				"role": "Fast Attacker",
-				"movepool": [
-					"Draco Meteor",
-					"Dragon Pulse",
-					"Earth Power",
-					"Fire Blast",
-					"Stealth Rock"
-				],
-				"abilities": [
-					"Sand Veil",
-					"Rough Skin"
-				],
-				"teraTypes": [
-					"Dragon"
-				],
-				"level": 72
-			},
-			{
-				"role": "Setup Sweeper",
-				"movepool": [
-					"Earthquake",
-					"Outrage",
-					"Stone Edge",
-					"Bitter Blade",
-					"Dragon Dance"
-				],
-				"abilities": [
-					"Sand Veil",
-					"Rough Skin"
-				],
-				"teraTypes": [
-					"Dragon"
-				],
-				"required": [
-					"Dragon Dance",
-					"Bitter Blade"
-				],
-				"level": 71
-			}
-		]
-	},
-	"lucariomegaz": {
-		"level": 81,
-		"sets": [
-			{
-				"role": "Setup Sweeper",
-				"movepool": [
-					"Aura Sphere",
-					"Dark Pulse",
-					"Nasty Plot",
-					"Vacuum Wave",
-					"Tachyon Cutter"
-				],
-				"abilities": [
-					"Steadfast",
-					"Inner Focus",
-					"Justified"
-				],
-				"teraTypes": [
-					"Fighting",
-					"Steel"
-				],
-				"required": [
-					"Tachyon Cutter"
-				],
-				"level": 81
-			},
-			{
-				"role": "Fast Attacker",
-				"movepool": [
-					"Aura Sphere",
-					"Dragon Pulse",
-					"Shadow Ball",
-					"Vacuum Wave",
-					"Tachyon Cutter"
-				],
-				"abilities": [
-					"Steadfast",
-					"Inner Focus",
-					"Justified"
-				],
-				"teraTypes": [
-					"Fighting",
-					"Steel"
-				],
-				"required": [
-					"Tachyon Cutter"
-				],
-				"level": 81
-			}
-		]
-	},
 	"heatranmega": {
 		"level": 76,
 		"sets": [
@@ -1140,57 +989,6 @@
 				],
 				"required": [
 					"Surging Strikes"
-				],
-				"level": 80
-			}
-		]
-	},
-	"golisopodmega": {
-		"level": 81,
-		"sets": [
-			{
-				"role": "Wallbreaker",
-				"movepool": [
-					"First Impression",
-					"Iron Head",
-					"Leech Life",
-					"Surging Strikes",
-					"Close Combat"
-				],
-				"abilities": [
-					"Emergency Exit",
-					"Anticipation"
-				],
-				"teraTypes": [
-					"Bug",
-					"Steel"
-				],
-				"required": [
-					"Surging Strikes"
-				],
-				"level": 81
-			},
-			{
-				"role": "Bulky Setup",
-				"movepool": [
-					"Close Combat",
-					"Iron Head",
-					"Leech Life",
-					"Swords Dance",
-					"Surging Strikes",
-					"Bullet Punch"
-				],
-				"abilities": [
-					"Emergency Exit",
-					"Anticipation"
-				],
-				"teraTypes": [
-					"Bug",
-					"Steel"
-				],
-				"required": [
-					"Surging Strikes",
-					"Bullet Punch"
 				],
 				"level": 80
 			}
@@ -2012,16 +1810,16 @@
 		]
 	},
 	"alcremiegmax": {
-		"level": 82,
+		"level": 83,
 		"sets": [
 			{
 				"role": "Bulky Setup",
 				"movepool": [
+					"Calm Mind",
 					"Mystical Fire",
 					"Recover",
-					"Moonblast",
-					"Earth Power",
-					"Geomancy"
+					"Sparkly Swirl",
+					"Energy Ball"
 				],
 				"abilities": [
 					"Sweet Veil",
@@ -2031,11 +1829,10 @@
 					"Fairy"
 				],
 				"required": [
-					"Geomancy",
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl",
+					"Mystical Fire"
 				],
-				"level": 82
+				"level": 83
 			}
 		]
 	},
@@ -4446,7 +4243,7 @@
 		]
 	},
 	"alakazam": {
-		"level": 78,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -4454,8 +4251,8 @@
 					"Shadow Ball",
 					"Aura Sphere",
 					"Psystrike",
-					"Ice Beam",
-					"Energy Ball"
+					"Thunderbolt",
+					"Ice Beam"
 				],
 				"abilities": [
 					"Magic Guard"
@@ -4468,7 +4265,7 @@
 					"Aura Sphere",
 					"Ice Beam"
 				],
-				"level": 78
+				"level": 77
 			},
 			{
 				"role": "Setup Sweeper",
@@ -4477,6 +4274,7 @@
 					"Shadow Ball",
 					"Aura Sphere",
 					"Psystrike",
+					"Thunderbolt",
 					"Ice Beam"
 				],
 				"abilities": [
@@ -4490,12 +4288,12 @@
 					"Aura Sphere",
 					"Ice Beam"
 				],
-				"level": 78
+				"level": 77
 			}
 		]
 	},
 	"alakazammega": {
-		"level": 74,
+		"level": 73,
 		"sets": [
 			{
 				"role": "Setup Sweeper",
@@ -4506,6 +4304,7 @@
 					"Substitute",
 					"Aura Sphere",
 					"Psystrike",
+					"Thunderbolt",
 					"Ice Beam"
 				],
 				"abilities": [
@@ -4521,7 +4320,7 @@
 					"Aura Sphere",
 					"Ice Beam"
 				],
-				"level": 74
+				"level": 73
 			}
 		]
 	},
@@ -5239,7 +5038,7 @@
 					"Flip Turn",
 					"Knock Off",
 					"Triple Axel",
-					"Steam Eruption",
+					"Splishy Splash",
 					"Slack Off"
 				],
 				"abilities": [
@@ -5253,7 +5052,7 @@
 					"Steel"
 				],
 				"required": [
-					"Steam Eruption",
+					"Splishy Splash",
 					"Slack Off"
 				],
 				"level": 90
@@ -5265,7 +5064,7 @@
 					"Flip Turn",
 					"Ice Beam",
 					"Knock Off",
-					"Steam Eruption",
+					"Splishy Splash",
 					"Slack Off"
 				],
 				"abilities": [
@@ -5279,7 +5078,7 @@
 					"Steel"
 				],
 				"required": [
-					"Steam Eruption",
+					"Splishy Splash",
 					"Slack Off"
 				],
 				"level": 90
@@ -6156,6 +5955,7 @@
 					"Soft-Boiled",
 					"Stealth Rock",
 					"Thunder Wave",
+					"Lovely Kiss",
 					"Revival Blessing"
 				],
 				"abilities": [
@@ -11228,7 +11028,7 @@
 		]
 	},
 	"blissey": {
-		"level": 81,
+		"level": 80,
 		"sets": [
 			{
 				"role": "Bulky Support",
@@ -11238,6 +11038,7 @@
 					"Soft-Boiled",
 					"Stealth Rock",
 					"Thunder Wave",
+					"Lovely Kiss",
 					"Revival Blessing"
 				],
 				"abilities": [
@@ -11252,7 +11053,7 @@
 				"required": [
 					"Revival Blessing"
 				],
-				"level": 81
+				"level": 80
 			}
 		]
 	},
@@ -13924,7 +13725,7 @@
 		]
 	},
 	"zangoose": {
-		"level": 83,
+		"level": 82,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -13934,7 +13735,8 @@
 					"Knock Off",
 					"Quick Attack",
 					"Swords Dance",
-					"High Horsepower"
+					"Headlong Rush",
+					"Dire Claw"
 				],
 				"abilities": [
 					"Toxic Boost"
@@ -13943,31 +13745,9 @@
 					"Normal"
 				],
 				"required": [
-					"High Horsepower"
+					"Headlong Rush"
 				],
-				"level": 83
-			},
-			{
-				"role": "Setup Sweeper",
-				"movepool": [
-					"Close Combat",
-					"Facade",
-					"Knock Off",
-					"Quick Attack",
-					"Tidy Up",
-					"High Horsepower"
-				],
-				"abilities": [
-					"Toxic Boost"
-				],
-				"teraTypes": [
-					"Normal"
-				],
-				"required": [
-					"Tidy Up",
-					"High Horsepower"
-				],
-				"level": 83
+				"level": 82
 			}
 		]
 	},
@@ -14854,6 +14634,63 @@
 			}
 		]
 	},
+	"absolmegaz": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Night Slash",
+					"Psycho Cut",
+					"Shadow Claw",
+					"Sucker Punch",
+					"Swords Dance",
+					"Sacred Sword",
+					"Cross Poison",
+					"Bitter Blade"
+				],
+				"abilities": [
+					"Pressure",
+					"Super Luck",
+					"Justified"
+				],
+				"teraTypes": [
+					"Dark",
+					"Ghost"
+				],
+				"required": [
+					"Sacred Sword"
+				],
+				"level": 81
+			},
+			{
+				"role": "Fast Attacker",
+				"movepool": [
+					"Night Slash",
+					"Psycho Cut",
+					"Shadow Claw",
+					"Sucker Punch",
+					"Sacred Sword",
+					"Cross Poison",
+					"Bitter Blade"
+				],
+				"abilities": [
+					"Pressure",
+					"Super Luck",
+					"Justified"
+				],
+				"teraTypes": [
+					"Dark",
+					"Ghost"
+				],
+				"required": [
+					"Sacred Sword",
+					"Cross Poison"
+				],
+				"level": 81
+			}
+		]
+	},
 	"glalie": {
 		"level": 94,
 		"sets": [
@@ -15440,16 +15277,16 @@
 		]
 	},
 	"latias": {
-		"level": 77,
+		"level": 76,
 		"sets": [
 			{
 				"role": "Fast Bulky Setup",
 				"movepool": [
-					"Calm Mind",
 					"Psyshock",
 					"Recover",
 					"Core Enforcer",
 					"Fusion Flare",
+					"Take Heart",
 					"Sparkly Swirl"
 				],
 				"abilities": [
@@ -15459,19 +15296,20 @@
 					"Steel"
 				],
 				"required": [
+					"Take Heart",
 					"Core Enforcer",
 					"Fusion Flare"
 				],
-				"level": 77
+				"level": 76
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
-					"Calm Mind",
 					"Psyshock",
 					"Roost",
 					"Core Enforcer",
 					"Fusion Flare",
+					"Take Heart",
 					"Sparkly Swirl"
 				],
 				"abilities": [
@@ -15481,10 +15319,11 @@
 					"Dragon"
 				],
 				"required": [
+					"Take Heart",
 					"Core Enforcer",
 					"Fusion Flare"
 				],
-				"level": 77
+				"level": 76
 			}
 		]
 	},
@@ -15513,6 +15352,30 @@
 					"Fusion Flare"
 				],
 				"level": 76
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Psyshock",
+					"Roost",
+					"Take Heart",
+					"Core Enforcer",
+					"Fusion Flare",
+					"Sparkly Swirl"
+				],
+				"abilities": [
+					"Levitate"
+				],
+				"teraTypes": [
+					"Dragon",
+					"Psychic"
+				],
+				"required": [
+					"Take Heart",
+					"Core Enforcer",
+					"Fusion Flare"
+				],
+				"level": 76
 			}
 		]
 	},
@@ -15526,7 +15389,7 @@
 					"Recover",
 					"Core Enforcer",
 					"Blue Flare",
-					"Nasty Plot",
+					"Take Heart",
 					"Tachyon Cutter"
 				],
 				"abilities": [
@@ -15536,7 +15399,7 @@
 					"Steel"
 				],
 				"required": [
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare"
 				],
@@ -15597,7 +15460,7 @@
 					"Roost",
 					"Core Enforcer",
 					"Blue Flare",
-					"Nasty Plot",
+					"Take Heart",
 					"Tachyon Cutter"
 				],
 				"abilities": [
@@ -15607,7 +15470,7 @@
 					"Dragon"
 				],
 				"required": [
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare"
 				],
@@ -15646,7 +15509,7 @@
 				"movepool": [
 					"Psyshock",
 					"Roost",
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare",
 					"Tachyon Cutter"
@@ -15659,7 +15522,7 @@
 					"Psychic"
 				],
 				"required": [
-					"Nasty Plot",
+					"Take Heart",
 					"Core Enforcer",
 					"Blue Flare"
 				],
@@ -17644,17 +17507,16 @@
 		]
 	},
 	"garchomp": {
-		"level": 71,
+		"level": 72,
 		"sets": [
 			{
 				"role": "Fast Support",
 				"movepool": [
-					"Dragon Tail",
 					"Earthquake",
-					"Outrage",
 					"Spikes",
 					"Stealth Rock",
-					"Bitter Blade"
+					"Dragon Hammer",
+					"Stone Edge"
 				],
 				"abilities": [
 					"Rough Skin"
@@ -17664,19 +17526,19 @@
 					"Steel"
 				],
 				"required": [
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
-				"level": 71
+				"level": 72
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
+					"Fire Fang",
 					"Iron Head",
 					"Scale Shot",
 					"Stone Edge",
-					"Bitter Blade",
-					"Dragon Claw",
+					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17689,8 +17551,7 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Dragon Claw",
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
 				"level": 71
 			},
@@ -17698,9 +17559,9 @@
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
-					"Outrage",
+					"Fire Fang",
 					"Stone Edge",
-					"Bitter Blade",
+					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17711,23 +17572,23 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
 				"level": 71
 			}
 		]
 	},
 	"garchompmega": {
-		"level": 75,
+		"level": 76,
 		"sets": [
 			{
 				"role": "Bulky Support",
 				"movepool": [
 					"Earthquake",
-					"Outrage",
+					"Fire Fang",
 					"Stealth Rock",
 					"Stone Edge",
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
 				"abilities": [
 					"Sand Veil",
@@ -17738,17 +17599,17 @@
 					"Ground"
 				],
 				"required": [
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
-				"level": 75
+				"level": 76
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Earthquake",
-					"Outrage",
+					"Fire Fang",
 					"Stone Edge",
-					"Bitter Blade",
+					"Dragon Hammer",
 					"Dragon Dance"
 				],
 				"abilities": [
@@ -17761,9 +17622,54 @@
 				],
 				"required": [
 					"Dragon Dance",
-					"Bitter Blade"
+					"Dragon Hammer"
 				],
-				"level": 75
+				"level": 76
+			}
+		]
+	},
+	"garchompmegaz": {
+		"level": 72,
+		"sets": [
+			{
+				"role": "Fast Attacker",
+				"movepool": [
+					"Draco Meteor",
+					"Dragon Pulse",
+					"Earth Power",
+					"Fire Blast",
+					"Stealth Rock"
+				],
+				"abilities": [
+					"Sand Veil",
+					"Rough Skin"
+				],
+				"teraTypes": [
+					"Dragon"
+				],
+				"level": 72
+			},
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Earthquake",
+					"Fire Fang",
+					"Stone Edge",
+					"Dragon Hammer",
+					"Dragon Dance"
+				],
+				"abilities": [
+					"Sand Veil",
+					"Rough Skin"
+				],
+				"teraTypes": [
+					"Dragon"
+				],
+				"required": [
+					"Dragon Dance",
+					"Dragon Hammer"
+				],
+				"level": 72
 			}
 		]
 	},
@@ -17858,6 +17764,57 @@
 					"Tachyon Cutter"
 				],
 				"level": 73
+			}
+		]
+	},
+	"lucariomegaz": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Setup Sweeper",
+				"movepool": [
+					"Aura Sphere",
+					"Dark Pulse",
+					"Nasty Plot",
+					"Vacuum Wave",
+					"Tachyon Cutter"
+				],
+				"abilities": [
+					"Steadfast",
+					"Inner Focus",
+					"Justified"
+				],
+				"teraTypes": [
+					"Fighting",
+					"Steel"
+				],
+				"required": [
+					"Tachyon Cutter"
+				],
+				"level": 81
+			},
+			{
+				"role": "Fast Attacker",
+				"movepool": [
+					"Aura Sphere",
+					"Dragon Pulse",
+					"Shadow Ball",
+					"Vacuum Wave",
+					"Tachyon Cutter"
+				],
+				"abilities": [
+					"Steadfast",
+					"Inner Focus",
+					"Justified"
+				],
+				"teraTypes": [
+					"Fighting",
+					"Steel"
+				],
+				"required": [
+					"Tachyon Cutter"
+				],
+				"level": 81
 			}
 		]
 	},
@@ -19494,7 +19451,7 @@
 		]
 	},
 	"uxie": {
-		"level": 80,
+		"level": 81,
 		"sets": [
 			{
 				"role": "Bulky Support",
@@ -19519,7 +19476,7 @@
 				"required": [
 					"Recover"
 				],
-				"level": 80
+				"level": 81
 			},
 			{
 				"role": "Setup Sweeper",
@@ -20255,10 +20212,10 @@
 				"role": "Bulky Setup",
 				"movepool": [
 					"Energy Ball",
+					"Hydro Pump",
 					"Ice Beam",
-					"Tail Glow",
-					"Origin Pulse",
-					"Psychic"
+					"Surf",
+					"Tail Glow"
 				],
 				"abilities": [
 					"Hydration"
@@ -20267,9 +20224,6 @@
 					"Grass",
 					"Water"
 				],
-				"required": [
-					"Origin Pulse"
-				],
 				"level": 75
 			},
 			{
@@ -20277,8 +20231,8 @@
 				"movepool": [
 					"Energy Ball",
 					"Ice Beam",
+					"Surf",
 					"Tail Glow",
-					"Origin Pulse",
 					"Psychic"
 				],
 				"abilities": [
@@ -20286,9 +20240,6 @@
 				],
 				"teraTypes": [
 					"Water"
-				],
-				"required": [
-					"Origin Pulse"
 				],
 				"level": 75
 			}
@@ -22121,6 +22072,7 @@
 				"movepool": [
 					"Brave Bird",
 					"Defog",
+					"Night Slash",
 					"Roost",
 					"Toxic",
 					"U-turn",
@@ -22144,6 +22096,7 @@
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Brave Bird",
+					"Night Slash",
 					"Roost",
 					"U-turn",
 					"Tidy Up",
@@ -22635,7 +22588,7 @@
 		]
 	},
 	"leavanny": {
-		"level": 83,
+		"level": 82,
 		"sets": [
 			{
 				"role": "Fast Support",
@@ -22644,6 +22597,7 @@
 					"Leaf Blade",
 					"Sticky Web",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -22656,9 +22610,9 @@
 				],
 				"required": [
 					"X-Scissor",
-					"Bitter Blade"
+					"Mighty Cleave"
 				],
-				"level": 83
+				"level": 82
 			},
 			{
 				"role": "Fast Attacker",
@@ -22668,6 +22622,7 @@
 					"Triple Axel",
 					"Leaf Blade",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -22680,18 +22635,19 @@
 				"required": [
 					"Leaf Blade",
 					"X-Scissor",
-					"Bitter Blade"
+					"Mighty Cleave"
 				],
-				"level": 83
+				"level": 82
 			},
 			{
 				"role": "Setup Sweeper",
 				"movepool": [
 					"Knock Off",
 					"Triple Axel",
-					"Victory Dance",
+					"Tidy Up",
 					"Leaf Blade",
 					"X-Scissor",
+					"Mighty Cleave",
 					"Bitter Blade"
 				],
 				"abilities": [
@@ -22702,11 +22658,11 @@
 					"Rock"
 				],
 				"required": [
-					"Victory Dance",
+					"Tidy Up",
 					"Leaf Blade",
 					"X-Scissor"
 				],
-				"level": 83
+				"level": 82
 			}
 		]
 	},
@@ -23067,7 +23023,7 @@
 					"U-turn",
 					"Pyro Ball",
 					"Ice Spinner",
-					"Zing Zap"
+					"Thunder Punch"
 				],
 				"abilities": [
 					"Gorilla Tactics"
@@ -30742,6 +30698,57 @@
 			}
 		]
 	},
+	"golisopodmega": {
+		"level": 81,
+		"sets": [
+			{
+				"role": "Wallbreaker",
+				"movepool": [
+					"First Impression",
+					"Iron Head",
+					"Leech Life",
+					"Surging Strikes",
+					"Close Combat"
+				],
+				"abilities": [
+					"Emergency Exit",
+					"Anticipation"
+				],
+				"teraTypes": [
+					"Bug",
+					"Steel"
+				],
+				"required": [
+					"Surging Strikes"
+				],
+				"level": 81
+			},
+			{
+				"role": "Bulky Setup",
+				"movepool": [
+					"Close Combat",
+					"Iron Head",
+					"Leech Life",
+					"Swords Dance",
+					"Surging Strikes",
+					"Bullet Punch"
+				],
+				"abilities": [
+					"Emergency Exit",
+					"Anticipation"
+				],
+				"teraTypes": [
+					"Bug",
+					"Steel"
+				],
+				"required": [
+					"Surging Strikes",
+					"Bullet Punch"
+				],
+				"level": 80
+			}
+		]
+	},
 	"palossand": {
 		"level": 88,
 		"sets": [
@@ -35129,11 +35136,11 @@
 			{
 				"role": "Bulky Setup",
 				"movepool": [
+					"Calm Mind",
 					"Psyshock",
 					"Recover",
-					"Moonblast",
-					"Earth Power",
-					"Geomancy"
+					"Sparkly Swirl",
+					"Energy Ball"
 				],
 				"abilities": [
 					"Aroma Veil"
@@ -35143,11 +35150,9 @@
 					"Steel"
 				],
 				"required": [
-					"Geomancy",
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl"
 				],
-				"level": 86
+				"level": 87
 			},
 			{
 				"role": "Tera Blast user",
@@ -35155,8 +35160,8 @@
 					"Calm Mind",
 					"Recover",
 					"Tera Blast",
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl",
+					"Energy Ball"
 				],
 				"abilities": [
 					"Aroma Veil"
@@ -35165,8 +35170,7 @@
 					"Ground"
 				],
 				"required": [
-					"Moonblast",
-					"Earth Power"
+					"Sparkly Swirl"
 				],
 				"level": 87
 			}
@@ -36990,7 +36994,7 @@
 					"Fleur Cannon",
 					"Aeroblast"
 				],
-				"level": 77
+				"level": 78
 			}
 		]
 	},
@@ -38910,8 +38914,8 @@
 					"Rest",
 					"Sleep Talk",
 					"Wave Crash",
-					"Soft-Boiled",
-					"Breaking Swipe"
+					"Breaking Swipe",
+					"Soft-Boiled"
 				],
 				"abilities": [
 					"Unaware"
@@ -39212,12 +39216,12 @@
 			{
 				"role": "Fast Bulky Setup",
 				"movepool": [
+					"Bulk Up",
 					"Earthquake",
 					"Rapid Spin",
 					"Collision Course",
 					"Head Smash",
-					"Morning Sun",
-					"Shift Gear"
+					"Morning Sun"
 				],
 				"abilities": [
 					"Protosynthesis"
@@ -39227,21 +39231,20 @@
 					"Steel"
 				],
 				"required": [
-					"Shift Gear",
 					"Collision Course",
 					"Morning Sun"
 				],
-				"level": 73
+				"level": 74
 			},
 			{
 				"role": "Bulky Setup",
 				"movepool": [
+					"Bulk Up",
 					"Earthquake",
 					"Rapid Spin",
 					"Collision Course",
 					"Head Smash",
-					"Morning Sun",
-					"Shift Gear"
+					"Morning Sun"
 				],
 				"abilities": [
 					"Protosynthesis"
@@ -39251,11 +39254,10 @@
 					"Steel"
 				],
 				"required": [
-					"Shift Gear",
 					"Collision Course",
 					"Morning Sun"
 				],
-				"level": 73
+				"level": 74
 			},
 			{
 				"role": "Bulky Support",
@@ -39806,7 +39808,7 @@
 		]
 	},
 	"ironmoth": {
-		"level": 76,
+		"level": 77,
 		"sets": [
 			{
 				"role": "Fast Attacker",
@@ -39816,8 +39818,7 @@
 					"Toxic Spikes",
 					"U-turn",
 					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power"
+					"Sludge Bomb"
 				],
 				"abilities": [
 					"Quark Drive"
@@ -39828,10 +39829,9 @@
 				],
 				"required": [
 					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power"
+					"Sludge Bomb"
 				],
-				"level": 76
+				"level": 77
 			},
 			{
 				"role": "Setup Sweeper",
@@ -39841,8 +39841,7 @@
 					"U-turn",
 					"Quiver Dance",
 					"Searing Shot",
-					"Malignant Chain",
-					"Earth Power"
+					"Sludge Bomb"
 				],
 				"abilities": [
 					"Quark Drive"
@@ -39854,9 +39853,9 @@
 				"required": [
 					"Quiver Dance",
 					"Searing Shot",
-					"Malignant Chain"
+					"Sludge Bomb"
 				],
-				"level": 76
+				"level": 77
 			}
 		]
 	},

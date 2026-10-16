@@ -102,7 +102,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Hurricane, boosted Water attacks) on a legendary stat spread
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle',
-			'Toedscruel + Prankster', // priority status moves
 			'Typhlosion + Drought', // sun Eruption (Typhlosion and Hisuian Typhlosion)
 		],
 	},

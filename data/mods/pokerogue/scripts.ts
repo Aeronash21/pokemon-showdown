@@ -75,12 +75,8 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 	// PokéRogue balances these around stacks of held items (see ABILITY_CHANGES).
 	machampgmax: 'Iron Fist',
 	snorlaxgmax: 'Comatose',
-	// Balance changes (the old passive in brackets).
-	minun: 'Friend Guard', // (Power Spot)
-	swampertmega: 'Regenerator', // (Drizzle)
-	garchompmegaz: 'Intimidate', // (Levitate, now its ability)
-	absolmegaz: 'Super Luck', // (Sharpness, now its ability)
-	lucariomegaz: 'Neuroforce', // (Mega Launcher)
+	// Server choice (PokéRogue 1.12.1: Magician, which needs the item slot).
+	butterfreegmax: 'Delta Stream',
 	// (EXTRA_SPECIES) the same passive as the male Mega
 	meowsticfmega: 'Psychic Surge',
 };
@@ -88,13 +84,9 @@ const PASSIVE_CHANGES: {[speciesid: string]: string} = {
 /**
  * Egg moves changed from PokéRogue's, for a whole evolution family (keyed by
  * its first stage; Mega forms included). The 4th is the rare egg move.
+ * (None right now: the egg moves are PokéRogue 1.12.1's.)
  */
-const EGG_MOVE_CHANGES: {[familyRoot: string]: string[]} = {
-	absol: ['Spirit Break', 'First Impression', 'Cross Poison', 'Bitter Blade'],
-	gible: ['Nasty Plot', 'Bitter Blade', "Land's Wrath", 'Dragon Dance'],
-	glimmet: ['Earth Power', 'Giga Drain', 'Mystical Fire', 'Malignant Chain'],
-	clobbopus: ['Knock Off', 'Jet Punch', 'Flip Turn', 'Surging Strikes'],
-};
+const EGG_MOVE_CHANGES: {[familyRoot: string]: string[]} = {};
 
 /**
  * Moves that only Pokémon learning them naturally can use: PokéRogue hands
@@ -107,10 +99,6 @@ const NATURAL_ONLY_MOVES = ['sizzlyslide'];
 const ABILITY_CHANGES: {[speciesid: string]: string} = {
 	machampgmax: 'No Guard', // was Guts (needs a Flame Orb; it holds Max Mushrooms)
 	snorlaxgmax: 'Thick Fat', // was Harvest (needs a Berry)
-	// The Legends: Z-A Megas' official abilities (PokéRogue has its own).
-	absolmegaz: 'Sharpness', // was Super Luck
-	garchompmegaz: 'Levitate', // was Rough Skin
-	lucariomegaz: 'Aura Guard', // was Inner Focus
 };
 
 /**

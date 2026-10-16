@@ -14,8 +14,8 @@ export const PokeRogueData: {
 	/** species ids that are in PokeRogue */
 	species: string[],
 } = {
-	version: "1.12.0.11",
-	date: "2026-09-21",
+	version: "1.12.1.0",
+	date: "2026-10-15",
 	passives: {
 	"bulbasaur": "Grassy Surge",
 	"ivysaur": "Grassy Surge",
@@ -36,7 +36,7 @@ export const PokeRogueData: {
 	"caterpie": "Gluttony",
 	"metapod": "Sturdy",
 	"butterfree": "Magician",
-	"butterfreegmax": "Delta Stream",
+	"butterfreegmax": "Magician",
 	"weedle": "Poison Point",
 	"kakuna": "Sturdy",
 	"beedrill": "Adaptability",
@@ -357,7 +357,7 @@ export const PokeRogueData: {
 	"mudkip": "Regenerator",
 	"marshtomp": "Regenerator",
 	"swampert": "Regenerator",
-	"swampertmega": "Drizzle",
+	"swampertmega": "Regenerator",
 	"poochyena": "Tough Claws",
 	"mightyena": "Tough Claws",
 	"zigzagoon": "Run Away",
@@ -415,7 +415,7 @@ export const PokeRogueData: {
 	"manectric": "Flash Fire",
 	"manectricmega": "Flash Fire",
 	"plusle": "Power Spot",
-	"minun": "Power Spot",
+	"minun": "Friend Guard",
 	"volbeat": "Honey Gather",
 	"illumise": "Honey Gather",
 	"roselia": "Grassy Surge",
@@ -472,7 +472,7 @@ export const PokeRogueData: {
 	"chimechomega": "Punk Rock",
 	"absol": "Tough Claws",
 	"absolmega": "Shadow Shield",
-	"absolmegaz": "Sharpness",
+	"absolmegaz": "Super Luck",
 	"wynaut": "Sturdy",
 	"snorunt": "Overcoat",
 	"glalie": "Intimidate",
@@ -561,7 +561,7 @@ export const PokeRogueData: {
 	"drifblim": "Magic Guard",
 	"buneary": "Adaptability",
 	"lopunny": "Adaptability",
-	"lopunnymega": "Super Luck",
+	"lopunnymega": "Long Reach",
 	"mismagius": "Beads of Ruin",
 	"honchkrow": "Intimidate",
 	"glameow": "Pickup",
@@ -580,12 +580,12 @@ export const PokeRogueData: {
 	"gabite": "Arena Trap",
 	"garchomp": "Arena Trap",
 	"garchompmega": "Mold Breaker",
-	"garchompmegaz": "Levitate",
+	"garchompmegaz": "Intimidate",
 	"munchlax": "Cheek Pouch",
 	"riolu": "Mind's Eye",
 	"lucario": "Mind's Eye",
 	"lucariomega": "Mind's Eye",
-	"lucariomegaz": "Mega Launcher",
+	"lucariomegaz": "Neuroforce",
 	"hippopotas": "Unaware",
 	"hippowdon": "Unaware",
 	"skorupi": "Super Luck",
@@ -625,7 +625,7 @@ export const PokeRogueData: {
 	"rotomfrost": "Hadron Engine",
 	"rotomfan": "Hadron Engine",
 	"rotommow": "Hadron Engine",
-	"uxie": "Magic Bounce",
+	"uxie": "Aura Guard",
 	"mesprit": "Moody",
 	"azelf": "Neuroforce",
 	"dialga": "Berserk",
@@ -1250,7 +1250,7 @@ export const PokeRogueData: {
 	"basculegionf": "Supreme Overlord",
 	"sneasler": "Scrappy",
 	"overqwil": "Merciless",
-	"enamorus": "Fairy Aura",
+	"enamorus": "Cloud Nine",
 	"enamorustherian": "Fairy Aura",
 	"sprigatito": "Pickup",
 	"floragato": "Magician",
@@ -1296,8 +1296,8 @@ export const PokeRogueData: {
 	"grafaiai": "Corrosion",
 	"bramblin": "Wandering Spirit",
 	"brambleghast": "Shadow Shield",
-	"toedscool": "Run Away",
-	"toedscruel": "Prankster",
+	"toedscool": "Water Absorb",
+	"toedscruel": "Water Absorb",
 	"klawf": "Water Absorb",
 	"capsakid": "Flash Fire",
 	"scovillain": "Parental Bond",
@@ -1969,25 +1969,25 @@ export const PokeRogueData: {
 	],
 	"abra": [
 		"Aura Sphere",
-		"Baddy Bad",
+		"Thunderbolt",
 		"Ice Beam",
 		"Psystrike"
 	],
 	"kadabra": [
 		"Aura Sphere",
-		"Baddy Bad",
+		"Thunderbolt",
 		"Ice Beam",
 		"Psystrike"
 	],
 	"alakazam": [
 		"Aura Sphere",
-		"Baddy Bad",
+		"Thunderbolt",
 		"Ice Beam",
 		"Psystrike"
 	],
 	"alakazammega": [
 		"Aura Sphere",
-		"Baddy Bad",
+		"Thunderbolt",
 		"Ice Beam",
 		"Psystrike"
 	],
@@ -2131,15 +2131,15 @@ export const PokeRogueData: {
 	],
 	"seel": [
 		"Freeze-Dry",
-		"Bouncy Bubble",
+		"Splishy Splash",
 		"Slack Off",
-		"Steam Eruption"
+		"Bouncy Bubble"
 	],
 	"dewgong": [
 		"Freeze-Dry",
-		"Bouncy Bubble",
+		"Splishy Splash",
 		"Slack Off",
-		"Steam Eruption"
+		"Bouncy Bubble"
 	],
 	"grimer": [
 		"Sucker Punch",
@@ -2312,7 +2312,7 @@ export const PokeRogueData: {
 	"chansey": [
 		"Cotton Guard",
 		"Seismic Toss",
-		"Sizzly Slide",
+		"Lovely Kiss",
 		"Revival Blessing"
 	],
 	"tangela": [
@@ -3242,8 +3242,8 @@ export const PokeRogueData: {
 	"corsola": [
 		"Scald",
 		"Freeze-Dry",
-		"Strength Sap",
-		"Salt Cure"
+		"Salt Cure",
+		"Strength Sap"
 	],
 	"remoraid": [
 		"Water Shuriken",
@@ -3374,7 +3374,7 @@ export const PokeRogueData: {
 	"blissey": [
 		"Cotton Guard",
 		"Seismic Toss",
-		"Sizzly Slide",
+		"Lovely Kiss",
 		"Revival Blessing"
 	],
 	"raikou": [
@@ -3463,25 +3463,25 @@ export const PokeRogueData: {
 	],
 	"torchic": [
 		"Thunderous Kick",
-		"Zing Zap",
+		"Supercell Slam",
 		"Burning Bulwark",
 		"Pyro Ball"
 	],
 	"combusken": [
 		"Thunderous Kick",
-		"Zing Zap",
+		"Supercell Slam",
 		"Burning Bulwark",
 		"Pyro Ball"
 	],
 	"blaziken": [
 		"Thunderous Kick",
-		"Zing Zap",
+		"Supercell Slam",
 		"Burning Bulwark",
 		"Pyro Ball"
 	],
 	"blazikenmega": [
 		"Thunderous Kick",
-		"Zing Zap",
+		"Supercell Slam",
 		"Burning Bulwark",
 		"Pyro Ball"
 	],
@@ -4009,9 +4009,9 @@ export const PokeRogueData: {
 	],
 	"zangoose": [
 		"Fake Out",
-		"High Horsepower",
-		"Extreme Speed",
-		"Tidy Up"
+		"Headlong Rush",
+		"Dire Claw",
+		"Extreme Speed"
 	],
 	"seviper": [
 		"Ice Beam",
@@ -4182,21 +4182,21 @@ export const PokeRogueData: {
 		"Torch Song"
 	],
 	"absol": [
-		"Kowtow Cleave",
+		"Spirit Break",
 		"Sacred Sword",
-		"Psyblade",
+		"Cross Poison",
 		"Bitter Blade"
 	],
 	"absolmega": [
-		"Kowtow Cleave",
+		"Spirit Break",
 		"Sacred Sword",
-		"Psyblade",
+		"Cross Poison",
 		"Bitter Blade"
 	],
 	"absolmegaz": [
-		"Kowtow Cleave",
+		"Spirit Break",
 		"Sacred Sword",
-		"Psyblade",
+		"Cross Poison",
 		"Bitter Blade"
 	],
 	"wynaut": [
@@ -4340,25 +4340,25 @@ export const PokeRogueData: {
 	"latias": [
 		"Core Enforcer",
 		"Fusion Flare",
-		"Sparkly Swirl",
-		"Mystical Power"
+		"Take Heart",
+		"Sparkly Swirl"
 	],
 	"latiasmega": [
 		"Core Enforcer",
 		"Fusion Flare",
-		"Sparkly Swirl",
-		"Mystical Power"
+		"Take Heart",
+		"Sparkly Swirl"
 	],
 	"latios": [
 		"Core Enforcer",
 		"Blue Flare",
-		"Nasty Plot",
+		"Take Heart",
 		"Tachyon Cutter"
 	],
 	"latiosmega": [
 		"Core Enforcer",
 		"Blue Flare",
-		"Nasty Plot",
+		"Take Heart",
 		"Tachyon Cutter"
 	],
 	"kyogre": [
@@ -4802,7 +4802,7 @@ export const PokeRogueData: {
 	"happiny": [
 		"Cotton Guard",
 		"Seismic Toss",
-		"Sizzly Slide",
+		"Lovely Kiss",
 		"Revival Blessing"
 	],
 	"chatot": [
@@ -4819,31 +4819,31 @@ export const PokeRogueData: {
 	],
 	"gible": [
 		"Dragon Hammer",
-		"Bitter Blade",
+		"Nasty Plot",
 		"Land's Wrath",
 		"Dragon Dance"
 	],
 	"gabite": [
 		"Dragon Hammer",
-		"Bitter Blade",
+		"Nasty Plot",
 		"Land's Wrath",
 		"Dragon Dance"
 	],
 	"garchomp": [
 		"Dragon Hammer",
-		"Bitter Blade",
+		"Nasty Plot",
 		"Land's Wrath",
 		"Dragon Dance"
 	],
 	"garchompmega": [
 		"Dragon Hammer",
-		"Bitter Blade",
+		"Nasty Plot",
 		"Land's Wrath",
 		"Dragon Dance"
 	],
 	"garchompmegaz": [
 		"Dragon Hammer",
-		"Bitter Blade",
+		"Nasty Plot",
 		"Land's Wrath",
 		"Dragon Dance"
 	],
@@ -5186,7 +5186,7 @@ export const PokeRogueData: {
 	"cresselia": [
 		"Cosmic Power",
 		"Body Press",
-		"Sizzly Slide",
+		"Will-O-Wisp",
 		"Lumina Crash"
 	],
 	"phione": [
@@ -5196,10 +5196,10 @@ export const PokeRogueData: {
 		"Origin Pulse"
 	],
 	"manaphy": [
-		"Bouncy Bubble",
+		"Draining Kiss",
 		"Frost Breath",
-		"Wildbolt Storm",
-		"Origin Pulse"
+		"Splishy Splash",
+		"Wildbolt Storm"
 	],
 	"darkrai": [
 		"Doom Desire",
@@ -5628,22 +5628,22 @@ export const PokeRogueData: {
 		"Victory Dance"
 	],
 	"sewaddle": [
-		"Stone Axe",
+		"Mighty Cleave",
 		"Psycho Cut",
-		"Bitter Blade",
-		"Victory Dance"
+		"Tidy Up",
+		"Bitter Blade"
 	],
 	"swadloon": [
-		"Stone Axe",
+		"Mighty Cleave",
 		"Psycho Cut",
-		"Bitter Blade",
-		"Victory Dance"
+		"Tidy Up",
+		"Bitter Blade"
 	],
 	"leavanny": [
-		"Stone Axe",
+		"Mighty Cleave",
 		"Psycho Cut",
-		"Bitter Blade",
-		"Victory Dance"
+		"Tidy Up",
+		"Bitter Blade"
 	],
 	"venipede": [
 		"Baneful Bunker",
@@ -8370,13 +8370,13 @@ export const PokeRogueData: {
 		"Bitter Blade"
 	],
 	"clobbopus": [
-		"Storm Throw",
+		"Knock Off",
 		"Jet Punch",
 		"Flip Turn",
 		"Surging Strikes"
 	],
 	"grapploct": [
-		"Storm Throw",
+		"Knock Off",
 		"Jet Punch",
 		"Flip Turn",
 		"Surging Strikes"
@@ -8490,70 +8490,70 @@ export const PokeRogueData: {
 		"Spectral Thief"
 	],
 	"milcery": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremie": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremierubycream": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremiematchacream": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremiemintcream": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremielemoncream": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremiesaltedcream": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremierubyswirl": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremiecaramelswirl": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremierainbowswirl": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"alcremiegmax": [
-		"Moonblast",
+		"Milk Drink",
 		"Chilly Reception",
-		"Earth Power",
-		"Geomancy"
+		"Mystical Fire",
+		"Sparkly Swirl"
 	],
 	"falinks": [
 		"Baton Pass",
@@ -9276,21 +9276,21 @@ export const PokeRogueData: {
 		"Shore Up"
 	],
 	"glimmet": [
-		"Calm Mind",
+		"Earth Power",
 		"Giga Drain",
-		"Fiery Dance",
+		"Mystical Fire",
 		"Malignant Chain"
 	],
 	"glimmora": [
-		"Calm Mind",
+		"Earth Power",
 		"Giga Drain",
-		"Fiery Dance",
+		"Mystical Fire",
 		"Malignant Chain"
 	],
 	"glimmoramega": [
-		"Calm Mind",
+		"Earth Power",
 		"Giga Drain",
-		"Fiery Dance",
+		"Mystical Fire",
 		"Malignant Chain"
 	],
 	"greavard": [
@@ -9330,10 +9330,10 @@ export const PokeRogueData: {
 		"Bitter Blade"
 	],
 	"dondozo": [
-		"Soft-Boiled",
-		"Sizzly Slide",
+		"Salt Cure",
+		"Amnesia",
 		"Breaking Swipe",
-		"Salt Cure"
+		"Soft-Boiled"
 	],
 	"tatsugiri": [
 		"Sludge Bomb",
@@ -9410,8 +9410,8 @@ export const PokeRogueData: {
 	"greattusk": [
 		"Stone Axe",
 		"Morning Sun",
-		"Collision Course",
-		"Shift Gear"
+		"Heat Crash",
+		"Collision Course"
 	],
 	"screamtail": [
 		"Torch Song",
@@ -9468,9 +9468,9 @@ export const PokeRogueData: {
 		"Oblivion Wing"
 	],
 	"ironmoth": [
-		"Earth Power",
+		"Scorching Sands",
 		"Searing Shot",
-		"Malignant Chain",
+		"Sludge Bomb",
 		"Quiver Dance"
 	],
 	"ironthorns": [
@@ -9961,19 +9961,19 @@ export const PokeRogueData: {
 	],
 	"darumakagalar": [
 		"Ice Spinner",
-		"Zing Zap",
+		"Thunder Punch",
 		"Drain Punch",
 		"Pyro Ball"
 	],
 	"darmanitangalar": [
 		"Ice Spinner",
-		"Zing Zap",
+		"Thunder Punch",
 		"Drain Punch",
 		"Pyro Ball"
 	],
 	"darmanitangalarzen": [
 		"Ice Spinner",
-		"Zing Zap",
+		"Thunder Punch",
 		"Drain Punch",
 		"Pyro Ball"
 	],
