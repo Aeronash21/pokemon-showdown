@@ -67,6 +67,8 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		// Shown in /tier's banlist (keep in step with onValidateSet above)
 		banlistNotes: [
 			`Bitter Blade: only Ceruledge can use it.`,
+			`Mega Dragonite is allowed, with its Aerilate passive switched off (like Dragonite's).`,
+			`Galarian Darmanitan is Zen Mode only (Gorilla Tactics is banned).`,
 			`Gallade holding Galladite has no passive, so Mega Gallade doesn't get Sharpness. ` +
 			`Gallade can still have Sharpness as its regular ability before it Mega Evolves.`,
 		],
@@ -74,23 +76,21 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
 			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
+			// Galarian Darmanitan is Zen Mode only (also switched off as Unovan Darmanitan's passive)
+			'Gorilla Tactics',
 			// PokéRogue: egg move / passive additions
 			'Revival Blessing', 'Simple',
 			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
 			'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
-			'Enamorus-Incarnate', // (Enamorus-Therian is legal)
 			'Jirachi',
 			'Melmetal-Gmax', // (Melmetal itself is legal)
-			// Fishious Rend / Bolt Beak (170 BP when moving first) on the Pokémon that get them as STAB or
-			// boosted by their passive: these Pokémon are legal, just without the move
-			'Arctovish + Fishious Rend', 'Seaking + Fishious Rend', 'Arctozolt + Bolt Beak', 'Dracozolt + Bolt Beak',
-			'Zapdos-Galar + Bolt Beak',
+			'Overqwil', 'Zapdos-Galar',
 			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Alomomola + Multiscale', // half damage at full HP on 165 HP, with Regenerator to get back there
 			'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
 			'Blissey + Fur Coat', // doubled Defense on top of its HP and Special Defense
-			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip
+			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip (Mega Dragonite too)
 			'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
 			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
@@ -102,7 +102,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Hurricane, boosted Water attacks) on a legendary stat spread
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle',
-			'Typhlosion + Drought', // sun Eruption (Typhlosion and Hisuian Typhlosion)
 		],
 	},
 	{

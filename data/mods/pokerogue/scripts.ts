@@ -91,9 +91,9 @@ const EGG_MOVE_CHANGES: {[familyRoot: string]: string[]} = {};
 /**
  * Moves that only Pokémon learning them naturally can use: PokéRogue hands
  * them out as egg moves, and those egg-move users can't have them.
- * Sizzly Slide (100% burn): Partner Eevee and Flareon only.
+ * (None right now; Sizzly Slide was here until 16 October.)
  */
-const NATURAL_ONLY_MOVES = ['sizzlyslide'];
+const NATURAL_ONLY_MOVES: string[] = [];
 
 /** Abilities changed from PokéRogue's (the form's only ability). */
 const ABILITY_CHANGES: {[speciesid: string]: string} = {

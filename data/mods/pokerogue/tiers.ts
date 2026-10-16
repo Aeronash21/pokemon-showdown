@@ -33,8 +33,12 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	// -------------------------------------------------------
 
 	'Deoxys-Speed': 'OU', // National Dex Uber
-	// (Zapdos-Galar is back at its National Dex tier; OU bans it from using
-	// its Bolt Beak egg move instead, see config/pokerogue-formats.ts.)
+	// Zygarde-50% with Aura Break (OU bans Power Construct). National Dex Uber.
+	'Zygarde': 'OU',
+	// Zen Mode only (OU bans Gorilla Tactics). National Dex Uber.
+	'Darmanitan-Galar': 'OU',
+	'Darmanitan-Galar-Zen': 'OU',
+	// (Overqwil and Zapdos-Galar are banned by name in OU, see config/pokerogue-formats.ts.)
 
 	// -------------------------------------------------------
 	// Gigantamax forms (hold Max Mushrooms)
@@ -91,15 +95,17 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	'Victreebel-Mega': 'RU',
 	// Huge Power on 100 Atk / 120 Spe, with Regenerator as its passive.
 	'Starmie-Mega': 'Uber',
-	// 700 BST Multiscale Dragon Dance with Extreme Speed (Aerilate passive).
-	'Dragonite-Mega': 'Uber',
+	// 700 BST Multiscale; OU by request, with its Aerilate passive banned there
+	// ("Dragonite + Aerilate").
+	'Dragonite-Mega': 'OU',
 	'Meganium-Mega': 'RU',
-	// 160 Atk Dragonize (Normal -> Dragon, 1.2x) + Strong Jaw + Dragon Dance.
-	'Feraligatr-Mega': 'Uber',
+	// 160 Atk Dragonize (Normal -> Dragon, 1.2x) + Strong Jaw + Dragon Dance. OU by request.
+	'Feraligatr-Mega': 'OU',
 	'Skarmory-Mega': 'RU',
 	'Chimecho-Mega': 'RU',
-	// 154 Atk / 151 Spe Sharpness, with Super Luck as its passive.
-	'Absol-Mega-Z': 'Uber',
+	// 154 Atk / 151 Spe Sharpness, with Super Luck as its passive. OU by request
+	// (PokéRogue 1.12.1 took away its First Impression egg move).
+	'Absol-Mega-Z': 'OU',
 	// 140 Atk / 110 Spe Contrary (Close Combat raises its defenses) with a Rock Head passive (recoil-free Brave Bird).
 	'Staraptor-Mega': 'Uber',
 	// 151 Spe mixed attacker (130 / 141) with Levitate and an Intimidate passive: outspeeds all of OU.
