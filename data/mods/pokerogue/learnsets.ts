@@ -11562,6 +11562,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"poisonjab": [
 				"9M"
 			],
@@ -11834,6 +11837,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"pinmissile": [
@@ -18113,7 +18119,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L14"
 			],
 			"mudbomb": [
-				"9L25"
+				"9L23"
 			],
 			"mudshot": [
 				"9M"
@@ -18173,7 +18179,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L23"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
@@ -18346,7 +18352,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L14"
 			],
 			"mudbomb": [
-				"9L25"
+				"9L23"
 			],
 			"mudshot": [
 				"9M"
@@ -18412,7 +18418,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L23"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
@@ -20039,6 +20045,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -20122,6 +20131,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudslap": [
 				"9L6"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"noretreat": [
 				"9E"
@@ -20356,6 +20368,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -20445,6 +20460,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudslap": [
 				"9L6"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"noretreat": [
 				"9E"
@@ -21616,6 +21634,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dynamicpunch": [
 				"9L1"
 			],
@@ -21869,9 +21890,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aurasphere": [
 				"9E"
 			],
-			"baddybad": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -22075,6 +22093,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"thunderwave": [
 				"9M"
+			],
+			"thunderbolt": [
+				"9E"
 			],
 			"torment": [
 				"9M"
@@ -22113,9 +22134,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aurasphere": [
 				"9E"
 			],
-			"baddybad": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -22358,6 +22376,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"thunderwave": [
 				"9M"
+			],
+			"thunderbolt": [
+				"9E"
 			],
 			"torment": [
 				"9M"
@@ -22396,9 +22417,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aurasphere": [
 				"9E"
 			],
-			"baddybad": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -22659,6 +22677,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"thunderwave": [
 				"9M"
+			],
+			"thunderbolt": [
+				"9E"
 			],
 			"torment": [
 				"9M"
@@ -22697,9 +22718,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aurasphere": [
 				"9E"
 			],
-			"baddybad": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -22960,6 +22978,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"thunderwave": [
 				"9M"
+			],
+			"thunderbolt": [
+				"9E"
 			],
 			"torment": [
 				"9M"
@@ -28137,6 +28158,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"feint": [
 				"9L43"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"fly": [
 				"9M"
 			],
@@ -28279,6 +28303,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"toxic": [
+				"9M"
+			],
+			"trailblaze": [
 				"9M"
 			],
 			"triplearrows": [
@@ -28908,7 +28935,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"snowscape": [
 				"9L53"
 			],
-			"steameruption": [
+			"splishysplash": [
 				"9E"
 			],
 			"strength": [
@@ -29155,7 +29182,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"snowscape": [
 				"9L65"
 			],
-			"steameruption": [
+			"splishysplash": [
 				"9E"
 			],
 			"strength": [
@@ -32686,6 +32713,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudsport": [
 				"9L1"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"protect": [
 				"9L16"
 			],
@@ -32923,6 +32953,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudsport": [
 				"9L1"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"protect": [
 				"9L16"
@@ -33170,6 +33203,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudsport": [
 				"9L1"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"protect": [
 				"9L16"
@@ -36846,6 +36882,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"lightscreen": [
 				"9L38"
 			],
+			"lovelykiss": [
+				"9E"
+			],
 			"megakick": [
 				"9M"
 			],
@@ -36935,9 +36974,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"sing": [
 				"9L16"
-			],
-			"sizzlyslide": [
-				"9E"
 			],
 			"skillswap": [
 				"9M"
@@ -37323,6 +37359,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dynamicpunch": [
 				"9L52"
 			],
@@ -37636,6 +37675,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dynamicpunch": [
@@ -39889,6 +39931,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9L36"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dualwingbeat": [
 				"9M"
 			],
@@ -40422,6 +40467,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"eerieimpulse": [
 				"9M"
 			],
@@ -40673,6 +40721,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthpower": [
@@ -40968,7 +41019,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"guillotine": [
-				"9L54"
+				"9L55"
 			],
 			"harden": [
 				"9L1"
@@ -41039,6 +41090,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"seismictoss": [
 				"9L8"
 			],
+			"slash": [
+				"9L46"
+			],
 			"sleeptalk": [
 				"9M"
 			],
@@ -41073,7 +41127,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"superpower": [
-				"9L50"
+				"9L52"
 			],
 			"swagger": [
 				"9M"
@@ -41091,7 +41145,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"thrash": [
-				"9L47"
+				"9L49"
 			],
 			"throatchop": [
 				"9M"
@@ -41194,7 +41248,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"guillotine": [
-				"9L54"
+				"9L55"
 			],
 			"harden": [
 				"9L1"
@@ -41265,6 +41319,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"seismictoss": [
 				"9L8"
 			],
+			"slash": [
+				"9L46"
+			],
 			"sleeptalk": [
 				"9M"
 			],
@@ -41299,7 +41356,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"superpower": [
-				"9L50"
+				"9L52"
 			],
 			"swagger": [
 				"9M"
@@ -41317,7 +41374,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"thrash": [
-				"9L47"
+				"9L49"
 			],
 			"throatchop": [
 				"9M"
@@ -45012,6 +45069,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L25"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"protect": [
@@ -50165,6 +50225,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drillrun": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dualwingbeat": [
@@ -55404,6 +55467,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nightshade": [
 				"9L12"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"partingshot": [
 				"9E"
 			],
@@ -55591,6 +55657,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"fellstinger": [
 				"9L1"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"flash": [
 				"9M"
 			],
@@ -55641,6 +55710,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"nightshade": [
 				"9L12"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"partingshot": [
 				"9E"
@@ -55893,6 +55965,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L32"
 			],
 			"nastyplot": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"ominouswind": [
@@ -59029,6 +59104,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dragontail": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"echoedvoice": [
 				"9M"
 			],
@@ -59313,6 +59391,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L65"
 			],
 			"dragontail": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"echoedvoice": [
@@ -63707,6 +63788,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nightshade": [
 				"9L21"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"ominouswind": [
 				"9M"
 			],
@@ -66371,6 +66455,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9L1"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"payback": [
 				"9M"
 			],
@@ -68097,6 +68184,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dualwingbeat": [
 				"9M"
 			],
@@ -68378,6 +68468,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L39"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dualwingbeat": [
@@ -69734,7 +69827,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"feintattack": [
-				"9L15"
+				"9L18"
 			],
 			"firepunch": [
 				"9M"
@@ -69793,11 +69886,14 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"payback": [
 				"9L13"
 			],
 			"playnice": [
-				"9L25"
+				"9L1"
 			],
 			"playrough": [
 				"9L29"
@@ -69854,7 +69950,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"slash": [
-				"9L22"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
@@ -69881,7 +69977,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"sweetscent": [
-				"9L18"
+				"9L22"
 			],
 			"swift": [
 				"9M"
@@ -69963,7 +70059,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"covet": [
-				"9L1"
+				"9L15"
 			],
 			"crunch": [
 				"9M"
@@ -69997,7 +70093,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"feintattack": [
-				"9L15"
+				"9L18"
 			],
 			"firepunch": [
 				"9M"
@@ -70071,11 +70167,11 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"payback": [
 				"9L13"
-			],
-			"playnice": [
-				"9L25"
 			],
 			"playrough": [
 				"9L29"
@@ -70138,7 +70234,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"slash": [
-				"9L22"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
@@ -70171,7 +70267,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"sweetscent": [
-				"9L18"
+				"9L22"
 			],
 			"swift": [
 				"9M"
@@ -75585,6 +75681,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"eerieimpulse": [
 				"9M"
 			],
@@ -75809,6 +75908,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthpower": [
@@ -76438,6 +76540,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"lightscreen": [
 				"9L38"
 			],
+			"lovelykiss": [
+				"9E"
+			],
 			"megakick": [
 				"9M"
 			],
@@ -76527,9 +76632,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"sing": [
 				"9L16"
-			],
-			"sizzlyslide": [
-				"9E"
 			],
 			"skillswap": [
 				"9M"
@@ -79669,6 +79771,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"naturepower": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"pound": [
 				"9L1"
 			],
@@ -79935,6 +80040,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"naturepower": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"pound": [
@@ -80876,6 +80984,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"overheat": [
 				"9M"
 			],
@@ -80942,6 +81053,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"sunnyday": [
 				"9M"
 			],
+			"supercellslam": [
+				"9E"
+			],
 			"swagger": [
 				"9M"
 			],
@@ -80974,9 +81088,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"workup": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -81046,6 +81157,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"echoedvoice": [
@@ -81135,6 +81249,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"overheat": [
 				"9M"
 			],
@@ -81213,6 +81330,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"sunnyday": [
 				"9M"
 			],
+			"supercellslam": [
+				"9E"
+			],
 			"swagger": [
 				"9M"
 			],
@@ -81254,9 +81374,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"workup": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -81343,6 +81460,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -81448,6 +81568,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"overheat": [
 				"9M"
 			],
@@ -81541,6 +81664,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"sunnyday": [
 				"9M"
 			],
+			"supercellslam": [
+				"9E"
+			],
 			"superpower": [
 				"9M"
 			],
@@ -81591,9 +81717,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"workup": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -81680,6 +81803,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -81785,6 +81911,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"overheat": [
 				"9M"
 			],
@@ -81878,6 +82007,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"sunnyday": [
 				"9M"
 			],
+			"supercellslam": [
+				"9E"
+			],
 			"superpower": [
 				"9M"
 			],
@@ -81928,9 +82060,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"workup": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -85372,6 +85501,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"naturepower": [
 				"9L13"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"payback": [
 				"9L19"
 			],
@@ -85625,6 +85757,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"naturepower": [
 				"9L13"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"payback": [
 				"9L22"
@@ -85960,6 +86095,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"naturepower": [
 				"9L13"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"ominouswind": [
 				"9M"
@@ -89227,6 +89365,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"partingshot": [
 				"9E"
 			],
@@ -89379,7 +89520,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"chipaway": [
-				"9L27"
+				"9L23"
 			],
 			"confide": [
 				"9M"
@@ -89514,6 +89655,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -89587,7 +89731,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L23"
+				"9L27"
 			],
 			"sleeptalk": [
 				"9M"
@@ -89852,6 +89996,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -90093,6 +90240,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9L17"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"protect": [
 				"9M"
 			],
@@ -90269,6 +90419,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L32"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"ominouswind": [
@@ -90468,6 +90621,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L25"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"phantomforce": [
@@ -98244,6 +98400,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"confide": [
 				"9M"
 			],
+			"corrosivegas": [
+				"9M"
+			],
 			"counter": [
 				"9M"
 			],
@@ -98377,6 +98536,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"shockwave": [
+				"9M"
+			],
+			"skittersmack": [
 				"9M"
 			],
 			"sleeptalk": [
@@ -101506,6 +101668,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"firelash": [
 				"9E"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"fissure": [
 				"9L61"
 			],
@@ -101710,6 +101875,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"firelash": [
 				"9E"
+			],
+			"firstimpression": [
+				"9M"
 			],
 			"fly": [
 				"9M"
@@ -101986,6 +102154,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"firespin": [
+				"9M"
+			],
+			"firstimpression": [
 				"9M"
 			],
 			"flamethrower": [
@@ -103671,6 +103842,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dig": [
 				"9M"
 			],
+			"direclaw": [
+				"9E"
+			],
 			"disable": [
 				"9T"
 			],
@@ -103752,14 +103926,14 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"gunkshot": [
 				"9M"
 			],
+			"headlongrush": [
+				"9E"
+			],
 			"helpinghand": [
 				"9M"
 			],
 			"hiddenpower": [
 				"9M"
-			],
-			"highhorsepower": [
-				"9E"
 			],
 			"honeclaws": [
 				"9L15"
@@ -103949,9 +104123,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"thunderbolt": [
 				"9M"
-			],
-			"tidyup": [
-				"9E"
 			],
 			"toxic": [
 				"9M"
@@ -108445,6 +108616,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"firepunch": [
 				"9M"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"flamethrower": [
 				"9M"
 			],
@@ -110860,6 +111034,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"counter": [
 				"9M"
 			],
+			"crosspoison": [
+				"9E"
+			],
 			"curse": [
 				"9M"
 			],
@@ -110944,9 +111121,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"knockoff": [
 				"9T"
 			],
-			"kowtowcleave": [
-				"9E"
-			],
 			"leer": [
 				"9L4"
 			],
@@ -110979,9 +111153,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"protect": [
 				"9M"
-			],
-			"psyblade": [
-				"9E"
 			],
 			"psychup": [
 				"9M"
@@ -111057,6 +111228,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"snore": [
 				"9M"
+			],
+			"spiritbreak": [
+				"9E"
 			],
 			"spite": [
 				"9M"
@@ -111182,6 +111356,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"counter": [
 				"9M"
 			],
+			"crosspoison": [
+				"9E"
+			],
 			"curse": [
 				"9M"
 			],
@@ -111266,9 +111443,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"knockoff": [
 				"9T"
 			],
-			"kowtowcleave": [
-				"9E"
-			],
 			"leer": [
 				"9L4"
 			],
@@ -111301,9 +111475,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"protect": [
 				"9M"
-			],
-			"psyblade": [
-				"9E"
 			],
 			"psychup": [
 				"9M"
@@ -111379,6 +111550,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"snore": [
 				"9M"
+			],
+			"spiritbreak": [
+				"9E"
 			],
 			"spite": [
 				"9M"
@@ -111504,6 +111678,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"counter": [
 				"9M"
 			],
+			"crosspoison": [
+				"9E"
+			],
 			"curse": [
 				"9M"
 			],
@@ -111588,9 +111765,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"knockoff": [
 				"9T"
 			],
-			"kowtowcleave": [
-				"9E"
-			],
 			"leer": [
 				"9L4"
 			],
@@ -111623,9 +111797,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"protect": [
 				"9M"
-			],
-			"psyblade": [
-				"9E"
 			],
 			"psychup": [
 				"9M"
@@ -111701,6 +111872,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"snore": [
 				"9M"
+			],
+			"spiritbreak": [
+				"9E"
 			],
 			"spite": [
 				"9M"
@@ -112080,9 +112254,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"hyperbeam": [
 				"9M"
 			],
-			"iceball": [
-				"9L1"
-			],
 			"icebeam": [
 				"9T"
 			],
@@ -112311,9 +112482,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"hyperbeam": [
 				"9M"
-			],
-			"iceball": [
-				"9L1"
 			],
 			"icebeam": [
 				"9T"
@@ -114537,6 +114705,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"shadowclaw": [
 				"9M"
 			],
+			"slash": [
+				"9L1"
+			],
 			"sleeptalk": [
 				"9M"
 			],
@@ -114799,6 +114970,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"shadowclaw": [
 				"9M"
+			],
+			"slash": [
+				"9L1"
 			],
 			"sleeptalk": [
 				"9M"
@@ -116652,9 +116826,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mysticalfire": [
 				"9M"
 			],
-			"mysticalpower": [
-				"9E"
-			],
 			"outrage": [
 				"9M"
 			],
@@ -116774,6 +116945,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"takedown": [
 				"9M"
+			],
+			"takeheart": [
+				"9E"
 			],
 			"terablast": [
 				"9M"
@@ -116998,9 +117172,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mysticalfire": [
 				"9M"
 			],
-			"mysticalpower": [
-				"9E"
-			],
 			"outrage": [
 				"9M"
 			],
@@ -117120,6 +117291,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"takedown": [
 				"9M"
+			],
+			"takeheart": [
+				"9E"
 			],
 			"terablast": [
 				"9M"
@@ -117329,9 +117503,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mysticalfire": [
 				"9M"
 			],
-			"nastyplot": [
-				"9E"
-			],
 			"outrage": [
 				"9M"
 			],
@@ -117457,6 +117628,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"takedown": [
 				"9M"
+			],
+			"takeheart": [
+				"9E"
 			],
 			"telekinesis": [
 				"9L36"
@@ -117669,9 +117843,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mysticalfire": [
 				"9M"
 			],
-			"nastyplot": [
-				"9E"
-			],
 			"outrage": [
 				"9M"
 			],
@@ -117797,6 +117968,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"takedown": [
 				"9M"
+			],
+			"takeheart": [
+				"9E"
 			],
 			"telekinesis": [
 				"9L36"
@@ -122275,6 +122449,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"ember": [
 				"9L5"
 			],
@@ -122595,6 +122772,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -124677,7 +124857,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"aquatail": [
-				"9M"
+				"9L45"
 			],
 			"attract": [
 				"9M"
@@ -124893,7 +125073,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"waterpulse": [
-				"9M"
+				"9L25"
 			],
 			"waterfall": [
 				"9M"
@@ -125264,6 +125444,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"playrough": [
 				"9M"
 			],
@@ -125461,6 +125644,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"playrough": [
@@ -125672,6 +125858,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"playrough": [
@@ -132966,6 +133155,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"partingshot": [
 				"9E"
 			],
@@ -133175,6 +133367,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"partingshot": [
@@ -135169,6 +135364,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"lightscreen": [
 				"9M"
 			],
+			"lovelykiss": [
+				"9E"
+			],
 			"metronome": [
 				"9M"
 			],
@@ -135225,9 +135423,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"shockwave": [
 				"9M"
-			],
-			"sizzlyslide": [
-				"9E"
 			],
 			"sleeptalk": [
 				"9M"
@@ -135709,9 +135904,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bite": [
 				"9L25"
 			],
-			"bitterblade": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -135814,6 +136006,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nastyplot": [
+				"9E"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -135854,7 +136049,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"sandstorm": [
-				"9L54"
+				"9L48"
 			],
 			"scaleshot": [
 				"9M"
@@ -135908,7 +136103,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"takedown": [
-				"9L48"
+				"9L54"
 			],
 			"terablast": [
 				"9M"
@@ -135931,9 +136126,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"bite": [
 				"9L27"
-			],
-			"bitterblade": [
-				"9E"
 			],
 			"bodyslam": [
 				"9M"
@@ -136046,6 +136238,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nastyplot": [
+				"9E"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -136089,7 +136284,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"sandstorm": [
-				"9L66"
+				"9L58"
 			],
 			"scaleshot": [
 				"9M"
@@ -136143,7 +136338,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"takedown": [
-				"9L58"
+				"9L66"
 			],
 			"terablast": [
 				"9M"
@@ -136169,9 +136364,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"bite": [
 				"9L27"
-			],
-			"bitterblade": [
-				"9E"
 			],
 			"bodyslam": [
 				"9M"
@@ -136228,7 +136420,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L22"
 			],
 			"dragonrush": [
-				"9L75"
+				"9L82"
 			],
 			"dragontail": [
 				"9M"
@@ -136237,7 +136429,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L24"
 			],
 			"earthpower": [
-				"9M"
+				"9L72"
 			],
 			"earthquake": [
 				"9M"
@@ -136302,6 +136494,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nastyplot": [
+				"9E"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -136348,7 +136543,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"sandstorm": [
-				"9L66"
+				"9L58"
 			],
 			"scaleshot": [
 				"9M"
@@ -136411,7 +136606,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"takedown": [
-				"9L58"
+				"9L66"
 			],
 			"terablast": [
 				"9M"
@@ -136441,9 +136636,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bite": [
 				"9L27"
 			],
-			"bitterblade": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -136499,7 +136691,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L22"
 			],
 			"dragonrush": [
-				"9L75"
+				"9L82"
 			],
 			"dragontail": [
 				"9M"
@@ -136508,7 +136700,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L24"
 			],
 			"earthpower": [
-				"9M"
+				"9L72"
 			],
 			"earthquake": [
 				"9M"
@@ -136573,6 +136765,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nastyplot": [
+				"9E"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -136619,7 +136814,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"sandstorm": [
-				"9L66"
+				"9L58"
 			],
 			"scaleshot": [
 				"9M"
@@ -136682,7 +136877,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"takedown": [
-				"9L58"
+				"9L66"
 			],
 			"terablast": [
 				"9M"
@@ -136712,9 +136907,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bite": [
 				"9L27"
 			],
-			"bitterblade": [
-				"9E"
-			],
 			"bodyslam": [
 				"9M"
 			],
@@ -136770,7 +136962,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L22"
 			],
 			"dragonrush": [
-				"9L75"
+				"9L82"
 			],
 			"dragontail": [
 				"9M"
@@ -136779,7 +136971,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L24"
 			],
 			"earthpower": [
-				"9M"
+				"9L72"
 			],
 			"earthquake": [
 				"9M"
@@ -136844,6 +137036,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nastyplot": [
+				"9E"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -136890,7 +137085,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"sandstorm": [
-				"9L66"
+				"9L58"
 			],
 			"scaleshot": [
 				"9M"
@@ -136953,7 +137148,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"takedown": [
-				"9L58"
+				"9L66"
 			],
 			"terablast": [
 				"9M"
@@ -137332,6 +137527,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -137592,6 +137790,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L60"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -137916,6 +138117,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -138236,6 +138440,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L60"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -139449,6 +139656,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -139745,6 +139955,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -140486,7 +140699,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"hydropump": [
-				"9M"
+				"9L66"
 			],
 			"hyperbeam": [
 				"9M"
@@ -143146,6 +143359,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -143424,6 +143640,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthpower": [
@@ -145681,6 +145900,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dreameater": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -146107,6 +146329,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dreameater": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -150843,6 +151068,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"firespin": [
 				"9L1"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"flamecharge": [
 				"9M"
 			],
@@ -151101,6 +151329,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"firespin": [
 				"9L1"
+			],
+			"firstimpression": [
+				"9M"
 			],
 			"flamecharge": [
 				"9M"
@@ -152291,9 +152522,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"signalbeam": [
 				"9M"
 			],
-			"sizzlyslide": [
-				"9E"
-			],
 			"skillswap": [
 				"9M"
 			],
@@ -152344,6 +152572,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"trickroom": [
 				"9M"
+			],
+			"willowisp": [
+				"9E"
 			],
 			"zenheadbutt": [
 				"9M"
@@ -152575,9 +152806,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bounce": [
 				"9M"
 			],
-			"bouncybubble": [
-				"9E"
-			],
 			"brine": [
 				"9M"
 			],
@@ -152613,6 +152841,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"doubleteam": [
 				"9M"
+			],
+			"drainingkiss": [
+				"9E"
 			],
 			"endure": [
 				"9M"
@@ -152686,9 +152917,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
-			"originpulse": [
-				"9E"
-			],
 			"protect": [
 				"9M"
 			],
@@ -152739,6 +152967,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"snore": [
 				"9M"
+			],
+			"splishysplash": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -164457,6 +164688,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -164765,6 +164999,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -165119,6 +165356,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"liquidation": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"protect": [
 				"9M"
 			],
@@ -165343,6 +165583,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"liquidation": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"protect": [
@@ -165597,6 +165840,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"megahorn": [
 				"9T"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"protect": [
 				"9M"
@@ -169226,6 +169472,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"leer": [
 				"9L4"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"pluck": [
 				"9M"
 			],
@@ -169379,6 +169628,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"leer": [
 				"9L4"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"pluck": [
 				"9M"
@@ -169545,6 +169797,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"leer": [
 				"9L4"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"pluck": [
 				"9M"
@@ -173894,6 +174149,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9E"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dynamicpunch": [
 				"9L49"
 			],
@@ -174156,6 +174414,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"magicalleaf": [
 				"9M"
 			],
+			"mightycleave": [
+				"9E"
+			],
 			"naturepower": [
 				"9M"
 			],
@@ -174219,9 +174480,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"stickyweb": [
 				"9L31"
 			],
-			"stoneaxe": [
-				"9E"
-			],
 			"stringshot": [
 				"9L1"
 			],
@@ -174249,14 +174507,14 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"terablast": [
 				"9M"
 			],
+			"tidyup": [
+				"9E"
+			],
 			"toxic": [
 				"9M"
 			],
 			"trailblaze": [
 				"9M"
-			],
-			"victorydance": [
-				"9E"
 			],
 			"worryseed": [
 				"9M"
@@ -174349,6 +174607,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"magicalleaf": [
 				"9M"
 			],
+			"mightycleave": [
+				"9E"
+			],
 			"naturepower": [
 				"9M"
 			],
@@ -174412,9 +174673,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"stickyweb": [
 				"9L31"
 			],
-			"stoneaxe": [
-				"9E"
-			],
 			"stringshot": [
 				"9L1"
 			],
@@ -174442,14 +174700,14 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"terablast": [
 				"9M"
 			],
+			"tidyup": [
+				"9E"
+			],
 			"toxic": [
 				"9M"
 			],
 			"trailblaze": [
 				"9M"
-			],
-			"victorydance": [
-				"9E"
 			],
 			"worryseed": [
 				"9M"
@@ -174578,6 +174836,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"magicalleaf": [
 				"9M"
 			],
+			"mightycleave": [
+				"9E"
+			],
 			"naturepower": [
 				"9M"
 			],
@@ -174659,9 +174920,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"steelwing": [
 				"9M"
 			],
-			"stoneaxe": [
-				"9E"
-			],
 			"stringshot": [
 				"9L1"
 			],
@@ -174695,6 +174953,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"throatchop": [
 				"9M"
 			],
+			"tidyup": [
+				"9E"
+			],
 			"toxic": [
 				"9M"
 			],
@@ -174703,9 +174964,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"tripleaxel": [
 				"9M"
-			],
-			"victorydance": [
-				"9E"
 			],
 			"worryseed": [
 				"9M"
@@ -178630,6 +178888,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"naturepower": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"poisonjab": [
 				"9M"
 			],
@@ -178826,6 +179087,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"naturepower": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"poisonjab": [
 				"9M"
 			],
@@ -179012,6 +179276,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"encore": [
@@ -179314,6 +179581,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"encore": [
@@ -179634,6 +179904,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"encore": [
@@ -187681,6 +187954,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"megahorn": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"obstruct": [
 				"9E"
 			],
@@ -187862,6 +188138,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metalburst": [
 				"9L52"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"obstruct": [
 				"9E"
 			],
@@ -188000,6 +188279,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"feintattack": [
 				"9L18"
+			],
+			"firstimpression": [
+				"9M"
 			],
 			"flash": [
 				"9M"
@@ -188165,6 +188447,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"feintattack": [
 				"9L18"
+			],
+			"firstimpression": [
+				"9M"
 			],
 			"flash": [
 				"9M"
@@ -192607,7 +192892,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dualchop": [
-				"9L18"
+				"9L15"
 			],
 			"endeavor": [
 				"9M"
@@ -192622,7 +192907,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L6"
 			],
 			"firstimpression": [
-				"9E"
+				"9E",
+				"9M"
 			],
 			"fling": [
 				"9M"
@@ -192656,6 +192942,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"leer": [
 				"9L1"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"outrage": [
 				"9L48"
@@ -192697,7 +192986,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"scaryface": [
-				"9L21"
+				"9L18"
 			],
 			"scratch": [
 				"9L1"
@@ -192712,7 +193001,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L15"
+				"9L21"
 			],
 			"sleeptalk": [
 				"9M"
@@ -192845,7 +193134,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dualchop": [
-				"9L18"
+				"9L15"
 			],
 			"endeavor": [
 				"9M"
@@ -192860,7 +193149,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L6"
 			],
 			"firstimpression": [
-				"9E"
+				"9E",
+				"9M"
 			],
 			"fling": [
 				"9M"
@@ -192896,6 +193186,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"lowkick": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"outrage": [
@@ -192938,7 +193231,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"scaryface": [
-				"9L21"
+				"9L18"
 			],
 			"scratch": [
 				"9L1"
@@ -192953,7 +193246,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L15"
+				"9L21"
 			],
 			"sleeptalk": [
 				"9M"
@@ -193095,7 +193388,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dualchop": [
-				"9L18"
+				"9L15"
 			],
 			"earthquake": [
 				"9M"
@@ -193113,7 +193406,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L6"
 			],
 			"firstimpression": [
-				"9E"
+				"9E",
+				"9M"
 			],
 			"fling": [
 				"9M"
@@ -193163,6 +193457,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"lowsweep": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"outrage": [
 				"9L54"
 			],
@@ -193209,7 +193506,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"scaryface": [
-				"9L21"
+				"9L18"
 			],
 			"scratch": [
 				"9L1"
@@ -193224,7 +193521,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L15"
+				"9L21"
 			],
 			"sleeptalk": [
 				"9M"
@@ -193432,6 +193729,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"playnice": [
@@ -193724,6 +194024,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"mudslap": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"playnice": [
@@ -194692,6 +194995,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9L33"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -194948,6 +195254,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9L33"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -195173,7 +195482,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"chipaway": [
-				"9L31"
+				"9L21"
 			],
 			"clangoroussoul": [
 				"9E"
@@ -195353,7 +195662,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L21"
+				"9L31"
 			],
 			"sleeptalk": [
 				"9M"
@@ -196361,6 +196670,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"embargo": [
 				"9L38"
 			],
@@ -196594,6 +196906,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"embargo": [
@@ -198043,6 +198358,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"morningsun": [
 				"9E"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"noretreat": [
 				"9E"
 			],
@@ -198210,7 +198528,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"firstimpression": [
-				"9E"
+				"9E",
+				"9M"
 			],
 			"flashcannon": [
 				"9M"
@@ -202514,7 +202833,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"iciclespear": [
-				"9M"
+				"9T"
 			],
 			"icywind": [
 				"9L1"
@@ -202782,7 +203101,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"iciclespear": [
-				"9M"
+				"9T"
 			],
 			"icywind": [
 				"9L1"
@@ -203050,7 +203369,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"iciclespear": [
-				"9M"
+				"9T"
 			],
 			"icywind": [
 				"9L1"
@@ -203751,6 +204070,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dreameater": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"echoedvoice": [
 				"9L36"
 			],
@@ -204059,6 +204381,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dreameater": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"echoedvoice": [
@@ -205606,6 +205931,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endeavor": [
 				"9M"
 			],
@@ -205890,6 +206218,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"endeavor": [
@@ -206201,6 +206532,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -206551,6 +206885,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -208025,6 +208362,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nightdaze": [
 				"9E"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"pound": [
 				"9L1"
 			],
@@ -208253,6 +208593,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"nightdaze": [
 				"9E"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"pound": [
 				"9L1"
@@ -218743,6 +219086,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"magicalleaf": [
 				"9M"
 			],
+			"megahorn": [
+				"9M"
+			],
 			"milkdrink": [
 				"9L58"
 			],
@@ -218925,6 +219271,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"echoedvoice": [
@@ -219202,6 +219551,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -222559,7 +222911,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"retaliate": [
-				"9L27"
+				"9L20"
 			],
 			"return": [
 				"9M"
@@ -222598,7 +222950,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L20"
+				"9L27"
 			],
 			"sleeptalk": [
 				"9M"
@@ -222670,6 +223022,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -222725,7 +223080,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"retaliate": [
-				"9L27"
+				"9L20"
 			],
 			"return": [
 				"9M"
@@ -222764,7 +223119,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L20"
+				"9L27"
 			],
 			"sleeptalk": [
 				"9M"
@@ -222839,6 +223194,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -222906,7 +223264,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"retaliate": [
-				"9L27"
+				"9L20"
 			],
 			"return": [
 				"9M"
@@ -222948,7 +223306,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L20"
+				"9L27"
 			],
 			"sleeptalk": [
 				"9M"
@@ -223026,6 +223384,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -223093,7 +223454,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"retaliate": [
-				"9L27"
+				"9L20"
 			],
 			"return": [
 				"9M"
@@ -223135,7 +223496,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L20"
+				"9L27"
 			],
 			"sleeptalk": [
 				"9M"
@@ -224750,6 +225111,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -225031,6 +225395,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dragonclaw": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthpower": [
@@ -225344,6 +225711,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dragonclaw": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthpower": [
@@ -228428,6 +228798,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dualwingbeat": [
 				"9M"
 			],
@@ -228730,6 +229103,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dualwingbeat": [
@@ -235492,6 +235868,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dreameater": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"embargo": [
 				"9M"
 			],
@@ -235776,6 +236155,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"dreameater": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"embargo": [
@@ -237290,6 +237672,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"ember": [
 				"9L3"
 			],
@@ -237529,6 +237914,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -239283,6 +239671,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -240122,6 +240513,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dynamicpunch": [
 				"9L45"
 			],
@@ -240356,6 +240750,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"drainpunch": [
 				"9E",
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dynamicpunch": [
@@ -240625,6 +241022,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"drainpunch": [
 				"9E",
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"dynamicpunch": [
@@ -242815,6 +243215,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drillrun": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthpower": [
 				"9M"
 			],
@@ -244857,6 +245260,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endure": [
 				"9M"
 			],
@@ -246159,6 +246565,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9E"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -246357,6 +246766,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"drainpunch": [
 				"9E",
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -248034,6 +248446,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aerialace": [
 				"9M"
 			],
+			"agility": [
+				"9M"
+			],
 			"assurance": [
 				"9M"
 			],
@@ -248058,6 +248473,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bulletpunch": [
 				"9E"
 			],
+			"chillingwater": [
+				"9M"
+			],
 			"closecombat": [
 				"9M"
 			],
@@ -248077,6 +248495,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drillrun": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"endeavor": [
@@ -248107,6 +248528,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L8"
 			],
 			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
 				"9M"
 			],
 			"hail": [
@@ -248151,6 +248575,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"muddywater": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"obstruct": [
 				"9E"
 			],
@@ -248164,6 +248591,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L35"
 			],
 			"poisonjab": [
+				"9M"
+			],
+			"pounce": [
 				"9M"
 			],
 			"protect": [
@@ -248272,6 +248702,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"toxic": [
+				"9M"
+			],
+			"uturn": [
 				"9M"
 			],
 			"venoshock": [
@@ -248293,6 +248726,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"aerialace": [
 				"9M"
 			],
+			"agility": [
+				"9M"
+			],
 			"assurance": [
 				"9M"
 			],
@@ -248317,6 +248753,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bulletpunch": [
 				"9E"
 			],
+			"chillingwater": [
+				"9M"
+			],
 			"closecombat": [
 				"9M"
 			],
@@ -248336,6 +248775,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drillrun": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"endeavor": [
@@ -248366,6 +248808,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L8"
 			],
 			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
 				"9M"
 			],
 			"hail": [
@@ -248410,6 +248855,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"muddywater": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"obstruct": [
 				"9E"
 			],
@@ -248423,6 +248871,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L35"
 			],
 			"poisonjab": [
+				"9M"
+			],
+			"pounce": [
 				"9M"
 			],
 			"protect": [
@@ -248531,6 +248982,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"toxic": [
+				"9M"
+			],
+			"uturn": [
 				"9M"
 			],
 			"venoshock": [
@@ -256626,6 +257080,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nightshade": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"painsplit": [
 				"9L66"
 			],
@@ -256880,6 +257337,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"nightshade": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"painsplit": [
@@ -258119,6 +258579,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"dragontail": [
 				"9L8"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -258343,6 +258806,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L8"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -258609,6 +259075,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L8"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -259336,6 +259805,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"disable": [
 				"9L1"
+			],
+			"dualchop": [
+				"9M"
 			],
 			"echoedvoice": [
 				"9M"
@@ -260668,6 +261140,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dualwingbeat": [
 				"9M"
 			],
@@ -261649,6 +262124,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L13"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"earthquake": [
@@ -264273,6 +264751,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9L54"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"echoedvoice": [
 				"9M"
 			],
@@ -265335,6 +265816,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainpunch": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"echoedvoice": [
 				"9M"
 			],
@@ -265592,6 +266076,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"echoedvoice": [
@@ -270565,6 +271052,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"faketears": [
 				"9L14"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"foulplay": [
 				"9L36"
 			],
@@ -270713,6 +271203,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"firefang": [
 				"9M"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"foulplay": [
 				"9L46"
 			],
@@ -270779,6 +271272,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"return": [
 				"9M"
 			],
+			"roar": [
+				"9M"
+			],
 			"round": [
 				"9M"
 			],
@@ -270834,6 +271330,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"torment": [
+				"9M"
+			],
+			"trailblaze": [
 				"9M"
 			],
 			"uturn": [
@@ -275172,6 +275671,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"liquidation": [
 				"9L42"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"peck": [
 				"9L1"
 			],
@@ -275337,6 +275839,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"liquidation": [
 				"9L48"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"peck": [
 				"9L1"
@@ -276852,8 +277357,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bulkup": [
 				"9L25"
 			],
-			"bulletpunch": [
-				"9L17"
+			"chillingwater": [
+				"9M"
 			],
 			"closecombat": [
 				"9M"
@@ -276868,6 +277373,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"doubleteam": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"endure": [
@@ -276895,7 +277403,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"knockoff": [
-				"9L32"
+				"9E"
 			],
 			"leer": [
 				"9L1"
@@ -276904,7 +277412,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"machpunch": [
-				"9L22"
+				"9L17"
 			],
 			"megapunch": [
 				"9M"
@@ -276958,7 +277466,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"stormthrow": [
-				"9E"
+				"9L32"
 			],
 			"submission": [
 				"9L29"
@@ -277009,8 +277517,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bulkup": [
 				"9L25"
 			],
-			"bulletpunch": [
-				"9L17"
+			"chillingwater": [
+				"9M"
 			],
 			"closecombat": [
 				"9M"
@@ -277031,6 +277539,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"drainpunch": [
+				"9M"
+			],
+			"dualchop": [
 				"9M"
 			],
 			"endure": [
@@ -277067,7 +277578,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"knockoff": [
-				"9L32"
+				"9E"
 			],
 			"leer": [
 				"9L1"
@@ -277076,7 +277587,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"machpunch": [
-				"9L22"
+				"9L17"
 			],
 			"megapunch": [
 				"9M"
@@ -277145,7 +277656,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"stormthrow": [
-				"9E"
+				"9L32"
 			],
 			"submission": [
 				"9L29"
@@ -279892,6 +280403,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"behemothbash": [
 				"9E"
 			],
+			"bite": [
+				"9L22"
+			],
 			"bodyslam": [
 				"9M"
 			],
@@ -279934,6 +280448,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"endeavor": [
 				"9M"
 			],
@@ -279951,9 +280468,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"falseswipe": [
 				"9M"
-			],
-			"feintattack": [
-				"9L22"
 			],
 			"flash": [
 				"9M"
@@ -280099,6 +280613,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"snore": [
 				"9M"
 			],
+			"spikes": [
+				"9M"
+			],
 			"spite": [
 				"9M"
 			],
@@ -280139,6 +280656,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"thunder": [
+				"9M"
+			],
+			"thunderwave": [
 				"9M"
 			],
 			"thunderbolt": [
@@ -280413,8 +280933,8 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 	},
 	"sirfetchd": {
 		"learnset": {
-			"agility": [
-				"9L31"
+			"aerialace": [
+				"9M"
 			],
 			"assurance": [
 				"9M"
@@ -280476,6 +280996,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"falseswipe": [
 				"9L45"
 			],
+			"featherdance": [
+				"9L31"
+			],
 			"finalgambit": [
 				"9L65"
 			],
@@ -280514,6 +281037,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"meteorassault": [
 				"9L70"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"peck": [
 				"9L1"
@@ -281233,9 +281759,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"endure": [
 				"9M"
 			],
@@ -281248,19 +281771,19 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"fling": [
 				"9M"
 			],
-			"geomancy": [
-				"9E"
-			],
 			"helpinghand": [
 				"9M"
 			],
 			"hiddenpower": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
+			"mysticalfire": [
 				"9E"
 			],
 			"protect": [
@@ -281286,6 +281809,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"snore": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -281351,9 +281877,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -281377,9 +281900,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -281411,16 +281931,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -281470,6 +281991,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -281541,9 +282065,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -281567,9 +282088,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -281601,16 +282119,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -281660,6 +282179,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -281731,9 +282253,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -281757,9 +282276,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -281791,16 +282307,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -281850,6 +282367,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -281921,9 +282441,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -281947,9 +282464,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -281981,16 +282495,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282040,6 +282555,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -282111,9 +282629,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -282137,9 +282652,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -282171,16 +282683,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282230,6 +282743,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -282301,9 +282817,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -282327,9 +282840,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -282361,16 +282871,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282420,6 +282931,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -282491,9 +283005,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -282517,9 +283028,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -282551,16 +283059,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282610,6 +283119,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -282681,9 +283193,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -282707,9 +283216,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -282741,16 +283247,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282800,6 +283307,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -282871,9 +283381,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -282897,9 +283404,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -282931,16 +283435,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -282990,6 +283495,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -283061,9 +283569,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"drainingkiss": [
 				"9L15"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"encore": [
 				"9M"
 			],
@@ -283087,9 +283592,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"fling": [
 				"9M"
-			],
-			"geomancy": [
-				"9E"
 			],
 			"gigadrain": [
 				"9M"
@@ -283121,16 +283623,17 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metronome": [
 				"9M"
 			],
+			"milkdrink": [
+				"9E"
+			],
 			"mistyexplosion": [
 				"9M"
 			],
 			"mistyterrain": [
 				"9L45"
 			],
-			"moonblast": [
-				"9E"
-			],
 			"mysticalfire": [
+				"9E",
 				"9M"
 			],
 			"painsplit": [
@@ -283180,6 +283683,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"solarbeam": [
 				"9M"
+			],
+			"sparklyswirl": [
+				"9E"
 			],
 			"storedpower": [
 				"9M"
@@ -284736,9 +285242,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"moonblast": [
 				"9E"
 			],
-			"moonlight": [
-				"9L38"
-			],
 			"mysticalfire": [
 				"9M"
 			],
@@ -284831,6 +285334,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"trickroom": [
 				"9M"
+			],
+			"wish": [
+				"9L38"
 			],
 			"wonderroom": [
 				"9M"
@@ -284945,9 +285451,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"moonblast": [
 				"9E"
 			],
-			"moonlight": [
-				"9L38"
-			],
 			"mysticalfire": [
 				"9M"
 			],
@@ -285008,6 +285511,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"shadowball": [
 				"9M"
 			],
+			"sing": [
+				"9L28"
+			],
 			"skillswap": [
 				"9M"
 			],
@@ -285036,13 +285542,16 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"triattack": [
-				"9L28"
+				"9M"
 			],
 			"trick": [
 				"9M"
 			],
 			"trickroom": [
 				"9M"
+			],
+			"wish": [
+				"9L38"
 			],
 			"wonderroom": [
 				"9M"
@@ -287006,6 +287515,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"metalsound": [
 				"9L18"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -287202,6 +287714,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"metalsound": [
 				"9L18"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"outrage": [
 				"9M"
@@ -288293,7 +288808,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"brickbreak": [
-				"9M"
+				"9L44"
 			],
 			"bulkup": [
 				"9E"
@@ -288312,6 +288827,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"dig": [
 				"9M"
+			],
+			"doublekick": [
+				"9L1"
 			],
 			"doubleteam": [
 				"9M"
@@ -288383,7 +288901,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"metalburst": [
-				"9L44"
+				"9T"
 			],
 			"metalclaw": [
 				"9L1"
@@ -288435,9 +288953,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"roar": [
 				"9M"
-			],
-			"rocksmash": [
-				"9L1"
 			],
 			"round": [
 				"9M"
@@ -288531,7 +289046,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"brickbreak": [
-				"9M"
+				"9L44"
 			],
 			"bulkup": [
 				"9E"
@@ -288550,6 +289065,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"dig": [
 				"9M"
+			],
+			"doublekick": [
+				"9L1"
 			],
 			"doubleteam": [
 				"9M"
@@ -288621,7 +289139,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"metalburst": [
-				"9L44"
+				"9T"
 			],
 			"metalclaw": [
 				"9L1"
@@ -288673,9 +289191,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"roar": [
 				"9M"
-			],
-			"rocksmash": [
-				"9L1"
 			],
 			"round": [
 				"9M"
@@ -292840,6 +293355,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9L36"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"dualwingbeat": [
 				"9M"
 			],
@@ -293079,7 +293597,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"covet": [
-				"9L1"
+				"9L15"
 			],
 			"crunch": [
 				"9M"
@@ -293119,7 +293637,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L1"
 			],
 			"feintattack": [
-				"9L15"
+				"9L18"
 			],
 			"firepunch": [
 				"9M"
@@ -293202,11 +293720,11 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mudslap": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"payback": [
 				"9L13"
-			],
-			"playnice": [
-				"9L25"
 			],
 			"playrough": [
 				"9L29"
@@ -293269,7 +293787,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E"
 			],
 			"slash": [
-				"9L22"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
@@ -293305,7 +293823,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"sweetscent": [
-				"9L18"
+				"9L22"
 			],
 			"swift": [
 				"9M"
@@ -293953,6 +294471,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L14"
 			],
 			"nastyplot": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"poisonjab": [
@@ -296890,6 +297411,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"feint": [
 				"9L11"
 			],
+			"firstimpression": [
+				"9M"
+			],
 			"gastroacid": [
 				"9L33"
 			],
@@ -297050,6 +297574,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"feint": [
 				"9L11"
+			],
+			"firstimpression": [
+				"9M"
 			],
 			"fling": [
 				"9M"
@@ -299515,6 +300042,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"secretpower": [
 				"9M"
 			],
+			"seedbomb": [
+				"9M"
+			],
 			"sleeptalk": [
 				"9M"
 			],
@@ -300128,6 +300658,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nightshade": [
 				"9L20"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"ominouswind": [
 				"9M"
 			],
@@ -300290,6 +300823,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"nightshade": [
 				"9L20"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"ominouswind": [
 				"9M"
@@ -301245,9 +301781,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bodyslam": [
 				"9M"
 			],
-			"bounce": [
-				"9L37"
-			],
 			"charm": [
 				"9M"
 			],
@@ -301281,6 +301814,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"firefang": [
 				"9M"
 			],
+			"focusenergy": [
+				"9M"
+			],
 			"headbutt": [
 				"9L22"
 			],
@@ -301310,9 +301846,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"lick": [
 				"9L4"
-			],
-			"lunge": [
-				"9L46"
 			],
 			"noretreat": [
 				"9E"
@@ -301406,9 +301939,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"bodyslam": [
 				"9M"
 			],
-			"bounce": [
-				"9L41"
-			],
 			"charm": [
 				"9M"
 			],
@@ -301446,6 +301976,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"firefang": [
+				"9M"
+			],
+			"focusenergy": [
 				"9M"
 			],
 			"gigaimpact": [
@@ -301486,9 +302019,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"lick": [
 				"9L4"
-			],
-			"lunge": [
-				"9L51"
 			],
 			"noretreat": [
 				"9E"
@@ -301804,6 +302334,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"facade": [
+				"9M"
+			],
+			"firstimpression": [
 				"9M"
 			],
 			"flatter": [
@@ -306458,9 +306991,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"attract": [
 				"9M"
 			],
-			"calmmind": [
-				"9E"
-			],
 			"confuseray": [
 				"9M"
 			],
@@ -306470,6 +307000,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"earthpower": [
+				"9E"
+			],
 			"endure": [
 				"9M"
 			],
@@ -306478,9 +307011,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"facade": [
 				"9M"
-			],
-			"fierydance": [
-				"9E"
 			],
 			"gigadrain": [
 				"9E"
@@ -306508,6 +307038,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudshot": [
 				"9M"
+			],
+			"mysticalfire": [
+				"9E"
 			],
 			"powergem": [
 				"9L37"
@@ -306609,9 +307142,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"attract": [
 				"9M"
 			],
-			"calmmind": [
-				"9E"
-			],
 			"confuseray": [
 				"9M"
 			],
@@ -306622,6 +307152,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"earthpower": [
+				"9E",
 				"9M"
 			],
 			"endure": [
@@ -306635,9 +307166,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"facade": [
 				"9M"
-			],
-			"fierydance": [
-				"9E"
 			],
 			"flashcannon": [
 				"9M"
@@ -306677,6 +307205,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudshot": [
 				"9M"
+			],
+			"mysticalfire": [
+				"9E"
 			],
 			"powergem": [
 				"9L39"
@@ -306784,9 +307315,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"attract": [
 				"9M"
 			],
-			"calmmind": [
-				"9E"
-			],
 			"confuseray": [
 				"9M"
 			],
@@ -306797,6 +307325,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"earthpower": [
+				"9E",
 				"9M"
 			],
 			"endure": [
@@ -306810,9 +307339,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"facade": [
 				"9M"
-			],
-			"fierydance": [
-				"9E"
 			],
 			"flashcannon": [
 				"9M"
@@ -306852,6 +307378,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mudshot": [
 				"9M"
+			],
+			"mysticalfire": [
+				"9E"
 			],
 			"powergem": [
 				"9L39"
@@ -308011,6 +308540,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 	},
 	"dondozo": {
 		"learnset": {
+			"amnesia": [
+				"9E"
+			],
 			"aquatail": [
 				"9L40"
 			],
@@ -308118,9 +308650,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"secretpower": [
 				"9M"
-			],
-			"sizzlyslide": [
-				"9E"
 			],
 			"sleeptalk": [
 				"9L15"
@@ -309123,6 +309652,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9E",
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"earthquake": [
 				"9M"
 			],
@@ -309214,6 +309746,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L6"
 			],
 			"nightshade": [
+				"9M"
+			],
+			"nightslash": [
 				"9M"
 			],
 			"noretreat": [
@@ -310679,6 +311214,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
+			"dualchop": [
+				"9M"
+			],
 			"embargo": [
 				"9L38"
 			],
@@ -310968,6 +311506,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"headlongrush": [
 				"9L91"
 			],
+			"heatcrash": [
+				"9E"
+			],
 			"heavyslam": [
 				"9M"
 			],
@@ -311048,9 +311589,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"secretpower": [
 				"9M"
-			],
-			"shiftgear": [
-				"9E"
 			],
 			"sleeptalk": [
 				"9M"
@@ -312884,9 +313422,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"doubleteam": [
 				"9M"
 			],
-			"earthpower": [
-				"9E"
-			],
 			"electricterrain": [
 				"9T"
 			],
@@ -312950,9 +313485,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"lunge": [
 				"9L28"
 			],
-			"malignantchain": [
-				"9E"
-			],
 			"metalsound": [
 				"9L63"
 			],
@@ -312983,6 +313515,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"return": [
 				"9M"
 			],
+			"scorchingsands": [
+				"9E"
+			],
 			"screech": [
 				"9L35"
 			],
@@ -312994,6 +313529,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"sleeptalk": [
 				"9M"
+			],
+			"sludgebomb": [
+				"9E"
 			],
 			"sludgewave": [
 				"9L49"
@@ -313657,6 +314195,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"focusenergy": [
 				"9L18"
 			],
+			"frostbreath": [
+				"9M"
+			],
 			"gigaimpact": [
 				"9M"
 			],
@@ -313683,9 +314224,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"icefang": [
 				"9L29"
-			],
-			"icehammer": [
-				"9L70"
 			],
 			"iceshard": [
 				"9L1"
@@ -313854,6 +314392,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"focusenergy": [
 				"9L18"
 			],
+			"frostbreath": [
+				"9M"
+			],
 			"gigaimpact": [
 				"9M"
 			],
@@ -313880,9 +314421,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"icefang": [
 				"9L29"
-			],
-			"icehammer": [
-				"9L70"
 			],
 			"iceshard": [
 				"9L1"
@@ -319544,6 +320082,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"meteorbeam": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"outrage": [
 				"9M"
 			],
@@ -322288,6 +322829,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"mist": [
 				"9L17"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"poisonjab": [
 				"9M"
 			],
@@ -322579,6 +323123,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"mist": [
 				"9L17"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"pinmissile": [
 				"9M"
@@ -327355,6 +327902,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"behemothbash": [
 				"9E"
 			],
+			"bite": [
+				"9L22"
+			],
 			"bodyslam": [
 				"9M"
 			],
@@ -327408,9 +327958,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"falseswipe": [
 				"9M"
-			],
-			"feintattack": [
-				"9L22"
 			],
 			"flash": [
 				"9M"
@@ -328593,9 +329140,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 	},
 	"farfetchdgalar": {
 		"learnset": {
-			"agility": [
-				"9L31"
-			],
 			"assurance": [
 				"9M"
 			],
@@ -328644,6 +329188,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"falseswipe": [
 				"9L45"
 			],
+			"featherdance": [
+				"9L31"
+			],
 			"finalgambit": [
 				"9L65"
 			],
@@ -328670,6 +329217,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"leer": [
 				"9L5"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"peck": [
 				"9L1"
@@ -331180,6 +331730,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"thrash": [
 				"9L42"
 			],
+			"thunderpunch": [
+				"9E"
+			],
 			"uturn": [
 				"9M"
 			],
@@ -331194,9 +331747,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"zenheadbutt": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -331436,6 +331986,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"thrash": [
 				"9L50"
 			],
+			"thunderpunch": [
+				"9E"
+			],
 			"uturn": [
 				"9M"
 			],
@@ -331450,9 +332003,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"zenheadbutt": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -331692,6 +332242,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"thrash": [
 				"9L50"
 			],
+			"thunderpunch": [
+				"9E"
+			],
 			"uturn": [
 				"9M"
 			],
@@ -331706,9 +332259,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"zenheadbutt": [
 				"9M"
-			],
-			"zingzap": [
-				"9E"
 			]
 		}
 	},
@@ -333528,6 +334078,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			"nastyplot": [
 				"9M"
 			],
+			"nightslash": [
+				"9M"
+			],
 			"poisonjab": [
 				"9L25"
 			],
@@ -333786,6 +334339,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"megahorn": [
 				"9T"
+			],
+			"nightslash": [
+				"9M"
 			],
 			"protect": [
 				"9M"
@@ -337151,7 +337707,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"feintattack": [
-				"9L15"
+				"9L18"
 			],
 			"firepunch": [
 				"9M"
@@ -337181,7 +337737,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"harden": [
-				"9L18"
+				"9L1"
 			],
 			"headlongrush": [
 				"9L52"
@@ -337226,10 +337782,10 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9T"
 			],
 			"mudshot": [
-				"9L11"
+				"9L1"
 			],
 			"mudslap": [
-				"9L1"
+				"9M"
 			],
 			"nastyplot": [
 				"9E"
@@ -337238,7 +337794,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9L13"
 			],
 			"playnice": [
-				"9L25"
+				"9L22"
 			],
 			"playrough": [
 				"9L29"
@@ -337274,7 +337830,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"round": [
-				"9L1"
+				"9L15"
 			],
 			"sandsearstorm": [
 				"9E"
@@ -337295,7 +337851,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"slash": [
-				"9L22"
+				"9L25"
 			],
 			"sleeptalk": [
 				"9M"
