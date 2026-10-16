@@ -1,7 +1,9 @@
 export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
-	// Dark Void works for any Pokémon that has it (Gengar, Hypno, Meowstic...), not just Darkrai.
+	// Pre-nerf (Gen 4-6) Dark Void: 80% accurate (Gen 7+: 50%), and any Pokémon
+	// that has it can use it (Gengar, Hypno, Meowstic...), not just Darkrai.
 	darkvoid: {
 		inherit: true,
+		accuracy: 80,
 		onTry: undefined,
 		desc: "Causes the target to fall asleep.",
 		shortDesc: "Causes the foe(s) to fall asleep.",
