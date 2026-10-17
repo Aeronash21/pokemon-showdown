@@ -33,8 +33,6 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	// -------------------------------------------------------
 
 	'Deoxys-Speed': 'OU', // National Dex Uber
-	// Zygarde-50% with Aura Break (OU bans Power Construct). National Dex Uber.
-	'Zygarde': 'OU',
 	// Zen Mode only (OU bans Gorilla Tactics). National Dex Uber.
 	'Darmanitan-Galar': 'OU',
 	'Darmanitan-Galar-Zen': 'OU',
