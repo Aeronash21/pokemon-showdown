@@ -125,6 +125,46 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		],
 	},
 	{
+		name: '[Gen 9] PokeRogue Ubers UU',
+		desc: `${POKEROGUE_BUILDER_DESC} PokeRogue Ubers without its strongest Pok&eacute;mon.`,
+		mod: 'pokerogue',
+		ruleset: ['[Gen 9] PokeRogue Ubers'],
+		banlist: [
+			// Smogon National Dex Ubers UU (its Ubers OU and UUBL), plus National Dex Ubers' Shadow Tag ban
+			'Alomomola', 'Arceus-Normal', 'Arceus-Dark', 'Arceus-Ground', 'Calyrex-Ice', 'Deoxys-Attack', 'Deoxys-Speed', 'Ditto',
+			'Dondozo', 'Eternatus', 'Giratina-Origin', 'Groudon-Primal', 'Ho-Oh', 'Kyogre-Primal', 'Lunala', 'Marshadow',
+			'Mewtwo-Mega-Y', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 'Salamence-Mega', 'Smeargle', 'Yveltal', 'Zacian-Crowned',
+			'Zygarde-50%',
+			'Arceus-Dragon', 'Arceus-Fairy', 'Arceus-Fire', 'Arceus-Flying', 'Arceus-Ghost', 'Arceus-Water', 'Blaziken-Mega',
+			'Chi-Yu', 'Chien-Pao', 'Dracovish', 'Flutter Mane', 'Groudon', 'Kyogre', 'Kyurem-Black', 'Rayquaza', 'Shaymin-Sky',
+			'Zacian', 'Zekrom', 'Power Construct', 'Shadow Tag', 'Light Clay', 'Ultranecrozium Z', 'Last Respects',
+			'Gengar-Gmax', // (Shadow Tag after Gigantamaxing; Mega Gengar is already banned in Ubers)
+			// PokéRogue: egg moves / passives / stats make these too strong here
+			'Arceus', // every form: No Retreat egg move on 720 BST
+			'Dialga', 'Dialga-Origin', 'Palkia', 'Palkia-Origin', // Take Heart + Recover egg moves
+			'Giratina', // Dragon Dance + Recover egg moves, Shadow Shield passive
+			'Lugia', // Stored Power egg move (Calm Mind / Roost / Multiscale)
+			'Reshiram', // Eruption egg move, and its Orichalcum Pulse passive sets sun
+			'Kyurem-White', // Dragon Energy + No Retreat egg moves
+			'Necrozma-Dawn-Wings', // Clangorous Soul egg move, Shadow Shield passive
+			'Zamazenta-Crowned', // Slack Off egg move
+			'Spectrier', // Astral Barrage + Moonlight egg moves
+			'Urshifu-Base', 'Urshifu-Gmax', 'Urshifu-Rapid-Strike-Gmax', // Dragon Dance egg move (G-Max: 650 BST); Rapid Strike is allowed
+			'Espathra', // Cosmic Power + Roost egg moves with Speed Boost Stored Power
+			'Annihilape', // Slack Off + No Retreat egg moves, Iron Fist passive (Rage Fist)
+			'Mewtwo-Mega-X', // 190 Atk with a Neuroforce passive
+			'Darkrai-Mega', // 700 BST with 80% Dark Void
+			'Magearna-Mega', 'Magearna-Original-Mega', // 170 Sp. Atk Soul-Heart with Shift Gear
+			'Metagross-Mega', // Shift Gear egg move
+			'Baxcalibur-Mega', // 175 Atk with a Dragon Dance egg move
+			'Zeraora-Mega', // 157 / 147 / 153 with a Swords Dance egg move
+			// Passive bans
+			'Dragapult + Parental Bond', // two-hit Dragon Darts / Power-Up Punch
+			'Kangaskhan-Mega + Technician', // Technician on top of Parental Bond
+			'Solgaleo + Beast Boost', // snowballing on a 680 BST attacker
+		],
+	},
+	{
 		name: '[Gen 9] PokeRogue AG',
 		desc: POKEROGUE_BUILDER_DESC,
 		mod: 'pokerogue',
