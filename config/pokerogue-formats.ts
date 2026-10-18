@@ -113,16 +113,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Evasion Items Clause',
 			'Mega Rayquaza Clause',
 		],
-		banlist: [
-			// Smogon National Dex Ubers
-			'ND AG', 'Shedinja', 'Assist', 'Baton Pass',
-			// PokéRogue
-			'Moody',
-			'Zygardite', // Zygarde-Mega (778 BST)
-			// Passive bans
-			'Arceus + Adaptability', // Adaptability Multi-Attack / Judgment of any type, plus No Retreat
-			'Deoxys-Attack + Adaptability', // 180 / 180 attacking stats with 2x STAB
-		],
+		// Same banlist as Smogon's [Gen 9] National Dex Ubers, and no passive bans (for now).
+		// Eternamax and Mega Gengar are tiered AG here, so 'ND AG' covers them. Mega Zygarde
+		// (AG) Mega Evolves from Complete Zygarde, which the tier check doesn't see, so its
+		// stone is banned instead.
+		banlist: ['ND AG', 'Shedinja', 'Assist', 'Baton Pass', 'Zygardite'],
 	},
 	{
 		name: '[Gen 9] PokeRogue AG',
