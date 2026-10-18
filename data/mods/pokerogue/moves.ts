@@ -8,6 +8,22 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		desc: "Causes the target to fall asleep.",
 		shortDesc: "Causes the foe(s) to fall asleep.",
 	},
+	// Multi-Attack (Arceus' egg move) is Arceus' type: the type of its form, like
+	// Judgment (Arceus-Fire: Fire). Anyone else still gets their Memory's type.
+	multiattack: {
+		inherit: true,
+		onModifyType(move, pokemon) {
+			if (pokemon.species.baseSpecies === 'Arceus') {
+				move.type = pokemon.species.types[0];
+				return;
+			}
+			if (pokemon.ignoringItem()) return;
+			move.type = this.runEvent('Memory', pokemon, null, move, 'Normal');
+		},
+		desc: "This move's type matches the user's type if the user is Arceus (the type of its form, set by its " +
+			"Plate). Otherwise, it depends on the user's held Memory.",
+		shortDesc: "Arceus: its type. Others: type varies by held Memory.",
+	},
 	// The original (Let's Go) Zippy Zap, as in PokéRogue: 50 BP, always a
 	// critical hit, no Evasion boost (instead of 80 BP with +1 Evasion).
 	zippyzap: {
