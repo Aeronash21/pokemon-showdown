@@ -121,5 +121,96 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 	}
 	line('Clauses', clauses);
 	if (!pokemonList && !lines.length) return `Nothing is banned in ${Utils.escapeHTML(format.name)}.`;
+	lines.push(`<small>Every legal Pok&eacute;mon: <code>/legal ${Utils.escapeHTML(format.id.replace(/^gen9pokerogue/, ''))}</code></small>`);
 	return pokemonList + lines.join('<br />');
 }
+
+// ---------------------------------------------------------------
+// /legal: every Pokémon a PokéRogue format allows
+// ---------------------------------------------------------------
+
+/** "ubers", "ubers uu", "PokeRogue OU", "gen9pokerogueag"... -> the PokéRogue (or Chaos) format */
+function findPokeRogueFormat(target: string): Format | null {
+	const id = toID(target) || 'ubers';
+	for (const candidate of [`gen9pokerogue${id}`, `gen9${id}`, id, `gen9pokerogue${id.replace(/^pokerogue/, '')}`]) {
+		const format = Dex.formats.get(candidate);
+		if (format.exists && format.effectType === 'Format' && ['pokerogue', 'chaos'].includes(format.mod) && !format.team) {
+			return format;
+		}
+	}
+	return null;
+}
+
+/** The tier sections, strongest first (same order as the teambuilder) */
+const TIER_ORDER = ['AG', 'Uber', 'OU', '(OU)', 'UUBL', 'UU', 'RUBL', 'RU', 'NFE', 'LC'];
+
+export function pokeRogueLegalHTML(format: Format): string {
+	const dex = Dex.forFormat(format);
+	const ruleTable = Dex.formats.getRuleTable(format);
+	const banned = (species: Species): boolean => {
+		if (ruleTable.isBannedSpecies(species)) return true;
+		// a forme its item can't reach (Zygardite, Ultranecrozium Z... banned)
+		const items = species.requiredItems || (species.requiredItem ? [species.requiredItem] : []);
+		if (items.length && items.every(item => ruleTable.isBanned(`item:${toID(item)}`))) return true;
+		// a battle forme of a banned Pokémon (Primal Kyogre when Kyogre is banned...)
+		if (species.battleOnly) {
+			const from = Array.isArray(species.battleOnly) ? species.battleOnly : [species.battleOnly];
+			if (from.every(name => banned(dex.species.get(name)))) return true;
+		}
+		return false;
+	};
+
+	const byTier = new Map<string, string[]>();
+	const transformed: string[] = [];
+	let total = 0;
+	for (const species of dex.species.all()) {
+		if (!(species as AnyObject).pokeRogue || species.isCosmeticForme || species.forme.includes('Totem')) continue;
+		// formes only reached mid-battle without an item (Zen Mode, Complete Zygarde, Tera Ogerpon...)
+		if (species.battleOnly && !species.requiredItem && !species.requiredItems && !species.requiredMove) continue;
+		if ((species.baseSpecies === 'Ogerpon' && species.forme.includes('Tera')) || species.forme.includes('Zen')) continue;
+		if (banned(species)) continue;
+		total++;
+		// Megas, Primals, G-Max forms, Eternamax, Ultra Necrozma: their own section
+		if (species.battleOnly) {
+			transformed.push(species.name);
+			continue;
+		}
+		const tier = TIER_ORDER.includes(species.natDexTier) ? species.natDexTier : 'RU';
+		const list = byTier.get(tier);
+		if (list) list.push(species.name);
+		else byTier.set(tier, [species.name]);
+	}
+
+	const section = (title: string, names: string[]) =>
+		`<details class="details"><summary><b>${title}</b> (${names.length})</summary>` +
+		`${Utils.escapeHTML(names.sort().join(', '))}</details>`;
+	let buf = `<b>${Utils.escapeHTML(format.name)}</b>: ${total} legal Pok&eacute;mon (click a tier to show it).`;
+	for (const tier of TIER_ORDER) {
+		const names = byTier.get(tier);
+		if (!names) continue;
+		const title = tier === '(OU)' ? 'OU by technicality' : tier === 'NFE' ? 'NFE' : tier;
+		buf += section(title, names);
+	}
+	if (transformed.length) buf += section('Megas, Primals &amp; G-Max forms (with their item)', transformed);
+	buf += `<small>Banned: <code>/tier ${Utils.escapeHTML(format.id.replace(/^gen9pokerogue/, 'pokerogue '))}</code>. ` +
+		`Passive bans and other rules there still apply.</small>`;
+	return buf;
+}
+
+export const commands: Chat.ChatCommands = {
+	legalmons: 'legal',
+	legalpokemon: 'legal',
+	legal(target) {
+		const format = findPokeRogueFormat(target);
+		if (!format) {
+			return this.errorReply(`"${target}" isn't a PokéRogue format. Try /legal ubers, /legal ou, /legal ubers uu or /legal ag.`);
+		}
+		if (!this.runBroadcast(`!legal ${format.id}`)) return;
+		this.sendReplyBox(pokeRogueLegalHTML(format));
+	},
+	legalhelp: [
+		`/legal [format] - Shows every Pokémon legal in a PokéRogue format, by tier ` +
+		`(default: PokéRogue Ubers). E.g. /legal ubers, /legal ou, /legal ubers uu. ` +
+		`Aliases: /legalmons, /legalpokemon. !legal shows it to the room.`,
+	],
+};

@@ -81,6 +81,8 @@ export const PokeRogueTiers: {[speciesName: string]: string} = {
 	// Urshifu is already Uber; the G-Max forms have 650 BST.
 	'Urshifu-Gmax': 'Uber',
 	'Urshifu-Rapid-Strike-Gmax': 'Uber',
+	// Eternatus holding Max Mushrooms (1125 BST): Anything Goes only.
+	'Eternatus-Eternamax': 'AG',
 
 	// -------------------------------------------------------
 	// Legends: Z-A Megas

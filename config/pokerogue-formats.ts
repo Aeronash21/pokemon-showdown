@@ -256,6 +256,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		unbanlist: ['Mythical'],
 		restricted: ['Restricted Legendary', ...RESTRICTED_MYTHICALS],
 		banlist: [
+			'Eternatus-Eternamax', // (Eternatus holding Max Mushrooms) Anything Goes only
 			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
 			// Passive bans
 			'Arceus + Adaptability', // as in Ubers: Adaptability Multi-Attack / Judgment of any type

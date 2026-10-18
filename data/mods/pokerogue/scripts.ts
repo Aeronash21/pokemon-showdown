@@ -38,10 +38,16 @@ import {PokeRogueTiers} from './tiers';
 import {applyChampionsChanges, championsCalculatePP, CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from './champions-changes';
 
 /** In the PokéRogue dex but impossible to get in these formats. */
-const EXCLUDED_SPECIES = new Set([
-	// Eternamax is only a boss form; nothing turns Eternatus into it.
-	'eternatuseternamax',
+const EXCLUDED_SPECIES = new Set<string>([
+	// (Eternatus-Eternamax used to be here; it's now reached with Max Mushrooms, see ETERNAMAX.)
 ]);
+
+/**
+ * Eternatus Eternamaxes by holding Max Mushrooms (or Galarica Wreath), like a
+ * Gigantamax form. Eternamax is tiered AG (tiers.ts), so only Anything Goes
+ * formats allow it; VGC Restricted bans it by name.
+ */
+const ETERNAMAX = {Eternatus: 'Eternatus-Eternamax'};
 
 /**
  * Not in the PokéRogue dex, but available here (their passive is in
@@ -267,8 +273,14 @@ export const Scripts: ModdedBattleScriptsData = {
 		// G-Max forms (with their stats).
 		const partnerGmax = {'Pikachu-Starter': 'Pikachu-Gmax', 'Eevee-Starter': 'Eevee-Gmax'};
 		const mushroomData = this.modData('Items', 'maxmushrooms') as AnyObject;
-		mushroomData.megaStone = {...mushroomData.megaStone, ...partnerGmax};
-		mushroomData.itemUser = [...mushroomData.itemUser, ...Object.keys(partnerGmax)];
+		mushroomData.megaStone = {...mushroomData.megaStone, ...partnerGmax, ...ETERNAMAX};
+		mushroomData.itemUser = [...mushroomData.itemUser, ...Object.keys(partnerGmax), ...Object.keys(ETERNAMAX)];
+		for (const [from, to] of Object.entries(ETERNAMAX)) {
+			// (same tags as Eternatus: Restricted Legendary, for the VGC formats)
+			Object.assign(this.modData('Pokedex', toID(to)), {
+				requiredItem: 'Max Mushrooms', battleOnly: from, tags: [...this.data.Pokedex[toID(from)].tags || []],
+			});
+		}
 		const mushrooms = this.data.Items['maxmushrooms'] as AnyObject;
 		Object.assign(this.modData('Items', 'galaricawreath'), {
 			megaStone: {...mushrooms.megaStone},
