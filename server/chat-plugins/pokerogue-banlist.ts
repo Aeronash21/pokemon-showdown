@@ -129,7 +129,7 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 // /legal: every Pokémon a PokéRogue format allows
 // ---------------------------------------------------------------
 
-/** "ubers", "ubers uu", "PokeRogue OU", "gen9pokerogueag"... -> the PokéRogue (or Chaos) format */
+/** "ubers", "ou", "PokeRogue AG", "gen9pokerogueag"... -> the PokéRogue (or Chaos) format */
 function findPokeRogueFormat(target: string): Format | null {
 	const id = toID(target) || 'ubers';
 	for (const candidate of [`gen9pokerogue${id}`, `gen9${id}`, id, `gen9pokerogue${id.replace(/^pokerogue/, '')}`]) {
@@ -203,14 +203,14 @@ export const commands: Chat.ChatCommands = {
 	legal(target) {
 		const format = findPokeRogueFormat(target);
 		if (!format) {
-			return this.errorReply(`"${target}" isn't a PokéRogue format. Try /legal ubers, /legal ou, /legal ubers uu or /legal ag.`);
+			return this.errorReply(`"${target}" isn't a PokéRogue format. Try /legal ubers, /legal ou or /legal ag.`);
 		}
 		if (!this.runBroadcast(`!legal ${format.id}`)) return;
 		this.sendReplyBox(pokeRogueLegalHTML(format));
 	},
 	legalhelp: [
 		`/legal [format] - Shows every Pokémon legal in a PokéRogue format, by tier ` +
-		`(default: PokéRogue Ubers). E.g. /legal ubers, /legal ou, /legal ubers uu. ` +
+		`(default: PokéRogue Ubers). E.g. /legal ubers, /legal ou, /legal ag. ` +
 		`Aliases: /legalmons, /legalpokemon. !legal shows it to the room.`,
 	],
 };
