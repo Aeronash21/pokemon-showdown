@@ -205,7 +205,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Smogon 2v2 Doubles, Gen 7 + 8 + 9 (their other Pokémon are Restricted Legendaries)
 			'Arceus', 'Chi-Yu', 'Deoxys-Attack', 'Magearna', 'Urshifu', 'Urshifu-Rapid-Strike', // Gen 9
 			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', 'Whimsicott', // Gen 8
-			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Snorlax', 'Tapu Lele', // Gen 7
+			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Tapu Lele', // Gen 7 (Snorlax allowed by request)
 			'Commander', 'Moody', 'Power Construct',
 			'Focus Sash', "King's Rock", 'Razor Fang',
 			'Ally Switch', 'Dark Void', 'Final Gambit', 'Perish Song', 'Swagger',
