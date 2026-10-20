@@ -216,9 +216,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Passive bans (the Pokémon is allowed with its passive switched off)
 			'Blacephalon + Magic Guard', 'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (hits both foes)
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
-			'Chatot + Punk Rock', 'Noivern + Punk Rock', // Punk Rock Boomburst
-			'Chien-Pao + Intimidate', 'Great Tusk + Intimidate', 'Mawile-Mega + Intimidate', 'Roaring Moon + Intimidate',
-			'Deoxys + Protean', 'Porygon-Z + Protean', // every move gets STAB (2x for Porygon-Z with Adaptability)
 			'Dragapult + Parental Bond',
 			'Dragonite + Aerilate', // Flying Extreme Speed and Hyper Voice (Mega Dragonite too)
 			'Gallade-Mega + Sharpness',
@@ -228,8 +225,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Smeargle + Prankster', // priority Spore
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle', // their own rain: 100% accurate Thunder / Hurricane / Bleakwind and Sandsear Storm
-			'Toxtricity + Electric Surge', 'Toxtricity-Low-Key + Electric Surge', 'Toxtricity-Gmax + Electric Surge',
-			'Toxtricity-Low-Key-Gmax + Electric Surge', // Punk Rock Overdrive (hits both foes) in its own terrain
 			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // Eruption (hits both foes) in its own sun
 		],
 		unbanlist: [
