@@ -206,6 +206,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Arceus', 'Chi-Yu', 'Deoxys-Attack', 'Magearna', 'Urshifu', 'Urshifu-Rapid-Strike', // Gen 9
 			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', 'Whimsicott', // Gen 8
 			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Tapu Lele', // Gen 7 (Snorlax allowed by request)
+			'Deoxys-Base', // by request (Deoxys-Defense / Speed are allowed)
 			'Moody', 'Power Construct', // (Commander allowed by request)
 			"King's Rock", // (Focus Sash and Razor Fang allowed by request)
 			'Dark Void', // (Ally Switch, Final Gambit, Perish Song and Swagger allowed by request)
