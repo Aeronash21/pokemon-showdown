@@ -208,7 +208,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Tapu Lele', // Gen 7 (Snorlax allowed by request)
 			'Commander', 'Moody', 'Power Construct',
 			'Focus Sash', "King's Rock", 'Razor Fang',
-			'Dark Void', 'Final Gambit', 'Perish Song', 'Swagger', // (Ally Switch allowed by request)
+			'Dark Void', 'Swagger', // (Ally Switch, Final Gambit and Perish Song allowed by request)
 			// Also banned for everyone
 			'Arena Trap', 'Shadow Tag', 'Simple',
 			'Light Ball', 'Quick Claw',
