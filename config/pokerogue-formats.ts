@@ -208,11 +208,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Tapu Lele', // Gen 7 (Snorlax allowed by request)
 			'Commander', 'Moody', 'Power Construct',
 			'Focus Sash', "King's Rock", 'Razor Fang',
-			'Ally Switch', 'Dark Void', 'Final Gambit', 'Perish Song', 'Swagger',
+			'Dark Void', 'Final Gambit', 'Perish Song', 'Swagger', // (Ally Switch allowed by request)
 			// Also banned for everyone
 			'Arena Trap', 'Shadow Tag', 'Simple',
 			'Light Ball', 'Quick Claw',
-			'Assist', 'Baton Pass', 'Coaching', 'Last Respects', 'Revival Blessing', 'Shed Tail',
+			'Assist', 'Last Respects', 'Revival Blessing', 'Shed Tail', // (Baton Pass and Coaching allowed by request)
 			// Passive bans (the Pokémon is allowed with its passive switched off)
 			'Blacephalon + Magic Guard', 'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (hits both foes)
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
