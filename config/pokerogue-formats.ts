@@ -183,6 +183,10 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		// Four players, p1 + p3 vs p2 + p4. Each player brings 6, picks 3 at Team Preview and
 		// controls one active Pokémon. Started by challenging one player and adding the other
 		// two with /addplayer (Multi Battles can't use the ladder search).
+		//
+		// OU-level doubles. Bans are kept simple: Pokémon, abilities / items / moves for
+		// everyone, and passive bans ("Pokemon + Ability"). A Pokémon whose egg move is too
+		// strong is banned itself. Starting point: Smogon's National Dex Doubles banlist.
 		name: '[Gen 9] PokeRogue 2v2 (Bring 6 Pick 3)',
 		desc: `${POKEROGUE_BUILDER_DESC} Four-player 2v2 Multi Battle: every player builds a team of 6, picks 3 at ` +
 			`Team Preview and controls one active Pok&eacute;mon. Challenge one player, then add the other two ` +
@@ -191,17 +195,68 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		gameType: 'multi',
 		searchShow: false,
 		tournamentShow: false,
-		// OU power level: everything PokeRogue OU bans (and its rules: no Tera, Sleep Clause...),
-		// plus the doubles bans below.
-		ruleset: ['[Gen 9] PokeRogue OU', 'Gravity Sleep Clause', 'Max Team Size = 6', 'Picked Team Size = 3'],
-		banlistNotes: POKEROGUE_OU_NOTES,
+		ruleset: [
+			'Standard Doubles', 'PokeRogue Mod', 'PokeRogue All Moves', 'Evasion Abilities Clause', 'Evasion Items Clause',
+			'Sleep Clause Mod', 'Terastal Clause', 'Max Team Size = 6', 'Picked Team Size = 3',
+		],
 		banlist: [
-			// Smogon National Dex Doubles bans that PokeRogue OU allows
-			'Melmetal', 'Shedinja', 'Stakataka', 'Terapagos', 'Urshifu-Rapid-Strike', 'Zamazenta',
-			'Commander', 'Coaching', 'Dark Void', 'Swagger',
-			// Passive bans (doubles only)
-			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // its own sun for Eruption, which hits both foes
-			'Smeargle + Prankster', // priority Spore (as in PokeRogue VGC)
+			// Smogon National Dex Doubles
+			'Annihilape', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Deoxys-Attack', 'Dialga', 'Dialga-Origin', 'Espathra',
+			'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Koraidon', 'Kyogre',
+			'Kyurem-White', 'Lugia', 'Lunala', 'Magearna', 'Melmetal', 'Metagross-Mega', 'Mewtwo', 'Miraidon',
+			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 'Palkia', 'Palkia-Origin', 'Rayquaza', 'Reshiram',
+			'Shedinja', 'Solgaleo', 'Stakataka', 'Terapagos', 'Urshifu', 'Urshifu-Rapid-Strike', 'Xerneas', 'Yveltal',
+			'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-50%', 'Zygarde-Complete',
+			'Commander', 'Power Construct', 'Shadow Tag', 'Assist', 'Coaching', 'Dark Void', 'Swagger',
+			// PokéRogue forms and stats (Uber in PokeRogue singles, and doubles doesn't hold them back)
+			'Baxcalibur-Mega', 'Chi-Yu', 'Cinderace-Gmax', 'Darkrai-Mega', 'Floette-Mega', 'Garchomp-Mega', 'Garchomp-Mega-Z',
+			'Gengar-Gmax', 'Greninja-Mega', 'Inteleon-Gmax', 'Kyurem', 'Kyurem-Black', 'Rillaboom-Gmax', 'Staraptor-Mega',
+			'Starmie-Mega', 'Zeraora-Mega',
+			// Egg moves that are too strong on these Pokémon
+			'Altaria-Mega', 'Sylveon', // Pixilate Boomburst (hits both foes)
+			'Blastoise-Mega', 'Clawitzer', // Mega Launcher Origin Pulse (hits both foes)
+			'Darkrai', // Fiery Wrath (hits both foes) and Nasty Plot at 125 Speed
+			'Dragalge-Mega', 'Drampa-Mega', // Adaptability Core Enforcer (hits both foes)
+			'Flutter Mane', // Moonlight and Nasty Plot, with a Dazzling passive that blocks priority for its side
+			'Flygon', // Adaptability Dragon Energy (150 BP, hits both foes)
+			'Gardevoir-Mega', // No Retreat with Pixilate Hyper Voice
+			'Gouging Fire', // Extreme Speed and Dragon Dance, with a Beast Boost passive
+			'Heatran-Mega', // Eruption from 175 Sp. Atk
+			'Iron Bundle', // Nasty Plot, with a Snow Warning passive for 100% accurate Blizzard
+			'Jirachi', // Shell Smash with Serene Grace Rock Slide / Iron Head flinches
+			'Latias-Mega', 'Latios-Mega', // Core Enforcer (hits both foes) and Take Heart on 700 BST
+			'Naganadel', // Clanging Scales (hits both foes) and Nasty Plot, with Beast Boost
+			'Pecharunt', // Astral Barrage (hits both foes) with Toxic Chain and Poison Puppeteer
+			'Pidgeot-Mega', // No Guard Bleakwind Storm with a Sheer Force passive
+			'Pinsir-Mega', // Aerilate Extreme Speed
+			'Regieleki', // Nasty Plot at 200 Speed, with an Electric Surge passive
+			'Shaymin-Sky', // Quiver Dance and Heat Wave / Matcha Gotcha (hit both foes)
+			'Spectrier', // Astral Barrage (hits both foes) and Moonlight
+			'Tyranitar', 'Tyranitar-Mega', // Diamond Storm (hits both foes), Dragon Dance and Shore Up in its own sand
+			'Ursaluna-Bloodmoon', // Boomburst / Sandsear Storm (hit both foes) and Nasty Plot
+			'Walking Wake', // Core Enforcer (hits both foes), with a Beast Boost passive
+			// Abilities, items and moves (for everyone)
+			'Arena Trap', 'Moody', 'Simple',
+			"King's Rock", 'Light Ball', 'Quick Claw', 'Razor Fang',
+			'Baton Pass', 'Last Respects', 'Revival Blessing', 'Shed Tail',
+			// Passive bans (the Pokémon is allowed with its passive switched off)
+			'Blacephalon + Magic Guard', 'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (hits both foes)
+			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
+			'Chatot + Punk Rock', 'Noivern + Punk Rock', // Punk Rock Boomburst
+			'Chien-Pao + Intimidate', 'Great Tusk + Intimidate', 'Mawile-Mega + Intimidate', 'Roaring Moon + Intimidate',
+			'Deoxys + Protean', 'Porygon-Z + Protean', // every move gets STAB (2x for Porygon-Z with Adaptability)
+			'Dragapult + Parental Bond',
+			'Dragonite + Aerilate', // Flying Extreme Speed and Hyper Voice (Mega Dragonite too)
+			'Gallade-Mega + Sharpness',
+			'Heracross-Mega + Technician', 'Kangaskhan-Mega + Technician',
+			'Kingambit + Sword of Ruin', 'Bisharp + Sword of Ruin',
+			'Manaphy + Primordial Sea',
+			'Smeargle + Prankster', // priority Spore
+			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
+			'Zapdos + Drizzle', // their own rain: 100% accurate Thunder / Hurricane / Bleakwind and Sandsear Storm
+			'Toxtricity + Electric Surge', 'Toxtricity-Low-Key + Electric Surge', 'Toxtricity-Gmax + Electric Surge',
+			'Toxtricity-Low-Key-Gmax + Electric Surge', // Punk Rock Overdrive (hits both foes) in its own terrain
+			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // Eruption (hits both foes) in its own sun
 		],
 	},
 
