@@ -204,7 +204,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Restricted Legendary', // (exceptions in unbanlist)
 			// Smogon 2v2 Doubles, Gen 7 + 8 + 9 (their other Pokémon are Restricted Legendaries)
 			'Arceus', 'Chi-Yu', 'Deoxys-Attack', 'Magearna', 'Urshifu', 'Urshifu-Rapid-Strike', // Gen 9
-			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', 'Whimsicott', // Gen 8
+			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', // Gen 8 (Whimsicott allowed by request)
 			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Tapu Lele', // Gen 7 (Snorlax allowed by request)
 			'Deoxys-Base', // by request (Deoxys-Defense / Speed are allowed)
 			'Moody', 'Power Construct', // (Commander allowed by request)
