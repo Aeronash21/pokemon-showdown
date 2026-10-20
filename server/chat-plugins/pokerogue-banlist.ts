@@ -14,7 +14,8 @@ import { Utils } from '../../lib';
 const HIDDEN_CLAUSES = ['nicknameclause', 'evasionabilitiesclause', 'evasionitemsclause', 'evasionmovesclause'];
 
 export function pokeRogueBanlistHTML(format: Format): string | null {
-	if (format.mod !== 'pokerogue' || format.team || format.gameType !== 'singles') return null;
+	// (singles, and built Multi Battles like PokeRogue 2v2 (Bring 6 Pick 3); VGC keeps the standard /tier view)
+	if (format.mod !== 'pokerogue' || format.team || !['singles', 'multi'].includes(format.gameType)) return null;
 	const dex = Dex.forFormat(format);
 	const ruleTable = Dex.formats.getRuleTable(format);
 
@@ -63,7 +64,9 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 	const bannedOn = new Map<string, string[]>();
 	const otherBans: string[] = [];
 	for (const [name, source, , bans] of ruleTable.complexBans) {
-		if (source) continue; // part of a clause (e.g. Sleep Clause Mod's Hypnosis + Gengarite)
+		// part of a clause (e.g. Sleep Clause Mod's Hypnosis + Gengarite); bans inherited from a format
+		// in the ruleset (PokeRogue 2v2 (Bring 6 Pick 3) is built on PokeRogue OU) still count
+		if (source && dex.formats.get(source).effectType !== 'Format') continue;
 		const mon = bans.find(ban => ban.startsWith('pokemon:') || ban.startsWith('basepokemon:'));
 		const rest = bans.filter(ban => ban !== mon);
 		if (mon && rest.length === 1) {
@@ -84,7 +87,7 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 		otherBans.push(name);
 	}
 	for (const [name, source] of ruleTable.complexTeamBans) {
-		if (!source) otherBans.push(name);
+		if (!source || dex.formats.get(source).effectType === 'Format') otherBans.push(name);
 	}
 
 	const clauses: string[] = [];

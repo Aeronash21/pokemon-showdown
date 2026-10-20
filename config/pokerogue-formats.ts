@@ -38,6 +38,15 @@ const RESTRICTED_MYTHICALS = [
 	'Shaymin-Sky',
 ];
 
+/** PokeRogue OU's rules that its banlist can't show (/tier lists them); formats built on OU repeat them. */
+const POKEROGUE_OU_NOTES = [
+	`Bitter Blade: only Ceruledge can use it.`,
+	`Mega Dragonite is allowed, with its Aerilate passive switched off (like Dragonite's).`,
+	`Galarian Darmanitan is Zen Mode only (Gorilla Tactics is banned).`,
+	`Gallade holding Galladite has no passive, so Mega Gallade doesn't get Sharpness. ` +
+	`Gallade can still have Sharpness as its regular ability before it Mega Evolves.`,
+];
+
 export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	{
 		section: 'PokeRogue',
@@ -65,13 +74,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			}
 		},
 		// Shown in /tier's banlist (keep in step with onValidateSet above)
-		banlistNotes: [
-			`Bitter Blade: only Ceruledge can use it.`,
-			`Mega Dragonite is allowed, with its Aerilate passive switched off (like Dragonite's).`,
-			`Galarian Darmanitan is Zen Mode only (Gorilla Tactics is banned).`,
-			`Gallade holding Galladite has no passive, so Mega Gallade doesn't get Sharpness. ` +
-			`Gallade can still have Sharpness as its regular ability before it Mega Evolves.`,
-		],
+		banlistNotes: POKEROGUE_OU_NOTES,
 		banlist: [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
@@ -169,6 +172,36 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		ruleset: [
 			'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Illusion Level Mod',
 			'Max Team Size = 3', 'PokeRogue Mod',
+		],
+	},
+
+	// ========================================================
+	// BUILT 2v2 (Multi Battle)
+	// ========================================================
+
+	{
+		// Four players, p1 + p3 vs p2 + p4. Each player brings 6, picks 3 at Team Preview and
+		// controls one active Pokémon. Started by challenging one player and adding the other
+		// two with /addplayer (Multi Battles can't use the ladder search).
+		name: '[Gen 9] PokeRogue 2v2 (Bring 6 Pick 3)',
+		desc: `${POKEROGUE_BUILDER_DESC} Four-player 2v2 Multi Battle: every player builds a team of 6, picks 3 at ` +
+			`Team Preview and controls one active Pok&eacute;mon. Challenge one player, then add the other two ` +
+			`with <code>/addplayer [user], p3</code> and <code>/addplayer [user], p4</code>.`,
+		mod: 'pokerogue',
+		gameType: 'multi',
+		searchShow: false,
+		tournamentShow: false,
+		// OU power level: everything PokeRogue OU bans (and its rules: no Tera, Sleep Clause...),
+		// plus the doubles bans below.
+		ruleset: ['[Gen 9] PokeRogue OU', 'Gravity Sleep Clause', 'Max Team Size = 6', 'Picked Team Size = 3'],
+		banlistNotes: POKEROGUE_OU_NOTES,
+		banlist: [
+			// Smogon National Dex Doubles bans that PokeRogue OU allows
+			'Melmetal', 'Shedinja', 'Stakataka', 'Terapagos', 'Urshifu-Rapid-Strike', 'Zamazenta',
+			'Commander', 'Coaching', 'Dark Void', 'Swagger',
+			// Passive bans (doubles only)
+			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // its own sun for Eruption, which hits both foes
+			'Smeargle + Prankster', // priority Spore (as in PokeRogue VGC)
 		],
 	},
 
