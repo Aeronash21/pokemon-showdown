@@ -222,6 +222,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Kingambit + Sword of Ruin', 'Bisharp + Sword of Ruin',
 			'Manaphy + Primordial Sea',
 			'Smeargle + Prankster', // priority Spore
+			'Grafaiai + Prankster', // (its regular ability, not its passive) priority Sketched moves like Spore
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle', // their own rain: 100% accurate Thunder / Hurricane / Bleakwind and Sandsear Storm
 		],
