@@ -184,8 +184,8 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		// controls one active Pokémon. Started by challenging one player and adding the other
 		// two with /addplayer (Multi Battles can't use the ladder search).
 		//
-		// Banlist (for now): every Restricted Legendary except Cosmog, Cosmoem, Necrozma, Zamazenta,
-		// Calyrex and Terapagos, plus everything Smogon's Gen 7, 8 and 9 2v2 Doubles ban. Bans are
+		// Banlist (for now): every Restricted Legendary except Cosmog, Cosmoem, Necrozma, Calyrex and
+		// Terapagos, plus everything Smogon's Gen 7, 8 and 9 2v2 Doubles ban. Bans are
 		// kept simple: Pokémon, abilities / items / moves for everyone, and passive bans.
 		name: '[Gen 9] PokeRogue 2v2 (Bring 6 Pick 3)',
 		desc: `${POKEROGUE_BUILDER_DESC} Four-player 2v2 Multi Battle: every player builds a team of 6, picks 3 at ` +
@@ -202,8 +202,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		],
 		banlist: [
 			'Restricted Legendary', // (exceptions in unbanlist)
-			// Smogon 2v2 Doubles, Gen 7 + 8 + 9 (their other Pokémon are Restricted Legendaries; the Gen 8 / 9
-			// Zamazenta ban is left out: Zamazenta is allowed here by request)
+			// Smogon 2v2 Doubles, Gen 7 + 8 + 9 (their other Pokémon are Restricted Legendaries)
 			'Arceus', 'Chi-Yu', 'Deoxys-Attack', 'Magearna', 'Urshifu', 'Urshifu-Rapid-Strike', // Gen 9
 			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', 'Whimsicott', // Gen 8
 			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Snorlax', 'Tapu Lele', // Gen 7
@@ -234,9 +233,9 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // Eruption (hits both foes) in its own sun
 		],
 		unbanlist: [
-			// Restricted Legendaries allowed here (only these forms: Crowned Zamazenta, Ice / Shadow Calyrex
-			// and Dusk Mane / Dawn Wings / Ultra Necrozma stay banned). Terapagos can't Terastallize here.
-			'Cosmog', 'Cosmoem', 'Necrozma-Base', 'Zamazenta-Base', 'Calyrex-Base', 'Terapagos',
+			// Restricted Legendaries allowed here (only these forms: Ice / Shadow Calyrex and Dusk Mane /
+			// Dawn Wings / Ultra Necrozma stay banned). Terapagos can't Terastallize here.
+			'Cosmog', 'Cosmoem', 'Necrozma-Base', 'Calyrex-Base', 'Terapagos',
 		],
 	},
 
