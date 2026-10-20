@@ -224,7 +224,6 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Smeargle + Prankster', // priority Spore
 			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
 			'Zapdos + Drizzle', // their own rain: 100% accurate Thunder / Hurricane / Bleakwind and Sandsear Storm
-			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // Eruption (hits both foes) in its own sun
 		],
 		unbanlist: [
 			// Restricted Legendaries allowed here (only these forms: Ice / Shadow Calyrex and Dusk Mane /
