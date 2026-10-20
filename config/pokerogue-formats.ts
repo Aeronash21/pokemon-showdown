@@ -184,9 +184,9 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		// controls one active Pokémon. Started by challenging one player and adding the other
 		// two with /addplayer (Multi Battles can't use the ladder search).
 		//
-		// OU-level doubles. Bans are kept simple: Pokémon, abilities / items / moves for
-		// everyone, and passive bans ("Pokemon + Ability"). A Pokémon whose egg move is too
-		// strong is banned itself. Starting point: Smogon's National Dex Doubles banlist.
+		// Banlist (for now): every Restricted Legendary except Cosmog, Cosmoem, Necrozma, Zamazenta,
+		// Calyrex and Terapagos, plus everything Smogon's Gen 7, 8 and 9 2v2 Doubles ban. Bans are
+		// kept simple: Pokémon, abilities / items / moves for everyone, and passive bans.
 		name: '[Gen 9] PokeRogue 2v2 (Bring 6 Pick 3)',
 		desc: `${POKEROGUE_BUILDER_DESC} Four-player 2v2 Multi Battle: every player builds a team of 6, picks 3 at ` +
 			`Team Preview and controls one active Pok&eacute;mon. Challenge one player, then add the other two ` +
@@ -196,49 +196,24 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		searchShow: false,
 		tournamentShow: false,
 		ruleset: [
-			'Standard Doubles', 'PokeRogue Mod', 'PokeRogue All Moves', 'Evasion Abilities Clause', 'Evasion Items Clause',
-			'Sleep Clause Mod', 'Terastal Clause', 'Max Team Size = 6', 'Picked Team Size = 3',
+			// (Smogon 2v2 Doubles: Standard Doubles, Accuracy Moves, Terastal, Sleep and Evasion Items Clauses)
+			'Standard Doubles', 'PokeRogue Mod', 'PokeRogue All Moves', 'Accuracy Moves Clause', 'Evasion Abilities Clause',
+			'Evasion Items Clause', 'Sleep Clause Mod', 'Terastal Clause', 'Max Team Size = 6', 'Picked Team Size = 3',
 		],
 		banlist: [
-			// Smogon National Dex Doubles
-			'Annihilape', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Deoxys-Attack', 'Dialga', 'Dialga-Origin', 'Espathra',
-			'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Koraidon', 'Kyogre',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Magearna', 'Melmetal', 'Metagross-Mega', 'Mewtwo', 'Miraidon',
-			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 'Palkia', 'Palkia-Origin', 'Rayquaza', 'Reshiram',
-			'Shedinja', 'Solgaleo', 'Stakataka', 'Terapagos', 'Urshifu', 'Urshifu-Rapid-Strike', 'Xerneas', 'Yveltal',
-			'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-50%', 'Zygarde-Complete',
-			'Commander', 'Power Construct', 'Shadow Tag', 'Assist', 'Coaching', 'Dark Void', 'Swagger',
-			// PokéRogue forms and stats (Uber in PokeRogue singles, and doubles doesn't hold them back)
-			'Baxcalibur-Mega', 'Chi-Yu', 'Cinderace-Gmax', 'Darkrai-Mega', 'Floette-Mega', 'Garchomp-Mega', 'Garchomp-Mega-Z',
-			'Gengar-Gmax', 'Greninja-Mega', 'Inteleon-Gmax', 'Kyurem', 'Kyurem-Black', 'Rillaboom-Gmax', 'Staraptor-Mega',
-			'Starmie-Mega', 'Zeraora-Mega',
-			// Egg moves that are too strong on these Pokémon
-			'Altaria-Mega', 'Sylveon', // Pixilate Boomburst (hits both foes)
-			'Blastoise-Mega', 'Clawitzer', // Mega Launcher Origin Pulse (hits both foes)
-			'Darkrai', // Fiery Wrath (hits both foes) and Nasty Plot at 125 Speed
-			'Dragalge-Mega', 'Drampa-Mega', // Adaptability Core Enforcer (hits both foes)
-			'Flutter Mane', // Moonlight and Nasty Plot, with a Dazzling passive that blocks priority for its side
-			'Flygon', // Adaptability Dragon Energy (150 BP, hits both foes)
-			'Gardevoir-Mega', // No Retreat with Pixilate Hyper Voice
-			'Gouging Fire', // Extreme Speed and Dragon Dance, with a Beast Boost passive
-			'Heatran-Mega', // Eruption from 175 Sp. Atk
-			'Iron Bundle', // Nasty Plot, with a Snow Warning passive for 100% accurate Blizzard
-			'Jirachi', // Shell Smash with Serene Grace Rock Slide / Iron Head flinches
-			'Latias-Mega', 'Latios-Mega', // Core Enforcer (hits both foes) and Take Heart on 700 BST
-			'Naganadel', // Clanging Scales (hits both foes) and Nasty Plot, with Beast Boost
-			'Pecharunt', // Astral Barrage (hits both foes) with Toxic Chain and Poison Puppeteer
-			'Pidgeot-Mega', // No Guard Bleakwind Storm with a Sheer Force passive
-			'Pinsir-Mega', // Aerilate Extreme Speed
-			'Regieleki', // Nasty Plot at 200 Speed, with an Electric Surge passive
-			'Shaymin-Sky', // Quiver Dance and Heat Wave / Matcha Gotcha (hit both foes)
-			'Spectrier', // Astral Barrage (hits both foes) and Moonlight
-			'Tyranitar', 'Tyranitar-Mega', // Diamond Storm (hits both foes), Dragon Dance and Shore Up in its own sand
-			'Ursaluna-Bloodmoon', // Boomburst / Sandsear Storm (hit both foes) and Nasty Plot
-			'Walking Wake', // Core Enforcer (hits both foes), with a Beast Boost passive
-			// Abilities, items and moves (for everyone)
-			'Arena Trap', 'Moody', 'Simple',
-			"King's Rock", 'Light Ball', 'Quick Claw', 'Razor Fang',
-			'Baton Pass', 'Last Respects', 'Revival Blessing', 'Shed Tail',
+			'Restricted Legendary', // (exceptions in unbanlist)
+			// Smogon 2v2 Doubles, Gen 7 + 8 + 9 (their other Pokémon are Restricted Legendaries; the Gen 8 / 9
+			// Zamazenta ban is left out: Zamazenta is allowed here by request)
+			'Arceus', 'Chi-Yu', 'Deoxys-Attack', 'Magearna', 'Urshifu', 'Urshifu-Rapid-Strike', // Gen 9
+			'Jirachi', 'Marshadow', 'Melmetal', 'Tornadus-Base', 'Whimsicott', // Gen 8
+			'Gengar-Mega', 'Kangaskhan-Mega', 'Salamence-Mega', 'Snorlax', 'Tapu Lele', // Gen 7
+			'Commander', 'Moody', 'Power Construct',
+			'Focus Sash', "King's Rock", 'Razor Fang',
+			'Ally Switch', 'Dark Void', 'Final Gambit', 'Perish Song', 'Swagger',
+			// Also banned for everyone
+			'Arena Trap', 'Shadow Tag', 'Simple',
+			'Light Ball', 'Quick Claw',
+			'Assist', 'Baton Pass', 'Coaching', 'Last Respects', 'Revival Blessing', 'Shed Tail',
 			// Passive bans (the Pokémon is allowed with its passive switched off)
 			'Blacephalon + Magic Guard', 'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (hits both foes)
 			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
@@ -248,7 +223,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Dragapult + Parental Bond',
 			'Dragonite + Aerilate', // Flying Extreme Speed and Hyper Voice (Mega Dragonite too)
 			'Gallade-Mega + Sharpness',
-			'Heracross-Mega + Technician', 'Kangaskhan-Mega + Technician',
+			'Heracross-Mega + Technician',
 			'Kingambit + Sword of Ruin', 'Bisharp + Sword of Ruin',
 			'Manaphy + Primordial Sea',
 			'Smeargle + Prankster', // priority Spore
@@ -257,6 +232,11 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			'Toxtricity + Electric Surge', 'Toxtricity-Low-Key + Electric Surge', 'Toxtricity-Gmax + Electric Surge',
 			'Toxtricity-Low-Key-Gmax + Electric Surge', // Punk Rock Overdrive (hits both foes) in its own terrain
 			'Typhlosion + Drought', 'Typhlosion-Hisui + Drought', // Eruption (hits both foes) in its own sun
+		],
+		unbanlist: [
+			// Restricted Legendaries allowed here (only these forms: Crowned Zamazenta, Ice / Shadow Calyrex
+			// and Dusk Mane / Dawn Wings / Ultra Necrozma stay banned). Terapagos can't Terastallize here.
+			'Cosmog', 'Cosmoem', 'Necrozma-Base', 'Zamazenta-Base', 'Calyrex-Base', 'Terapagos',
 		],
 	},
 
