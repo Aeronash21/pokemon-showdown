@@ -541,6 +541,17 @@ export class Pokemon {
 			(this.gender === '' ? '' : `, ${this.gender}`) + (this.set.shiny ? ', shiny' : '');
 	}
 
+	/**
+	 * `[variant] 2` / `[variant] 3` for the end of switch-in lines when the
+	 * Pokémon shown is a PokéRogue Rare / Epic shiny (clients that don't know
+	 * it ignore it). An Illusion shows its disguise's variant.
+	 */
+	variantTag(): string[] {
+		const shown = this.illusion || this;
+		const variant = shown.set.shiny ? shown.set.variant : undefined;
+		return variant === 2 || variant === 3 ? [`[variant] ${variant}`] : [];
+	}
+
 	getFullDetails = () => {
 		const health = this.getHealth();
 		let details = this.details;

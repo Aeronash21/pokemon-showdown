@@ -82,6 +82,12 @@ export interface PokemonSet {
 	 */
 	shiny?: boolean;
 	/**
+	 * PokéRogue shiny variant, for shiny Pokémon: 2 = Rare, 3 = Epic
+	 * (unset = a normal shiny, PokéRogue's Common). Only changes the sprite
+	 * clients show; see Pokemon#variantTag.
+	 */
+	variant?: number;
+	/**
 	 * This is technically "Friendship", but the community calls this
 	 * "Happiness".
 	 *
@@ -183,9 +189,9 @@ export const Teams = new class Teams {
 				buf += ivs;
 			}
 
-			// shiny
+			// shiny (S, or S2 / S3 for PokéRogue's Rare / Epic variants)
 			if (set.shiny) {
-				buf += '|S';
+				buf += '|S' + (set.variant === 2 || set.variant === 3 ? set.variant : '');
 			} else {
 				buf += '|';
 			}
@@ -319,7 +325,11 @@ export const Teams = new class Teams {
 			// shiny
 			j = buf.indexOf('|', i);
 			if (j < 0) return null;
-			if (i !== j) set.shiny = true;
+			if (i !== j) {
+				set.shiny = true;
+				const variant = buf.substring(i + 1, j);
+				if (variant === '2' || variant === '3') set.variant = Number(variant);
+			}
 			i = j + 1;
 
 			// level
@@ -405,7 +415,7 @@ export const Teams = new class Teams {
 			out += `Level: ${set.level}  \n`;
 		}
 		if (set.shiny) {
-			out += `Shiny: Yes  \n`;
+			out += `Shiny: ${set.variant === 3 ? 'Epic' : set.variant === 2 ? 'Rare' : 'Yes'}  \n`;
 		}
 		if (typeof set.happiness === 'number' && set.happiness !== 255 && !isNaN(set.happiness)) {
 			out += `Happiness: ${set.happiness}  \n`;
@@ -495,8 +505,12 @@ export const Teams = new class Teams {
 		} else if (line.startsWith('Ability: ')) {
 			line = line.slice(9);
 			set.ability = aggressive ? toID(line) : line;
-		} else if (line === 'Shiny: Yes') {
+		} else if (line === 'Shiny: Yes' || line === 'Shiny: Common') {
 			set.shiny = true;
+		} else if (line === 'Shiny: Rare' || line === 'Shiny: Epic') {
+			// PokéRogue's shiny variants
+			set.shiny = true;
+			set.variant = line === 'Shiny: Rare' ? 2 : 3;
 		} else if (line.startsWith('Level: ')) {
 			line = line.slice(7);
 			set.level = +line;
