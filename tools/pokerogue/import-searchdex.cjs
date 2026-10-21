@@ -20,7 +20,8 @@
  *   data/mods/pokerogue/learnsets.ts       every PokeRogue move list
  *   data/mods/pokerogue/pokedex.ts         PokeRogue stats / abilities where
  *                                          they differ, G-Max formes as
- *                                          Max Mushrooms "Megas"
+ *                                          Max Mushrooms "Megas", formes only
+ *                                          PokeRogue has (Starmobiles)
  *   data/mods/pokerogue/items.ts           Max Mushrooms
  *
  * Learnset sources use Showdown's letters so the teambuilder can
@@ -151,7 +152,28 @@ const NAME_OVERRIDES = {
 	'Red Minior': 'Minior',
 };
 
+/*
+ * Formes that only PokeRogue has (Showdown has no data for them), written
+ * to pokedex.ts as new formes of their base species. Height and weight
+ * aren't in the SearchDex; these are PokeRogue's
+ * (src/data/balance/species/generation-09.ts).
+ *
+ * Team Star's Starmobile Revavroom: the five Starmobiles from Scarlet and
+ * Violet, playable here.
+ */
+const NEW_FORMES = {
+	'Segin Starmobile Revavroom': {base: 'Revavroom', forme: 'Segin', heightm: 1.8, weightkg: 240},
+	'Schedar Starmobile Revavroom': {base: 'Revavroom', forme: 'Schedar', heightm: 1.8, weightkg: 240},
+	'Navi Starmobile Revavroom': {base: 'Revavroom', forme: 'Navi', heightm: 1.8, weightkg: 240},
+	'Ruchbah Starmobile Revavroom': {base: 'Revavroom', forme: 'Ruchbah', heightm: 1.8, weightkg: 240},
+	'Caph Starmobile Revavroom': {base: 'Revavroom', forme: 'Caph', heightm: 1.8, weightkg: 240},
+};
+
 function mapName(name) {
+	if (NEW_FORMES[name]) {
+		const {base, forme} = NEW_FORMES[name];
+		return {name: `${base}-${forme}`, cosmetic: false, newForme: NEW_FORMES[name]};
+	}
 	if (NAME_OVERRIDES[name]) return {name: NAME_OVERRIDES[name], cosmetic: false};
 
 	const direct = Dex.species.get(name);
@@ -283,6 +305,7 @@ function build() {
 		species[id] = {
 			prName,
 			showdown: mapped.name,
+			newForme: mapped.newForme || null,
 			form: item.fx || 0,
 			types: [item.t1, item.t2].filter(t => t !== undefined).map(t => TYPES[t]),
 			abilities: {
@@ -331,14 +354,38 @@ function writeData({species, version, date}) {
 	const learnsets = {};
 	const pokedex = {};
 	const gmax = {};
+	const newFormes = {};
 
 	for (const [id, data] of Object.entries(species)) {
-		const ps = Dex.species.get(data.showdown);
-
 		if (data.passive) passives[id] = data.passive;
 		if (data.eggMoves.length) eggMoves[id] = data.eggMoves;
 		if (Object.keys(data.learnset).length) learnsets[id] = {learnset: data.learnset};
 
+		// PokeRogue-only formes: a full entry (see NEW_FORMES), with the
+		// base species' moves.
+		if (data.newForme) {
+			const baseLearnset = species[toID(data.newForme.base)]?.learnset;
+			if (baseLearnset) learnsets[id] = {learnset: {...baseLearnset}};
+			const base = Dex.species.get(data.newForme.base);
+			pokedex[id] = {
+				num: base.num,
+				name: data.showdown,
+				baseSpecies: base.name,
+				forme: data.newForme.forme,
+				types: data.types,
+				baseStats: data.baseStats,
+				abilities: data.abilities,
+				heightm: data.newForme.heightm,
+				weightkg: data.newForme.weightkg,
+				color: base.color,
+				eggGroups: base.eggGroups,
+				gen: base.gen,
+			};
+			(newFormes[base.name] ||= []).push(data.showdown);
+			continue;
+		}
+
+		const ps = Dex.species.get(data.showdown);
 		const entry = {};
 
 		if (!sameStats(ps.baseStats, data.baseStats)) entry.baseStats = data.baseStats;
@@ -357,6 +404,17 @@ function writeData({species, version, date}) {
 		}
 
 		if (Object.keys(entry).length) pokedex[id] = {inherit: true, ...entry};
+	}
+
+	// The base species of the new formes list them.
+	for (const [baseName, names] of Object.entries(newFormes)) {
+		const base = Dex.species.get(baseName);
+		pokedex[base.id] = {
+			inherit: true,
+			...pokedex[base.id],
+			otherFormes: [...base.otherFormes || [], ...names],
+			formeOrder: [...base.formeOrder || [base.name], ...names],
+		};
 	}
 
 	// PokeRogue has one Gigantamax Toxtricity that both Amped and Low Key
@@ -421,7 +479,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	console.log(`PokeRogue ${version} (${date}): ${Object.keys(species).length} species, ` +
 		`${Object.keys(passives).length} passives, ${Object.keys(eggMoves).length} egg move lists, ` +
 		`${Object.keys(learnsets).length} learnsets, ${Object.keys(pokedex).length} pokedex overrides, ` +
-		`${Object.keys(gmax).length} G-Max formes`);
+		`${Object.keys(gmax).length} G-Max formes, ${Object.values(newFormes).flat().length} new formes`);
 }
 
 module.exports = {build, mapName, loadSearchDex};

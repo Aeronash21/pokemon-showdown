@@ -832,6 +832,146 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		"requiredItem": "Max Mushrooms",
 		"battleOnly": "Urshifu-Rapid-Strike"
 	},
+	"revavroomsegin": {
+		"num": 966,
+		"name": "Revavroom-Segin",
+		"baseSpecies": "Revavroom",
+		"forme": "Segin",
+		"types": [
+			"Steel",
+			"Dark"
+		],
+		"baseStats": {
+			"hp": 80,
+			"atk": 129,
+			"def": 120,
+			"spa": 69,
+			"spd": 97,
+			"spe": 85
+		},
+		"abilities": {
+			"0": "Overcoat"
+		},
+		"heightm": 1.8,
+		"weightkg": 240,
+		"color": "Gray",
+		"eggGroups": [
+			"Mineral"
+		],
+		"gen": 9
+	},
+	"revavroomschedar": {
+		"num": 966,
+		"name": "Revavroom-Schedar",
+		"baseSpecies": "Revavroom",
+		"forme": "Schedar",
+		"types": [
+			"Steel",
+			"Fire"
+		],
+		"baseStats": {
+			"hp": 80,
+			"atk": 129,
+			"def": 120,
+			"spa": 69,
+			"spd": 97,
+			"spe": 85
+		},
+		"abilities": {
+			"0": "Overcoat"
+		},
+		"heightm": 1.8,
+		"weightkg": 240,
+		"color": "Gray",
+		"eggGroups": [
+			"Mineral"
+		],
+		"gen": 9
+	},
+	"revavroomnavi": {
+		"num": 966,
+		"name": "Revavroom-Navi",
+		"baseSpecies": "Revavroom",
+		"forme": "Navi",
+		"types": [
+			"Steel",
+			"Poison"
+		],
+		"baseStats": {
+			"hp": 80,
+			"atk": 129,
+			"def": 120,
+			"spa": 69,
+			"spd": 97,
+			"spe": 85
+		},
+		"abilities": {
+			"0": "Overcoat"
+		},
+		"heightm": 1.8,
+		"weightkg": 240,
+		"color": "Gray",
+		"eggGroups": [
+			"Mineral"
+		],
+		"gen": 9
+	},
+	"revavroomruchbah": {
+		"num": 966,
+		"name": "Revavroom-Ruchbah",
+		"baseSpecies": "Revavroom",
+		"forme": "Ruchbah",
+		"types": [
+			"Steel",
+			"Fairy"
+		],
+		"baseStats": {
+			"hp": 80,
+			"atk": 129,
+			"def": 120,
+			"spa": 69,
+			"spd": 97,
+			"spe": 85
+		},
+		"abilities": {
+			"0": "Overcoat"
+		},
+		"heightm": 1.8,
+		"weightkg": 240,
+		"color": "Gray",
+		"eggGroups": [
+			"Mineral"
+		],
+		"gen": 9
+	},
+	"revavroomcaph": {
+		"num": 966,
+		"name": "Revavroom-Caph",
+		"baseSpecies": "Revavroom",
+		"forme": "Caph",
+		"types": [
+			"Steel",
+			"Fighting"
+		],
+		"baseStats": {
+			"hp": 80,
+			"atk": 129,
+			"def": 120,
+			"spa": 69,
+			"spd": 97,
+			"spe": 85
+		},
+		"abilities": {
+			"0": "Overcoat"
+		},
+		"heightm": 1.8,
+		"weightkg": 240,
+		"color": "Gray",
+		"eggGroups": [
+			"Mineral"
+		],
+		"gen": 9
+	},
 	"tatsugiricurlymega": {
 		"inherit": true,
 		"abilities": {
@@ -856,6 +996,24 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 			"0": "Gorilla Tactics",
 			"H": "Zen Mode"
 		}
+	},
+	"revavroom": {
+		"inherit": true,
+		"otherFormes": [
+			"Revavroom-Segin",
+			"Revavroom-Schedar",
+			"Revavroom-Navi",
+			"Revavroom-Ruchbah",
+			"Revavroom-Caph"
+		],
+		"formeOrder": [
+			"Revavroom",
+			"Revavroom-Segin",
+			"Revavroom-Schedar",
+			"Revavroom-Navi",
+			"Revavroom-Ruchbah",
+			"Revavroom-Caph"
+		]
 	},
 	"toxtricitylowkeygmax": {
 		"inherit": true,

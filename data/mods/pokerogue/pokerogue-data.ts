@@ -1317,6 +1317,11 @@ export const PokeRogueData: {
 	"palafinhero": "Iron Fist",
 	"varoom": "Levitate",
 	"revavroom": "Levitate",
+	"revavroomsegin": "Intimidate",
+	"revavroomschedar": "Speed Boost",
+	"revavroomnavi": "Toxic Debris",
+	"revavroomruchbah": "Misty Surge",
+	"revavroomcaph": "Stamina",
 	"cyclizar": "Protean",
 	"orthworm": "Regenerator",
 	"glimmet": "Sturdy",
@@ -9263,6 +9268,36 @@ export const PokeRogueData: {
 		"Blazing Torque",
 		"Noxious Torque"
 	],
+	"revavroomsegin": [
+		"Combat Torque",
+		"U-turn",
+		"Blazing Torque",
+		"Noxious Torque"
+	],
+	"revavroomschedar": [
+		"Combat Torque",
+		"U-turn",
+		"Blazing Torque",
+		"Noxious Torque"
+	],
+	"revavroomnavi": [
+		"Combat Torque",
+		"U-turn",
+		"Blazing Torque",
+		"Noxious Torque"
+	],
+	"revavroomruchbah": [
+		"Combat Torque",
+		"U-turn",
+		"Blazing Torque",
+		"Noxious Torque"
+	],
+	"revavroomcaph": [
+		"Combat Torque",
+		"U-turn",
+		"Blazing Torque",
+		"Noxious Torque"
+	],
 	"cyclizar": [
 		"Parting Shot",
 		"Fire Lash",
@@ -11423,6 +11458,11 @@ export const PokeRogueData: {
 	"palafinhero",
 	"varoom",
 	"revavroom",
+	"revavroomsegin",
+	"revavroomschedar",
+	"revavroomnavi",
+	"revavroomruchbah",
+	"revavroomcaph",
 	"cyclizar",
 	"orthworm",
 	"glimmet",

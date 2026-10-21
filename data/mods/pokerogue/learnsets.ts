@@ -306623,6 +306623,1016 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			]
 		}
 	},
+	"revavroomsegin": {
+		"learnset": {
+			"acidspray": [
+				"9M"
+			],
+			"assurance": [
+				"9L10"
+			],
+			"attract": [
+				"9M"
+			],
+			"blazingtorque": [
+				"9E"
+			],
+			"bodyslam": [
+				"9M"
+			],
+			"bulldoze": [
+				"9M"
+			],
+			"combattorque": [
+				"9E"
+			],
+			"curse": [
+				"9M"
+			],
+			"doubleedge": [
+				"9M"
+			],
+			"doubleteam": [
+				"9M"
+			],
+			"endeavor": [
+				"9M"
+			],
+			"endure": [
+				"9M"
+			],
+			"facade": [
+				"9M"
+			],
+			"flashcannon": [
+				"9M"
+			],
+			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
+				"9L58"
+			],
+			"gyroball": [
+				"9L17"
+			],
+			"hardpress": [
+				"9M"
+			],
+			"haze": [
+				"9M"
+			],
+			"headbutt": [
+				"9L21"
+			],
+			"heavyslam": [
+				"9M"
+			],
+			"hiddenpower": [
+				"9M"
+			],
+			"highhorsepower": [
+				"9M"
+			],
+			"hyperbeam": [
+				"9M"
+			],
+			"irondefense": [
+				"9M"
+			],
+			"ironhead": [
+				"9L28"
+			],
+			"lashout": [
+				"9M"
+			],
+			"lick": [
+				"9L1"
+			],
+			"magnetrise": [
+				"9L1"
+			],
+			"metalsound": [
+				"9M"
+			],
+			"noxioustorque": [
+				"9E"
+			],
+			"overheat": [
+				"9M"
+			],
+			"poisongas": [
+				"9L1"
+			],
+			"poisonjab": [
+				"9L36"
+			],
+			"protect": [
+				"9M"
+			],
+			"raindance": [
+				"9M"
+			],
+			"rest": [
+				"9M"
+			],
+			"return": [
+				"9M"
+			],
+			"sandstorm": [
+				"9M"
+			],
+			"scaryface": [
+				"9M"
+			],
+			"screech": [
+				"9L25"
+			],
+			"secretpower": [
+				"9M"
+			],
+			"selfdestruct": [
+				"9M"
+			],
+			"shiftgear": [
+				"9L1"
+			],
+			"sleeptalk": [
+				"9M"
+			],
+			"sludge": [
+				"9L13"
+			],
+			"sludgebomb": [
+				"9M"
+			],
+			"sludgewave": [
+				"9M"
+			],
+			"smog": [
+				"9L4"
+			],
+			"spinout": [
+				"9L52"
+			],
+			"steelbeam": [
+				"9M"
+			],
+			"substitute": [
+				"9M"
+			],
+			"sunnyday": [
+				"9M"
+			],
+			"swagger": [
+				"9L32"
+			],
+			"takedown": [
+				"9M"
+			],
+			"taunt": [
+				"9L7"
+			],
+			"temperflare": [
+				"9M"
+			],
+			"terablast": [
+				"9M"
+			],
+			"thief": [
+				"9M"
+			],
+			"torment": [
+				"9M"
+			],
+			"toxic": [
+				"9M"
+			],
+			"toxicspikes": [
+				"9M"
+			],
+			"uturn": [
+				"9E"
+			],
+			"uproar": [
+				"9L46"
+			],
+			"venoshock": [
+				"9M"
+			],
+			"zenheadbutt": [
+				"9M"
+			]
+		}
+	},
+	"revavroomschedar": {
+		"learnset": {
+			"acidspray": [
+				"9M"
+			],
+			"assurance": [
+				"9L10"
+			],
+			"attract": [
+				"9M"
+			],
+			"blazingtorque": [
+				"9E"
+			],
+			"bodyslam": [
+				"9M"
+			],
+			"bulldoze": [
+				"9M"
+			],
+			"combattorque": [
+				"9E"
+			],
+			"curse": [
+				"9M"
+			],
+			"doubleedge": [
+				"9M"
+			],
+			"doubleteam": [
+				"9M"
+			],
+			"endeavor": [
+				"9M"
+			],
+			"endure": [
+				"9M"
+			],
+			"facade": [
+				"9M"
+			],
+			"flashcannon": [
+				"9M"
+			],
+			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
+				"9L58"
+			],
+			"gyroball": [
+				"9L17"
+			],
+			"hardpress": [
+				"9M"
+			],
+			"haze": [
+				"9M"
+			],
+			"headbutt": [
+				"9L21"
+			],
+			"heavyslam": [
+				"9M"
+			],
+			"hiddenpower": [
+				"9M"
+			],
+			"highhorsepower": [
+				"9M"
+			],
+			"hyperbeam": [
+				"9M"
+			],
+			"irondefense": [
+				"9M"
+			],
+			"ironhead": [
+				"9L28"
+			],
+			"lashout": [
+				"9M"
+			],
+			"lick": [
+				"9L1"
+			],
+			"magnetrise": [
+				"9L1"
+			],
+			"metalsound": [
+				"9M"
+			],
+			"noxioustorque": [
+				"9E"
+			],
+			"overheat": [
+				"9M"
+			],
+			"poisongas": [
+				"9L1"
+			],
+			"poisonjab": [
+				"9L36"
+			],
+			"protect": [
+				"9M"
+			],
+			"raindance": [
+				"9M"
+			],
+			"rest": [
+				"9M"
+			],
+			"return": [
+				"9M"
+			],
+			"sandstorm": [
+				"9M"
+			],
+			"scaryface": [
+				"9M"
+			],
+			"screech": [
+				"9L25"
+			],
+			"secretpower": [
+				"9M"
+			],
+			"selfdestruct": [
+				"9M"
+			],
+			"shiftgear": [
+				"9L1"
+			],
+			"sleeptalk": [
+				"9M"
+			],
+			"sludge": [
+				"9L13"
+			],
+			"sludgebomb": [
+				"9M"
+			],
+			"sludgewave": [
+				"9M"
+			],
+			"smog": [
+				"9L4"
+			],
+			"spinout": [
+				"9L52"
+			],
+			"steelbeam": [
+				"9M"
+			],
+			"substitute": [
+				"9M"
+			],
+			"sunnyday": [
+				"9M"
+			],
+			"swagger": [
+				"9L32"
+			],
+			"takedown": [
+				"9M"
+			],
+			"taunt": [
+				"9L7"
+			],
+			"temperflare": [
+				"9M"
+			],
+			"terablast": [
+				"9M"
+			],
+			"thief": [
+				"9M"
+			],
+			"torment": [
+				"9M"
+			],
+			"toxic": [
+				"9M"
+			],
+			"toxicspikes": [
+				"9M"
+			],
+			"uturn": [
+				"9E"
+			],
+			"uproar": [
+				"9L46"
+			],
+			"venoshock": [
+				"9M"
+			],
+			"zenheadbutt": [
+				"9M"
+			]
+		}
+	},
+	"revavroomnavi": {
+		"learnset": {
+			"acidspray": [
+				"9M"
+			],
+			"assurance": [
+				"9L10"
+			],
+			"attract": [
+				"9M"
+			],
+			"blazingtorque": [
+				"9E"
+			],
+			"bodyslam": [
+				"9M"
+			],
+			"bulldoze": [
+				"9M"
+			],
+			"combattorque": [
+				"9E"
+			],
+			"curse": [
+				"9M"
+			],
+			"doubleedge": [
+				"9M"
+			],
+			"doubleteam": [
+				"9M"
+			],
+			"endeavor": [
+				"9M"
+			],
+			"endure": [
+				"9M"
+			],
+			"facade": [
+				"9M"
+			],
+			"flashcannon": [
+				"9M"
+			],
+			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
+				"9L58"
+			],
+			"gyroball": [
+				"9L17"
+			],
+			"hardpress": [
+				"9M"
+			],
+			"haze": [
+				"9M"
+			],
+			"headbutt": [
+				"9L21"
+			],
+			"heavyslam": [
+				"9M"
+			],
+			"hiddenpower": [
+				"9M"
+			],
+			"highhorsepower": [
+				"9M"
+			],
+			"hyperbeam": [
+				"9M"
+			],
+			"irondefense": [
+				"9M"
+			],
+			"ironhead": [
+				"9L28"
+			],
+			"lashout": [
+				"9M"
+			],
+			"lick": [
+				"9L1"
+			],
+			"magnetrise": [
+				"9L1"
+			],
+			"metalsound": [
+				"9M"
+			],
+			"noxioustorque": [
+				"9E"
+			],
+			"overheat": [
+				"9M"
+			],
+			"poisongas": [
+				"9L1"
+			],
+			"poisonjab": [
+				"9L36"
+			],
+			"protect": [
+				"9M"
+			],
+			"raindance": [
+				"9M"
+			],
+			"rest": [
+				"9M"
+			],
+			"return": [
+				"9M"
+			],
+			"sandstorm": [
+				"9M"
+			],
+			"scaryface": [
+				"9M"
+			],
+			"screech": [
+				"9L25"
+			],
+			"secretpower": [
+				"9M"
+			],
+			"selfdestruct": [
+				"9M"
+			],
+			"shiftgear": [
+				"9L1"
+			],
+			"sleeptalk": [
+				"9M"
+			],
+			"sludge": [
+				"9L13"
+			],
+			"sludgebomb": [
+				"9M"
+			],
+			"sludgewave": [
+				"9M"
+			],
+			"smog": [
+				"9L4"
+			],
+			"spinout": [
+				"9L52"
+			],
+			"steelbeam": [
+				"9M"
+			],
+			"substitute": [
+				"9M"
+			],
+			"sunnyday": [
+				"9M"
+			],
+			"swagger": [
+				"9L32"
+			],
+			"takedown": [
+				"9M"
+			],
+			"taunt": [
+				"9L7"
+			],
+			"temperflare": [
+				"9M"
+			],
+			"terablast": [
+				"9M"
+			],
+			"thief": [
+				"9M"
+			],
+			"torment": [
+				"9M"
+			],
+			"toxic": [
+				"9M"
+			],
+			"toxicspikes": [
+				"9M"
+			],
+			"uturn": [
+				"9E"
+			],
+			"uproar": [
+				"9L46"
+			],
+			"venoshock": [
+				"9M"
+			],
+			"zenheadbutt": [
+				"9M"
+			]
+		}
+	},
+	"revavroomruchbah": {
+		"learnset": {
+			"acidspray": [
+				"9M"
+			],
+			"assurance": [
+				"9L10"
+			],
+			"attract": [
+				"9M"
+			],
+			"blazingtorque": [
+				"9E"
+			],
+			"bodyslam": [
+				"9M"
+			],
+			"bulldoze": [
+				"9M"
+			],
+			"combattorque": [
+				"9E"
+			],
+			"curse": [
+				"9M"
+			],
+			"doubleedge": [
+				"9M"
+			],
+			"doubleteam": [
+				"9M"
+			],
+			"endeavor": [
+				"9M"
+			],
+			"endure": [
+				"9M"
+			],
+			"facade": [
+				"9M"
+			],
+			"flashcannon": [
+				"9M"
+			],
+			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
+				"9L58"
+			],
+			"gyroball": [
+				"9L17"
+			],
+			"hardpress": [
+				"9M"
+			],
+			"haze": [
+				"9M"
+			],
+			"headbutt": [
+				"9L21"
+			],
+			"heavyslam": [
+				"9M"
+			],
+			"hiddenpower": [
+				"9M"
+			],
+			"highhorsepower": [
+				"9M"
+			],
+			"hyperbeam": [
+				"9M"
+			],
+			"irondefense": [
+				"9M"
+			],
+			"ironhead": [
+				"9L28"
+			],
+			"lashout": [
+				"9M"
+			],
+			"lick": [
+				"9L1"
+			],
+			"magnetrise": [
+				"9L1"
+			],
+			"metalsound": [
+				"9M"
+			],
+			"noxioustorque": [
+				"9E"
+			],
+			"overheat": [
+				"9M"
+			],
+			"poisongas": [
+				"9L1"
+			],
+			"poisonjab": [
+				"9L36"
+			],
+			"protect": [
+				"9M"
+			],
+			"raindance": [
+				"9M"
+			],
+			"rest": [
+				"9M"
+			],
+			"return": [
+				"9M"
+			],
+			"sandstorm": [
+				"9M"
+			],
+			"scaryface": [
+				"9M"
+			],
+			"screech": [
+				"9L25"
+			],
+			"secretpower": [
+				"9M"
+			],
+			"selfdestruct": [
+				"9M"
+			],
+			"shiftgear": [
+				"9L1"
+			],
+			"sleeptalk": [
+				"9M"
+			],
+			"sludge": [
+				"9L13"
+			],
+			"sludgebomb": [
+				"9M"
+			],
+			"sludgewave": [
+				"9M"
+			],
+			"smog": [
+				"9L4"
+			],
+			"spinout": [
+				"9L52"
+			],
+			"steelbeam": [
+				"9M"
+			],
+			"substitute": [
+				"9M"
+			],
+			"sunnyday": [
+				"9M"
+			],
+			"swagger": [
+				"9L32"
+			],
+			"takedown": [
+				"9M"
+			],
+			"taunt": [
+				"9L7"
+			],
+			"temperflare": [
+				"9M"
+			],
+			"terablast": [
+				"9M"
+			],
+			"thief": [
+				"9M"
+			],
+			"torment": [
+				"9M"
+			],
+			"toxic": [
+				"9M"
+			],
+			"toxicspikes": [
+				"9M"
+			],
+			"uturn": [
+				"9E"
+			],
+			"uproar": [
+				"9L46"
+			],
+			"venoshock": [
+				"9M"
+			],
+			"zenheadbutt": [
+				"9M"
+			]
+		}
+	},
+	"revavroomcaph": {
+		"learnset": {
+			"acidspray": [
+				"9M"
+			],
+			"assurance": [
+				"9L10"
+			],
+			"attract": [
+				"9M"
+			],
+			"blazingtorque": [
+				"9E"
+			],
+			"bodyslam": [
+				"9M"
+			],
+			"bulldoze": [
+				"9M"
+			],
+			"combattorque": [
+				"9E"
+			],
+			"curse": [
+				"9M"
+			],
+			"doubleedge": [
+				"9M"
+			],
+			"doubleteam": [
+				"9M"
+			],
+			"endeavor": [
+				"9M"
+			],
+			"endure": [
+				"9M"
+			],
+			"facade": [
+				"9M"
+			],
+			"flashcannon": [
+				"9M"
+			],
+			"gigaimpact": [
+				"9M"
+			],
+			"gunkshot": [
+				"9L58"
+			],
+			"gyroball": [
+				"9L17"
+			],
+			"hardpress": [
+				"9M"
+			],
+			"haze": [
+				"9M"
+			],
+			"headbutt": [
+				"9L21"
+			],
+			"heavyslam": [
+				"9M"
+			],
+			"hiddenpower": [
+				"9M"
+			],
+			"highhorsepower": [
+				"9M"
+			],
+			"hyperbeam": [
+				"9M"
+			],
+			"irondefense": [
+				"9M"
+			],
+			"ironhead": [
+				"9L28"
+			],
+			"lashout": [
+				"9M"
+			],
+			"lick": [
+				"9L1"
+			],
+			"magnetrise": [
+				"9L1"
+			],
+			"metalsound": [
+				"9M"
+			],
+			"noxioustorque": [
+				"9E"
+			],
+			"overheat": [
+				"9M"
+			],
+			"poisongas": [
+				"9L1"
+			],
+			"poisonjab": [
+				"9L36"
+			],
+			"protect": [
+				"9M"
+			],
+			"raindance": [
+				"9M"
+			],
+			"rest": [
+				"9M"
+			],
+			"return": [
+				"9M"
+			],
+			"sandstorm": [
+				"9M"
+			],
+			"scaryface": [
+				"9M"
+			],
+			"screech": [
+				"9L25"
+			],
+			"secretpower": [
+				"9M"
+			],
+			"selfdestruct": [
+				"9M"
+			],
+			"shiftgear": [
+				"9L1"
+			],
+			"sleeptalk": [
+				"9M"
+			],
+			"sludge": [
+				"9L13"
+			],
+			"sludgebomb": [
+				"9M"
+			],
+			"sludgewave": [
+				"9M"
+			],
+			"smog": [
+				"9L4"
+			],
+			"spinout": [
+				"9L52"
+			],
+			"steelbeam": [
+				"9M"
+			],
+			"substitute": [
+				"9M"
+			],
+			"sunnyday": [
+				"9M"
+			],
+			"swagger": [
+				"9L32"
+			],
+			"takedown": [
+				"9M"
+			],
+			"taunt": [
+				"9L7"
+			],
+			"temperflare": [
+				"9M"
+			],
+			"terablast": [
+				"9M"
+			],
+			"thief": [
+				"9M"
+			],
+			"torment": [
+				"9M"
+			],
+			"toxic": [
+				"9M"
+			],
+			"toxicspikes": [
+				"9M"
+			],
+			"uturn": [
+				"9E"
+			],
+			"uproar": [
+				"9L46"
+			],
+			"venoshock": [
+				"9M"
+			],
+			"zenheadbutt": [
+				"9M"
+			]
+		}
+	},
 	"cyclizar": {
 		"learnset": {
 			"acrobatics": [
