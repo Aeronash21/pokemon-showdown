@@ -8,7 +8,7 @@
  *
  * - PokéRogue (data inherited from the pokerogue mod): stats, move lists
  *   with egg moves, passives, Champions changes, and Gigantamax as a Mega
- *   Evolution with Galarica Wreath (the Pokémon's own G-Max form).
+ *   Evolution with Max Mushrooms (the Pokémon's own G-Max form).
  * - Mix and Mega: any Pokémon can Mega Evolve with any Mega Stone (or use
  *   any Primal Orb, Rusted item, Origin item, Mask, Plate, Memory or
  *   Drive) and gains that forme's stat changes, ability, type change and,
@@ -90,8 +90,8 @@ export const Scripts: ModdedBattleScriptsData = {
 
 		canMegaEvo(pokemon) {
 			const item = pokemon.getItem();
-			// Galarica Wreath / Max Mushrooms: the Pokémon's own G-Max form only.
-			if (item.id === 'galaricawreath' || item.id === 'maxmushrooms') {
+			// Max Mushrooms: the Pokémon's own G-Max form only.
+			if (item.id === 'maxmushrooms') {
 				return POKEROGUE_ACTIONS.canMegaEvo.call(this, pokemon);
 			}
 			if (item.megaStone) {

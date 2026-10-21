@@ -88,18 +88,18 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 	pokeroguemod: {
 		effectType: 'Rule',
 		name: 'PokeRogue Mod',
-		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle) and Gigantamax via Galarica Wreath (or Max Mushrooms).",
+		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle) and Gigantamax via Max Mushrooms.",
 		ruleset: ['NatDex Mod', '+Light of Ruin'],
 		onChangeSet(set) {
-			// "Charizard-Gmax" means "Charizard holding Galarica Wreath (or Max
-			// Mushrooms)" here; there is no Dynamax flag. (Chaos has Dynamax, so
-			// there it's the usual Gigantamax factor, unless the Wreath is doing it.)
+			// "Charizard-Gmax" means "Charizard holding Max Mushrooms" here; there
+			// is no Dynamax flag. (Chaos has Dynamax, so there it's the usual
+			// Gigantamax factor, unless Max Mushrooms are doing it.)
 			if (set.gigantamax) {
-				const wreath = ['galaricawreath', 'maxmushrooms'].includes(this.dex.toID(set.item));
-				if (this.ruleTable.has('chaosmod') && !wreath) return;
+				const mushrooms = this.dex.toID(set.item) === 'maxmushrooms';
+				if (this.ruleTable.has('chaosmod') && !mushrooms) return;
 				delete set.gigantamax;
-				if (!wreath) {
-					return [`${set.name || set.species} can only Gigantamax by holding Galarica Wreath in PokéRogue formats.`];
+				if (!mushrooms) {
+					return [`${set.name || set.species} can only Gigantamax by holding Max Mushrooms in PokéRogue formats.`];
 				}
 			}
 		},

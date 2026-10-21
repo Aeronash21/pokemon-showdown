@@ -690,7 +690,7 @@ const mnmBuilderHooks = {
  * (any Pokémon can use any Mega Stone or transformation item, no limit on
  * how many Mega Evolve) + persistent Shared Power, where PokéRogue passives
  * are shared too. Terastallization, Dynamax / Gigantamax, Z-Moves and
- * Galarica Wreath Gigantamax are all allowed.
+ * Max Mushrooms Gigantamax are all allowed.
  */
 const CHAOS_DESC = `Pok&eacute;Rogue Pok&eacute;mon (stats, egg moves, passives) with Mix and Mega (any ` +
 	`Pok&eacute;mon can Mega Evolve with any Mega Stone, as many as you like) and Shared Power (every ability ` +

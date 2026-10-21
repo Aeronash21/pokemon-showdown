@@ -22,8 +22,8 @@
 
 const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacute;Rogue passive ability ` +
 	`(a passive the format bans is switched off), egg moves and move list. Gigantamax works like Mega ` +
-	`Evolution with Galarica Wreath (or Max Mushrooms). The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
-	`Mega Stone, Galarica Wreath / Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
+	`Evolution with Max Mushrooms. The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
+	`Mega Stone, Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
 /** Teambuilder formats: PokéRogue move lists plus every move learnt in any game ('PokeRogue All Moves'). */
 const POKEROGUE_BUILDER_DESC = `${POKEROGUE_DESC} Pok&eacute;mon can also use every move they've learnt in any ` +
 	`Pok&eacute;mon game.`;

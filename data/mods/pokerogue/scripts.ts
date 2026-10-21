@@ -7,8 +7,7 @@
  *
  *  - PokéRogue stats / abilities / move lists (pokedex.ts, learnsets.ts)
  *  - passives, handled like Pokébilities innates
- *  - Gigantamax forms work like Mega Evolutions: hold Galarica Wreath
- *    (or Max Mushrooms)
+ *  - Gigantamax forms work like Mega Evolutions: hold Max Mushrooms
  *  - singles tiers (tiers.ts)
  *  - Pokémon Champions' move / ability changes (champions-changes.ts)
  *
@@ -43,7 +42,7 @@ const EXCLUDED_SPECIES = new Set<string>([
 ]);
 
 /**
- * Eternatus Eternamaxes by holding Max Mushrooms (or Galarica Wreath), like a
+ * Eternatus Eternamaxes by holding Max Mushrooms, like a
  * Gigantamax form. Eternamax is tiered AG (tiers.ts), so only Anything Goes
  * formats allow it; VGC Restricted bans it by name.
  */
@@ -267,8 +266,7 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 		}
 
-		// Gigantamax item: Galarica Wreath, which every Showdown client knows
-		// (Max Mushrooms, PokéRogue's own item, still works too).
+		// Gigantamax item: Max Mushrooms, as in PokéRogue.
 		// Partner Pikachu and Partner Eevee Gigantamax too, into the regular
 		// G-Max forms (with their stats).
 		const partnerGmax = {'Pikachu-Starter': 'Pikachu-Gmax', 'Eevee-Starter': 'Eevee-Gmax'};
@@ -281,23 +279,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				requiredItem: 'Max Mushrooms', battleOnly: from, tags: [...this.data.Pokedex[toID(from)].tags || []],
 			});
 		}
-		const mushrooms = this.data.Items['maxmushrooms'] as AnyObject;
-		Object.assign(this.modData('Items', 'galaricawreath'), {
-			megaStone: {...mushrooms.megaStone},
-			itemUser: [...mushrooms.itemUser],
-			onTakeItem: mushrooms.onTakeItem,
-			desc: "PokéRogue formats: if held by a Pokemon with a Gigantamax form, it can Gigantamax like a Mega Evolution.",
-			shortDesc: "PokéRogue formats: lets a Pokemon with a Gigantamax form Gigantamax (like a Mega Evolution).",
-		});
 		// Multi Lens (see MULTI_LENS)
 		Object.assign(this.modData('Items', 'prismscale'), MULTI_LENS);
-
-		for (const id of legal) {
-			if (this.data.Pokedex[id]?.requiredItem !== 'Max Mushrooms') continue;
-			Object.assign(this.modData('Pokedex', id), {
-				requiredItem: 'Galarica Wreath', requiredItems: ['Galarica Wreath', 'Max Mushrooms'],
-			});
-		}
 
 		// Pokébilities' fixes for abilities that deal with other abilities
 		// (Mummy, Trace...) also cover passives. (Neutralizing Gas has its own
@@ -421,9 +404,9 @@ export const Scripts: ModdedBattleScriptsData = {
 		...CHAMPIONS_ACTIONS,
 		canMegaEvo(pokemon) {
 			const item = pokemon.getItem();
-			// Galarica Wreath / Max Mushrooms: only the exact species listed can
-			// Gigantamax (Urshifu-Rapid-Strike -> Urshifu-Rapid-Strike-Gmax, not Urshifu-Gmax).
-			if (item.id === 'galaricawreath' || item.id === 'maxmushrooms') {
+			// Max Mushrooms: only the exact species listed can Gigantamax
+			// (Urshifu-Rapid-Strike -> Urshifu-Rapid-Strike-Gmax, not Urshifu-Gmax).
+			if (item.id === 'maxmushrooms') {
 				const species = pokemon.baseSpecies;
 				const name = species.isCosmeticForme ? species.baseSpecies : species.name;
 				return item.megaStone?.[name] || null;
