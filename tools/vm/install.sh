@@ -156,14 +156,26 @@ fi
 # ---------------------------------------------------------------------------
 step "Game server: downloading and building (a few minutes)"
 if [[ -d "$SERVER_DIR/.git" ]]; then
-	# Keep this VM's ranks (config/usergroups.csv changes when you /promote people).
-	# Other files the server changed in config/ (like avatars.json) take GitHub's
+	# Keep this VM's ranks (config/usergroups.csv changes when you /promote people)
+	# and custom avatars set with commands (config/avatars.json), adding any new
+	# avatars from GitHub. Other files the server changed in config/ take GitHub's
 	# version; the VM's own changes are kept in `git stash list` in the server folder.
 	cp "$SERVER_DIR/config/usergroups.csv" "$DATA_DIR/usergroups.csv.keep" 2>/dev/null || true
+	cp "$SERVER_DIR/config/avatars.json" "$DATA_DIR/avatars.json.keep" 2>/dev/null || true
 	as_user "cd '$SERVER_DIR' && { git stash push --quiet -m 'VM changes before update' -- config >/dev/null 2>&1 || true; }"
 	as_user "cd '$SERVER_DIR' && git pull --quiet --ff-only origin master"
 	if [[ -f "$DATA_DIR/usergroups.csv.keep" ]]; then
 		install -o "$RUN_USER" -g "$RUN_USER" -m 644 "$DATA_DIR/usergroups.csv.keep" "$SERVER_DIR/config/usergroups.csv"
+	fi
+	if [[ -f "$DATA_DIR/avatars.json.keep" ]]; then
+		# users the VM has avatars for keep the VM's settings; GitHub's other users are added
+		"$NODE_BIN" -e '
+			const fs = require("fs");
+			const [kept, current] = process.argv.slice(1);
+			const read = file => { try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return {}; } };
+			fs.writeFileSync(current, JSON.stringify({ ...read(current), ...read(kept) }));
+		' "$DATA_DIR/avatars.json.keep" "$SERVER_DIR/config/avatars.json"
+		chown "$RUN_USER:$RUN_USER" "$SERVER_DIR/config/avatars.json"
 	fi
 else
 	as_user "git clone --quiet --branch master '$SERVER_REPO' '$SERVER_DIR'"
