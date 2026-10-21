@@ -14,7 +14,12 @@ set -euo pipefail
 DOMAIN=$(cat /opt/showdown/domain 2>/dev/null || true)
 [[ -n "$DOMAIN" ]] || { echo "Couldn't find /opt/showdown/domain. Run install.sh again with your web address instead."; exit 1; }
 
-# Re-running the installer updates everything; it's run from a copy because
-# the update replaces the original while it runs.
-cp /opt/showdown/server/tools/vm/install.sh /tmp/showdown-install.sh
+# Re-running the installer updates everything. Use the newest one from GitHub
+# (so fixes to the installer itself apply straight away), or this VM's copy if
+# GitHub can't be reached.
+if ! curl -fsSL --max-time 30 -o /tmp/showdown-install.sh \
+	https://raw.githubusercontent.com/Aeronash21/pokemon-showdown/master/tools/vm/install.sh; then
+	echo "Couldn't download the newest installer; using this VM's copy."
+	cp /opt/showdown/server/tools/vm/install.sh /tmp/showdown-install.sh
+fi
 exec bash /tmp/showdown-install.sh "$DOMAIN"

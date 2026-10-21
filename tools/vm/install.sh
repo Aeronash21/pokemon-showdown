@@ -323,7 +323,11 @@ $DOMAIN {
 		root * $CLIENT_DIR/play.pokemonshowdown.com
 		encode zstd gzip
 		# sprites, sounds and anything else this client doesn't have: load them from Showdown
-		@missing not file
+		# (Caddy's file check counts the home page "/" as missing, so it's left out)
+		@missing {
+			not path /
+			not file
+		}
 		redir @missing https://play.pokemonshowdown.com{uri} 302
 		file_server
 	}
