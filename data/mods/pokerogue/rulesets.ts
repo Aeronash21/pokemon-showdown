@@ -134,28 +134,26 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				problems.push(`${name} has no Gigantamax form, so it can't use Max Mushrooms.`);
 			}
 
-			// A passive the format bans (as an ability, or as "Pokemon + Ability") is
-			// switched off; the Pokémon stays legal.
+			// A passive the format bans (as an ability, or as "Pokemon + Ability") has
+			// to be switched off in the teambuilder.
 			if (set.passive !== false) {
 				const {tierSpecies} = this.getValidationSpecies(set);
-				for (const forme of reachableFormes.call(this, set, species, tierSpecies)) {
-					const passive = passiveOf(forme.species);
-					if (!passive || dex.toID(passive) === dex.toID(forme.ability)) continue;
-					const passiveID = 'ability:' + dex.toID(passive);
-					// A banned passive is switched off (the Pokémon stays legal).
-					if (this.ruleTable.check(passiveID)) {
-						set.passive = false;
-						break;
-					}
+				const passiveBan = (forme: {species: Species, ability: string}, passiveID: string) => {
+					if (this.ruleTable.check(passiveID)) return true;
 					// "Pokemon + Ability" bans apply to the passive too.
-					for (const [, , limit, bans] of this.ruleTable.complexBans) {
-						if (limit || !bans.includes(passiveID)) continue;
-						const matches = bans.every(ban => ban === passiveID ||
+					return this.ruleTable.complexBans.some(([, , limit, bans]) => !limit && bans.includes(passiveID) &&
+						bans.every(ban => ban === passiveID ||
 							ban === 'pokemon:' + forme.species.id ||
 							ban === 'basepokemon:' + dex.toID(forme.species.baseSpecies) ||
 							(!ban.startsWith('pokemon:') && !ban.startsWith('basepokemon:') && !ban.startsWith('ability:') &&
-								setHas[ban]));
-						if (matches) set.passive = false;
+								setHas[ban])));
+				};
+				for (const forme of reachableFormes.call(this, set, species, tierSpecies)) {
+					const passive = passiveOf(forme.species);
+					if (!passive || dex.toID(passive) === dex.toID(forme.ability)) continue;
+					if (passiveBan(forme, 'ability:' + dex.toID(passive))) {
+						problems.push(`${forme.species.name}'s Passive ${dex.abilities.get(passive).name} is banned`);
+						break;
 					}
 				}
 			}

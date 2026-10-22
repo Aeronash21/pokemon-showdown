@@ -58,8 +58,8 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 		if (type === '-move') moves.push(dex.moves.get(id).name);
 	}
 
-	// "<Pokémon> + <Ability>" bans are passive bans: the Pokémon is legal and its
-	// passive is switched off. "<Pokémon> + <move / item>" bans are grouped by move / item.
+	// "<Pokémon> + <Ability>" bans are passive bans: the Pokémon is legal with its
+	// passive switched off. "<Pokémon> + <move / item>" bans are grouped by move / item.
 	const passiveBans: string[] = [];
 	const bannedOn = new Map<string, string[]>();
 	const otherBans: string[] = [];
@@ -108,10 +108,10 @@ export function pokeRogueBanlistHTML(format: Format): string | null {
 	const pokemonList = !pokemon.length ? '' :
 		`<details class="details"><summary><b>Banned Pok&eacute;mon</b> (${pokemon.length}): click to show</summary>` +
 		`${sorted(pokemon)}</details>`;
-	line('Banned abilities', abilities, 'also switched off as passives');
+	line('Banned abilities', abilities, 'also banned as passives');
 	line('Banned items', items);
 	line('Banned moves', moves);
-	line('Passive bans', passiveBans, 'the Pok&eacute;mon is allowed; its passive is switched off');
+	line('Passive bans', passiveBans, 'the Pok&eacute;mon is allowed with its passive switched off');
 	if (bannedOn.size) {
 		const entries = [...bannedOn].sort(([a], [b]) => a.localeCompare(b))
 			.map(([thing, mons]) => `${Utils.escapeHTML(thing)} on ${sorted(mons)}`);

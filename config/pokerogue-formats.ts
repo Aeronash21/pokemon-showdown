@@ -12,8 +12,9 @@
  * data/mods/pokerogue/tiers.ts.
  *
  * "<Pokémon> + <Ability>" bans below are PASSIVE bans: that Pokémon is
- * legal, and its passive is switched off automatically. A plain ability
- * ban (e.g. 'Arena Trap') also switches it off as a passive.
+ * legal with its passive switched off in the teambuilder; with it on, the
+ * team is rejected ("Alomomola's Passive Multiscale is banned"). A plain
+ * ability ban (e.g. 'Arena Trap') also bans it as a passive.
  *
  * /tier <format> builds its banlist from these rules automatically
  * (server/chat-plugins/pokerogue-banlist.ts). Anything a format checks in
@@ -21,7 +22,7 @@
  */
 
 const POKEROGUE_DESC = `Pok&eacute;Rogue: every Pok&eacute;mon has its Pok&eacute;Rogue passive ability ` +
-	`(a passive the format bans is switched off), egg moves and move list. Gigantamax works like Mega ` +
+	`(a passive the format bans has to be switched off), egg moves and move list. Gigantamax works like Mega ` +
 	`Evolution with Max Mushrooms. The only Z-Move is Ultra Necrozma's (Ultranecrozium Z). Pok&eacute;mon holding a ` +
 	`Mega Stone, Max Mushrooms or Ultranecrozium Z can't Terastallize.`;
 /** Teambuilder formats: PokéRogue move lists plus every move learnt in any game ('PokeRogue All Moves'). */
@@ -79,7 +80,7 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			// Smogon National Dex OU
 			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
 			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
-			// Galarian Darmanitan is Zen Mode only (also switched off as Unovan Darmanitan's passive)
+			// Galarian Darmanitan is Zen Mode only (also banned as Unovan Darmanitan's passive)
 			'Gorilla Tactics',
 			// PokéRogue: egg move / passive additions
 			'Revival Blessing', 'Simple',
