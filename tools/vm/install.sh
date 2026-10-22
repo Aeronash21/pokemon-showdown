@@ -204,7 +204,12 @@ exports.loginserverpublickey = fs.readFileSync('$KEY_DIR/login-public.pem', 'utf
 EOF
 	chown "$RUN_USER:$RUN_USER" "$SERVER_DIR/config/config.js"
 fi
-as_user "cd '$SERVER_DIR' && npm install --no-audit --no-fund --loglevel=error && npm run build --silent && node tools/build-nd-shared-sets.cjs && npm run build --silent"
+# Built a few files at a time and without source maps: building everything at
+# once needs ~1.5GB of memory, which on a small VM means hours of swapping.
+# (build-nd-shared-sets only writes JSON, so after it only the data is copied.)
+as_user "cd '$SERVER_DIR' && npm install --no-audit --no-fund --loglevel=error && \
+	PS_BUILD_BATCH=10 PS_BUILD_SOURCEMAPS=0 npm run build --silent && node tools/build-nd-shared-sets.cjs && \
+	node -e 'require(\"./tools/build-utils\").copyOverDataJSON()'"
 
 # ---------------------------------------------------------------------------
 step "Login server: downloading and setting up"

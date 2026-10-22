@@ -42,14 +42,21 @@ const findFilesForPath = path => {
 };
 
 exports.transpile = decl => {
-	esbuild.buildSync({
-		entryPoints: findFilesForPath('./'),
-		outdir: './dist',
-		outbase: '.',
-		format: 'cjs',
-		tsconfig: './tsconfig.json',
-		sourcemap: true,
-	});
+	const files = findFilesForPath('./');
+	// For small servers (see tools/vm/install.sh), two settings use much less memory:
+	//   PS_BUILD_BATCH=N      builds N files at a time instead of all at once
+	//   PS_BUILD_SOURCEMAPS=0 skips source maps (they're only for debugging)
+	const batch = parseInt(process.env.PS_BUILD_BATCH || '') || files.length;
+	for (let i = 0; i < files.length; i += batch) {
+		esbuild.buildSync({
+			entryPoints: files.slice(i, i + batch),
+			outdir: './dist',
+			outbase: '.',
+			format: 'cjs',
+			tsconfig: './tsconfig.json',
+			sourcemap: process.env.PS_BUILD_SOURCEMAPS !== '0',
+		});
+	}
 	fs.copyFileSync('./config/config-example.js', './dist/config/config-example.js');
 	copyOverDataJSON();
 
@@ -58,6 +65,8 @@ exports.transpile = decl => {
 		exports.buildDecls();
 	}
 };
+
+exports.copyOverDataJSON = copyOverDataJSON;
 
 exports.buildDecls = () => {
 	try {
