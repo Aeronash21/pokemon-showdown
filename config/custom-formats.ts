@@ -1,6 +1,17 @@
 // National Dex Shared Power custom formats
 
 import {PokeRogueFormats} from './pokerogue-formats';
+import {Formats as OfficialFormats} from './formats';
+
+/*
+ * Only this server's own formats (the ones in this file) are listed in the
+ * format menus, the teambuilder, the ladder and /tour, so they're easy to find.
+ * Showdown's official formats are hidden, though a typed /challenge still works.
+ */
+for (const format of OfficialFormats) {
+	if (!('name' in format) || !format.name) continue;
+	Object.assign(format, {challengeShow: false, searchShow: false, tournamentShow: false});
+}
 
 const NDSP_STANDARD_BANNED_ABILITIES = new Set([
 	'shadowtag',
