@@ -156,6 +156,8 @@ export function passiveOf(species: Species): string | null {
 export function updatePassive(pokemon: Pokemon, announce = true) {
 	const battle = pokemon.battle;
 	if (!pokemon.m.passiveOn) return;
+	// A transformed Ditto keeps Adaptability whatever form it takes.
+	if (pokemon.transformed && pokemon.baseSpecies.baseSpecies === 'Ditto') return;
 	const passiveName = passiveOf(pokemon.species);
 	// Forms without their own PokéRogue entry keep their current passive.
 	const passive = passiveName ? battle.toID(passiveName) : (pokemon.m.passive as ID | undefined);
@@ -454,26 +456,24 @@ export const Scripts: ModdedBattleScriptsData = {
 			Pokemon.prototype.clearVolatile.call(this, includeSwitchFlags);
 			this.timesAttacked = 0;
 		},
-		// Transform / Imposter copy the target's passive along with its ability.
+		// Transform / Imposter copy the target's passive along with its ability,
+		// except for Ditto, which keeps only its own passive (Adaptability).
 		transformInto(pokemon, effect) {
 			const transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);
 			if (transformed) {
-				// Ditto keeps its own passive (Adaptability) as well.
-				const keep = this.baseSpecies.baseSpecies === 'Ditto' && this.m.passiveOn !== false ? this.m.passive : null;
+				const isDitto = this.baseSpecies.baseSpecies === 'Ditto';
+				// (none when it copied that same ability: then it's already its ability)
+				const keep = isDitto && this.m.passiveOn !== false && this.m.passive !== this.ability ? this.m.passive : null;
 				for (const innate of this.m.innates || []) {
 					if (innate === keep) continue;
 					this.removeVolatile('ability:' + innate);
 					this.battle.add('-end', this, this.battle.dex.abilities.get(innate).name, '[silent]');
 				}
-				const hadKept = !!keep && !!this.volatiles['ability:' + keep];
-				this.m.innates = [...(pokemon.m.innates || [])];
-				this.m.passive = pokemon.m.passive;
-				if (keep && !this.m.innates.includes(keep)) {
-					if (hadKept) {
-						this.m.innates.push(keep);
-					} else if (this.ability !== keep) {
-						this.m.innates.unshift(keep);
-					}
+				if (isDitto) {
+					this.m.innates = keep ? [keep] : [];
+				} else {
+					this.m.innates = [...(pokemon.m.innates || [])];
+					this.m.passive = pokemon.m.passive;
 				}
 				for (const innate of this.m.innates) {
 					if (this.volatiles['ability:' + innate]) continue; // (Ditto's kept passive)
