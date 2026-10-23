@@ -81,6 +81,17 @@ function ndspAbilityAllowed(
 		return false;
 	}
 
+	/*
+	 * Trace isn't shared (as in Showdown's own Shared Power for other mods):
+	 * a shared Trace copies an ability and goes away, then the pool gives it
+	 * back after the next move and it copies again, so Intimidate, Mold
+	 * Breaker... kept activating several times a turn. The Pokémon whose own
+	 * ability (or passive) is Trace still uses it.
+	 */
+	if (ability === 'trace') {
+		return false;
+	}
+
 	if (ndspIsAG(battle)) {
 		return true;
 	}
@@ -1186,6 +1197,23 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		mod: 'chaos',
 		team: 'random',
 		rated: false,
+		ruleset: [
+			'Obtainable', 'Team Preview', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod',
+			'Illusion Level Mod', 'Max Team Size = 12', 'Picked Team Size = 6', 'Chaos Mod',
+		],
+		...chaosHooks,
+	},
+	{
+		// Four players, every one for themselves; Shared Power is per player.
+		name: '[Gen 9] Chaos FFA',
+		desc: `${CHAOS_DESC} Four-player free-for-all with random Chaos teams (Pok&eacute;Rogue FFA sets, some ` +
+			`holding a Mega Stone or a Z-Crystal). Shadow Tag, Arena Trap, Moody and Simple aren't shared. ` +
+			`Bring 12, pick 6.`,
+		mod: 'chaos',
+		team: 'random',
+		gameType: 'freeforall',
+		rated: false,
+		tournamentShow: false,
 		ruleset: [
 			'Obtainable', 'Team Preview', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod',
 			'Illusion Level Mod', 'Max Team Size = 12', 'Picked Team Size = 6', 'Chaos Mod',

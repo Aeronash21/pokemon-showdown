@@ -678,10 +678,11 @@ export class DexConditions {
 		let found;
 		if (id.startsWith('item:')) {
 			const item = this.dex.items.getByID(id.slice(5) as ID);
-			condition = { ...item, id: 'item:' + item.id as ID } as any as Condition;
+			// (with toString, which the spread loses: battle messages print the effect's name)
+			condition = { ...item, id: 'item:' + item.id as ID, toString: () => item.name } as any as Condition;
 		} else if (id.startsWith('ability:')) {
 			const ability = this.dex.abilities.getByID(id.slice(8) as ID);
-			condition = { ...ability, id: 'ability:' + ability.id as ID } as any as Condition;
+			condition = { ...ability, id: 'ability:' + ability.id as ID, toString: () => ability.name } as any as Condition;
 		} else if (this.dex.data.Rulesets.hasOwnProperty(id)) {
 			condition = this.dex.formats.get(id) as any as Condition;
 			// formats can't be frozen if they don't have a ruleTable

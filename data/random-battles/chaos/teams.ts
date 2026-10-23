@@ -136,6 +136,8 @@ export class ChaosTeams extends PokeRogueTeams {
 		const scored: {id: string, name: string, score: number, levelDrop: number}[] = [];
 		for (const item of this.dex.items.all()) {
 			if (!item.megaStone || EXCLUDED_STONES.has(item.id) || used.has(item.id)) continue;
+			// (no stones made up for CAP, like Crucibellite: Chaos teambuilder teams can't have them either)
+			if (item.isNonstandard === 'CAP') continue;
 			const forme = this.dex.species.get(Object.values(item.megaStone)[0]);
 			if (!forme.exists || !forme.battleOnly) continue;
 			const base = this.dex.species.get(Array.isArray(forme.battleOnly) ? forme.battleOnly[0] : forme.battleOnly);
