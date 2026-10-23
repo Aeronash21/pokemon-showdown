@@ -730,6 +730,21 @@ const chaosHooks = {
 		}
 		this.add('rule', 'Chaos: Passives are shared too, and any Pokémon can Mega Evolve with any Mega Stone');
 		if (ndspIsAG(this)) this.add('rule', 'Huge Power + Pure Power do not stack');
+		this.add('rule', 'Simple: always doubles stat changes (Mold Breaker and Neutralizing Gas don\'t stop it)');
+	},
+	/*
+	 * Simple (the Pokémon's own ability, shared, or its passive) doubles every
+	 * stat change, here rather than in the ability: with shared abilities, a
+	 * foe with Neutralizing Gas or Mold Breaker / Teravolt / Turboblaze was
+	 * almost always around, so Simple only worked some of the time. (The
+	 * ability's own handler does nothing in Chaos: data/mods/chaos/abilities.ts.)
+	 * Z-Power boosts aren't doubled, as usual.
+	 */
+	onChangeBoost(this: any, boost: SparseBoostsTable, target: any, source: any, effect: any) {
+		if (effect?.id === 'zpower' || !target) return;
+		if (target.ability !== 'simple' && !target.volatiles['ability:simple']) return;
+		let stat: BoostID;
+		for (stat in boost) boost[stat]! *= 2;
 	},
 	onBeforeSwitchIn: ndspBeforeSwitchIn,
 	onSwitchIn(this: any, pokemon: any) {
