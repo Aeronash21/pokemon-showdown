@@ -200,6 +200,24 @@ export function neutralizedByFoe(pokemon: Pokemon) {
 	return false;
 }
 
+/** Ditto's powders, which in the games stop working once it transforms. */
+const DITTO_POWDERS = {
+	metalpowder: {
+		onModifyDef(this: Battle, def: number, pokemon: Pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Ditto') return this.chainModify(2);
+		},
+		desc: "If held by a Ditto, its Defense is doubled, even after it transforms.",
+		shortDesc: "If held by a Ditto, its Defense is doubled (even transformed).",
+	},
+	quickpowder: {
+		onModifySpe(this: Battle, spe: number, pokemon: Pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Ditto') return this.chainModify(2);
+		},
+		desc: "If held by a Ditto, its Speed is doubled, even after it transforms.",
+		shortDesc: "If held by a Ditto, its Speed is doubled (even transformed).",
+	},
+};
+
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 
@@ -281,6 +299,10 @@ export const Scripts: ModdedBattleScriptsData = {
 		}
 		// Multi Lens (see MULTI_LENS)
 		Object.assign(this.modData('Items', 'prismscale'), MULTI_LENS);
+		// Metal Powder / Quick Powder keep working after Ditto transforms (it's
+		// still a Ditto underneath).
+		Object.assign(this.modData('Items', 'metalpowder'), DITTO_POWDERS.metalpowder);
+		Object.assign(this.modData('Items', 'quickpowder'), DITTO_POWDERS.quickpowder);
 
 		// Pokébilities' fixes for abilities that deal with other abilities
 		// (Mummy, Trace...) also cover passives. (Neutralizing Gas has its own
@@ -436,13 +458,25 @@ export const Scripts: ModdedBattleScriptsData = {
 		transformInto(pokemon, effect) {
 			const transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);
 			if (transformed) {
+				// Ditto keeps its own passive (Adaptability) as well.
+				const keep = this.baseSpecies.baseSpecies === 'Ditto' && this.m.passiveOn !== false ? this.m.passive : null;
 				for (const innate of this.m.innates || []) {
+					if (innate === keep) continue;
 					this.removeVolatile('ability:' + innate);
 					this.battle.add('-end', this, this.battle.dex.abilities.get(innate).name, '[silent]');
 				}
+				const hadKept = !!keep && !!this.volatiles['ability:' + keep];
 				this.m.innates = [...(pokemon.m.innates || [])];
 				this.m.passive = pokemon.m.passive;
+				if (keep && !this.m.innates.includes(keep)) {
+					if (hadKept) {
+						this.m.innates.push(keep);
+					} else if (this.ability !== keep) {
+						this.m.innates.unshift(keep);
+					}
+				}
 				for (const innate of this.m.innates) {
+					if (this.volatiles['ability:' + innate]) continue; // (Ditto's kept passive)
 					this.battle.add('-start', this, this.battle.dex.abilities.get(innate).name, '[silent]');
 					this.addVolatile('ability:' + innate, this);
 				}
