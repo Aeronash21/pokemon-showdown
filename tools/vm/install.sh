@@ -168,12 +168,33 @@ if [[ -d "$SERVER_DIR/.git" ]]; then
 		install -o "$RUN_USER" -g "$RUN_USER" -m 644 "$DATA_DIR/usergroups.csv.keep" "$SERVER_DIR/config/usergroups.csv"
 	fi
 	if [[ -f "$DATA_DIR/avatars.json.keep" ]]; then
-		# users the VM has avatars for keep the VM's settings; GitHub's other users are added
+		# Users the VM has avatars for keep the VM's settings, plus any avatars
+		# GitHub added for them (a new one at the front of GitHub's list becomes
+		# their default); GitHub's other users are added as they are.
 		"$NODE_BIN" -e '
 			const fs = require("fs");
 			const [kept, current] = process.argv.slice(1);
 			const read = file => { try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return {}; } };
-			fs.writeFileSync(current, JSON.stringify({ ...read(current), ...read(kept) }));
+			const github = read(current);
+			const vm = read(kept);
+			const merged = { ...github, ...vm };
+			for (const id of Object.keys(vm)) {
+				const fromGithub = github[id];
+				if (!fromGithub || !Array.isArray(fromGithub.allowed) || !Array.isArray(vm[id].allowed)) continue;
+				const entry = merged[id] = { ...vm[id], allowed: [...vm[id].allowed] };
+				const added = fromGithub.allowed.filter(avatar => avatar && !entry.allowed.includes(avatar));
+				if (!added.length) continue;
+				const newDefault = fromGithub.allowed[0];
+				if (newDefault && added.includes(newDefault)) {
+					entry.allowed = [newDefault, ...entry.allowed.filter(avatar => avatar !== null),
+						...added.filter(avatar => avatar !== newDefault)];
+					delete entry.default;
+				} else {
+					entry.allowed.push(...added);
+				}
+				entry.timeUpdated = Math.max(entry.timeUpdated || 0, fromGithub.timeUpdated || 0);
+			}
+			fs.writeFileSync(current, JSON.stringify(merged));
 		' "$DATA_DIR/avatars.json.keep" "$SERVER_DIR/config/avatars.json"
 		chown "$RUN_USER:$RUN_USER" "$SERVER_DIR/config/avatars.json"
 	fi
