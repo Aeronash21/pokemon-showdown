@@ -306822,6 +306822,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"zenheadbutt": [
 				"9M"
+			],
+			"wickedtorque": [
+				"9L1"
 			]
 		}
 	},
@@ -306837,6 +306840,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"blazingtorque": [
+				"9L1",
 				"9E"
 			],
 			"bodyslam": [
@@ -307120,6 +307124,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"noxioustorque": [
+				"9L1",
 				"9E"
 			],
 			"overheat": [
@@ -307428,6 +307433,9 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			],
 			"zenheadbutt": [
 				"9M"
+			],
+			"magicaltorque": [
+				"9L1"
 			]
 		}
 	},
@@ -307452,6 +307460,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 				"9M"
 			],
 			"combattorque": [
+				"9L1",
 				"9E"
 			],
 			"curse": [

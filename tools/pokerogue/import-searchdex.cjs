@@ -159,14 +159,15 @@ const NAME_OVERRIDES = {
  * (src/data/balance/species/generation-09.ts).
  *
  * Team Star's Starmobile Revavroom: the five Starmobiles from Scarlet and
- * Violet, playable here.
+ * Violet, playable here. They have Revavroom's moves plus their signature
+ * Torque move (as a level 1 move).
  */
 const NEW_FORMES = {
-	'Segin Starmobile Revavroom': {base: 'Revavroom', forme: 'Segin', heightm: 1.8, weightkg: 240},
-	'Schedar Starmobile Revavroom': {base: 'Revavroom', forme: 'Schedar', heightm: 1.8, weightkg: 240},
-	'Navi Starmobile Revavroom': {base: 'Revavroom', forme: 'Navi', heightm: 1.8, weightkg: 240},
-	'Ruchbah Starmobile Revavroom': {base: 'Revavroom', forme: 'Ruchbah', heightm: 1.8, weightkg: 240},
-	'Caph Starmobile Revavroom': {base: 'Revavroom', forme: 'Caph', heightm: 1.8, weightkg: 240},
+	'Segin Starmobile Revavroom': {base: 'Revavroom', forme: 'Segin', heightm: 1.8, weightkg: 240, signature: 'Wicked Torque'},
+	'Schedar Starmobile Revavroom': {base: 'Revavroom', forme: 'Schedar', heightm: 1.8, weightkg: 240, signature: 'Blazing Torque'},
+	'Navi Starmobile Revavroom': {base: 'Revavroom', forme: 'Navi', heightm: 1.8, weightkg: 240, signature: 'Noxious Torque'},
+	'Ruchbah Starmobile Revavroom': {base: 'Revavroom', forme: 'Ruchbah', heightm: 1.8, weightkg: 240, signature: 'Magical Torque'},
+	'Caph Starmobile Revavroom': {base: 'Revavroom', forme: 'Caph', heightm: 1.8, weightkg: 240, signature: 'Combat Torque'},
 };
 
 function mapName(name) {
@@ -362,10 +363,16 @@ function writeData({species, version, date}) {
 		if (Object.keys(data.learnset).length) learnsets[id] = {learnset: data.learnset};
 
 		// PokeRogue-only formes: a full entry (see NEW_FORMES), with the
-		// base species' moves.
+		// base species' moves and their signature move.
 		if (data.newForme) {
 			const baseLearnset = species[toID(data.newForme.base)]?.learnset;
 			if (baseLearnset) learnsets[id] = {learnset: {...baseLearnset}};
+			if (data.newForme.signature) {
+				const signature = Dex.moves.get(data.newForme.signature);
+				if (!signature.exists) throw new Error(`Unknown signature move ${data.newForme.signature}`);
+				const learnset = (learnsets[id] ||= {learnset: {}}).learnset;
+				learnset[signature.id] = [...new Set(['9L1', ...(learnset[signature.id] || [])])];
+			}
 			const base = Dex.species.get(data.newForme.base);
 			pokedex[id] = {
 				num: base.num,
