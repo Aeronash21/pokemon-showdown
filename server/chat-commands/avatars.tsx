@@ -86,6 +86,16 @@ export const Avatars = new class {
 		if (customs.includes(avatar)) return avatar;
 		if (customs.includes('#' + avatar)) return '#' + avatar;
 		if (avatar.startsWith('#') && customs.includes(avatar.slice(1))) return avatar.slice(1);
+		// An avatar file (config/avatars/umbralember.png) by name: the client's /avatar
+		// strips the dot, so "/avatar umbralember.png" arrives as "umbralemberpng"
+		// ("/avatar umbralember" works too).
+		const plain = avatar.replace(/[^a-z0-9-]+/g, '');
+		for (const custom of customs) {
+			if (!custom?.includes('.')) continue;
+			if (custom.slice(0, custom.lastIndexOf('.')) === plain || custom.replace(/[^a-z0-9-]+/g, '') === plain) {
+				return custom;
+			}
+		}
 		return null;
 	}
 	save(instant?: boolean) {
