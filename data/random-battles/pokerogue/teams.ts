@@ -33,7 +33,7 @@
 import RandomTeams, {MoveCounter} from '../gen9/teams';
 import type {PRNG, PRNGSeed} from '../../../sim/prng';
 
-interface PokeRogueTemplate extends RandomTeamsTypes.RandomSetData {
+export interface PokeRogueTemplate extends RandomTeamsTypes.RandomSetData {
 	level?: number;
 	required?: string[];
 	item?: string;
@@ -49,7 +49,7 @@ const FFA_REMOVED_MOVES = new Set([
 	'quickguard', 'matblock', 'craftyshield',
 ]);
 /** Abilities that only affect an ally (useless in singles and FFA). */
-const ALLY_ONLY_ABILITIES = new Set([
+export const ALLY_ONLY_ABILITIES = new Set([
 	'battery', 'commander', 'costar', 'curiousmedicine', 'friendguard', 'healer', 'hospitality', 'minus', 'plus',
 	'powerofalchemy', 'powerspot', 'receiver', 'symbiosis', 'telepathy',
 ]);
@@ -65,7 +65,7 @@ const DOUBLES_KEEP = new Set([
 ]);
 /** Status moves that still work with a Choice item. */
 const CHOICE_STATUS = new Set(['trick', 'switcheroo', 'healingwish', 'lunardance', 'memento', 'partingshot']);
-const ATE: {[passive: string]: string} = {
+export const ATE: {[passive: string]: string} = {
 	aerilate: 'Flying', pixilate: 'Fairy', refrigerate: 'Ice', galvanize: 'Electric', dragonize: 'Dragon',
 };
 
@@ -80,7 +80,7 @@ const SETUP_MOVES: {[category: string]: string[]} = {
 	Special: ['nastyplot', 'calmmind', 'quiverdance', 'takeheart', 'tailglow', 'geomancy', 'torchsong', 'growth'],
 };
 /** Moves never added for a passive (charge / recharge turns, self-KO, only work in special cases...). */
-const PASSIVE_MOVE_BANS = new Set([
+export const PASSIVE_MOVE_BANS = new Set([
 	'hyperbeam', 'gigaimpact', 'blastburn', 'frenzyplant', 'hydrocannon', 'rockwrecker', 'roaroftime', 'prismaticlaser',
 	'eternabeam', 'meteorassault', 'selfdestruct', 'explosion', 'mistyexplosion', 'finalgambit', 'memento', 'focuspunch',
 	'belch', 'lastresort', 'dreameater', 'synchronoise', 'fling', 'naturalgift', 'spitup', 'steelroller', 'burnup',
@@ -95,7 +95,7 @@ const PASSIVE_MOVE_BANS = new Set([
 const PASSIVE_ITEM_SWAPPABLE = new Set(['Leftovers', 'Heavy-Duty Boots', 'Sitrus Berry', 'Expert Belt', 'Life Orb',
 	'Black Sludge']);
 /** Abilities / passives that boost a kind of move: the set gets a strong move of that kind. */
-const MOVE_ABILITIES = ['ironfist', 'strongjaw', 'megalauncher', 'sharpness', 'punkrock', 'toughclaws', 'reckless',
+export const MOVE_ABILITIES = ['ironfist', 'strongjaw', 'megalauncher', 'sharpness', 'punkrock', 'toughclaws', 'reckless',
 	'technician', 'skilllink', 'transistor', 'dragonsmaw', 'steelworker', 'steelyspirit', 'rockypayload', 'waterbubble',
 	'darkaura', 'fairyaura', 'galewings', 'triage', 'noguard', 'sheerforce', 'contrary', ...Object.keys(ATE)];
 /** Attacks kept for what they do, not their power (never swapped for a stronger move of the same kind). */
@@ -284,8 +284,14 @@ export class PokeRogueTeams extends RandomTeams {
 	 * The Gen 9 generator hands out Choice Scarf for moves like Dragon
 	 * Energy or Water Spout (and always to Rampardos in doubles), which
 	 * can clash with PokéRogue egg moves like Dragon Dance or Recover.
+	 * Assault Vest can clash with a status move added for the passive
+	 * (Protect for Speed Boost, Shed Tail as Regenerator's pivot).
 	 */
 	protected fixChoiceItem(set: RandomTeamsTypes.RandomSet) {
+		if (set.item === 'Assault Vest' && set.moves.some(m => this.dex.moves.get(m).category === 'Status')) {
+			set.item = 'Leftovers';
+			return;
+		}
 		if (!set.item.startsWith('Choice')) return;
 		const moves = set.moves.map(m => this.dex.moves.get(m));
 		const status = moves.filter(m => m.category === 'Status' && !CHOICE_STATUS.has(m.id));

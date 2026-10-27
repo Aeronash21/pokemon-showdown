@@ -186,6 +186,18 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		],
 	},
 	{
+		name: '[Gen 9] PokeRogue Fusion Random Battle',
+		desc: `Random teams where every Pok&eacute;mon is fused with a second one (Pok&eacute;Rogue's DNA Splicers). ` +
+			`Partners are picked to suit each Pok&eacute;mon, with moves from both, the partner's best ability for ` +
+			`the fusion and an item to match.`,
+		mod: 'pokerogue',
+		team: 'random',
+		ruleset: [
+			'Obtainable', '!Obtainable Abilities', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod',
+			'Illusion Level Mod', 'PokeRogue Mod', 'PokeRogue Fusion Mod',
+		],
+	},
+	{
 		name: '[Gen 9] PokeRogue FFA Random Battle',
 		desc: `Four-player free-for-all with random Pok&eacute;Rogue teams (egg moves and passives included). ` +
 			`Bring 12, pick 6.`,

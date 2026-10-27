@@ -85,7 +85,7 @@ function reachableFormes(this: TeamValidator, set: PokemonSet, species: Species,
  * NoFusionAbilityAbAttr): form-changing abilities. As the fusion's ability
  * they're not allowed; as the first Pokémon's passive, the passive is lost.
  */
-const NO_FUSION_ABILITIES = new Set([
+export const NO_FUSION_ABILITIES = new Set([
 	'disguise', 'flowergift', 'forecast', 'gulpmissile', 'hungerswitch', 'iceface', 'multitype', 'powerconstruct',
 	'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'terashift', 'zenmode', 'zerotohero',
 ]);
@@ -96,7 +96,7 @@ const NO_FUSION_ABILITIES = new Set([
  * no secondary type or that one matches the first type. If neither is new, the
  * first Pokémon keeps its own secondary type.
  */
-function fusedTypes(first: Species, second: Species): string[] {
+export function fusedTypes(first: Species, second: Species): string[] {
 	const firstType = first.types[0];
 	let secondType: string | undefined = first.types[1];
 	const [fusionType1, fusionType2] = second.types;
@@ -115,7 +115,7 @@ function fusedTypes(first: Species, second: Species): string[] {
  * `ability` is the one the set picked (forme changes like Mega Evolution keep
  * it, as a fusion's ability always comes from the second Pokémon).
  */
-function fuseSpecies(dex: ModdedDex, first: Species, second: Species, ability?: string): Species {
+export function fuseSpecies(dex: ModdedDex, first: Species, second: Species, ability?: string): Species {
 	const fused = dex.deepClone(first) as AnyObject;
 	fused.fusion = second.name;
 	fused.types = fusedTypes(first, second);

@@ -576,6 +576,8 @@ declare namespace RandomTeamsTypes {
 		gigantamax?: boolean;
 		teraType?: string;
 		role?: Role;
+		/** PokeRogue Fusion: the second Pokémon of a fusion */
+		fusion?: string;
 	}
 	export interface RandomFactorySet {
 		name: string;
