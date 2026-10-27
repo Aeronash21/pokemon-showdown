@@ -22,9 +22,10 @@
  *     that boost one kind of move only if the fusion learns a strong one;
  *     weather abilities only with that weather on the team or from the
  *     passive; immunities that cover a weakness of the fused typing count
- *     extra. Abilities banned in PokeRogue Fusion (Wonder Guard, Shadow Tag,
- *     Arena Trap, Moody, Simple, Gorilla Tactics) and ones that make no
- *     sense on a fusion (Imposter, Illusion) are never picked.
+ *     extra. Abilities that would decide a random battle on their own
+ *     (Wonder Guard on a Pokémon with real HP, Shadow Tag, Arena Trap,
+ *     Moody, Simple, Gorilla Tactics; PokeRogue OU bans them too) and ones
+ *     that make no sense on a fusion (Imposter, Illusion) are never picked.
  *  3. Moves. The set's own move pool, plus what the partner brings: a
  *     strong attack of each fused type the pool has none of (the partner's
  *     random battle moves first, then anything either Pokémon learns), the
@@ -50,9 +51,10 @@ type Weather = 'sun' | 'rain' | 'sand' | 'snow';
 const PARTNER_SAMPLE = 20;
 
 /**
- * Abilities never given to a fusion: PokeRogue Fusion's bans (its banlist
- * is PokeRogue OU's plus Wonder Guard), and ones that hide or replace what
- * the fusion is.
+ * Abilities never given to a fusion: ones that would decide a random battle
+ * on their own (Wonder Guard on a Pokémon with real HP; the rest are banned
+ * in PokeRogue OU), and ones that hide or replace what the fusion is.
+ * (PokeRogue Fusion itself is Anything Goes: there, they're all allowed.)
  */
 const NEVER_ABILITIES = new Set([
 	'wonderguard', 'shadowtag', 'arenatrap', 'moody', 'simple', 'gorillatactics',

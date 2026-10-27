@@ -125,25 +125,15 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			`second Pok&eacute;mon (the teambuilder's Fusion box). The fusion keeps the first Pok&eacute;mon's ` +
 			`primary type, nature, IVs and passive; it takes the second Pok&eacute;mon's secondary type (or its ` +
 			`primary type, if it has only one) and ability; its base stats are the average of the two; and it can ` +
-			`use moves from either. PokeRogue OU's rules and bans apply to both halves. No Terastallization.`,
+			`use moves from either. Anything Goes: nothing is banned, and Terastallization is allowed.`,
 		mod: 'pokerogue',
-		// (the ability comes from the second Pokémon: PokeRogue Fusion checks it)
-		ruleset: [
-			'Standard NatDex', 'PokeRogue Mod', 'PokeRogue All Moves', 'PokeRogue Fusion Mod', '!Obtainable Abilities',
-			'Terastal Clause',
-		],
-		onValidateSet(set) {
-			return pokeRogueOUSetChecks.call(this, set);
-		},
+		// Anything Goes, like PokeRogue AG. (The ability comes from the second
+		// Pokémon: PokeRogue Fusion Mod checks it, not Obtainable Abilities.)
+		ruleset: ['Standard AG', 'PokeRogue Mod', 'PokeRogue All Moves', 'PokeRogue Fusion Mod', '!Obtainable Abilities'],
 		banlistNotes: [
-			...POKEROGUE_OU_NOTES,
-			`A banned Pokémon can't be either half of a fusion.`,
 			`Fused Pokémon can't have form-changing abilities (Disguise, Stance Change, Zen Mode...), as in ` +
 			`PokéRogue.`,
-		],
-		banlist: [
-			...POKEROGUE_OU_BANLIST,
-			'Wonder Guard', // (Shedinja's) on a fusion with real HP
+			`A form only reached in battle (a Mega, Primal or Gigantamax form...) can't be the second Pokémon.`,
 		],
 	},
 	{
