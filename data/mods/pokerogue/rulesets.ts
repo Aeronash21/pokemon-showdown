@@ -76,6 +76,65 @@ function reachableFormes(this: TeamValidator, set: PokemonSet, species: Species,
 	return formes;
 }
 
+// ---------------------------------------------------
+// PokeRogue Fusion (PokéRogue's DNA Splicers)
+// ---------------------------------------------------
+
+/**
+ * Abilities that do nothing on a fused Pokémon in PokéRogue (its
+ * NoFusionAbilityAbAttr): form-changing abilities. As the fusion's ability
+ * they're not allowed; as the first Pokémon's passive, the passive is lost.
+ */
+const NO_FUSION_ABILITIES = new Set([
+	'disguise', 'flowergift', 'forecast', 'gulpmissile', 'hungerswitch', 'iceface', 'multitype', 'powerconstruct',
+	'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'terashift', 'zenmode', 'zerotohero',
+]);
+
+/**
+ * A fusion's types, as PokéRogue works them out: the first Pokémon's primary
+ * type, then the second Pokémon's secondary type, or its primary type if it has
+ * no secondary type or that one matches the first type. If neither is new, the
+ * first Pokémon keeps its own secondary type.
+ */
+function fusedTypes(first: Species, second: Species): string[] {
+	const firstType = first.types[0];
+	let secondType: string | undefined = first.types[1];
+	const [fusionType1, fusionType2] = second.types;
+	if (fusionType2 && fusionType2 !== firstType) {
+		secondType = fusionType2;
+	} else if (fusionType1 !== firstType) {
+		secondType = fusionType1;
+	}
+	return secondType && secondType !== firstType ? [firstType, secondType] : [firstType];
+}
+
+/**
+ * The first Pokémon (in its current form) fused with the second: its name,
+ * sprite, weight and passive stay; the types are fusedTypes(); each base stat is
+ * the average of the two (rounded up); the ability is the second Pokémon's.
+ * `ability` is the one the set picked (forme changes like Mega Evolution keep
+ * it, as a fusion's ability always comes from the second Pokémon).
+ */
+function fuseSpecies(dex: ModdedDex, first: Species, second: Species, ability?: string): Species {
+	const fused = dex.deepClone(first) as AnyObject;
+	fused.fusion = second.name;
+	fused.types = fusedTypes(first, second);
+	let bst = 0;
+	for (const stat of Object.keys(fused.baseStats) as StatID[]) {
+		fused.baseStats[stat] = Math.ceil((first.baseStats[stat] + second.baseStats[stat]) / 2);
+		bst += fused.baseStats[stat];
+	}
+	fused.bst = bst;
+	fused.abilities = ability ? {0: ability} : {...second.abilities};
+	// A form-changing passive does nothing on a fusion.
+	const passive = passiveOf(first);
+	if (passive && NO_FUSION_ABILITIES.has(dex.toID(passive))) {
+		delete fused.passive;
+		delete fused.cosmeticPassives;
+	}
+	return fused as Species;
+}
+
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	pokerogueallmoves: {
 		effectType: 'ValidatorRule',
@@ -164,6 +223,16 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (learnset[move.id]) return null;
 			const allGames = this.ruleTable.has('pokerogueallmoves');
 			if (allGames && allGameMoves(species, this.dex).has(move.id)) return null;
+			// PokeRogue Fusion: the second Pokémon's moves too (not everything it
+			// could Sketch, though: that's Smeargle's own trick)
+			if (set.fusion && this.ruleTable.has('pokeroguefusionmod')) {
+				const partner = this.dex.species.get(set.fusion);
+				if (partner.exists && partner.id !== species.id) {
+					const partnerLearnset = pokeRogueLearnset(partner, this.dex) || {};
+					if (partnerLearnset[move.id]) return null;
+					if (allGames && allGameMoves(partner, this.dex).has(move.id)) return null;
+				}
+			}
 			// Smeargle's Sketch (a format's "Pokemon + Sketch" ban, like
 			// "Grafaiai + Sketch", takes it away from that Pokémon).
 			if (learnset['sketch'] && !move.flags['nosketch'] && !move.isZ && !move.isMax) {
@@ -264,6 +333,85 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (source.m.battleBondSwitchIn === source.previouslySwitchedIn) return;
 			source.m.battleBondSwitchIn = source.previouslySwitchedIn;
 			this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.dex.abilities.get('battlebond'));
+		},
+	},
+	pokeroguefusionmod: {
+		effectType: 'Rule',
+		name: 'PokeRogue Fusion Mod',
+		desc: "Pok&eacute;Rogue's DNA Splicers: a Pok&eacute;mon can be fused with a second one. It keeps the first " +
+			"Pok&eacute;mon's primary type, nature, IVs and passive, and takes the second one's secondary type and " +
+			"ability. Base stats are the average of the two, and it can use moves from either Pok&eacute;mon.",
+		// Needs '!Obtainable Abilities' in the format: a fusion's ability is the
+		// second Pokémon's, which onValidateSet checks instead. PokeRogue Mod's
+		// checkCanLearn takes the second Pokémon's moves.
+		onBegin() {
+			this.add('rule', "PokeRogue Fusion: Pokémon can be fused with a second Pokémon " +
+				"(PokéRogue's DNA Splicers)");
+		},
+		onValidateSet(set) {
+			const dex = this.dex;
+			const species = dex.species.get(set.species);
+			const ability = dex.abilities.get(set.ability);
+			const name = set.name || set.species;
+			const problems: string[] = [];
+
+			if (!set.fusion) {
+				delete set.fusion;
+				// (what Obtainable Abilities would check)
+				const {tierSpecies} = this.getValidationSpecies(set);
+				if (!ability.exists || ability.name === 'No Ability') return [`${name} needs to have an ability.`];
+				if (!Object.values(species.abilities).includes(ability.name)) {
+					if (tierSpecies.abilities[0] === ability.name) {
+						set.ability = species.abilities[0];
+					} else {
+						return [`${name} can't have ${ability.name}.`];
+					}
+				}
+				return;
+			}
+
+			const partner = dex.species.get(set.fusion);
+			if (!partner.exists) return [`${name}'s fusion partner, ${set.fusion}, isn't a Pokémon.`];
+			set.fusion = partner.name;
+			if (!(partner as AnyObject).pokeRogue) {
+				problems.push(`${name} can't fuse with ${partner.name}: it isn't in PokéRogue.`);
+			}
+			if (partner.battleOnly || partner.isMega || partner.isPrimal || partner.name.endsWith('-Gmax')) {
+				const from = partner.battleOnly;
+				const base = Array.isArray(from) ? from[0] : from || partner.baseSpecies;
+				problems.push(`${name} can't fuse with ${partner.name}, a form only reached in battle ` +
+					`(fuse with ${base}).`);
+			}
+			// Banned Pokémon are banned as the second half of a fusion too.
+			const partnerSet = {...set, species: partner.name, item: '', ability: '', moves: [], gigantamax: false};
+			const partnerProblem = this.checkSpecies(partnerSet, partner, partner, {});
+			if (partnerProblem) problems.push(`${name}'s fusion partner: ${partnerProblem}`);
+
+			// The ability comes from the second Pokémon.
+			const abilities = Object.values(partner.abilities).filter(a => a && a !== 'No Ability');
+			if (!ability.exists || ability.name === 'No Ability') {
+				problems.push(`${name} needs to have an ability (one of ${partner.name}'s: ${abilities.join(', ')}).`);
+			} else if (!abilities.includes(ability.name)) {
+				problems.push(`${name} takes its ability from ${partner.name}, so it can't have ${ability.name} ` +
+					`(${partner.name}'s abilities: ${abilities.join(', ')}).`);
+			} else if (NO_FUSION_ABILITIES.has(ability.id)) {
+				problems.push(`${ability.name} doesn't work on a fused Pokémon, as in PokéRogue.`);
+			}
+			return problems;
+		},
+
+		// The fusion replaces the species everywhere: at the start, and whenever
+		// the first Pokémon changes form (Mega Evolution, Aegislash...). Transform
+		// and Imposter copy the target as it is instead.
+		onModifySpeciesPriority: 1,
+		onModifySpecies(species, target, source, effect) {
+			if (!target?.set?.fusion) return;
+			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
+			if ((species as AnyObject).fusion) return;
+			const partner = this.dex.species.get(target.set.fusion);
+			if (!partner.exists) return;
+			target.m.fusion = partner.name;
+			return fuseSpecies(this.dex, species, partner, target.set.ability);
 		},
 	},
 };

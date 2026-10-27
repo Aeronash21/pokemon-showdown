@@ -543,13 +543,18 @@ export class Pokemon {
 
 	/**
 	 * `[variant] 2` / `[variant] 3` for the end of switch-in lines when the
-	 * Pokémon shown is a PokéRogue Rare / Epic shiny (clients that don't know
-	 * it ignore it). An Illusion shows its disguise's variant.
+	 * Pokémon shown is a PokéRogue Rare / Epic shiny, and `[fusion] Species` when
+	 * it's a PokeRogue Fusion (clients that don't know them ignore them). An
+	 * Illusion shows its disguise's.
 	 */
 	variantTag(): string[] {
 		const shown = this.illusion || this;
 		const variant = shown.set.shiny ? shown.set.variant : undefined;
-		return variant === 2 || variant === 3 ? [`[variant] ${variant}`] : [];
+		const tags = variant === 2 || variant === 3 ? [`[variant] ${variant}`] : [];
+		// PokeRogue Fusion: the second Pokémon of the fusion shown
+		const fusion = shown.m.fusion as string | undefined;
+		if (fusion) tags.push(`[fusion] ${fusion}`);
+		return tags;
 	}
 
 	getFullDetails = () => {

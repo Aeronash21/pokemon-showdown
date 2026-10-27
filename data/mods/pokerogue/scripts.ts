@@ -520,7 +520,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 
 		// Let the client show the passive: its name, "Off", or nothing if the
-		// Pokémon has none.
+		// Pokémon has none. (And a PokeRogue Fusion's second Pokémon.)
 		getSwitchRequestData(this: Pokemon, forAlly?: boolean) {
 			const entry = Pokemon.prototype.getSwitchRequestData.call(this, forAlly);
 			if (this.m.passiveOn) {
@@ -528,6 +528,8 @@ export const Scripts: ModdedBattleScriptsData = {
 			} else {
 				(entry as AnyObject).passive = passiveOf(this.species) ? 'Off' : '';
 			}
+			// PokeRogue Fusion: the second Pokémon
+			if (this.m.fusion) (entry as AnyObject).fusion = this.m.fusion;
 			return entry;
 		},
 	} as ModdedBattlePokemon,

@@ -594,6 +594,11 @@ export class TeamValidator {
 			}
 		}
 		set.name = dex.getName(set.name);
+		// PokeRogue Fusion's second Pokémon (only that format lets a set have one)
+		if (set.fusion && !ruleTable.has('pokeroguefusionmod')) {
+			problems.push(`${set.name || set.species} is fused with ${set.fusion}, but fusions are only allowed in ` +
+				`PokeRogue Fusion.`);
+		}
 		let item = dex.items.get(Utils.getString(set.item));
 		set.item = item.name;
 		let ability = dex.abilities.get(Utils.getString(set.ability));

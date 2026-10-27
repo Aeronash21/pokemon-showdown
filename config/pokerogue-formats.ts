@@ -48,6 +48,55 @@ const POKEROGUE_OU_NOTES = [
 	`Gallade can still have Sharpness as its regular ability before it Mega Evolves.`,
 ];
 
+/** PokeRogue OU's banlist (PokeRogue Fusion starts from it). */
+const POKEROGUE_OU_BANLIST = [
+	// Smogon National Dex OU
+	'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
+	'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
+	// Galarian Darmanitan is Zen Mode only (also banned as Unovan Darmanitan's passive)
+	'Gorilla Tactics',
+	// PokéRogue: egg move / passive additions
+	'Revival Blessing', 'Simple',
+	'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
+	'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
+	'Jirachi',
+	'Melmetal-Gmax', // (Melmetal itself is legal)
+	'Overqwil', 'Zapdos-Galar',
+	'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
+	// Passive bans
+	'Alomomola + Multiscale', // half damage at full HP on 165 HP, with Regenerator to get back there
+	'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
+	'Blissey + Fur Coat', // doubled Defense on top of its HP and Special Defense
+	'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip (Mega Dragonite too)
+	'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
+	'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
+	'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
+	'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
+	'Bisharp + Sword of Ruin', // Eviolite Bisharp with Sword of Ruin
+	'Manaphy + Primordial Sea', // Tail Glow / Take Heart in its own unremovable heavy rain
+	'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
+	// Legendaries with a Drizzle passive: their own rain (100% accurate Thunder /
+	// Hurricane, boosted Water attacks) on a legendary stat spread
+	'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
+	'Zapdos + Drizzle',
+];
+
+/** PokeRogue OU's checks its banlist can't express (see POKEROGUE_OU_NOTES). */
+function pokeRogueOUSetChecks(this: import('../sim/team-validator').TeamValidator, set: PokemonSet) {
+	const species = this.dex.species.get(set.species);
+	// Mega Gallade's Sharpness passive is switched off (165 Atk, 1.5x Sacred Sword /
+	// Psycho Cut / Leaf Blade). Gallade can still have Sharpness as its ability before
+	// Mega Evolving; it's gone once it Mega Evolves (Inner Focus, no passive).
+	if (species.baseSpecies === 'Gallade' && this.dex.toID(set.item) === 'galladite') set.passive = false;
+	// Bitter Blade: Ceruledge only (Garchomp, Kingambit, Kartana... get it as an egg move).
+	// In PokeRogue Fusion, a Pokémon fused with Ceruledge can use it too.
+	const ceruledge = species.baseSpecies === 'Ceruledge' ||
+		(!!set.fusion && this.dex.species.get(set.fusion).baseSpecies === 'Ceruledge');
+	if (!ceruledge && set.moves.some(move => this.dex.toID(move) === 'bitterblade')) {
+		return [`${set.name || set.species} can't use Bitter Blade: only Ceruledge can in PokéRogue OU.`];
+	}
+}
+
 export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 	{
 		section: 'PokeRogue',
@@ -64,48 +113,37 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 		mod: 'pokerogue',
 		ruleset: ['Standard NatDex', 'PokeRogue Mod', 'PokeRogue All Moves', 'Terastal Clause'],
 		onValidateSet(set) {
-			const species = this.dex.species.get(set.species);
-			// Mega Gallade's Sharpness passive is switched off (165 Atk, 1.5x Sacred Sword /
-			// Psycho Cut / Leaf Blade). Gallade can still have Sharpness as its ability before
-			// Mega Evolving; it's gone once it Mega Evolves (Inner Focus, no passive).
-			if (species.baseSpecies === 'Gallade' && this.dex.toID(set.item) === 'galladite') set.passive = false;
-			// Bitter Blade: Ceruledge only (Garchomp, Kingambit, Kartana... get it as an egg move)
-			if (species.baseSpecies !== 'Ceruledge' && set.moves.some(move => this.dex.toID(move) === 'bitterblade')) {
-				return [`${set.name || set.species} can't use Bitter Blade: only Ceruledge can in PokéRogue OU.`];
-			}
+			return pokeRogueOUSetChecks.call(this, set);
 		},
-		// Shown in /tier's banlist (keep in step with onValidateSet above)
+		// Shown in /tier's banlist (keep in step with pokeRogueOUSetChecks)
 		banlistNotes: POKEROGUE_OU_NOTES,
+		banlist: POKEROGUE_OU_BANLIST,
+	},
+	{
+		name: '[Gen 9] PokeRogue Fusion',
+		desc: `${POKEROGUE_BUILDER_DESC} Pok&eacute;Rogue's DNA Splicers: each Pok&eacute;mon can be fused with a ` +
+			`second Pok&eacute;mon (the teambuilder's Fusion box). The fusion keeps the first Pok&eacute;mon's ` +
+			`primary type, nature, IVs and passive; it takes the second Pok&eacute;mon's secondary type (or its ` +
+			`primary type, if it has only one) and ability; its base stats are the average of the two; and it can ` +
+			`use moves from either. PokeRogue OU's rules and bans apply to both halves. No Terastallization.`,
+		mod: 'pokerogue',
+		// (the ability comes from the second Pokémon: PokeRogue Fusion checks it)
+		ruleset: [
+			'Standard NatDex', 'PokeRogue Mod', 'PokeRogue All Moves', 'PokeRogue Fusion Mod', '!Obtainable Abilities',
+			'Terastal Clause',
+		],
+		onValidateSet(set) {
+			return pokeRogueOUSetChecks.call(this, set);
+		},
+		banlistNotes: [
+			...POKEROGUE_OU_NOTES,
+			`A banned Pokémon can't be either half of a fusion.`,
+			`Fused Pokémon can't have form-changing abilities (Disguise, Stance Change, Zen Mode...), as in ` +
+			`PokéRogue.`,
+		],
 		banlist: [
-			// Smogon National Dex OU
-			'ND Uber', 'ND AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', "King's Rock",
-			'Quick Claw', 'Razor Fang', 'Assist', 'Baton Pass', 'Last Respects', 'Shed Tail',
-			// Galarian Darmanitan is Zen Mode only (also banned as Unovan Darmanitan's passive)
-			'Gorilla Tactics',
-			// PokéRogue: egg move / passive additions
-			'Revival Blessing', 'Simple',
-			'Regieleki', // 200 Speed Transistor + Electric Surge passive, with Nasty Plot and Electro Drift egg moves
-			'Garchomp-Mega', 'Garchomp-Mega-Z', // (Garchomp itself is legal; Bitter Blade is Ceruledge-only, see onValidateSet)
-			'Jirachi',
-			'Melmetal-Gmax', // (Melmetal itself is legal)
-			'Overqwil', 'Zapdos-Galar',
-			'Pikachu-Starter + Light Ball', // Partner Pikachu's stats with doubled Atk / Sp. Atk
-			// Passive bans
-			'Alomomola + Multiscale', // half damage at full HP on 165 HP, with Regenerator to get back there
-			'Blacephalon + Magic Guard', // free Mind Blown (150 BP Fire, no recoil) and Life Orb
-			'Blissey + Fur Coat', // doubled Defense on top of its HP and Special Defense
-			'Dragonite + Aerilate', // Flying Extreme Speed / Crush Grip (Mega Dragonite too)
-			'Electrode-Hisui + Magic Guard', // recoil-free Mind Blown (egg move) and Life Orb at 150 Speed
-			'Floette-Eternal + Magic Guard', // recoil-free Light of Ruin
-			'Heracross-Mega + Technician', // Technician + Skill Link Pin Missile / Rock Blast
-			'Kingambit + Sword of Ruin', // Supreme Overlord + Sword of Ruin
-			'Bisharp + Sword of Ruin', // Eviolite Bisharp with Sword of Ruin
-			'Manaphy + Primordial Sea', // Tail Glow / Take Heart in its own unremovable heavy rain
-			'Shedinja + Magic Guard', // Wonder Guard with no indirect damage
-			// Legendaries with a Drizzle passive: their own rain (100% accurate Thunder /
-			// Hurricane, boosted Water attacks) on a legendary stat spread
-			'Thundurus + Drizzle', 'Thundurus-Therian + Drizzle', 'Tornadus + Drizzle', 'Tornadus-Therian + Drizzle',
-			'Zapdos + Drizzle',
+			...POKEROGUE_OU_BANLIST,
+			'Wonder Guard', // (Shedinja's) on a fusion with real HP
 		],
 	},
 	{
