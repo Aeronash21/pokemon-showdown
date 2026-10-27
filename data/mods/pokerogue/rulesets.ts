@@ -111,7 +111,8 @@ export function fusedTypes(first: Species, second: Species): string[] {
 /**
  * The first Pokémon (in its current form) fused with the second: its name,
  * sprite, weight and passive stay; the types are fusedTypes(); each base stat is
- * the average of the two (rounded up); the ability is the second Pokémon's.
+ * the average of the two (rounded up); the ability is the second Pokémon's. With
+ * Wonder Guard it has 1 HP, as in PokéRogue.
  * `ability` is the one the set picked (forme changes like Mega Evolution keep
  * it, as a fusion's ability always comes from the second Pokémon).
  */
@@ -126,6 +127,11 @@ export function fuseSpecies(dex: ModdedDex, first: Species, second: Species, abi
 	}
 	fused.bst = bst;
 	fused.abilities = ability ? {0: ability} : {...second.abilities};
+	// PokéRogue's 1 HP comes from Wonder Guard, not from being Shedinja: a fusion
+	// with Wonder Guard (from Shedinja) has 1 HP, and Shedinja fused with
+	// something else has the fusion's HP.
+	delete fused.maxHP;
+	if (ability && dex.toID(ability) === 'wonderguard') fused.maxHP = 1;
 	// A form-changing passive does nothing on a fusion.
 	const passive = passiveOf(first);
 	if (passive && NO_FUSION_ABILITIES.has(dex.toID(passive))) {
@@ -223,24 +229,33 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (learnset[move.id]) return null;
 			const allGames = this.ruleTable.has('pokerogueallmoves');
 			if (allGames && allGameMoves(species, this.dex).has(move.id)) return null;
-			// PokeRogue Fusion: the second Pokémon's moves too (not everything it
-			// could Sketch, though: that's Smeargle's own trick)
+			// PokeRogue Fusion: the second Pokémon's moves too
+			let partner: Species | null = null;
 			if (set.fusion && this.ruleTable.has('pokeroguefusionmod')) {
-				const partner = this.dex.species.get(set.fusion);
-				if (partner.exists && partner.id !== species.id) {
+				const fusion = this.dex.species.get(set.fusion);
+				if (fusion.exists && fusion.id !== species.id) {
+					partner = fusion;
 					const partnerLearnset = pokeRogueLearnset(partner, this.dex) || {};
 					if (partnerLearnset[move.id]) return null;
 					if (allGames && allGameMoves(partner, this.dex).has(move.id)) return null;
 				}
 			}
-			// Smeargle's Sketch (a format's "Pokemon + Sketch" ban, like
-			// "Grafaiai + Sketch", takes it away from that Pokémon).
-			if (learnset['sketch'] && !move.flags['nosketch'] && !move.isZ && !move.isMax) {
-				const sketchBanned = this.ruleTable.complexBans.some(([, , limit, bans]) => !limit &&
-					bans.includes('move:sketch') && bans.length === 2 && bans.some(ban =>
-						ban === 'pokemon:' + species.id || ban === 'basepokemon:' + this.dex.toID(species.baseSpecies)));
-				if (!sketchBanned) return null;
-				return ` can't learn ${move.name}: Sketch is banned on ${species.name}.`;
+			// Sketch (Smeargle, Ditto, Shroodle, Grafaiai): any move it could
+			// Sketch. A fusion can when either half learns Sketch. (A format's
+			// "Pokemon + Sketch" ban, like "Grafaiai + Sketch", takes it away from
+			// that Pokémon.)
+			if (!move.flags['nosketch'] && !move.isZ && !move.isMax) {
+				let sketchBannedOn = '';
+				for (const half of partner ? [species, partner] : [species]) {
+					const halfLearnset = half === species ? learnset : pokeRogueLearnset(half, this.dex) || {};
+					if (!halfLearnset['sketch']) continue;
+					const sketchBanned = this.ruleTable.complexBans.some(([, , limit, bans]) => !limit &&
+						bans.includes('move:sketch') && bans.length === 2 && bans.some(ban =>
+							ban === 'pokemon:' + half.id || ban === 'basepokemon:' + this.dex.toID(half.baseSpecies)));
+					if (!sketchBanned) return null;
+					sketchBannedOn ||= half.name;
+				}
+				if (sketchBannedOn) return ` can't learn ${move.name}: Sketch is banned on ${sketchBannedOn}.`;
 			}
 			return allGames ? ` can't learn ${move.name} in PokéRogue or any Pokémon game.` :
 				` can't learn ${move.name} in PokéRogue.`;
