@@ -211,9 +211,11 @@ export class PokeRogueFusionTeams extends PokeRogueTeams {
 		if (!templates.length) templates = original;
 
 		let lastError: unknown = null;
-		for (let attempt = 0; attempt < 6; attempt++) {
+		// (every Pokémon is a fusion: if no sampled partner fits, the last tries
+		// score every partner there is)
+		for (let attempt = 0; attempt < 8; attempt++) {
 			const template = this.sample(templates);
-			const plan = this.planFusion(first, template, teamDetails);
+			const plan = this.planFusion(first, template, teamDetails, attempt < 6 ? PARTNER_SAMPLE : Infinity);
 			if (!plan) continue;
 			data.sets = [plan.template];
 			try {
@@ -233,10 +235,7 @@ export class PokeRogueFusionTeams extends PokeRogueTeams {
 				data.sets = original;
 			}
 		}
-		if (lastError) throw lastError;
-		// (no partner fits at all: an unfused Pokémon)
-		this.usedSpecies.add(first.baseSpecies);
-		return super.randomSet(first, teamDetails, isLead, isDoubles);
+		throw lastError || new Error(`No fusion partner fits ${first.name}`);
 	}
 
 	/** A fused Pokémon can use moves from both halves. */
@@ -289,7 +288,8 @@ export class PokeRogueFusionTeams extends PokeRogueTeams {
 
 	/** The fusion for this set: the best of a sample of partners, its ability and its move pool. */
 	protected planFusion(
-		first: Species, template: PokeRogueTemplate, teamDetails: RandomTeamsTypes.TeamDetails
+		first: Species, template: PokeRogueTemplate, teamDetails: RandomTeamsTypes.TeamDetails,
+		sampleSize = PARTNER_SAMPLE
 	): FusionPlan | null {
 		const ctx: FusionContext = {
 			first,
@@ -304,7 +304,7 @@ export class PokeRogueFusionTeams extends PokeRogueTeams {
 		const pool = this.partnerPool();
 		const bases = Object.keys(pool).filter(base => base !== first.baseSpecies && !this.usedSpecies.has(base));
 		let best: PartnerScore | null = null;
-		for (let i = 0; i < PARTNER_SAMPLE && bases.length; i++) {
+		for (let i = 0; i < sampleSize && bases.length; i++) {
 			const partner = this.sample(pool[this.sampleNoReplace(bases)]);
 			const result = this.scorePartner(ctx, partner);
 			if (result && (!best || result.score > best.score)) best = result;

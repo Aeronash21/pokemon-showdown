@@ -125,16 +125,23 @@ export const PokeRogueFormats: import('../sim/dex-formats').FormatList = [
 			`second Pok&eacute;mon (the teambuilder's Fusion box). The fusion keeps the first Pok&eacute;mon's ` +
 			`primary type, nature, IVs and passive; it takes the second Pok&eacute;mon's secondary type (or its ` +
 			`primary type, if it has only one) and ability; its base stats are the average of the two; and it can ` +
-			`use moves from either. Anything Goes: nothing is banned, and Terastallization is allowed.`,
+			`use moves from either. All six Pok&eacute;mon have to be fused, each with a different Pok&eacute;mon ` +
+			`(not with itself or another form of itself). Anything Goes apart from that: only Eternamax Eternatus is ` +
+			`banned, and Terastallization is allowed.`,
 		mod: 'pokerogue',
-		// Anything Goes, like PokeRogue AG. (The ability comes from the second
-		// Pokémon: PokeRogue Fusion Mod checks it, not Obtainable Abilities.)
+		// Anything Goes, like PokeRogue AG, without Eternamax. (The ability comes
+		// from the second Pokémon: PokeRogue Fusion Mod checks it, not Obtainable
+		// Abilities.)
 		ruleset: ['Standard AG', 'PokeRogue Mod', 'PokeRogue All Moves', 'PokeRogue Fusion Mod', '!Obtainable Abilities'],
 		banlistNotes: [
+			`Every Pokémon has to be fused, with a different Pokémon (not itself, or another form of itself like its ` +
+			`Mega Evolution).`,
 			`Fused Pokémon can't have form-changing abilities (Disguise, Stance Change, Zen Mode...), as in ` +
 			`PokéRogue.`,
 			`A form only reached in battle (a Mega, Primal or Gigantamax form...) can't be the second Pokémon.`,
+			`Eternamax Eternatus is banned as either half of a fusion.`,
 		],
+		banlist: ['Eternatus-Eternamax'],
 	},
 	{
 		name: '[Gen 9] PokeRogue Ubers',

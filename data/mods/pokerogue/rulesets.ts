@@ -353,14 +353,15 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 	pokeroguefusionmod: {
 		effectType: 'Rule',
 		name: 'PokeRogue Fusion Mod',
-		desc: "Pok&eacute;Rogue's DNA Splicers: a Pok&eacute;mon can be fused with a second one. It keeps the first " +
-			"Pok&eacute;mon's primary type, nature, IVs and passive, and takes the second one's secondary type and " +
-			"ability. Base stats are the average of the two, and it can use moves from either Pok&eacute;mon.",
+		desc: "Pok&eacute;Rogue's DNA Splicers: every Pok&eacute;mon is fused with a second one (a different " +
+			"Pok&eacute;mon, not another form of itself). It keeps the first Pok&eacute;mon's primary type, nature, IVs " +
+			"and passive, and takes the second one's secondary type and ability. Base stats are the average of the " +
+			"two, and it can use moves from either Pok&eacute;mon.",
 		// Needs '!Obtainable Abilities' in the format: a fusion's ability is the
 		// second Pokémon's, which onValidateSet checks instead. PokeRogue Mod's
 		// checkCanLearn takes the second Pokémon's moves.
 		onBegin() {
-			this.add('rule', "PokeRogue Fusion: Pokémon can be fused with a second Pokémon " +
+			this.add('rule', "PokeRogue Fusion: every Pokémon is fused with a second Pokémon " +
 				"(PokéRogue's DNA Splicers)");
 		},
 		onValidateSet(set) {
@@ -370,24 +371,20 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			const name = set.name || set.species;
 			const problems: string[] = [];
 
+			// Every Pokémon is a fusion.
 			if (!set.fusion) {
-				delete set.fusion;
-				// (what Obtainable Abilities would check)
-				const {tierSpecies} = this.getValidationSpecies(set);
-				if (!ability.exists || ability.name === 'No Ability') return [`${name} needs to have an ability.`];
-				if (!Object.values(species.abilities).includes(ability.name)) {
-					if (tierSpecies.abilities[0] === ability.name) {
-						set.ability = species.abilities[0];
-					} else {
-						return [`${name} can't have ${ability.name}.`];
-					}
-				}
-				return;
+				return [`${name} has to be fused with a second Pokémon (the teambuilder's "Fused with" box).`];
 			}
 
 			const partner = dex.species.get(set.fusion);
 			if (!partner.exists) return [`${name}'s fusion partner, ${set.fusion}, isn't a Pokémon.`];
 			set.fusion = partner.name;
+			// ...with a different Pokémon: not itself, or another form of itself (Mega,
+			// regional, Rotom's appliances...)
+			if (partner.baseSpecies === species.baseSpecies) {
+				problems.push(`${name} can't fuse with ${partner.name}: a Pokémon can't be fused with itself ` +
+					`(or another form of ${species.baseSpecies}).`);
+			}
 			if (!(partner as AnyObject).pokeRogue) {
 				problems.push(`${name} can't fuse with ${partner.name}: it isn't in PokéRogue.`);
 			}
