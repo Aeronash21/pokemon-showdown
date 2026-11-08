@@ -56,4 +56,48 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 		},
 	},
+
+	// Psycho Shift from a Pokémon with Comatose (ability or passive) puts the
+	// target to sleep; the user keeps its Comatose.
+	psychoshift: {
+		inherit: true,
+		onTryHit(target, source, move) {
+			if (!source.status && !source.hasAbility('comatose')) return false;
+			move.status = source.status || 'slp' as ID;
+		},
+		desc: "The user's major status condition is transferred to the target, and the user is then cured. If the " +
+			"user has Comatose, the target falls asleep instead. Fails if the user has no major status condition " +
+			"(and no Comatose) or if the target already has one.",
+		shortDesc: "Transfers the user's status to the target (Comatose: sleep).",
+	},
+	// PokéRogue's PP: Take Heart 10 (as in Legends: Arceus), Hail and Heal
+	// Order 5 (like the other weather and recovery moves under Champions' PP).
+	takeheart: {
+		inherit: true,
+		pp: 10,
+	},
+	hail: {
+		inherit: true,
+		pp: 5,
+	},
+	healorder: {
+		inherit: true,
+		pp: 5,
+	},
+	// (Metronome, Assist, Sleep Talk, Copycat, Mirror Move, Encore, Instruct and
+	// Sketch follow PokéRogue's banlists: move-lists.ts.)
+	sketch: {
+		inherit: true,
+		desc: "This move is permanently replaced by the last move used by the target. The copied move has the " +
+			"maximum PP for that move. As in PokéRogue, Sketch can copy any move but Sketch and Struggle. Fails if " +
+			"the target has not made a move, if the user has Transformed, or if the user already knows the move.",
+		shortDesc: "Permanently copies the last move the target used (any but Struggle).",
+	},
+	mirrormove: {
+		inherit: true,
+		desc: "The user uses the last move used by the target, whatever it targeted (as in PokéRogue). The copied " +
+			"move is used against that target, if possible. Fails if the target has not made a move, or if the last " +
+			"move used was one Mirror Move can't copy.",
+		shortDesc: "User uses the target's last move.",
+	},
 };

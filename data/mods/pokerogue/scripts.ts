@@ -10,6 +10,8 @@
  *  - Gigantamax forms work like Mega Evolutions: hold Max Mushrooms
  *  - singles tiers (tiers.ts)
  *  - Pokémon Champions' move / ability changes (champions-changes.ts)
+ *  - PokéRogue's own move / ability changes (abilities.ts, moves.ts) and
+ *    its move banlists for Metronome, Sketch... (move-lists.ts)
  *
  * init() puts the PokéRogue info on each species' data:
  *   species.pokeRogue  true for everything in the PokéRogue dex
@@ -35,6 +37,7 @@ import {PokeRogueData} from './pokerogue-data';
 import {AllGameMoves} from './all-game-moves';
 import {PokeRogueTiers} from './tiers';
 import {applyChampionsChanges, championsCalculatePP, CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from './champions-changes';
+import {applyPokeRogueMoveLists} from './move-lists';
 
 /** In the PokéRogue dex but impossible to get in these formats. */
 const EXCLUDED_SPECIES = new Set<string>([
@@ -405,6 +408,11 @@ export const Scripts: ModdedBattleScriptsData = {
 				if (move?.isNonstandard) move.isNonstandard = null;
 			}
 		}
+
+		// PokéRogue's move banlists (move-lists.ts): Metronome, Assist, Sleep
+		// Talk, Copycat, Mirror Move, Encore and Instruct can use most signature
+		// moves, and Sketch copies everything but itself and Struggle.
+		applyPokeRogueMoveLists(this);
 	},
 
 	field: {

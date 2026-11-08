@@ -151,4 +151,90 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		inherit: true,
 		isNonstandard: null,
 	},
+
+	// PokéRogue's own changes:
+
+	// Comatose counts as a status condition for Guts, Marvel Scale and Quick
+	// Feet (Komala has Comatose and a Guts passive). With Comatose as the
+	// ability or the passive.
+	guts: {
+		inherit: true,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.status || pokemon.hasAbility('comatose')) {
+				return this.chainModify(1.5);
+			}
+		},
+		desc: "If this Pokemon has a non-volatile status condition or Comatose, its Attack is multiplied by 1.5. " +
+			"This Pokemon's physical attacks ignore the burn effect of halving damage.",
+		shortDesc: "If statused or Comatose, its Attack is 1.5x; ignores burn halving physical damage.",
+	},
+	marvelscale: {
+		inherit: true,
+		onModifyDef(def, pokemon) {
+			if (pokemon.status || pokemon.hasAbility('comatose')) {
+				return this.chainModify(1.5);
+			}
+		},
+		desc: "If this Pokemon has a non-volatile status condition or Comatose, its Defense is multiplied by 1.5.",
+		shortDesc: "If this Pokemon is statused or has Comatose, its Defense is 1.5x.",
+	},
+	quickfeet: {
+		inherit: true,
+		onModifySpe(spe, pokemon) {
+			if (pokemon.status || pokemon.hasAbility('comatose')) {
+				return this.chainModify(1.5);
+			}
+		},
+		desc: "If this Pokemon has a non-volatile status condition or Comatose, its Speed is multiplied by 1.5. " +
+			"This Pokemon ignores the paralysis effect of halving Speed.",
+		shortDesc: "If statused or Comatose, its Speed is 1.5x; ignores Speed drop from paralysis.",
+	},
+	// Protean and Libero change the type before every move (as in Gens 6-8),
+	// not once per switch-in.
+	protean: {
+		inherit: true,
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch' || move.callsMove) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
+			}
+		},
+		desc: "This Pokemon's type changes to match the type of the move it is about to use, before every move. " +
+			"This effect comes after all effects that change a move's type.",
+		shortDesc: "This Pokemon's type changes to the type of the move it is about to use.",
+	},
+	libero: {
+		inherit: true,
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch' || move.callsMove) return;
+			const type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+				this.add('-start', source, 'typechange', type, '[from] ability: Libero');
+			}
+		},
+		desc: "This Pokemon's type changes to match the type of the move it is about to use, before every move. " +
+			"This effect comes after all effects that change a move's type.",
+		shortDesc: "This Pokemon's type changes to the type of the move it is about to use.",
+	},
+	// Intrepid Sword and Dauntless Shield work every time the Pokémon comes in
+	// (as in Gen 8), not once per battle.
+	intrepidsword: {
+		inherit: true,
+		onStart(pokemon) {
+			this.boost({atk: 1}, pokemon);
+		},
+		desc: "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+	},
+	dauntlessshield: {
+		inherit: true,
+		onStart(pokemon) {
+			this.boost({def: 1}, pokemon);
+		},
+		desc: "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+	},
 };
