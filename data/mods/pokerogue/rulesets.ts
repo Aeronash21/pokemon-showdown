@@ -1,6 +1,9 @@
 // Data files may only import types (see test/sim/data.js), so these
 // helpers read the PokéRogue info that scripts.ts init() puts on species.
 
+import type {SecondaryEffect} from '../../../sim/dex-moves';
+import type {RuleTable} from '../../../sim/dex-formats';
+
 /** The passive ability name of a species (or form), or null. */
 function passiveOf(species: Species): string | null {
 	const data = species as AnyObject;
@@ -141,6 +144,90 @@ export function fuseSpecies(dex: ModdedDex, first: Species, second: Species, abi
 	return fused as Species;
 }
 
+/**
+ * PokéRogue's biomes, for the moves that depend on where the battle takes
+ * place (PokéRogue's NaturePowerAttr, CopyBiomeTypeAttr and SecretPowerAttr).
+ * The 'PokeRogue Mod' rule picks one at random for each battle, announces it
+ * and keeps it in battle.formatData.pokeRogueBiome, where Nature Power,
+ * Camouflage and Secret Power (moves.ts) read it. A terrain takes precedence
+ * over the biome. The ids match the client's backgrounds
+ * (sprites-custom/arenas/<id>.png), so it shows the battle's biome.
+ */
+export interface PokeRogueBiome {
+	id: string;
+	name: string;
+	/** The move Nature Power turns into */
+	naturePower: string;
+	/** The type Camouflage gives the user */
+	camouflage: string;
+	/** Secret Power's 30% secondary effect */
+	secretPower: SecondaryEffect;
+	/** ...in words, "Secret Power can <secretPowerText>" */
+	secretPowerText: string;
+}
+
+const SLEEP = ['cause sleep', {status: 'slp'}] as const;
+const PARALYSIS = ['cause paralysis', {status: 'par'}] as const;
+const FREEZE = ['freeze', {status: 'frz'}] as const;
+const BURN = ['burn', {status: 'brn'}] as const;
+const FLINCH = ['cause flinching', {volatileStatus: 'flinch'}] as const;
+const SPEED = ['lower Speed', {boosts: {spe: -1}}] as const;
+const SPECIAL_ATTACK = ['lower Sp. Atk', {boosts: {spa: -1}}] as const;
+const ATTACK = ['lower Attack', {boosts: {atk: -1}}] as const;
+const DEFENSE = ['lower Defense', {boosts: {def: -1}}] as const;
+const ACCURACY = ['lower accuracy', {boosts: {accuracy: -1}}] as const;
+
+const BIOMES: [id: string, name: string, naturePower: string, camouflage: string,
+	secretPower: readonly [string, SecondaryEffect]][] = [
+	['town', "Town", 'round', 'Normal', PARALYSIS],
+	['plains', "Plains", 'silverwind', 'Normal', SLEEP],
+	['grass', "Grass", 'grassknot', 'Grass', SLEEP],
+	['tallgrass', "Tall Grass", 'pollenpuff', 'Grass', SLEEP],
+	['metropolis', "Metropolis", 'triattack', 'Normal', PARALYSIS],
+	['forest', "Forest", 'bugbuzz', 'Bug', SLEEP],
+	['sea', "Sea", 'hydropump', 'Water', ATTACK],
+	['swamp', "Swamp", 'mudbomb', 'Poison', SPEED],
+	['beach', "Beach", 'scald', 'Water', ACCURACY],
+	['lake', "Lake", 'bubblebeam', 'Water', ATTACK],
+	['seabed', "Seabed", 'brine', 'Water', ATTACK],
+	['mountain', "Mountain", 'airslash', 'Flying', SPEED],
+	['badlands', "Badlands", 'earthpower', 'Ground', ACCURACY],
+	['cave', "Cave", 'powergem', 'Rock', FLINCH],
+	['desert', "Desert", 'scorchingsands', 'Rock', ACCURACY],
+	['icecave', "Ice Cave", 'icebeam', 'Ice', FREEZE],
+	['meadow', "Meadow", 'gigadrain', 'Fairy', SLEEP],
+	['powerplant', "Power Plant", 'chargebeam', 'Electric', PARALYSIS],
+	['volcano', "Volcano", 'lavaplume', 'Fire', BURN],
+	['graveyard', "Graveyard", 'shadowball', 'Ghost', FLINCH],
+	['dojo', "Dojo", 'focusblast', 'Fighting', PARALYSIS],
+	['factory', "Factory", 'flashcannon', 'Steel', PARALYSIS],
+	['ruins', "Ruins", 'ancientpower', 'Psychic', SPEED],
+	['wasteland', "Wasteland", 'dragonpulse', 'Dragon', FLINCH],
+	['abyss', "Abyss", 'ominouswind', 'Dark', FLINCH],
+	['space', "Space", 'dracometeor', 'Psychic', FLINCH],
+	['constructionsite', "Construction Site", 'steelbeam', 'Fighting', ACCURACY],
+	['jungle', "Jungle", 'leafstorm', 'Bug', SLEEP],
+	['fairycave', "Fairy Cave", 'alluringvoice', 'Fairy', SPECIAL_ATTACK],
+	['temple', "Temple", 'extrasensory', 'Ghost', SPEED],
+	['slum', "Slum", 'sludgebomb', 'Poison', PARALYSIS],
+	['snowyforest', "Snowy Forest", 'frostbreath', 'Ice', FREEZE],
+	['island', "Island", 'leaftornado', 'Fairy', ACCURACY],
+	['laboratory', "Laboratory", 'zapcannon', 'Steel', PARALYSIS],
+	['end', "End", 'eternabeam', 'Dragon', DEFENSE],
+];
+
+export const PokeRogueBiomes: {[id: string]: PokeRogueBiome} = Object.fromEntries(BIOMES.map(
+	([id, name, naturePower, camouflage, [secretPowerText, secretPower]]) =>
+		[id, {id, name, naturePower, camouflage, secretPower, secretPowerText}]
+));
+
+/** A Shedinja, or a fusion with Shedinja as either half (PokeRogue Fusion). */
+function isShedinja(set: PokemonSet, dex: ModdedDex, ruleTable: RuleTable) {
+	if (dex.species.get(set.species).baseSpecies === 'Shedinja') return true;
+	return !!set.fusion && ruleTable.has('pokeroguefusionmod') &&
+		dex.species.get(set.fusion).baseSpecies === 'Shedinja';
+}
+
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	pokerogueallmoves: {
 		effectType: 'ValidatorRule',
@@ -153,9 +240,12 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 	pokeroguemod: {
 		effectType: 'Rule',
 		name: 'PokeRogue Mod',
-		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle) and Gigantamax via Max Mushrooms.",
+		desc: "Pok&eacute;Rogue Pok&eacute;mon, move lists, passives (with an on/off toggle), Gigantamax via Max " +
+			"Mushrooms, and a random Pok&eacute;Rogue biome for each battle.",
 		ruleset: ['NatDex Mod', '+Light of Ruin'],
 		onChangeSet(set) {
+			// Shedinja's Tera Type is always Bug (also when it's half of a fusion).
+			if (!set.teraType && isShedinja(set, this.dex, this.ruleTable)) set.teraType = 'Bug';
 			// "Charizard-Gmax" means "Charizard holding Max Mushrooms" here; there
 			// is no Dynamax flag. (Chaos has Dynamax, so there it's the usual
 			// Gigantamax factor, unless Max Mushrooms are doing it.)
@@ -197,6 +287,12 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (item.id === 'maxmushrooms' &&
 				!item.megaStone?.[species.isCosmeticForme ? species.baseSpecies : species.name]) {
 				problems.push(`${name} has no Gigantamax form, so it can't use Max Mushrooms.`);
+			}
+			// (no teraType: the format has no Terastallization. Obtainable Misc
+			// already checks a plain Shedinja: its requiredTeraType.)
+			const coreChecked = species.requiredTeraType && this.ruleTable.has('obtainablemisc');
+			if (set.teraType && dex.toID(set.teraType) !== 'bug' && !coreChecked && isShedinja(set, dex, this.ruleTable)) {
+				problems.push(`${name}'s Tera Type has to be Bug: Shedinja's Tera Type can't be changed in PokéRogue.`);
 			}
 
 			// A passive the format bans (as an ability, or as "Pokemon + Ability") has
@@ -265,7 +361,19 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		// Battle: the passive is an innate ability.
 		// ---------------------------------------------------
 		onBegin() {
+			// The battle takes place in a random PokéRogue biome (PokeRogueBiomes),
+			// which decides Nature Power, Camouflage and Secret Power. (The client
+			// shows its background.)
+			const biome = this.dex.deepClone(this.sample(Object.values(PokeRogueBiomes)));
+			this.formatData.pokeRogueBiome = biome;
+			// (the client reads the name from this, up to the " - ")
+			this.add('rule', `Biome: ${biome.name} - Nature Power becomes ` +
+				`${this.dex.moves.get(biome.naturePower).name}, Camouflage makes the user ${biome.camouflage}-type, ` +
+				`and Secret Power can ${biome.secretPowerText}`);
+
 			for (const pokemon of this.getAllPokemon()) {
+				// Shedinja's Tera Type is always Bug.
+				if (isShedinja(pokemon.set, this.dex, this.ruleTable)) pokemon.teraType = 'Bug';
 				// Pokémon holding their Mega Stone, Max Mushrooms or Ultranecrozium Z
 				// can't Terastallize, even before they can use it (Zygarde needs
 				// Power Construct first).
@@ -348,6 +456,15 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 			if (source.m.battleBondSwitchIn === source.previouslySwitchedIn) return;
 			source.m.battleBondSwitchIn = source.previouslySwitchedIn;
 			this.boost({atk: 1, spa: 1, spe: 1}, source, source, this.dex.abilities.get('battlebond'));
+		},
+		// OHKO moves: 30% accuracy (Sheer Cold from a non-Ice user: 20%), plus
+		// 100 x (1 - target's level / user's level), as in PokéRogue (instead of
+		// plus the level difference). They still fail on a higher-level target.
+		onAccuracy(accuracy, target, source, move) {
+			if (!move.ohko || typeof accuracy !== 'number' || target.isSemiInvulnerable()) return;
+			if (source.level < target.level) return;
+			const base = move.ohko === 'Ice' && !source.hasType('Ice') ? 20 : 30;
+			return Math.min(Math.max(base + 100 * (1 - target.level / source.level), 0), 100);
 		},
 	},
 	pokeroguefusionmod: {

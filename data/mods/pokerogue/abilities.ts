@@ -97,8 +97,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	// Victreebel line: 1.5x Atk and Sp. Def for itself and allies in sun.
+	// (Skill Swap and Wandering Spirit can't take it, as in PokéRogue.)
 	flowergift: {
 		inherit: true,
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, breakable: 1, failskillswap: 1},
 		onAllyModifyAtk(atk, pokemon) {
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				return this.chainModify(1.5);
@@ -236,5 +238,43 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 		desc: "On switch-in, this Pokemon's Defense is raised by 1 stage.",
 		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+	},
+	// Supersweet Syrup works every time the Pokémon comes in, not once per battle.
+	supersweetsyrup: {
+		inherit: true,
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Supersweet Syrup');
+			for (const target of pokemon.adjacentFoes()) {
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({evasion: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		desc: "On switch-in, this Pokemon lowers the evasiveness of opposing Pokemon by 1 stage.",
+		shortDesc: "On switch-in, this Pokemon lowers the evasiveness of opponents 1 stage.",
+	},
+	// Imposter transforms into a random opponent it can transform into (not
+	// the one across from it). If there's none, nothing happens.
+	imposter: {
+		inherit: true,
+		onSwitchIn(pokemon) {
+			// (Pokemon#transformInto fails, with no effect, on one it can't copy)
+			const foes = pokemon.foes();
+			this.prng.shuffle(foes);
+			for (const target of foes) {
+				if (pokemon.transformInto(target, this.dex.abilities.get('imposter'))) return;
+			}
+		},
+		desc: "On switch-in, this Pokemon Transforms into a random opposing Pokemon it can Transform into. Fails if " +
+			"there is none (all of them are behind a substitute, Transformed, or disguised by an Illusion, for " +
+			"example).",
+		shortDesc: "On switch-in, this Pokemon Transforms into a random opponent.",
+	},
+	// Forecast can't be taken by Skill Swap or Wandering Spirit.
+	forecast: {
+		inherit: true,
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1},
 	},
 };

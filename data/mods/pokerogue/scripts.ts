@@ -10,8 +10,10 @@
  *  - Gigantamax forms work like Mega Evolutions: hold Max Mushrooms
  *  - singles tiers (tiers.ts)
  *  - Pokémon Champions' move / ability changes (champions-changes.ts)
- *  - PokéRogue's own move / ability changes (abilities.ts, moves.ts) and
- *    its move banlists for Metronome, Sketch... (move-lists.ts)
+ *  - PokéRogue's own move / ability / item changes (abilities.ts, moves.ts,
+ *    init() below: berries eaten at the end of the turn...), its move
+ *    banlists for Metronome, Sketch... (move-lists.ts) and its biomes, for
+ *    Nature Power, Camouflage and Secret Power (rulesets.ts)
  *
  * init() puts the PokéRogue info on each species' data:
  *   species.pokeRogue  true for everything in the PokéRogue dex
@@ -38,6 +40,7 @@ import {AllGameMoves} from './all-game-moves';
 import {PokeRogueTiers} from './tiers';
 import {applyChampionsChanges, championsCalculatePP, CHAMPIONS_ACTIONS, CHAMPIONS_POKEMON} from './champions-changes';
 import {applyPokeRogueMoveLists} from './move-lists';
+import {ItemsText} from '../../text/items';
 
 /** In the PokéRogue dex but impossible to get in these formats. */
 const EXCLUDED_SPECIES = new Set<string>([
@@ -223,6 +226,45 @@ const DITTO_POWDERS = {
 	},
 };
 
+/**
+ * When berries are eaten: at the end of the turn, after weather, Future Sight
+ * and Wish (orders 1-4) and before Leftovers, Grassy Terrain (5), status
+ * damage... like PokéRogue's BerryPhase.
+ */
+const BERRY_RESIDUAL_ORDER = 4.5;
+
+/** The text for a berry that's now eaten at the end of the turn. */
+function endOfTurnBerryText(id: string) {
+	const text = ItemsText[id as ID];
+	if (!text?.shortDesc) return {};
+	return {
+		desc: `${text.desc || text.shortDesc} (Eaten at the end of the turn, if its condition is met then.)`,
+		shortDesc: `End of turn: ${text.shortDesc}`,
+	};
+}
+
+/**
+ * Enigma Berry: at the end of a turn in which the holder was hit by a
+ * super effective attack, it restores 1/4 of its max HP.
+ */
+const ENIGMA_BERRY = {
+	onHit(this: Battle, target: Pokemon, source: Pokemon, move: ActiveMove) {
+		if (move && target.getMoveHitData(move).typeMod > 0) this.effectState.superEffectiveHit = true;
+	},
+	onStart(this: Battle) {
+		delete this.effectState.superEffectiveHit;
+	},
+	onResidualOrder: BERRY_RESIDUAL_ORDER,
+	onResidual(this: Battle, pokemon: Pokemon) {
+		if (!this.effectState.superEffectiveHit) return;
+		delete this.effectState.superEffectiveHit;
+		if (pokemon.eatItem()) this.heal(pokemon.baseMaxhp / 4);
+	},
+	desc: "At the end of a turn in which the holder was hit by a super effective attack, restores 1/4 of its " +
+		"max HP. Single use.",
+	shortDesc: "End of turn: restores 1/4 max HP if hit super effectively that turn. Single use.",
+};
+
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 
@@ -308,6 +350,38 @@ export const Scripts: ModdedBattleScriptsData = {
 		// still a Ditto underneath).
 		Object.assign(this.modData('Items', 'metalpowder'), DITTO_POWDERS.metalpowder);
 		Object.assign(this.modData('Items', 'quickpowder'), DITTO_POWDERS.quickpowder);
+		// Serene Grace doesn't double King's Rock / Razor Fang's flinch chance:
+		// they add it after Serene Grace (priority -2) has run.
+		for (const id of ['kingsrock', 'razorfang']) {
+			Object.assign(this.modData('Items', id), {
+				onModifyMovePriority: -3,
+				desc: "Holder's attacks without a chance to make the target flinch gain a 10% chance to make the " +
+					"target flinch. Serene Grace doesn't double this chance.",
+				shortDesc: "Holder's attacks without a chance to flinch gain a 10% chance to flinch (not 20% with " +
+					"Serene Grace).",
+			});
+		}
+		// Berries are eaten at the end of the turn (after the attacks, weather, Future
+		// Sight and Wish; before Leftovers, status damage...) if their condition is
+		// met then, as in PokéRogue: not the moment HP drops or a status lands.
+		// (Berries that work when hit, like the type-resist ones, still do.)
+		for (const id in this.data.Items) {
+			const data = this.data.Items[id];
+			if (!data.isBerry || !data.onUpdate) continue;
+			const eatIfNeeded = data.onUpdate as (this: Battle, pokemon: Pokemon) => void;
+			Object.assign(this.modData('Items', id), {
+				onUpdate: undefined,
+				onAfterSetStatus: undefined, // (Lum Berry)
+				onResidualOrder: BERRY_RESIDUAL_ORDER,
+				onResidual(this: Battle, pokemon: Pokemon) {
+					eatIfNeeded.call(this, pokemon);
+				},
+				...endOfTurnBerryText(id),
+			});
+		}
+		Object.assign(this.modData('Items', 'enigmaberry'), ENIGMA_BERRY);
+		// Shedinja's Tera Type is always Bug.
+		(this.modData('Pokedex', 'shedinja') as AnyObject).requiredTeraType = 'Bug';
 
 		// Pokébilities' fixes for abilities that deal with other abilities
 		// (Mummy, Trace...) also cover passives. (Neutralizing Gas has its own
@@ -466,8 +540,22 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 		// Transform / Imposter copy the target's passive along with its ability,
 		// except for Ditto, which keeps only its own passive (Adaptability).
+		// A Pokémon Terastallized into the Stellar type can still Transform (the
+		// core code stops it), as in PokéRogue.
 		transformInto(pokemon, effect) {
-			const transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);
+			const stellar = this.terastallized === 'Stellar';
+			if (stellar && ['Ogerpon', 'Terapagos'].includes(pokemon.species.baseSpecies)) return false;
+			if (stellar) this.terastallized = undefined;
+			let transformed;
+			try {
+				transformed = Pokemon.prototype.transformInto.call(this, pokemon, effect || undefined);
+			} finally {
+				if (stellar) this.terastallized = 'Stellar';
+			}
+			if (transformed && stellar) {
+				this.knownType = true;
+				this.apparentType = 'Stellar';
+			}
 			if (transformed) {
 				const isDitto = this.baseSpecies.baseSpecies === 'Ditto';
 				// (none when it copied that same ability: then it's already its ability)
